@@ -2,7 +2,7 @@
 
 winbox-mac is [MikroTik](https://mikrotik.com) Winbox converted to macOS app using [WineBottler](http://winebottler.kronenberg.org).
 
-Icon is from [Winbox4Mac](http://joshaven.com/resources/tools/winbox-for-mac/).
+Icon is from [Winbox4Mac](http://joshaven.com/resources/tools/winbox-for-mac/) used with [Joshaven Potter](http://joshaven.com/#contact) permission.
 
 ## Installation
 
