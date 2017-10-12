@@ -17,6 +17,10 @@ brew cask install winbox-mac
 
 Managed addresses are saved to app folder so if you want keep them after update to newer version need to save them in the old version using `Tools -> Export...` then load in the new one `Tools -> Import...`
 
+## Version
+
+Current version is based on [Winbox 3.11](https://download2.mikrotik.com/routeros/winbox/3.11/winbox.exe)
+
 ## Screenshot
 
 ![winbox-mac screenshot](screenshot.png)
