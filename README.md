@@ -6,7 +6,7 @@ Icon is from [Winbox4Mac](http://joshaven.com/resources/tools/winbox-for-mac/) u
 
 ## Installation
 
-Can be easily installed with:
+Can be easily installed with [Homebrew Cask](https://caskroom.github.io):
 
 ```sh
 brew tap nrlquaker/personal
