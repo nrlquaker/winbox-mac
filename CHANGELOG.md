@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.13
+
+- abandoned support for connecting to older RouterOS versions (older than v6), no DLLs will ever be downloaded;
+- winbox.exe is now signed executable;
+
 ## 3.12
 
 - added new menu entry - "Export Without Passwords";

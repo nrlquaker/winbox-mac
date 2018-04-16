@@ -21,7 +21,7 @@ Managed addresses are saved to app folder so if you want keep them after update 
 
 ## Version
 
-Current version is based on [Winbox 3.12](https://download2.mikrotik.com/routeros/winbox/3.12/winbox.exe)
+Current version is based on [Winbox 3.13](https://download.mikrotik.com/routeros/winbox/3.13/winbox.exe)
 
 ## Screenshot
 
