@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.14
+
+- added support for new style authentication and encryption for connections to RouterOS v6.43;
+- make all connections in secure mode (all data is encrypted with AES128-CBC-SHA);
+- make winbox self upgrade check .exe signature;
+- make up/down keys select previous/next entry in address/neighbors list in connect window while login name or password fields are in focus;
+- make mouse wheel work anywere in connect window if login or password fields are in focus;
+- remember Romon Neighbours Table column widths;
+- fixed problem where selected table items were moved to the top if the table filters dropdown button was clicked twice;
+
 ## 3.13
 
 - abandoned support for connecting to older RouterOS versions (older than v6), no DLLs will ever be downloaded;
