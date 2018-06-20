@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.15
+
+- fixed problem where connecting through RoMON agent with incomplete package set not all menus were available on the target router;
+- fixed arrow keys in table filter fields;
+- when connected to romon agent mark session as romon one;
+
 ## 3.14
 
 - added support for new style authentication and encryption for connections to RouterOS v6.43;
