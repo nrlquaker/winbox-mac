@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.16
+
+- added back support for connecting to older RouterOS v6 versions;
+- fixed crash when connecting to newest RouterOS on MacOS wine;
+
 ## 3.15
 
 - fixed problem where connecting through RoMON agent with incomplete package set not all menus were available on the target router;
