@@ -3,13 +3,13 @@
 ## 3.16
 
 - added back support for connecting to older RouterOS v6 versions;
-- fixed crash when connecting to newest RouterOS on MacOS wine;
+- fixed crash when connecting to newest RouterOS on MacOS wine.
 
 ## 3.15
 
 - fixed problem where connecting through RoMON agent with incomplete package set not all menus were available on the target router;
 - fixed arrow keys in table filter fields;
-- when connected to romon agent mark session as romon one;
+- when connected to romon agent mark session as romon one.
 
 ## 3.14
 
@@ -19,12 +19,12 @@
 - make up/down keys select previous/next entry in address/neighbors list in connect window while login name or password fields are in focus;
 - make mouse wheel work anywere in connect window if login or password fields are in focus;
 - remember Romon Neighbours Table column widths;
-- fixed problem where selected table items were moved to the top if the table filters dropdown button was clicked twice;
+- fixed problem where selected table items were moved to the top if the table filters dropdown button was clicked twice.
 
 ## 3.13
 
 - abandoned support for connecting to older RouterOS versions (older than v6), no DLLs will ever be downloaded;
-- winbox.exe is now signed executable;
+- winbox.exe is now signed executable.
 
 ## 3.12
 
