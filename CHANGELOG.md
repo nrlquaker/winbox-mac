@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.17
+
+- fixed sudden disconnects from router (introduced in v3.15).
+
 ## 3.16
 
 - added back support for connecting to older RouterOS v6 versions;

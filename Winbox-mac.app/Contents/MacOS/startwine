@@ -23,7 +23,7 @@ fi
 
 
 # create working copy
-export WINEPREFIX="$HOME/Library/Application Support/com.mikrotik.winbox_153056750320104"
+export WINEPREFIX="$HOME/Library/Application Support/com.mikrotik.winbox_153363696728211"
 if [ ! -d "$WINEPREFIX" ]; then
     "$BUNDLERESOURCEPATH/Winetricks.app/Contents/MacOS/./Winetricks" "$BUNDLERESOURCEPATH/wineprefix" "$WINEPREFIX" "$(defaults read "$BUNDLERESOURCEPATH/../Info" CFBundleName)"
 fi
