@@ -14,9 +14,13 @@ brew tap nrlquaker/personal
 brew cask install winbox-mac
 ```
 
+## Update
+
+Recommended way to update is to use winbox inner updater: `Tools -> Check For Updates`. If you want to update using `brew cask` please check [Notes](#notes).
+
 ## Notes
 
-Managed addresses are saved to app folder so if you want keep them after update to newer version need to save them in the old version using `Tools -> Export...` then load in the new one `Tools -> Import...`
+Managed addresses are saved to `~/Library/Application Support/com.mikrotik.winbox_$(id)`. The id is different for each version of the app. So if you want keep them after updating not with winbox inner updater, you have to save them in the old version using `Tools -> Export...` then load in the new one with `Tools -> Import...`
 
 ## Version
 
