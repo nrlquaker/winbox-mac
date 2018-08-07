@@ -1,0 +1,65 @@
+SANE on Windows
+
+Prerequisites
+=============
+
+To be able to compile sane-backends, you need to have either Cygwin
+or Mingw compilers and a suitable POSIX compatible environment.
+
+You can get the Cygwin POSIX compatible environment for Windows
+Windows and the Cygwin gcc compiler at http://www.cygwin.com
+
+You can get the MSYS POSIX compatible environment for Windows and the
+MinGW gcc compiler at http://www.mingw.org/wiki/MSYS
+
+The scanner must be detected by Windows and not be disabled. Check
+with the hardware manager.
+
+
+Building
+========
+
+See general README for build basics. If a given backend fails to
+compile, you can use the BACKENDS variable to limit compilation
+to backends your interested in:
+
+  ./configure BACKENDS=epson2
+
+
+Configuring
+===========
+
+If you have more than one scanner, you should do the following:
+
+  - run sane-find-scanner to get the device name of the scanner. The
+    name for scsi devices is something like h0b0t6l0, meaning hba 0, bus 0,
+    scsi id 6 and lun 0.
+
+  - edit the config file for the backend
+    (/path/to/sane/etc/sane.d/xxxx.conf) and add the scanner device name on
+    an empty line.
+
+  - Set environment variable SANE_CONFIG_DIR to point to the directory
+    where the config files are located.
+
+Run "scanimage > out.pnm" to get a scan.
+
+xscanimage ans XSane have been reported to compile and run in the past
+under Cygwin.
+
+Notes
+=====
+
+- Only SCSI, USB (with libusb-win32), and network scanners may work. No
+  FireWire/Parallel. The Cygwin libusb port can be installed
+  with Cygwin setup.exe or can be compiled manually under cygwin
+  or mingw using the libusb-win32 port:
+  http://sourceforge.net/apps/trac/libusb-win32/wiki
+
+- Tested on Windows XP, 7, and using Wine on Linux.
+
+- Some scanners' backend may not work because of requirement not
+  supported by Cygwin or MinGW.
+
+
+2011/10/08

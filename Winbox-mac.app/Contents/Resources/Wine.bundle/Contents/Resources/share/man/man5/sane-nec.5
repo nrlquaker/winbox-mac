@@ -1,0 +1,59 @@
+.TH sane\-nec 5 "14 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-nec
+.SH NAME
+sane\-nec \- SANE backend for NEC scanners
+.SH DESCRIPTION
+The
+.B sane\-nec
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to NEC SCSI scanners.  This backend should be
+considered
+.B alpha-quality
+software!  In the current state it is known to work with PC-IN500/4C 
+scanners. Another MultiReader scanner series is not supported. PC-IN
+500/4C and MultiReader scanner are only sold in Japan.(except Multi
+Reader PetiScan.)
+
+For other scanners, it may or may not work.
+.PP
+The backend has the following known problems:
+.RS
+\- ColorLineart mode is not supported.
+.br
+\- device name is fixed to /dev/scanner
+.RE
+.PP
+At present,
+the following scanners are known to work with this backend.
+.RS
+.ft CR
+.nf
+Vendor Product id
+------ -----------
+NEC    PC-IN500/4C
+.fi
+.ft R
+.RE
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/nec.conf
+The backend configuration file.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-nec.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-nec.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_DEBUG_NEC
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  E.g.,
+a value of 128 requests all debug output to be printed.  Smaller
+levels reduce verbosity.
+.SH "SEE ALSO"
+sane(7), sane\-scsi(5)
+.SH AUTHORS
+Kazuya Fukuda

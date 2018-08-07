@@ -1,0 +1,103 @@
+UNIXWARE PORT of SANE - HOWTO build and what you need to run
+
+You need a sane SCSI driver to run SANE on Unixware 2.x. There is at
+least one such driver: the sane driver by R=I+S.
+
+The Unixware sane driver is a binary loadable module driver for UW2.x.
+Please send Email to wolfgang@rapp-informatik.de to receive.
+
+What you need to build xane on Unixware 2.x
+- gnu make
+
+You dont't need gcc. All is build with the standard Unixware cc and
+libs!!
+
+For the X-frontends xscanimage and xsane (separately distributed) you need
+libs like libgtk libgimp and the image libs for jpeg, tiff and png.  It is
+also good to have gettext with libintl installed.  Most of the libs are
+available on the Skunkware CD's from SCO in pkgadd format.  If you build the
+frontends with this libs gimp plugin is also supported by xscanimage and
+xsane. Latest xsane version tested was 0.48.
+
+With the following configure should run an build shared libs with
+libtool 1.3.4
+
+LD_RUN_PATH=/usr/local/lib CPPFLAGS="-I/usr/local/include -I/isr/X/include" CFLAGS="-I/usr/local/include -I/usr/X/include
+-I/usr/ucbinclude -L/usr/local/lib -L/usr/ucblib -l ucb" LIBS="-lsocket -lnsl -lgen -I/opt/include -L/usr/ucblib -lucb" ./configure
+
+After running configure you have to edit the generated file libtool
+
+Append to the line
+archive_cmds="\$LD -G -o \$lib \$libobjs \$deplibs \$linkopts
+
+so that it looks like this.
+archive_cmds="\$LD -G -o \$lib \$libobjs \$deplibs \$linkopts -B bind_now -L/usr/local/lib -lintl -L/usr/ucblib -lucb -lm"
+
+This is a must to link the libucb.a , libintl.a in when the sane libs
+are build.It's also necessary for mathematic lib -lm .  Not doing this
+will bring runtime errors like missimg usleep or pow function.
+
+ATTENTION:!!! libucb.a of Unixware 2.x has a buggy readdir function so
+it is recommanded to remove readdir.o from libucb.a with ar -d
+readdir.o libucb.a Often used and neded functions from libucb.a are
+strncasecmp or getpagesize.
+
+If you use -I/usr/ucbinclude it is also a good idea to move
+/usr/ucbinlcude/unistd.h to another file, because it will be included
+first and some sources will not compile.
+
+Then you can run make with GNU make.
+
+After this say su and then ist good to say
+LD_RUN_PATH=/usr/local/lib export LD_RUN_PATH
+
+after this you can install with
+make install
+
+Tested on Unixware 2.0.x with Umax Astra 1220S and HP C5100A with
+sane-1.0.1.  With Microtek backend earlier on sane-0.74.
+
+If you use the net backend you do not need the Unixware sanedrv.
+
+The driver is a shareware product.
+
+The driver is supplied binary in pkgadd(1m) format and is tested from
+UW2.0x.  Please send Email to wolfgang@rapp-informatik.de to get the
+driver in binary pkgadd package.
+
+To install it on a Unixware do:
+
+        cd /tmp
+        get sanedrv.pkg.tgz
+        gunzip sanedrv.pkg.tgz
+        tar xvf sanedrv.pkg.tar
+as root:
+        pkgadd -d /tmp/sanedrv
+
+Once the driver is installed, there should be a device nodes /dev/sane
+and /dev/scanner /dev/scanner1 for the second, and so on...)
+
+The scanner my be connected to any SCSI controller in the system, also
+if you have additional devices like disks or cdroms on the same
+controller.  The UW2.x sane driver do not block the controller. The
+scanner must be switched on to be recognized by UW, if the low level
+driver p.e. adsl is loaded.
+
+To configure an UMAX scanner, configuration file
+/usr/local/etc/sane.d/umax.conf might contain:
+
+        /dev/scanner
+
+The driver is configured to recognice all scsi scanners with ID
+SCANNER and all HP Scsi scanners with ID Processor and Inquiry string
+starting with "HP" string. For details have a look to
+/etc/conf/pack.d/sane/space.c.
+
+If you change this then you must unload the sane driver modadmin -U
+sane, build the new module by /etc/conf/bin/idbuild -M sane and the
+install the driver with modadmin -l sane.
+
+If you have questions or problems with the Unixware support in SANE,
+send mail to:
+
+wolfgang@rapp-informatik.de

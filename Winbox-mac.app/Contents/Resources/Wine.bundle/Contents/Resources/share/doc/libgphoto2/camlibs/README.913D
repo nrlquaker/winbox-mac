@@ -1,0 +1,71 @@
+/* This is a second README file for libgphoto2/camlibs/digigr8. This README is 
+ * an integral part of the libgphoto2/camlibs/digigr8 library source code and 
+ * is distributed with that source code under the LGPL license. a copy of which 
+ * license may be seen in the head directory of libgphoto2, in the file 
+ * COPYING.
+ * Copyright by Theodore Kilgore, 08/24/07.
+ */ 
+
+
+
+On 08/23/2007, I discovered a new camera with USB ID 0x2770:0x913d. The
+basic functions of this camera are the same as those of the 0x2770:0x905c
+cameras which are the main ones supported in libgphoto2/camlibs/digigr8, but
+there are some small differences. For a complete description and discussion
+of the 0x2770:0x913D camera, therefore, the reader should also read 
+README.905C. Only the basic features and the differences with the 
+previously-supported 0x2770:0x905C cameras are listed here:
+
+Features of the Suprema Digital Keychain Camera:
+
+	-- 640x480 and 320x240 resolution settings
+	-- supports gphoto2 --capture-preview option (presumed that the size
+		of the output image can be adjusted in code, default
+`		320x240; see README.905C for details of that.
+	-- apparently does _not_ support multiframe AVI capability, or if so
+		it is not mentioned in the written manual. 
+	-- a setting does exist for shooting three frames with one shutter
+		press, but three only, not more. 
+	-- has a viewfinder and preview window on the back, which is very
+		pretty but presumably eats battery. 
+	-- saves photos in volatile SDRAM, so don't let the batteries die. 
+	-- permits deletion of individual photos on the camera, by pushing
+		some buttons. This feature is not present on the SQ905C 
+		cameras and is a big difference. Because of the way 
+		this deletion is done, the function which counts photos 
+		needed a serious rewrite to accommodate the deletion.
+		It will probably not ever be possible, unfortunately, to
+		support deletion of any photos or images on the camera, by
+		means of software control from the computer.
+	-- webcam functionality. The webcam function is supported by the
+		kernel. This camera library in libgphoto2 supports stillcam
+		functionality.
+
+As a further note, the gphoto2 --capture-image USB command when used with an
+0x2770:0x913D camera will _not_ delete the images already on the camera. This 
+means one does not have to worry about that happening; it also means that there
+is no way known to implement the gphoto2 -D option for these cameras. 
+
+
+On 10/13/07 I discovered that the Sakar Styleshot (Sakar ID no. 28290 or 28292) 
+is also supported, and I have added it to the list of cameras in library.c. 
+Aside from appearance, the main difference between the Styleshot and the 
+Suprema described above is that the Styleshot has an internal rechargeable 
+battery. 
+
+On 12/23/07 the Sakar Spiderman (no. 92045) has been reported by Martin Laberge 
+<mlsoft@videotron.ca>. THERE IS POTENTIAL NAME CONFUSION WITH THIS CAMERA. The
+Sakar Amazing Spiderman (no. 94044) has in it a JL2005C chip which is currently
+not supported in libgphoto2. Buyer beware! (Update 01/12/2012: Support for 
+all JL2005C cameras has been added to libgphoto2. The buyer need not "beware"
+any longer. However, it seems to remain true that SQ cameras take better than
+average pictures, relative to their low price range.)
+
+WARRANTY: 
+
+None. For a more complete discussion of this issue, the reader is referred to 
+README.905C and to the statements of the LGPL license regarding warranty. 
+
+
+Theodore Kilgore, 08/24/2007, revised 12/23/2007, 01/21/2008, 
+01/22/2008, 01/12/2012

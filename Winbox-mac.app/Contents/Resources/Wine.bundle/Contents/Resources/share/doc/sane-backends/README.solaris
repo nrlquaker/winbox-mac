@@ -1,0 +1,190 @@
+This is a report on how to build SANE on Solaris/x86 using a USB scanner. See
+below for SCSI.
+
+Another report for SANE on OpenSolaris can be found here:
+http://ginfo.egim-mrs.fr/article.php3?id_article=44
+
+From: Tomasz Orlinski <tomasz.orlinski@wp.pl>
+To: sane-devel@lists.alioth.debian.org
+Subject: [sane-devel] USB scanners DO work on Solaris 10 x86
+Date: Thu, 7 Oct 2004 20:26:50 +0200
+
+I would like to inform you, that I have compiled SANE on Sun Solaris 10 x86
+with built-in USB scanner support. It was possible, because Sun had prepared
+libusb library wrapper for Solaris 10. I know, that Solaris 10 Software
+Express Release 08/04 is required. I have done it in that way:
+LD_LIBRARY_PATH=/usr/sfw/lib:$LD_LIBRARY_PATH
+CFLAGS="-I/usr/sfw/include"
+CPPFLAGS="-I/usr/sfw/include"
+LDFLAGS="-L/usr/sfw/lib -R/usr/sfw/lib -lusb"
+export LD_LIBRARY_PATH CFLAGS CPPFLAGS LDFLAGS
+./configure --prefix=/opt/sane --disable-fork-process
+make
+make install
+It was also required to add a generic USB kernel driver. I had to look for
+my scanner device name in output of
+prtconf -D -v
+command. My scanner is Plustek UT24 and the apropriate part of output looked
+like this:
+name='compatible' type=string items=8 value='usb7b3,17.100' + ...
+I had to remove the not used kernel driver
+rem_drv ugen
+And add it again:
+add_drv -i 'usb7b3,17.100' ugen
+Then, /opt/sane/bin/sane-find-scanner detected my scanner and everything
+worked fine. I to add " " signs around usb7b3,17.100 name in
+/etc/driver_aliases to have the scanner working after reboot.
+To compile this packages SUNWlibusb and SUNWlibusbugen were needed. I used
+Solaris Software Companion CD gcc 2.95.3 compiler and Sun's /usr/ccs/bin/ld
+linker. USB support DOES NOT work in Solaris 9 and earlier versions.
+I hope, that this information would be useful for other USB scanner users.
+
+From: Tomasz Orlinski <tomasz.orlinski@wp.pl>
+To: sane-devel@lists.alioth.debian.org
+Subject: Re: [sane-devel] USB scanners DO work on Solaris 10 x86
+Date: Fri, 8 Oct 2004 16:06:14 +0200
+
+[...]
+
+Sun in Driver Development Kit v. 0.9 writes how to compile SANE, but it does not
+really work :) They write about compiling with gcc and give options for Sun
+Forte compiler (cc) and forget about attaching a kernel driver. But they write,
+that versions earlier than 1.0.14 cannot be used. They want also to build SANE
+with Posix threads enabled. So I think that can be true. Sun writes also, that
+Solaris Software Express release at least S10_62 is needed to use
+libusb. Release number can be checked in /etc/release. The newest version can be
+downloaded from www.sun.com/solaris for free.
+
+In my opinion it is important to be cautious when using scanner or just libusb
+on important Solaris machines (especially multi-processor ones), because unlike
+in other systems, Solaris kernel is fully preemtible, what means, that many
+instances of the same driver can ran simultanously - it's dangerous, when
+drivers are not perfect. And Solaris USB framework is absolutely new, so it can
+contain bugs. I tried to crash my Solaris using USB subsystem and SANE, I didn't
+manage to, but it doesn't mean, it's impossible.
+
+SANE frontends work without any problems with Xsun and GIMP included in Solaris
+Software Companion CD.
+
+---------------------------------------------------------------------------
+The following text describes, how to use a SCSI scanner (2002-06-11).
+
+You need a generic SCSI driver to run SANE on Solaris.  There are at
+least three such drivers: the scg driver by Joerg Schillig, the
+sg driver by Kevin Sheehan, and starting with Solaris 8 Sun's own
+sgen(7D) driver.
+
+NOTE: You should install the SCSI generic driver BEFORE you run
+`configure' in the sane directory---otherwise configure won't set up
+SANE to work with the generic scsi driver.
+
+*** scg driver
+
+The SCSI general driver scg is
+
+	Copyright 1986-1995 Joerg Schilling,
+
+It is supplied binary in pkgadd(1m) format and is tested from Solaris
+2.3 to Solaris 2.6 (sparc) and Solaris 2.3 to Solaris 2.5.1 (x86).  It
+can be found in
+
+	ftp://ftp.fokus.gmd.de/pub/unix/kernel/scg/
+
+To install it on a SPARC do:
+
+	cd /tmp 
+	get SCHILYscg.sparc.tar.Z
+	uncompress SCHILYscg.sparc.tar.Z
+	tar -xvf SCHILYscg.sparc.tar
+as root:
+	pkgadd -d .
+
+NOTE: Be very careful with pkgadd as it does not check for the correct
+      target architecture. Do not install drivers for x86 on sparc
+      and vice versa.  You will get a corrupt system otherwise.
+
+For Solaris on an x86 do:
+
+	cd /tmp 
+	get SCHILYscg.i386.tar.Z
+	uncompress SCHILYscg.i386.tar.Z
+	tar -xvf SCHILYscg.i386.tar
+as root:
+	pkgadd -d .
+
+Then do a reboot --r
+
+Once the system has rebooted, there should be a device node /dev/scgXX
+for each of your SCSI adapters (/dev/scg0 for the first adapter,
+/dev/scg1 for the second, and so on...)
+
+Because the device name specifies a SCSI adapter, you need to use a
+special device naming syntax so SANE can tell which device you want to
+talk to.  If the device is at SCSI id 0, the character 'a' should be
+appended, character 'b' should be used for SCSI id 1, and so on
+(see also the Solaris section in sane-scsi(5)).
+
+E.g., to configure an HP scanner, configuration file
+/opt/local/etc/sane.d/hp.conf might contain:
+
+	/dev/scg0c	if the scanner has the SCSI target id 2
+
+WARNING! Everybody who can read/write a generic SCSI device can do
+with all your disks whatever he/she wants. It takes only a few lines
+of code to send a FORMAT control block...  Rather than giving users
+access to the SCSI adapter special device, it may be a better idea to
+install scanimage/xscanimage setgid to a special "scanner" group and
+then turn on write permission for the scanner group.
+
+*** sg driver
+
+Another solution to the permission problem is to use the generic SCSI
+driver sg by Kevin Sheehan.  This driver is not free but uses separate
+device node for each SCSI target:
+
+	/dev/sg/0, /dev/sg/1, ...
+
+This allows to control device access on a per-device basis.
+
+*** sgen driver
+
+The solaris 8 sgen driver must be configured before it can be used.
+See /kernel/drv/sgen.conf and the manual page sgen(7D).
+
+The minimal config includes defining the correct
+"device-type-config-list" property in /kernel/drv/sgen.conf.  The
+typical SCSI device type for a scanner is either "scanner" or
+"processor". You can optionally restrict the devices sgen attaches to,
+by defining the "inquiry-config-list" property.  You also have to
+uncomment the scanner's "target/lun" entry, so that the sgen driver is
+allowed to attach to the SCSI scanner hardware.
+
+After the configuration file /kernel/drv/sgen.conf is set up for the
+scanner, run the command "devfsadm -v -i sgen" to create sgen device
+nodes for the scanner.  In case you need to rerun devfsadm to
+incorporate changes to the sgen.conf file, make sure the sgen driver
+is unloaded from the kernel before you re-run devfsadm.  The driver is
+unloaded using the "modunload -i {id}" command; the {id} of the sgen
+driver can be determined with the modinfo command.
+
+
+The device nodes use names of the following form:
+
+	/dev/scsi/device-type/cXtXdX
+
+Example:  A HP Scanjet 4c (SCSI device type: "processor") on controller
+#1, target #6, lun #0 uses the device name
+
+	/dev/scsi/processor/c1t6d0
+
+/kernel/drv/sgen.conf contains:
+
+	device-type-config-list="processor";
+	name="sgen" class="scsi" target=6 lun=0;
+
+
+
+If you have questions or problems with the Solaris support in SANE,
+send mail to:
+
+     hu@garfield.m.isar.de

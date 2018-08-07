@@ -1,0 +1,101 @@
+Building and Installing SANE on HP-UX
+-------------------------------------
+
+This file contains some notes on building and installing SANE on
+HP-UX.  It tells you which compiler switches to use, how to find out
+to which controller card your scanner is connected, and how to create
+a device file for it.
+
+Building SANE
+-------------
+
+On HP-UX, SANE can be built using either the HP ANSI C compiler or
+GCC.  For GCC, no special arguments to configure are necessary.  For
+the HP compiler, invoke configure like this:
+
+  CC=cc CFLAGS="-Ae -O" ./configure
+
+Higher optimization levels than -O (equivalent to +O2) may fail
+to compile correctly.
+
+If you're using the HP compiler on 64-bit HP-UX 11, you must build
+64-bit executables:
+
+  CC=cc CFLAGS="-Ae +DA2.0W -O" ./configure
+
+
+
+Some of the make files use GNU extensions, so you have to use gmake
+(GNU make).  Gmake binaries are available from the HP-UX Porting and
+Archive Centre <http://hpux.connect.org.uk> and its mirror sites.
+
+Installing SANE
+---------------
+
+The SCSI pass-through driver (sctl) must be enabled in your kernel,
+but it is by default.
+
+Naturally, the scanner must have a non-conflicting SCSI address and it
+must be connected to the right SCSI bus to work.
+
+You'll probably need to create a device file for your scanner.  To do
+this, you'll need to know its SCSI address, and, if your machine has
+multiple SCSI controllers, the number of the one it's connected to.
+As root, you can use ioscan -f to find this information.
+
+For example, here's the partial ioscan output for a C200:
+
+Class       I  H/W Path      Driver      S/W State   H/W Type     Description
+==============================================================================
+[...]
+ext_bus     0  8/0/19/0      c720        CLAIMED     INTERFACE    Ultra Wide SCSI
+target      0  8/0/19/0.6    tgt         CLAIMED     DEVICE       
+disk        0  8/0/19/0.6.0  sdisk       CLAIMED     DEVICE       IBM     DDYS-T09170N
+target      1  8/0/19/0.7    tgt         CLAIMED     DEVICE       
+ctl         0  8/0/19/0.7.0  sctl        CLAIMED     DEVICE       Initiator
+[...]
+ext_bus     1  8/16/5        c720        CLAIMED     INTERFACE    Built-in SCSI
+target      4  8/16/5.1      tgt         CLAIMED     DEVICE       
+unknown    -1  8/16/5.1.0                UNCLAIMED   UNKNOWN      EPSON   Perfection1640
+target      2  8/16/5.2      tgt         CLAIMED     DEVICE       
+disk        1  8/16/5.2.0    sdisk       CLAIMED     DEVICE       TOSHIBA CD-ROM XM-5401TA
+target      3  8/16/5.7      tgt         CLAIMED     DEVICE       
+ctl         1  8/16/5.7.0    sctl        CLAIMED     DEVICE       Initiator
+[...]
+
+You can see that there are two SCSI controllers, Ultra Wide SCSI and
+Built-in SCSI (narrow single-ended).  The I column shows the number of
+the controller card.  Our scanner, an Epson Perfection 1640, is
+connected to controller 1, and has SCSI address 1 (that's the 1 in the
+H/W Path number).
+
+You can now create the device file using mknod(1M).  In this example,
+the command would be:
+
+  mknod /dev/rscsi/c1t1d0 c 203 0x011000
+
+In the filename, c1 specifies controller 1, t1 is target 1 (i.e., the
+SCSI address), d0 (device 0) because it's the only device at that
+address.  203 is the major number of the sctl driver.  In the minor
+number (0x011000), 01 again means controller 1, and the second one
+means SCSI address 1.  See scsi_ctl(7) for details.
+
+For ease of use with SANE, I'd recommend to create a link to
+/dev/scanner, e.g.,
+
+  ln -s /dev/rscsi/c1t1d0 /dev/scanner
+
+To allow normal users to access the scanner, the best approach is
+probably to create a new group, say, "scanner", and make the scanner
+device file readable and writable for the group, e.g.,
+
+  chown bin:scanner /dev/rscsi/c1t1d0
+  chmod g+rw /dev/rscsi/c1t1d0
+
+You would then add all users that are allowed to use the scanner to
+that group.  If you haven't already done so, you should do
+
+  ln -s /etc/group /etc/logingroup
+
+so that users are automatically in all groups to which they belong
+(and don't have to use newgrp(1)).

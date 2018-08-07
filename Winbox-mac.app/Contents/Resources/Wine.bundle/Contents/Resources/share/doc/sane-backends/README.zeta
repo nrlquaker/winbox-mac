@@ -1,0 +1,26 @@
+SANE and Zeta
+-------------
+
+The Zeta port is based on existing BeOS port, with some changes 
+to accomodate yellowTAB's internal build procedure, and some new 
+conventions brought up by Zeta.
+
+Cf. README.beos for more historical stuff.
+
+SANE 1.0.9 was updated for Zeta by Ithamar Adema for yellowTAB.
+
+SANE 1.0.15 was updated for BeOS and Zeta by François Revol for yellowTAB.
+
+Zeta uses a modified version of Philippe Houdoin's Sanity GUI frontend.
+http://philippe.houdoin.free.fr/phil/beos/sanity/index-en.html
+
+SANE was reported to work with the following configuration and features:
+
+Platform: Zeta R1 (== BeOS R6.x) ix86
+Latest SANE version tested: 1.0.15
+Compiler: gcc 2.95.3
+User-level SCSI support: yes
+USB support: yes
+Shared library support: yes
+Dynamic loading support: yes  
+X11 clients: no

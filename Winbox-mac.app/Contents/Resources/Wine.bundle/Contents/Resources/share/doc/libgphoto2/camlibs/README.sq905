@@ -1,0 +1,288 @@
+/* This is the README.sq905 file for libgphoto2/camlibs/sq905. 
+ *
+ * This README is part of the libgphoto2/camlibs/sq905 library source and is
+ * distributed with that source under the LGPL license. a copy of which
+ * license may be seen in any of the source files in libgphoto2/camlibs/sq905,
+ * or in the head directory of libgphoto2.
+ *
+ * Copyright (C) 2003 - 2010 Theodore Kilgore <kilgota@auburn.edu>
+ */
+ 
+ 
+INTRODUCTION:
+
+Cameras with chip from S&Q Technologies are often called DSC(2770) cameras. 
+They have USB Vendor:Product number 0x2770:0x9120, and are classified as USB
+Class:Subclass:Protocol ff:ff:ff (proprietary:proprietary:proprietary).
+
+These cameras are cheap, basic, and come in many brands and models -- all
+with the same USB Vendor:Product number and identical /proc/bus/devices
+entry. In this broad set of cameras, differences can include such things as
+different resolution capabilities, mirror-imaging of data which requires
+line reversal, and different sensitivity under various lighting conditions,
+apparently due to different video sensor chips.  Further complicating
+matters, neither S&Q Technologies nor the associated camera "manufacturers"
+seem responsive to requests for information about their chips or cameras.
+
+I have several different SQ905 cameras for testing. For other cameras,
+I am totally dependent on reports from users and testers. If you have
+another 0x2770:0x9120 camera and want it to work and it currently does not,
+then I will be very glad to hear from you. Saying this a different way:
+further progress with your camera will depend upon your input.
+
+Moreover, the Gphoto project tries very hard to keep a complete list of
+all supported cameras, by name and/or by any other distinguishing features,
+such as a model number if any is printed on the camera or on the packaging.
+If your camera is not on the list of supported cameras, then even if it works
+please report it, so that it can be explicitly added by name in the listing
+found in the source file camlibs/sq905/library.c. Please do this to help
+others. A camera is not sold with the USB vendor:product number printed on
+the package. Also even if it works perfectly in Linux with Gphoto software
+it will usually not say that on the package, either. For these reasons,
+again, please remember to report your camera if it is previously unlisted,
+even if it works.
+
+One would reasonably suspect that all of these cameras have the same chip in
+them, or similar chips from SQ. The cameras do distinguish themselves from
+one another to some extent, reporting a number which can be thought of as a
+"chip id" or "model" ID (for more discussion and a list of known IDs skip
+down to "THE MODEL OR CHIP ID NUMBER").  If your camera reports an unknown
+chip id, then please let me know about that. Your camera may well work
+anyway, but it may require a different color tiling scheme, or it might
+mirror-image the photos. The only way to cure such a problem is for us
+to know about the camera's chip ID and to know precisely what the
+non-conforming behavior is.
+
+
+WHAT CHIP IS ACTUALLY IN THESE CAMERAS? 
+
+The brief answer is that I do not know. 
+
+The website of SQ Technologies <www.sq.com.tw> lists several camera
+controller chips in addition to the SQ905, which is now (2007)
+discontinued. All of the SQ cameras which have the same USB ID do use the 
+same control sequences, however. The lower-resolution cameras all seem to use
+the same Hynix video sensor chip. The video chips in higher-resolution cameras
+do not all behave the same way and thus probably come from several sources.
+Fortunately, it seems that the "chip id" is a sufficiently reliable indicator
+of how to process data from the camera.
+
+
+THE MODEL OR CHIP ID NUMBER
+
+Very early during initialization, the camera reports a four-byte string.
+Apparently, this string identifies the model, the precise chip in the
+camera, or perhaps the controller and video imaging chip combination. The
+string may be associated with special behavior. For example, the camera may
+produce photos which are mirror-imaged unless line reversal is done, or
+perhaps the color tiling is different. Fortunately, most of the time one may
+assume that the model is "SQ_MODEL_DEFAULT," but not always. To help in
+those cases where it does make a difference, the model number is recorded
+during camera initialization. You can see what number your camera has, by
+doing any gphoto2 operation in debug mode and saving the debug output into a
+file. For example, to do "gphoto2 --summary --debug 2>debug" will create a
+text logfile called "debug." In that file, look for the place where the
+computer and the camera actually start to talk to each other, and you will
+see the number. A list of known numbers follows:
+
+Brand name/model			Number		Credits to
+
+Argus DC-1510 and many other cameras	09 05 00 26	T. K.
+PockCam, Che-Ez Snap, some others 	09 05 01 19	Paolo Tribolet Abreu,
+							Christian Bulow
+Magpix B350 Binocular Camera		09 05 01 32	T. K.
+Precision Mini				50 05 00 26	Fabien Devaux
+Vivicam 3350				09 05 02 19	T. K.
+DC-N130t				09 05 02 25	Cedric Cellier
+Global Point Splash Mini (waterproof)	09 05 02 19	T. K.
+
+Of these models, most actually use the "default" settings for photo processing.
+
+
+WHAT FEATURES DO THESE CAMERAS HAVE, AND WHAT DOES THIS DRIVER SUPPORT?
+
+	FEATURE LIST					SUPPORTED (Y/N/Part)
+-- USB connection to computer						Y
+-- High resolution 352x288 or 640x480, uncompressed 			Y
+-- Low resolution 176x144 or 320x240, uncompressed			Y
+-- High resolution 352x288 or 640x480, compressed 			Y
+-- Low resolution 176x144 or 320x240, compressed			Y
+-- Ability to "switch" resolution between pictures 			Y
+-- Ability to download all pictures on camera				Y
+-- Ability to download the first k pictures, where 
+	k is less than the number on the camera 			Y
+-- Ability to download individual photos				Y
+-- "Video clip" capability. Clips are saved as directories.		Y
+-- Capture and immediate download of a 320x240 snapshot			Y
+-- Webcam mode: Not supported here. But see notes below.		N
+-------------------------------------------------------------------------
+The following things can be done with button-pushes on the camera:
+-------------------------------------------------------------------------
+-- Frequency filter for use in artificial light. Can be set 
+	to cancel 60hz or 50hz interference. 
+-- Delete all, delete last, resolution setting, compression mode setting.
+Unfortunately, it does not seem possible to do any of these things with
+commands sent from the computer even if the camera is tethered, except for
+the fact that for some of the cameras the command which triggers capture also
+has the effect of deleting everything stored on the camera. Thus, deletion
+of all photos may work for your camera, but it may not.
+
+Notes:
+
+All known sq905 cameras have either a 640x480 high-resolution setting and a
+320x240 low-resolution setting, or a 352x288 and a 176x144 setting. If your
+sq905 camera uses a new resolution setting, then you will be unable to
+download photos until that new resolution setting is listed in sq905.c in
+sq_get_picture_width () and in library.c where the picture height is chosen.
+If you encounter new resolution settings, then please report them so they
+can be put into the camlib.
+
+All known sq905 cameras use only 320x240 in capture mode. Also, capture
+never uses high compression, even if it is otherwise turned on. Please
+report any behavior different from this.
+
+
+"Video clip capability" is implemented for all known SQ cameras. "Video
+clip" output is always uncompressed, ignoring the "compression" setting.
+Also, it is possible to create more than one clip or to intersperse clips
+and ordinary still photos on the camera.
+
+The pictures obtained on the uncompressed settings can often be superior to
+those obtained using the software which came with the camera, but not
+always. Generally, considering that they are cheap, low resolution cameras,
+these cameras give relatively good pictures,
+
+Video capture of one photo is done with  "gphoto2 --capture-preview". The
+related command "gphoto2 --capture" is not implemented. It would be used to
+take a photo which can be downloaded later on, through normal photo download
+procedures. But the hardware seems unable to support "gphoto2 --capture".  
+
+The sq905 cameras can function as webcams. Support for the webcam mode of
+these cameras is available through the module gspca_sq905, included as
+part of the regular kernel since kernel version 2.6.29. This means it is
+part of the kernel source, of course. It is then up to your distro to
+include the webcam support for these cameas, or not. The webcam mode for
+any of these cameras can do streaming at any of the resolutions 160x240,
+176x144, 320x240, 352x288, and in addition at 640x480 provided that the
+camera's hardware will do this (What is the max resolution for still photos?
+The same applies in webcam mode). However, do not expect a high frame rate
+in webcam mode. The camera is a USB 1.1 device, and it is streaming
+uncompressed frames, using bulk transport, not isochronous transport.
+
+Thanks is hereby given to the authors and maintainers of the old "sq"
+module, which for several years provided an out-of-kernel module to support 
+streaming with these cameras.
+
+
+
+HARDWARE LIMITATIONS AND CONSTRAINTS
+
+1.	The downloading of "thumbnails" as special files is totally
+unsupported by the hardware. The manufacturer's driver downloads a
+consecutive list of photos and creates thumbnails, then "saves" only the
+photos which the user selects. Gphoto2 prefers ability to do random access.
+
+2.	The camera's data storage provides only sequential access, not
+random access. In other words, it acts as though it were a tape drive
+instead of a disk. The constraints which this places are obvious.
+
+3.	Considering the way the communication protocols of these cameras
+seem to work, it would seem nearly impossible to copy any data to the camera
+for storage and transport. The camera clearly does not have files on it,
+only data addresses. And the camera does not keep time. For similar
+reasons, it would also seem impossible to delete a photo from the camera by
+action of software on the computer. The camera supports two choices for
+deletion: delete the last photo taken, or delete all. Each action is
+performed by an appropriate sequence of button pushes on the camera.
+
+(Addendum: Deletion of all photos is supported on the Argus DC-1510 and
+certain cameras similar to it (Precision Mini?). The routine for starting
+webcam mode will delete all photos on the DC-1510. But not on the Argus
+DC-1512 and apparently not on most other SQ cameras. A "Delete all" function
+is included, for those who have cameras which can use it. If your camera's
+literature warns that using the camera as a webcam or PCcam will cause data
+loss, then "Delete all" will probably work.)
+
+To find a way around the listed constraints would indeed be most
+interesting. Who knows? Maybe these things can be done. Could be that these
+chips have undocumented capabilities. But maybe not. I have especially
+hunted for undocumented commands which would support things that the camera
+will only do with button presses, but I have not found any.
+
+
+WHAT GUI FRONTENDS DOES THIS CAMERA LIBRARY SUOPPORT?
+
+Gtkam seems to work quite well for me with this library. Note, however, that
+gtkam will require you to download the contents of video clips separately
+from ordinary photos. Clips are put into subdirectories, and you must enter
+a subdirectory to see and download the frames in it.  Digikam does not work
+quite so well for me. But it may work nicely for you, and you are hereby
+encouraged to try it. If you want to use either gtkam or digikam, you are
+encouraged to read the camera's manual. 
+
+
+NOTES
+
+1.	The program is set up to put out pictures in PPM or raw format.
+
+2.	The gamma setting (actually seems to be one over gamma) used for
+the construction of PPM image files has been obtained by trial and error. It
+seems to work very well for outdoor pictures, but the setting is a
+compromise between what happens with outdoor photos and what happens with
+indoor photos. Conceivably, the program could support a choice between two
+or more gamma settings, optimizing for different conditions.
+
+4.	Please get back to me with reports about other SQ cameras, with their
+specifications (what it says in the manual about resolution and number of
+pictures, as well as make and model, ID reported, and whether it works or
+not would be enough), and with a log file if there are problems.
+
+
+ACKNOWLEDGMENTS:
+
+	-- to several members of East Alabama Linux Users group, for help
+and encouragement:
+
+		Bruce Gray,
+		Darrel Hankerson,
+		Thomas Kilgore (my son, the Perl hacker)
+		Kelley Price,
+	for some basic help with C.
+		Wade "Bear" Tinney,
+	for help in discovering how to subscribe to the gphoto-devel mailing
+	list
+	-- to Prof. Stan Reeves, Department of Electrical Engineering,
+	Auburn University, for a very informative discussion of how a Bayer
+	array is constructed.
+	-- to my colleagues
+		Darrel Hankerson, who knows clever ways to pass a character
+	string from one function to another
+		Steve Stuckwisch, who could explain to me Darrel's
+	explanation
+	-- to Christophe Barbe, for encouragement
+	-- to Lutz Miller, for making me do it right.
+	-- to Cedric Cellier, for devising the sq_rewind ( ) function, for
+	implementing the directory structure for video clips, and in general
+	for his continued interest in these cameras.
+
+
+WARRANTY? 
+
+	Absolutely not. No warranty. Never. Not responsible for any actual
+	or potential damage or consequences to anyone or to the equipment of
+	anyone for using this program, whether the alleged damage or alleged
+	consequences are claimed to be real, imaginary, direct, collateral,
+	for pain and suffering, or are claimed to be inflicted upon any
+	"third party" who is not the user or installer of the program. The
+	program has been written for my pleasure and to broaden and deepen
+	my knowledge of computer hardware and software. The program has not
+	been written with the immediate expectation of financial gain or
+	profit on my part, nor has it been commissioned for pay. It is
+	presumed that any end-user of this program will have access to the
+	source code of the program and can judge for himself or herself
+	whether he/she wishes to use it or not, or can consult someone with
+	appropriate expertise to make such a judgment. 
+
+
+Theodore Kilgore
+07/07/03 (revised 03/09/07 and 02/18/10)

@@ -1,0 +1,58 @@
+.TH sane\-pie 5 "14 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-pie
+.SH NAME
+sane\-pie \- SANE backend for PIE, Devcom and AdLib SCSI flatbed scanners
+
+.SH DESCRIPTION
+The
+.B sane\-pie
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to PIE, Devcom and AdLib SCSI flatbed scanners.
+.br
+At present, the following scanners should work with this backend:
+.PP
+.ft CR
+.nf
+Model:                  Status
+----------------------  ------
+Devcom 9636PRO          OK
+Devcom 9636S            Untested
+Devcom 9630S            Untested
+ScanAce 1236S           Untested
+ScanAce 1230S           Untested
+ScanAce II              Untested
+ScanAce III             OK
+ScanAce Plus            Untested
+ScanAce II Plus         Untested
+ScanAce III Plus        Untested
+ScanAce V               Untested
+ScanAce ScanMedia       Untested
+ScanAce ScanMedia II    Untested
+ScanAce 630S            Untested
+ScanAce 636S            Untested
+JetScan 630             OK
+JetScan 636PRO          Untested
+.fi
+.ft R
+.PP
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/pie.conf
+The backend configuration file
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-pie.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-pie.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.PP
+
+.SH SEE ALSO
+sane(7)
+
+.SH "CONTACT AND BUG-REPORTS"
+Please send any information and bug-reports to:
+.br
+.B Simon Munton <simon@munton.demon.co.uk>

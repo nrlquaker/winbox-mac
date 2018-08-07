@@ -1,0 +1,592 @@
+; File generated automatically from ./dlls/ntoskrnl.exe/ntoskrnl.exe.spec; do not edit!
+
+LIBRARY ntoskrnl.exe
+
+EXPORTS
+  ExfInterlockedRemoveHeadList@8 @25
+  InterlockedCompareExchange@12=NTOSKRNL_InterlockedCompareExchange@12 @31
+  InterlockedDecrement@4=NTOSKRNL_InterlockedDecrement@4 @32
+  InterlockedExchange@8=NTOSKRNL_InterlockedExchange@8 @33
+  InterlockedExchangeAdd@8=NTOSKRNL_InterlockedExchangeAdd@8 @34
+  InterlockedIncrement@4=NTOSKRNL_InterlockedIncrement@4 @35
+  InterlockedPopEntrySList@4=kernel32.InterlockedPopEntrySList @36
+  InterlockedPushEntrySList@8=kernel32.InterlockedPushEntrySList @37
+  IofCallDriver@8 @42
+  IofCompleteRequest@8 @43
+  ObfDereferenceObject@4 @51
+  ObfReferenceObject@4 @52
+  RtlUlongByteSwap=ntdll.RtlUlongByteSwap @54
+  RtlUlonglongByteSwap=ntdll.RtlUlonglongByteSwap @55
+  RtlUshortByteSwap=ntdll.RtlUshortByteSwap @56
+  CmRegisterCallback@12 @103
+  CmUnRegisterCallback@8 @104
+  DbgBreakPoint@0=ntdll.DbgBreakPoint @105
+  DbgPrint=ntdll.DbgPrint @108
+  DbgPrintEx=ntdll.DbgPrintEx @109
+  ExAcquireResourceExclusiveLite@8 @114
+  ExAllocatePool@8 @119
+  ExAllocatePoolWithQuota@8 @120
+  ExAllocatePoolWithQuotaTag@12 @121
+  ExAllocatePoolWithTag@12 @122
+  ExCreateCallback@16 @125
+  ExDeleteNPagedLookasideList@4 @126
+  ExDeletePagedLookasideList@4 @127
+  ExDeleteResourceLite@4 @128
+  ExFreePool@4 @134
+  ExFreePoolWithTag@8 @135
+  ExInitializeNPagedLookasideList@28 @142
+  ExInitializePagedLookasideList@28 @143
+  ExInitializeResourceLite@4 @144
+  ExInitializeZone@16 @145
+  ExInterlockedRemoveHeadList@8 @156
+  ExLocalTimeToSystemTime@8=ntdll.RtlLocalTimeToSystemTime @160
+  ExReleaseResourceForThreadLite@8 @171
+  ExSystemTimeToLocalTime@8=ntdll.RtlSystemTimeToLocalTime @176
+  FsRtlRegisterUncProvider@12 @274
+  InitSafeBootMode @305 DATA
+  IoAcquireCancelSpinLock@4 @306
+  IoAcquireRemoveLockEx@20 @307
+  IoAllocateDriverObjectExtension@16 @312
+  IoAllocateErrorLogEntry@8 @313
+  IoAllocateIrp@8 @314
+  IoAllocateMdl@20 @315
+  IoAllocateWorkItem@4 @316
+  IoAttachDeviceToDeviceStack@8 @320
+  IoBuildDeviceIoControlRequest@36 @323
+  IoBuildSynchronousFsdRequest@28 @325
+  IoCallDriver@8 @326
+  IoCompleteRequest@8 @336
+  IoCreateDevice@28 @339
+  IoCreateDriver@8 @341
+  IoCreateSymbolicLink@8 @348
+  IoCreateSynchronizationEvent@8 @349
+  IoCsqInitialize@28 @351
+  IoDeleteDevice@4 @356
+  IoDeleteDriver@4 @357
+  IoDeleteSymbolicLink@4 @358
+  IoFreeIrp@4 @373
+  IoFreeMdl@4 @374
+  IoGetAttachedDevice@4 @376
+  IoGetConfigurationInformation@0 @380
+  IoGetCurrentProcess@0 @381
+  IoGetDeviceInterfaces@16 @384
+  IoGetDeviceObjectPointer@16 @385
+  IoGetDeviceProperty@20 @386
+  IoGetDriverObjectExtension@8 @390
+  IoGetRelatedDeviceObject@4 @394
+  IoInitializeIrp@12 @400
+  IoInitializeRemoveLockEx@20 @401
+  IoInitializeTimer@12 @402
+  IoIsWdmVersionAvailable@8 @409
+  IoQueryDeviceDescription@32 @415
+  IoRegisterDriverReinitialization@12 @429
+  IoRegisterFileSystem@4 @430
+  IoRegisterPlugPlayNotification@28 @433
+  IoRegisterShutdownNotification@4 @434
+  IoReleaseCancelSpinLock@4 @435
+  IoReportResourceUsage@36 @443
+  IoSetThreadHardErrorMode@4 @459
+  IoStartNextPacket@8 @461
+  IoStartTimer@4 @464
+  IoUnregisterFileSystem@4 @470
+  IoUnregisterShutdownNotification@4 @473
+  IoWMIRegistrationControl@8 @488
+  KdDebuggerEnabled @498 DATA
+  Ke386IoSetAccessProcess@8 @506
+  Ke386SetIoAccessMap@8 @508
+  KeEnterCriticalRegion@0 @526
+  KeGetCurrentThread@0 @532
+  KeInitializeDpc@12 @548
+  KeInitializeEvent@12 @549
+  KeInitializeMutex@8 @552
+  KeInitializeSemaphore@12 @554
+  KeInitializeSpinLock@4 @555
+  KeInitializeTimer@4 @556
+  KeInitializeTimerEx@8 @557
+  KeInsertQueue@8 @561
+  KeLeaveCriticalRegion@0 @566
+  KeQueryActiveProcessors@0 @572
+  KeQueryInterruptTime@0 @573
+  KeQuerySystemTime@4 @576
+  KeQueryTickCount@4 @577
+  KeQueryTimeIncrement@0 @578
+  KeReleaseMutex@8 @590
+  KeReleaseSemaphore@16 @591
+  KeResetEvent@4 @600
+  KeServiceDescriptorTable @606 DATA
+  KeSetEvent@12 @610
+  KeSetPriorityThread@8 @615
+  KeSetSystemAffinityThread@4 @617
+  KeTickCount @625 DATA
+  KeWaitForMutexObject@20 @631
+  KeWaitForSingleObject@20 @632
+  LdrAccessResource@16=ntdll.LdrAccessResource @640
+  LdrFindResourceDirectory_U@16=ntdll.LdrFindResourceDirectory_U @642
+  LdrFindResource_U@16=ntdll.LdrFindResource_U @643
+  MmAllocateContiguousMemory@12 @658
+  MmAllocateContiguousMemorySpecifyCache@32 @659
+  MmAllocateNonCachedMemory@4 @661
+  MmAllocatePagesForMdl@28 @662
+  MmFreeNonCachedMemory@8 @674
+  MmGetSystemRoutineAddress@4 @678
+  MmIsAddressValid@4 @682
+  MmLockPagableSectionByHandle@4 @690
+  MmMapIoSpace@16 @691
+  MmMapLockedPagesSpecifyCache@24 @693
+  MmPageEntireDriver@4 @703
+  MmProbeAndLockPages@12 @705
+  MmQuerySystemSize@0 @709
+  MmResetDriverPaging@4 @711
+  MmUnlockPagableImageSection@4 @719
+  MmUnlockPages@4 @720
+  MmUnmapIoSpace@8 @721
+  NlsAnsiCodePage=ntdll.NlsAnsiCodePage @730 DATA
+  NlsMbCodePageTag=ntdll.NlsMbCodePageTag @732 DATA
+  NlsMbOemCodePageTag=ntdll.NlsMbOemCodePageTag @733 DATA
+  NtAddAtom@12=ntdll.NtAddAtom @736
+  NtAdjustPrivilegesToken@24=ntdll.NtAdjustPrivilegesToken @737
+  NtAllocateLocallyUniqueId@4=ntdll.NtAllocateLocallyUniqueId @738
+  NtAllocateUuids@12=ntdll.NtAllocateUuids @739
+  NtAllocateVirtualMemory@24=ntdll.NtAllocateVirtualMemory @740
+  NtClose@4=ntdll.NtClose @742
+  NtConnectPort@32=ntdll.NtConnectPort @743
+  NtCreateEvent@20=ntdll.NtCreateEvent @744
+  NtCreateFile@44=ntdll.NtCreateFile @745
+  NtCreateSection@28=ntdll.NtCreateSection @746
+  NtDeleteAtom@4=ntdll.NtDeleteAtom @747
+  NtDeleteFile@4=ntdll.NtDeleteFile @748
+  NtDeviceIoControlFile@40=ntdll.NtDeviceIoControlFile @749
+  NtDuplicateObject@28=ntdll.NtDuplicateObject @750
+  NtDuplicateToken@24=ntdll.NtDuplicateToken @751
+  NtFindAtom@12=ntdll.NtFindAtom @752
+  NtFreeVirtualMemory@16=ntdll.NtFreeVirtualMemory @753
+  NtFsControlFile@40=ntdll.NtFsControlFile @754
+  NtLockFile@40=ntdll.NtLockFile @756
+  NtMapViewOfSection@40=ntdll.NtMapViewOfSection @758
+  NtNotifyChangeDirectoryFile@36=ntdll.NtNotifyChangeDirectoryFile @759
+  NtOpenFile@24=ntdll.NtOpenFile @760
+  NtOpenProcess@16=ntdll.NtOpenProcess @761
+  NtOpenProcessToken@12=ntdll.NtOpenProcessToken @762
+  NtOpenProcessTokenEx@16=ntdll.NtOpenProcessTokenEx @763
+  NtOpenThread@16=ntdll.NtOpenThread @764
+  NtOpenThreadToken@16=ntdll.NtOpenThreadToken @765
+  NtOpenThreadTokenEx@20=ntdll.NtOpenThreadTokenEx @766
+  NtQueryDirectoryFile@44=ntdll.NtQueryDirectoryFile @767
+  NtQueryEaFile@36=ntdll.NtQueryEaFile @768
+  NtQueryInformationAtom@20=ntdll.NtQueryInformationAtom @769
+  NtQueryInformationFile@20=ntdll.NtQueryInformationFile @770
+  NtQueryInformationProcess@20=ntdll.NtQueryInformationProcess @771
+  NtQueryInformationThread@20=ntdll.NtQueryInformationThread @772
+  NtQueryInformationToken@20=ntdll.NtQueryInformationToken @773
+  NtQuerySecurityObject@20=ntdll.NtQuerySecurityObject @775
+  NtQuerySystemInformation@16=ntdll.NtQuerySystemInformation @776
+  NtQueryVolumeInformationFile@20=ntdll.NtQueryVolumeInformationFile @777
+  NtReadFile@36=ntdll.NtReadFile @778
+  NtRequestWaitReplyPort@12=ntdll.NtRequestWaitReplyPort @780
+  NtSetEaFile@16=ntdll.NtSetEaFile @781
+  NtSetEvent@8=ntdll.NtSetEvent @782
+  NtSetInformationFile@20=ntdll.NtSetInformationFile @783
+  NtSetInformationProcess@16=ntdll.NtSetInformationProcess @784
+  NtSetInformationThread@16=ntdll.NtSetInformationThread @785
+  NtSetSecurityObject@12=ntdll.NtSetSecurityObject @787
+  NtSetVolumeInformationFile@20=ntdll.NtSetVolumeInformationFile @788
+  NtShutdownSystem@4=ntdll.NtShutdownSystem @789
+  NtUnlockFile@20=ntdll.NtUnlockFile @791
+  NtWaitForSingleObject@12=ntdll.NtWaitForSingleObject @793
+  NtWriteFile@36=ntdll.NtWriteFile @794
+  ObQueryNameString@16 @810
+  ObReferenceObjectByHandle@24 @812
+  ObReferenceObjectByName@32 @813
+  PoSetPowerState@12 @833
+  ProbeForRead@12 @838
+  ProbeForWrite@12 @839
+  PsCreateSystemThread@28 @846
+  PsGetCurrentProcess@0=IoGetCurrentProcess@0 @852
+  PsGetCurrentProcessId@0 @853
+  PsGetCurrentThread@0=KeGetCurrentThread@0 @855
+  PsGetCurrentThreadId@0 @856
+  PsGetVersion@16 @887
+  PsImpersonateClient@20 @888
+  PsLookupProcessByProcessId@8 @895
+  PsRemoveCreateThreadNotifyRoutine@4 @901
+  PsSetCreateProcessNotifyRoutine@8 @910
+  PsSetCreateThreadNotifyRoutine@4 @911
+  PsSetLoadImageNotifyRoutine@4 @914
+  PsTerminateSystemThread@4 @922
+  READ_REGISTER_BUFFER_UCHAR@12 @924
+  RtlAbsoluteToSelfRelativeSD@12=ntdll.RtlAbsoluteToSelfRelativeSD @930
+  RtlAddAccessAllowedAce@16=ntdll.RtlAddAccessAllowedAce @931
+  RtlAddAccessAllowedAceEx@20=ntdll.RtlAddAccessAllowedAceEx @932
+  RtlAddAce@20=ntdll.RtlAddAce @933
+  RtlAddAtomToAtomTable@12=ntdll.RtlAddAtomToAtomTable @934
+  RtlAllocateHeap@12=ntdll.RtlAllocateHeap @936
+  RtlAnsiCharToUnicodeChar@4=ntdll.RtlAnsiCharToUnicodeChar @937
+  RtlAnsiStringToUnicodeSize@4=ntdll.RtlAnsiStringToUnicodeSize @938
+  RtlAnsiStringToUnicodeString@12=ntdll.RtlAnsiStringToUnicodeString @939
+  RtlAppendAsciizToString@8=ntdll.RtlAppendAsciizToString @940
+  RtlAppendStringToString@8=ntdll.RtlAppendStringToString @941
+  RtlAppendUnicodeStringToString@8=ntdll.RtlAppendUnicodeStringToString @942
+  RtlAppendUnicodeToString@8=ntdll.RtlAppendUnicodeToString @943
+  RtlAreAllAccessesGranted@8=ntdll.RtlAreAllAccessesGranted @944
+  RtlAreAnyAccessesGranted@8=ntdll.RtlAreAnyAccessesGranted @945
+  RtlAreBitsClear@12=ntdll.RtlAreBitsClear @946
+  RtlAreBitsSet@12=ntdll.RtlAreBitsSet @947
+  RtlAssert@16=ntdll.RtlAssert @948
+  RtlCaptureContext@4=ntdll.RtlCaptureContext @949
+  RtlCaptureStackBackTrace@16=ntdll.RtlCaptureStackBackTrace @950
+  RtlCharToInteger@12=ntdll.RtlCharToInteger @951
+  RtlCheckRegistryKey@8=ntdll.RtlCheckRegistryKey @952
+  RtlClearAllBits@4=ntdll.RtlClearAllBits @953
+  RtlClearBits@12=ntdll.RtlClearBits @955
+  RtlCompareMemory@12=ntdll.RtlCompareMemory @956
+  RtlCompareMemoryUlong@12=ntdll.RtlCompareMemoryUlong @957
+  RtlCompareString@12=ntdll.RtlCompareString @958
+  RtlCompareUnicodeString@12=ntdll.RtlCompareUnicodeString @959
+  RtlCompressBuffer@32=ntdll.RtlCompressBuffer @960
+  RtlConvertLongToLargeInteger@4=ntdll.RtlConvertLongToLargeInteger @962
+  RtlConvertSidToUnicodeString@12=ntdll.RtlConvertSidToUnicodeString @963
+  RtlConvertUlongToLargeInteger@4=ntdll.RtlConvertUlongToLargeInteger @964
+  RtlCopyLuid@8=ntdll.RtlCopyLuid @965
+  RtlCopySid@12=ntdll.RtlCopySid @967
+  RtlCopyString@8=ntdll.RtlCopyString @968
+  RtlCopyUnicodeString@8=ntdll.RtlCopyUnicodeString @969
+  RtlCreateAcl@12=ntdll.RtlCreateAcl @970
+  RtlCreateAtomTable@8=ntdll.RtlCreateAtomTable @971
+  RtlCreateHeap@24=ntdll.RtlCreateHeap @972
+  RtlCreateSecurityDescriptor@8=ntdll.RtlCreateSecurityDescriptor @974
+  RtlCreateUnicodeString@8=ntdll.RtlCreateUnicodeString @976
+  RtlDecompressBuffer@24=ntdll.RtlDecompressBuffer @978
+  RtlDecompressFragment@32=ntdll.RtlDecompressFragment @980
+  RtlDeleteAce@8=ntdll.RtlDeleteAce @982
+  RtlDeleteAtomFromAtomTable@8=ntdll.RtlDeleteAtomFromAtomTable @983
+  RtlDeleteRegistryValue@12=ntdll.RtlDeleteRegistryValue @989
+  RtlDestroyAtomTable@4=ntdll.RtlDestroyAtomTable @991
+  RtlDestroyHeap@4=ntdll.RtlDestroyHeap @992
+  RtlDowncaseUnicodeString@12=ntdll.RtlDowncaseUnicodeString @993
+  RtlEmptyAtomTable@8=ntdll.RtlEmptyAtomTable @994
+  RtlEnlargedIntegerMultiply@8=ntdll.RtlEnlargedIntegerMultiply @995
+  RtlEnlargedUnsignedDivide@16=ntdll.RtlEnlargedUnsignedDivide @996
+  RtlEnlargedUnsignedMultiply@8=ntdll.RtlEnlargedUnsignedMultiply @997
+  RtlEnumerateGenericTableWithoutSplaying@8=ntdll.RtlEnumerateGenericTableWithoutSplaying @1001
+  RtlEqualLuid@8=ntdll.RtlEqualLuid @1003
+  RtlEqualSid@8=ntdll.RtlEqualSid @1004
+  RtlEqualString@12=ntdll.RtlEqualString @1005
+  RtlEqualUnicodeString@12=ntdll.RtlEqualUnicodeString @1006
+  RtlExtendedIntegerMultiply@12=ntdll.RtlExtendedIntegerMultiply @1007
+  RtlExtendedLargeIntegerDivide@16=ntdll.RtlExtendedLargeIntegerDivide @1008
+  RtlExtendedMagicDivide@20=ntdll.RtlExtendedMagicDivide @1009
+  RtlFillMemory@12=ntdll.RtlFillMemory @1010
+  RtlFillMemoryUlong@12=ntdll.RtlFillMemoryUlong @1011
+  RtlFindClearBits@12=ntdll.RtlFindClearBits @1012
+  RtlFindClearBitsAndSet@12=ntdll.RtlFindClearBitsAndSet @1013
+  RtlFindClearRuns@16=ntdll.RtlFindClearRuns @1014
+  RtlFindLastBackwardRunClear@12=ntdll.RtlFindLastBackwardRunClear @1016
+  RtlFindLeastSignificantBit@8=ntdll.RtlFindLeastSignificantBit @1017
+  RtlFindLongestRunClear@8=ntdll.RtlFindLongestRunClear @1018
+  RtlFindMessage@20=ntdll.RtlFindMessage @1019
+  RtlFindMostSignificantBit@8=ntdll.RtlFindMostSignificantBit @1020
+  RtlFindNextForwardRunClear@12=ntdll.RtlFindNextForwardRunClear @1021
+  RtlFindSetBits@12=ntdll.RtlFindSetBits @1023
+  RtlFindSetBitsAndClear@12=ntdll.RtlFindSetBitsAndClear @1024
+  RtlFormatCurrentUserKeyPath@4=ntdll.RtlFormatCurrentUserKeyPath @1026
+  RtlFreeAnsiString@4=ntdll.RtlFreeAnsiString @1027
+  RtlFreeHeap@12=ntdll.RtlFreeHeap @1028
+  RtlFreeOemString@4=ntdll.RtlFreeOemString @1029
+  RtlFreeUnicodeString@4=ntdll.RtlFreeUnicodeString @1031
+  RtlGUIDFromString@8=ntdll.RtlGUIDFromString @1032
+  RtlGetAce@12=ntdll.RtlGetAce @1034
+  RtlGetCompressionWorkSpaceSize@12=ntdll.RtlGetCompressionWorkSpaceSize @1036
+  RtlGetDaclSecurityDescriptor@16=ntdll.RtlGetDaclSecurityDescriptor @1037
+  RtlGetGroupSecurityDescriptor@12=ntdll.RtlGetGroupSecurityDescriptor @1042
+  RtlGetNtGlobalFlags@0=ntdll.RtlGetNtGlobalFlags @1044
+  RtlGetOwnerSecurityDescriptor@12=ntdll.RtlGetOwnerSecurityDescriptor @1045
+  RtlGetSaclSecurityDescriptor@16=ntdll.RtlGetSaclSecurityDescriptor @1046
+  RtlGetVersion@4=ntdll.RtlGetVersion @1048
+  RtlHashUnicodeString@16=ntdll.RtlHashUnicodeString @1049
+  RtlImageDirectoryEntryToData@16=ntdll.RtlImageDirectoryEntryToData @1050
+  RtlImageNtHeader@4=ntdll.RtlImageNtHeader @1051
+  RtlInitAnsiString@8=ntdll.RtlInitAnsiString @1052
+  RtlInitString@8=ntdll.RtlInitString @1054
+  RtlInitUnicodeString@8=ntdll.RtlInitUnicodeString @1055
+  RtlInitializeBitMap@12=ntdll.RtlInitializeBitMap @1056
+  RtlInitializeGenericTable@20=ntdll.RtlInitializeGenericTable @1057
+  RtlInitializeSid@12=ntdll.RtlInitializeSid @1060
+  RtlInt64ToUnicodeString@16=ntdll.RtlInt64ToUnicodeString @1067
+  RtlIntegerToChar@16=ntdll.RtlIntegerToChar @1068
+  RtlIntegerToUnicodeString@12=ntdll.RtlIntegerToUnicodeString @1070
+  RtlIpv4AddressToStringA@8=ntdll.RtlIpv4AddressToStringA @1072
+  RtlIpv4AddressToStringExA@16=ntdll.RtlIpv4AddressToStringExA @1073
+  RtlIpv4AddressToStringExW@16=ntdll.RtlIpv4AddressToStringExW @1074
+  RtlIpv4AddressToStringW@8=ntdll.RtlIpv4AddressToStringW @1075
+  RtlIpv4StringToAddressExW@16=ntdll.RtlIpv4StringToAddressExW @1078
+  RtlIsNameLegalDOS8Dot3@12=ntdll.RtlIsNameLegalDOS8Dot3 @1090
+  RtlLargeIntegerAdd@16=ntdll.RtlLargeIntegerAdd @1093
+  RtlLargeIntegerArithmeticShift@12=ntdll.RtlLargeIntegerArithmeticShift @1094
+  RtlLargeIntegerDivide@20=ntdll.RtlLargeIntegerDivide @1095
+  RtlLargeIntegerNegate@8=ntdll.RtlLargeIntegerNegate @1096
+  RtlLargeIntegerShiftLeft@12=ntdll.RtlLargeIntegerShiftLeft @1097
+  RtlLargeIntegerShiftRight@12=ntdll.RtlLargeIntegerShiftRight @1098
+  RtlLargeIntegerSubtract@16=ntdll.RtlLargeIntegerSubtract @1099
+  RtlLengthRequiredSid@4=ntdll.RtlLengthRequiredSid @1100
+  RtlLengthSecurityDescriptor@4=ntdll.RtlLengthSecurityDescriptor @1101
+  RtlLengthSid@4=ntdll.RtlLengthSid @1102
+  RtlLookupAtomInAtomTable@12=ntdll.RtlLookupAtomInAtomTable @1104
+  RtlMapGenericMask@8=ntdll.RtlMapGenericMask @1109
+  RtlMoveMemory@12=ntdll.RtlMoveMemory @1112
+  RtlMultiByteToUnicodeN@20=ntdll.RtlMultiByteToUnicodeN @1113
+  RtlMultiByteToUnicodeSize@12=ntdll.RtlMultiByteToUnicodeSize @1114
+  RtlNtStatusToDosError@4=ntdll.RtlNtStatusToDosError @1116
+  RtlNtStatusToDosErrorNoTeb@4=ntdll.RtlNtStatusToDosErrorNoTeb @1117
+  RtlNumberGenericTableElements@4=ntdll.RtlNumberGenericTableElements @1118
+  RtlNumberOfClearBits@4=ntdll.RtlNumberOfClearBits @1120
+  RtlNumberOfSetBits@4=ntdll.RtlNumberOfSetBits @1121
+  RtlOemStringToUnicodeSize@4=ntdll.RtlOemStringToUnicodeSize @1123
+  RtlOemStringToUnicodeString@12=ntdll.RtlOemStringToUnicodeString @1124
+  RtlOemToUnicodeN@20=ntdll.RtlOemToUnicodeN @1125
+  RtlPinAtomInAtomTable@8=ntdll.RtlPinAtomInAtomTable @1126
+  RtlPrefixString@12=ntdll.RtlPrefixString @1127
+  RtlPrefixUnicodeString@12=ntdll.RtlPrefixUnicodeString @1128
+  RtlQueryAtomInAtomTable@24=ntdll.RtlQueryAtomInAtomTable @1129
+  RtlQueryRegistryValues@20=ntdll.RtlQueryRegistryValues @1130
+  RtlQueryTimeZoneInformation@4=ntdll.RtlQueryTimeZoneInformation @1131
+  RtlRaiseException@4=ntdll.RtlRaiseException @1132
+  RtlRandom@4=ntdll.RtlRandom @1133
+  RtlSecondsSince1970ToTime@8=ntdll.RtlSecondsSince1970ToTime @1139
+  RtlSecondsSince1980ToTime@8=ntdll.RtlSecondsSince1980ToTime @1140
+  RtlSelfRelativeToAbsoluteSD@44=ntdll.RtlSelfRelativeToAbsoluteSD @1142
+  RtlSetAllBits@4=ntdll.RtlSetAllBits @1143
+  RtlSetBits@12=ntdll.RtlSetBits @1145
+  RtlSetDaclSecurityDescriptor@16=ntdll.RtlSetDaclSecurityDescriptor @1146
+  RtlSetGroupSecurityDescriptor@12=ntdll.RtlSetGroupSecurityDescriptor @1147
+  RtlSetOwnerSecurityDescriptor@12=ntdll.RtlSetOwnerSecurityDescriptor @1148
+  RtlSetSaclSecurityDescriptor@16=ntdll.RtlSetSaclSecurityDescriptor @1149
+  RtlSetTimeZoneInformation@4=ntdll.RtlSetTimeZoneInformation @1150
+  RtlSizeHeap@12=ntdll.RtlSizeHeap @1151
+  RtlStringFromGUID@8=ntdll.RtlStringFromGUID @1153
+  RtlSubAuthorityCountSid@4=ntdll.RtlSubAuthorityCountSid @1154
+  RtlSubAuthoritySid@8=ntdll.RtlSubAuthoritySid @1155
+  RtlTimeFieldsToTime@8=ntdll.RtlTimeFieldsToTime @1159
+  RtlTimeToElapsedTimeFields@8=ntdll.RtlTimeToElapsedTimeFields @1160
+  RtlTimeToSecondsSince1970@8=ntdll.RtlTimeToSecondsSince1970 @1161
+  RtlTimeToSecondsSince1980@8=ntdll.RtlTimeToSecondsSince1980 @1162
+  RtlTimeToTimeFields@8=ntdll.RtlTimeToTimeFields @1163
+  RtlUnicodeStringToAnsiSize@4=ntdll.RtlUnicodeStringToAnsiSize @1172
+  RtlUnicodeStringToAnsiString@12=ntdll.RtlUnicodeStringToAnsiString @1173
+  RtlUnicodeStringToInteger@12=ntdll.RtlUnicodeStringToInteger @1175
+  RtlUnicodeStringToOemSize@4=ntdll.RtlUnicodeStringToOemSize @1176
+  RtlUnicodeStringToOemString@12=ntdll.RtlUnicodeStringToOemString @1177
+  RtlUnicodeToMultiByteN@20=ntdll.RtlUnicodeToMultiByteN @1179
+  RtlUnicodeToMultiByteSize@12=ntdll.RtlUnicodeToMultiByteSize @1180
+  RtlUnicodeToOemN@20=ntdll.RtlUnicodeToOemN @1181
+  RtlUnwind@16=ntdll.RtlUnwind @1183
+  RtlUpcaseUnicodeChar@4=ntdll.RtlUpcaseUnicodeChar @1184
+  RtlUpcaseUnicodeString@12=ntdll.RtlUpcaseUnicodeString @1185
+  RtlUpcaseUnicodeStringToAnsiString@12=ntdll.RtlUpcaseUnicodeStringToAnsiString @1186
+  RtlUpcaseUnicodeStringToCountedOemString@12=ntdll.RtlUpcaseUnicodeStringToCountedOemString @1187
+  RtlUpcaseUnicodeStringToOemString@12=ntdll.RtlUpcaseUnicodeStringToOemString @1188
+  RtlUpcaseUnicodeToMultiByteN@20=ntdll.RtlUpcaseUnicodeToMultiByteN @1190
+  RtlUpcaseUnicodeToOemN@20=ntdll.RtlUpcaseUnicodeToOemN @1191
+  RtlUpperChar@4=ntdll.RtlUpperChar @1192
+  RtlUpperString@8=ntdll.RtlUpperString @1193
+  RtlValidRelativeSecurityDescriptor@12=ntdll.RtlValidRelativeSecurityDescriptor @1194
+  RtlValidSecurityDescriptor@4=ntdll.RtlValidSecurityDescriptor @1195
+  RtlValidSid@4=ntdll.RtlValidSid @1196
+  RtlVerifyVersionInfo@16=ntdll.RtlVerifyVersionInfo @1197
+  RtlWriteRegistryValue@24=ntdll.RtlWriteRegistryValue @1200
+  RtlZeroMemory@8=ntdll.RtlZeroMemory @1202
+  RtlxAnsiStringToUnicodeSize@4=ntdll.RtlxAnsiStringToUnicodeSize @1203
+  RtlxOemStringToUnicodeSize@4=ntdll.RtlxOemStringToUnicodeSize @1204
+  RtlxUnicodeStringToAnsiSize@4=ntdll.RtlxUnicodeStringToAnsiSize @1205
+  RtlxUnicodeStringToOemSize@4=ntdll.RtlxUnicodeStringToOemSize @1206
+  VerSetConditionMask@16=ntdll.VerSetConditionMask @1259
+  ZwAccessCheckAndAuditAlarm@44=ntdll.ZwAccessCheckAndAuditAlarm @1279
+  ZwAdjustPrivilegesToken@24=ntdll.ZwAdjustPrivilegesToken @1281
+  ZwAlertThread@4=ntdll.ZwAlertThread @1282
+  ZwAllocateVirtualMemory@24=ntdll.ZwAllocateVirtualMemory @1283
+  ZwAssignProcessToJobObject@8=ntdll.ZwAssignProcessToJobObject @1284
+  ZwCancelIoFile@8=ntdll.ZwCancelIoFile @1285
+  ZwCancelTimer@8=ntdll.ZwCancelTimer @1286
+  ZwClearEvent@4=ntdll.ZwClearEvent @1287
+  ZwClose@4=ntdll.ZwClose @1288
+  ZwConnectPort@32=ntdll.ZwConnectPort @1290
+  ZwCreateDirectoryObject@12=ntdll.ZwCreateDirectoryObject @1291
+  ZwCreateEvent@20=ntdll.ZwCreateEvent @1292
+  ZwCreateFile@44=ntdll.ZwCreateFile @1293
+  ZwCreateJobObject@12=ntdll.ZwCreateJobObject @1294
+  ZwCreateKey@28=ntdll.ZwCreateKey @1295
+  ZwCreateSection@28=ntdll.ZwCreateSection @1296
+  ZwCreateSymbolicLinkObject@16=ntdll.ZwCreateSymbolicLinkObject @1297
+  ZwCreateTimer@16=ntdll.ZwCreateTimer @1298
+  ZwDeleteFile@4=ntdll.ZwDeleteFile @1300
+  ZwDeleteKey@4=ntdll.ZwDeleteKey @1301
+  ZwDeleteValueKey@8=ntdll.ZwDeleteValueKey @1302
+  ZwDeviceIoControlFile@40=ntdll.ZwDeviceIoControlFile @1303
+  ZwDisplayString@4=ntdll.ZwDisplayString @1304
+  ZwDuplicateObject@28=ntdll.ZwDuplicateObject @1305
+  ZwDuplicateToken@24=ntdll.ZwDuplicateToken @1306
+  ZwEnumerateKey@24=ntdll.ZwEnumerateKey @1308
+  ZwEnumerateValueKey@24=ntdll.ZwEnumerateValueKey @1309
+  ZwFlushInstructionCache@12=ntdll.ZwFlushInstructionCache @1310
+  ZwFlushKey@4=ntdll.ZwFlushKey @1311
+  ZwFlushVirtualMemory@16=ntdll.ZwFlushVirtualMemory @1312
+  ZwFreeVirtualMemory@16=ntdll.ZwFreeVirtualMemory @1313
+  ZwFsControlFile@40=ntdll.ZwFsControlFile @1314
+  ZwInitiatePowerAction@16=ntdll.ZwInitiatePowerAction @1315
+  ZwIsProcessInJob@8=ntdll.ZwIsProcessInJob @1316
+  ZwLoadDriver@4=ntdll.ZwLoadDriver @1317
+  ZwLoadKey@8=ntdll.ZwLoadKey @1318
+  ZwMakeTemporaryObject@4=ntdll.ZwMakeTemporaryObject @1319
+  ZwMapViewOfSection@40=ntdll.ZwMapViewOfSection @1320
+  ZwNotifyChangeKey@40=ntdll.ZwNotifyChangeKey @1321
+  ZwOpenDirectoryObject@12=ntdll.ZwOpenDirectoryObject @1322
+  ZwOpenEvent@12=ntdll.ZwOpenEvent @1323
+  ZwOpenFile@24=ntdll.ZwOpenFile @1324
+  ZwOpenJobObject@12=ntdll.ZwOpenJobObject @1325
+  ZwOpenKey@12=ntdll.ZwOpenKey @1326
+  ZwOpenProcess@16=ntdll.ZwOpenProcess @1327
+  ZwOpenProcessToken@12=ntdll.ZwOpenProcessToken @1328
+  ZwOpenProcessTokenEx@16=ntdll.ZwOpenProcessTokenEx @1329
+  ZwOpenSection@12=ntdll.ZwOpenSection @1330
+  ZwOpenSymbolicLinkObject@12=ntdll.ZwOpenSymbolicLinkObject @1331
+  ZwOpenThread@16=ntdll.ZwOpenThread @1332
+  ZwOpenThreadToken@16=ntdll.ZwOpenThreadToken @1333
+  ZwOpenThreadTokenEx@20=ntdll.ZwOpenThreadTokenEx @1334
+  ZwOpenTimer@12=ntdll.ZwOpenTimer @1335
+  ZwPowerInformation@20=ntdll.ZwPowerInformation @1336
+  ZwPulseEvent@8=ntdll.ZwPulseEvent @1337
+  ZwQueryDefaultLocale@8=ntdll.ZwQueryDefaultLocale @1340
+  ZwQueryDefaultUILanguage@4=ntdll.ZwQueryDefaultUILanguage @1341
+  ZwQueryDirectoryFile@44=ntdll.ZwQueryDirectoryFile @1342
+  ZwQueryDirectoryObject@28=ntdll.ZwQueryDirectoryObject @1343
+  ZwQueryEaFile@36=ntdll.ZwQueryEaFile @1344
+  ZwQueryFullAttributesFile@8=ntdll.ZwQueryFullAttributesFile @1345
+  ZwQueryInformationFile@20=ntdll.ZwQueryInformationFile @1346
+  ZwQueryInformationJobObject@20=ntdll.ZwQueryInformationJobObject @1347
+  ZwQueryInformationProcess@20=ntdll.ZwQueryInformationProcess @1348
+  ZwQueryInformationThread@20=ntdll.ZwQueryInformationThread @1349
+  ZwQueryInformationToken@20=ntdll.ZwQueryInformationToken @1350
+  ZwQueryInstallUILanguage@4=ntdll.ZwQueryInstallUILanguage @1351
+  ZwQueryKey@20=ntdll.ZwQueryKey @1352
+  ZwQueryObject@20=ntdll.ZwQueryObject @1353
+  ZwQuerySection@20=ntdll.ZwQuerySection @1354
+  ZwQuerySecurityObject@20=ntdll.ZwQuerySecurityObject @1355
+  ZwQuerySymbolicLinkObject@12=ntdll.ZwQuerySymbolicLinkObject @1356
+  ZwQuerySystemInformation@16=ntdll.ZwQuerySystemInformation @1357
+  ZwQueryValueKey@24=ntdll.ZwQueryValueKey @1358
+  ZwQueryVolumeInformationFile@20=ntdll.ZwQueryVolumeInformationFile @1359
+  ZwReadFile@36=ntdll.ZwReadFile @1360
+  ZwReplaceKey@12=ntdll.ZwReplaceKey @1361
+  ZwRequestWaitReplyPort@12=ntdll.ZwRequestWaitReplyPort @1362
+  ZwResetEvent@8=ntdll.ZwResetEvent @1363
+  ZwRestoreKey@12=ntdll.ZwRestoreKey @1364
+  ZwSaveKey@8=ntdll.ZwSaveKey @1365
+  ZwSetDefaultLocale@8=ntdll.ZwSetDefaultLocale @1369
+  ZwSetDefaultUILanguage@4=ntdll.ZwSetDefaultUILanguage @1370
+  ZwSetEaFile@16=ntdll.ZwSetEaFile @1371
+  ZwSetEvent@8=ntdll.ZwSetEvent @1372
+  ZwSetInformationFile@20=ntdll.ZwSetInformationFile @1373
+  ZwSetInformationJobObject@16=ntdll.ZwSetInformationJobObject @1374
+  ZwSetInformationObject@16=ntdll.ZwSetInformationObject @1375
+  ZwSetInformationProcess@16=ntdll.ZwSetInformationProcess @1376
+  ZwSetInformationThread@16=ntdll.ZwSetInformationThread @1377
+  ZwSetSecurityObject@12=ntdll.ZwSetSecurityObject @1378
+  ZwSetSystemInformation@12=ntdll.ZwSetSystemInformation @1379
+  ZwSetSystemTime@8=ntdll.ZwSetSystemTime @1380
+  ZwSetTimer@28=ntdll.ZwSetTimer @1381
+  ZwSetValueKey@24=ntdll.ZwSetValueKey @1382
+  ZwSetVolumeInformationFile@20=ntdll.ZwSetVolumeInformationFile @1383
+  ZwTerminateJobObject@8=ntdll.ZwTerminateJobObject @1384
+  ZwTerminateProcess@8=ntdll.ZwTerminateProcess @1385
+  ZwUnloadDriver@4=ntdll.ZwUnloadDriver @1387
+  ZwUnloadKey@4=ntdll.ZwUnloadKey @1388
+  ZwUnmapViewOfSection@8=ntdll.ZwUnmapViewOfSection @1389
+  ZwWaitForMultipleObjects@20=ntdll.ZwWaitForMultipleObjects @1390
+  ZwWaitForSingleObject@12=ntdll.ZwWaitForSingleObject @1391
+  ZwWriteFile@36=ntdll.ZwWriteFile @1392
+  ZwYieldExecution@0=ntdll.ZwYieldExecution @1393
+  _CIcos=msvcrt._CIcos @1394 PRIVATE
+  _CIsin=msvcrt._CIsin @1395 PRIVATE
+  _CIsqrt=msvcrt._CIsqrt @1396 PRIVATE
+  _abnormal_termination=msvcrt._abnormal_termination @1397 PRIVATE
+  _alldiv@16=ntdll._alldiv @1398 PRIVATE
+  _allmul@16=ntdll._allmul @1400 PRIVATE
+  _alloca_probe@0=ntdll._alloca_probe @1401 PRIVATE
+  _allrem@16=ntdll._allrem @1402 PRIVATE
+  _aulldiv@16=ntdll._aulldiv @1405 PRIVATE
+  _aullrem@16=ntdll._aullrem @1407 PRIVATE
+  _except_handler2=msvcrt._except_handler2 @1409 PRIVATE
+  _except_handler3=msvcrt._except_handler3 @1410 PRIVATE
+  _global_unwind2=msvcrt._global_unwind2 @1411 PRIVATE
+  _itoa=msvcrt._itoa @1412 PRIVATE
+  _itow=msvcrt._itow @1413 PRIVATE
+  _local_unwind2=msvcrt._local_unwind2 @1414 PRIVATE
+  _purecall=msvcrt._purecall @1415 PRIVATE
+  _snprintf=msvcrt._snprintf @1416 PRIVATE
+  _snwprintf=msvcrt._snwprintf @1417 PRIVATE
+  _stricmp=msvcrt._stricmp @1418 PRIVATE
+  _strlwr=msvcrt._strlwr @1419 PRIVATE
+  _strnicmp=msvcrt._strnicmp @1420 PRIVATE
+  _strnset=msvcrt._strnset @1421 PRIVATE
+  _strrev=msvcrt._strrev @1422 PRIVATE
+  _strset=msvcrt._strset @1423 PRIVATE
+  _strupr=msvcrt._strupr @1424 PRIVATE
+  _vsnprintf=msvcrt._vsnprintf @1425 PRIVATE
+  _vsnwprintf=msvcrt._vsnwprintf @1426 PRIVATE
+  _wcsicmp=msvcrt._wcsicmp @1427 PRIVATE
+  _wcslwr=msvcrt._wcslwr @1428 PRIVATE
+  _wcsnicmp=msvcrt._wcsnicmp @1429 PRIVATE
+  _wcsnset=msvcrt._wcsnset @1430 PRIVATE
+  _wcsrev=msvcrt._wcsrev @1431 PRIVATE
+  _wcsupr=msvcrt._wcsupr @1432 PRIVATE
+  atoi=msvcrt.atoi @1433 PRIVATE
+  atol=msvcrt.atol @1434 PRIVATE
+  isdigit=msvcrt.isdigit @1435 PRIVATE
+  islower=msvcrt.islower @1436 PRIVATE
+  isprint=msvcrt.isprint @1437 PRIVATE
+  isspace=msvcrt.isspace @1438 PRIVATE
+  isupper=msvcrt.isupper @1439 PRIVATE
+  isxdigit=msvcrt.isxdigit @1440 PRIVATE
+  mbstowcs=msvcrt.mbstowcs @1441 PRIVATE
+  mbtowc=msvcrt.mbtowc @1442 PRIVATE
+  memchr=msvcrt.memchr @1443 PRIVATE
+  memcpy=msvcrt.memcpy @1444 PRIVATE
+  memmove=msvcrt.memmove @1445 PRIVATE
+  memset=msvcrt.memset @1446 PRIVATE
+  qsort=msvcrt.qsort @1447 PRIVATE
+  rand=msvcrt.rand @1448 PRIVATE
+  sprintf=msvcrt.sprintf @1449 PRIVATE
+  srand=msvcrt.srand @1450 PRIVATE
+  strcat=msvcrt.strcat @1451 PRIVATE
+  strchr=msvcrt.strchr @1452 PRIVATE
+  strcmp=msvcrt.strcmp @1453 PRIVATE
+  strcpy=msvcrt.strcpy @1454 PRIVATE
+  strlen=msvcrt.strlen @1455 PRIVATE
+  strncat=msvcrt.strncat @1456 PRIVATE
+  strncmp=msvcrt.strncmp @1457 PRIVATE
+  strncpy=msvcrt.strncpy @1458 PRIVATE
+  strrchr=msvcrt.strrchr @1459 PRIVATE
+  strspn=msvcrt.strspn @1460 PRIVATE
+  strstr=msvcrt.strstr @1461 PRIVATE
+  swprintf=msvcrt.swprintf @1462 PRIVATE
+  tolower=msvcrt.tolower @1463 PRIVATE
+  toupper=msvcrt.toupper @1464 PRIVATE
+  towlower=msvcrt.towlower @1465 PRIVATE
+  towupper=msvcrt.towupper @1466 PRIVATE
+  vDbgPrintEx@16=ntdll.vDbgPrintEx @1467
+  vDbgPrintExWithPrefix@20=ntdll.vDbgPrintExWithPrefix @1468
+  vsprintf=msvcrt.vsprintf @1469 PRIVATE
+  wcscat=msvcrt.wcscat @1470 PRIVATE
+  wcschr=msvcrt.wcschr @1471 PRIVATE
+  wcscmp=msvcrt.wcscmp @1472 PRIVATE
+  wcscpy=msvcrt.wcscpy @1473 PRIVATE
+  wcscspn=msvcrt.wcscspn @1474 PRIVATE
+  wcslen=msvcrt.wcslen @1475 PRIVATE
+  wcsncat=msvcrt.wcsncat @1476 PRIVATE
+  wcsncmp=msvcrt.wcsncmp @1477 PRIVATE
+  wcsncpy=msvcrt.wcsncpy @1478 PRIVATE
+  wcsrchr=msvcrt.wcsrchr @1479 PRIVATE
+  wcsspn=msvcrt.wcsspn @1480 PRIVATE
+  wcsstr=msvcrt.wcsstr @1481 PRIVATE
+  wcstombs=msvcrt.wcstombs @1482 PRIVATE
+  wctomb=msvcrt.wctomb @1483 PRIVATE
+  wine_ntoskrnl_main_loop @1484

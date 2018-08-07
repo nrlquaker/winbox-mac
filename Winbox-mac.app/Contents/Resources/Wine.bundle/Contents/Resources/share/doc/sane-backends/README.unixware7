@@ -1,0 +1,79 @@
+SANE on UnixWare 7 
+================== 
+
+The easiest way to get SANE working on a UnixWare 7.1.X system (UW 7.0.0 
+and 7.0.1 are not supported) is to download and install the SANE binary 
+distribution from SCOs Skunkware web site. The URL is: 
+
+        ftp://ftp.sco.com/skunkware/uw7/Packages 
+
+Use the pkgadd command to install the files, e.g.: 
+
+        # pkgadd -d `pwd`/sane-1.0.2.pkg 
+
+A web page with further information specific to SANE on UnixWare 7 can be 
+found here: 
+
+        http://www.sco.com/skunkware/sane/index.html 
+
+However, please note that the SANE package that is available from the 
+Skunkware server will most likely contain the latest stable version of 
+SANE. Since SANE is continously being worked on, you might want to download 
+the latest source from the Git repository and build the source yourself.
+
+To build SANE on a UnixWare 7.1.X system the following packages are required: 
+
+        * make (GNU make) 
+        * glibs (contains gtk, glib, libjpeg, libpnm, libtiff etc.; only
+          necessary for frontends xscanimage, xcam, and xsane which are
+          distributed separately) 
+
+The packages can be downloaded from the Skunkware ftp server (see URL above). 
+I've used the following versions to build sane-1.0.2: 
+
+        * make-3.78.1.pkg 
+        * glibs-2.0.3.pkg 
+
+If you want to include support for The Gimp (this is optional), you need to 
+install the gimp package, too. This is the version I've used: 
+
+        * gimp-1.0.4.pkg 
+
+GCC is not required. SANE compiles quite happily (and faster) with UnixWares 
+native C compiler. 
+
+Set the LD_RUN_PATH variable to add /usr/local/lib to the list of directories 
+to be searched by the dynamic linker: 
+
+        $ LD_RUN_PATH=/usr/local/lib 
+        $ export LD_RUN_PATH 
+
+Run the configure script as following: 
+
+        $ LIBS="-lsdi" ./configure 
+
+(The sdi library contains the SCSI passthrough functions the UW7 port of SANE 
+uses to access the scanner from user space.) 
+
+Run gmake to build SANE: 
+
+        $ gmake 
+
+SCSI access from user space requires special privileges. If you want users 
+without root perms to be able to use the scanner you can use the filepriv 
+command to change the privileges that are associated with the SANE 
+applications: 
+
+        # /sbin/filepriv -f driver -f sysops /usr/local/bin/scanimage 
+        # /sbin/filepriv -f driver -f sysops /usr/local/bin/xscanimage 
+        # /sbin/filepriv -f sysops /usr/local/bin/xcam 
+
+If you have built SANE with support for The Gimp you might want to create 
+a symlink from the plug-in directory to the xscanimage and xcam binaries, 
+e.g.: 
+
+        # ln -s /usr/local/bin/xscanimage \ 
+                /usr/local/lib/gimp/1.0/plug-ins/xscanimage 
+        # ln -s /usr/local/bin/xcam /usr/local/lib/gimp/1.0/plug-ins/xcam 
+
+Questions? Comments? Please send e-mail to jenss@sco.com or skunkware@sco.com!

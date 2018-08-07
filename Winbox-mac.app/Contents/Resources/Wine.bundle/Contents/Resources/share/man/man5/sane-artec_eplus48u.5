@@ -1,0 +1,144 @@
+.TH sane\-artec_eplus48u 5 "11 Jul 2008" "" "SANE"
+.SH NAME
+sane\-artec_eplus48u \- SANE backend for the scanner Artec E+ 48U and re-badged models
+.SH DESCRIPTION
+The
+.B sane\-artec_eplus48u
+library implements a SANE (Scanner Access Now Easy) backend that provides
+access to several USB flatbed scanners using the GT6816 chipset like the Artec E+ 48U.
+These scanners have a contact image sensor (CIS) and an USB interface.
+.PP
+A complete list of supported devices can be found on
+.IR http://www.sane\-project.org/sane\-supported\-devices.html .
+.PP
+This is ALPHA software. Especially if you test new or untested scanners, keep
+your hand at the scanner's plug and unplug it, if the head bumps at the end of
+the scan area.
+.PP
+If you own a scanner other than the ones mentioned on the list that works with this
+backend, please let us know this by sending the scanner's exact model name and
+the USB vendor and product ids (e.g. from /proc/bus/usb/devices,
+sane\-find\-scanner or syslog) to me. Even if the scanner's name is only
+slightly different from the models mentioned above, please let me know.
+.PP
+.SH KERNEL ISSUES
+If libusb-0.1.6 or later is installed, this section can be skipped. The
+scanner should be found by sane\-find\-scanner without further actions. For
+setting permissions and general USB information look at sane\-usb(5).
+.PP
+When you are using the scanner module, a Linux kernel 2.4.12 or newer is
+required.
+
+.SH FIRMWARE FILE
+You need a firmware file for your scanner. That's a small file containing
+software that will be uploaded to the scanner's memory. For the scanners
+mentioned above, it's usually named Artec48.usb or 1200.usb. You can find it on
+the installation CD that was provided by the manufacturer, normally in the
+directory Win98, WinMe or similar. If the Windows-driver is installed on your
+computer, then you can also find the firmware file under
+c:\\windows\\system32\\drivers.
+.SH CONFIGURATION
+The contents of the
+.I artec_eplus48u.conf
+file is a list of usb lines containing vendor and product ids that correspond
+to USB scanners. The file can also contain option lines.  Empty lines and
+lines starting with a hash mark (#) are ignored.  The scanners are
+autodetected by
+.I usb vendor_id product_id
+statements which are already included into
+.I artec_eplus48u.conf .
+"vendor_id" and "product_id" are hexadecimal numbers that identify the
+.B scanner.
+.PP
+Every usb section can have additional options
+.TP
+.B artecFirmwareFile /Users/mike/Documents/wine/usr/share/sane/artec_eplus48u/Artec48.usb
+The path to the firmware file. This option is required.
+.TP
+.B redGamma         1.0
+.TP
+.B greenGamma       1.0
+.TP
+.B blueGamma        1.0
+.TP
+.B masterGamma      1.9
+These are the default gamma values. If you set the "Defaults" option with a frontend,
+then the gamma options are reset to the values specified here.
+.TP
+.B redOffset        0x28
+.TP
+.B greenOffset      0x2f
+.TP
+.B blueOffset       0x2f
+.TP
+.B redExposure      0xa7
+.TP
+.B greenExposure    0x116
+.TP
+.B blueExposure     0xdc
+These are the default values for offset and exposure time. You can e.g. change them to speed up calibration,
+if you don't want to save the calibration data to disk.
+.TP
+.B vendorString "Artec"
+.TP
+.B modelString "E+ 48U"
+By default, the scanner is reported as "Artec E+ 48U". If you don't like this, e.g.
+because you have an Tevion MD 9693, then change the options accordingly.
+.SH FILES
+.TP
+.I /usr/local/etc/sane.d/artec_eplus48u.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /usr/local/lib/sane/libsane\-artec_eplus48u.a
+The static library implementing this backend.
+.TP
+.I /usr/local/lib/sane/libsane\-artec_eplus48u.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /usr/local/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/usr/local/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_ARTEC_EPLUS48U
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  Higher
+debug levels increase the verbosity of the output.
+
+Example:
+export SANE_DEBUG_ARTEC_EPLUS48U=3
+
+.SH "SEE ALSO"
+sane(7), sane\-usb(5)
+
+.SH AUTHOR
+Michael Herder
+.br
+This backend is based on the gt68xx test-program written by Sergey Vlasov, Andreas Nowack, and
+David Stevenson. Thanks to everyone who tested the backend or reported bugs.
+.br
+This man page is based on man sane\-gt68xx, written by Henning Meier-Geinitz.
+.SH BUGS
+This backend has been tested on Linux only. If you are using it on a different platform, please
+contact us.
+.PP
+Interpolation with 1200 dpi is weak.
+.PP
+Support for buttons is missing due to missing support in SANE.
+.PP
+Please contact us if you find a bug: 
+.IR http://www.sane\-project.org/bugs.html .
+

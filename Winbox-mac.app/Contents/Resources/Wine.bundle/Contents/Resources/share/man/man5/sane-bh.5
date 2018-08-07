@@ -1,0 +1,547 @@
+.TH sane\-bh 5 "10 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-bh
+.SH NAME
+sane\-bh \- SANE backend for Bell+Howell Copiscan II series document
+scanners
+.SH DESCRIPTION
+The
+.B sane\-bh
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to Bell+Howell Copiscan II series document
+scanners.  The Copiscan II 6338 has been the primary scanner model
+used during development and testing, but since the programming interface
+for the entire series is consistent the backend should work for the
+following scanner models.
+.PP
+.RS
+COPISCAN II 6338 Duplex Scanner with ACE
+.br
+COPISCAN II 2135 Simplex Scanner
+.br
+COPISCAN II 2137(A) Simplex Scanner (with ACE)
+.br
+COPISCAN II 2138A Simplex Scanner with ACE
+.br
+COPISCAN II 3238 Simplex Scanner
+.br
+COPISCAN II 3338(A) Simplex Scanner (with ACE)
+.br
+.RE
+.PP
+If you have a Bell+Howell scanner and are able to test it with this
+backend, please contact
+.IR sane\-devel@lists.alioth.debian.org
+with the model number and testing results. Have a look at
+http://www.sane\-project.org/mailing\-lists.html concerning subscription to
+sane\-devel. Additionally, the author is curious as to the likelihood of using
+this backend with the newer 4000 and 8000 series scanners.  If you have such a
+beast, please let me know.
+.PP
+The Bell+Howell Copiscan II series document scanners are high
+volume, high throughput scanners designed for document scanning 
+applications.  As such, they are lineart/grayscale scanners supporting
+a fixed number of fairly low resolutions (e.g. 200/240/300dpi).  
+However, they do have a number of interesting and useful features 
+suited to needs of document imaging applications.  
+This backend attempts to support as many of these features as possible.
+.PP
+The main technical reference used in writing this backend is the
+.B Bell and Howell Copiscan II Remote SCSI Controller (RSC) OEM 
+.B Technical Manual Version 1.5.  
+The Linux SCSI programming HOWTO, the SANE API documentation, and 
+SANE source code were also extremely valuable resources.
+
+.PP
+The latest backend release, additional information and helpful hints
+are available from the backend homepage:
+.br
+.RS
+.B http://www.martoneconsulting.com/sane\-bh.html
+.RE
+.SH "DEVICE NAMES"
+This backend expects device names of the form:
+.PP
+.RS
+.I special
+.RE
+.PP
+Where
+.I special
+is the path-name for the special device that corresponds to a SCSI
+scanner. For SCSI scanners, the special device name must be a generic
+SCSI device or a symlink to such a device.  Under Linux, such a device
+name takes a format such as
+.I /dev/sga
+or
+.IR /dev/sg0 ,
+for example.  See sane\-scsi(5) for details.
+.SH CONFIGURATION
+The contents of the
+.I bh.conf
+file is a list of device names that correspond to Bell+Howell
+scanners.  See sane\-scsi(5) on details of what constitutes a valid device name.
+Additionally, options can be specified; these lines begin with the word "option".  
+Each option is described in detail below.  Empty lines and lines starting 
+with a hash mark (#) are ignored.  
+
+.SH OPTIONS
+The following options can be specified in the
+.I bh.conf
+file.
+.TP
+.B disable\-optional\-frames
+This option prevents the backend from sending any optional frames.  This
+option may be useful when dealing with frontends which do not support these
+optional frames.  When this option is in effect, the data is sent in a
+SANE_FRAME_GRAY frame.  The optional frames sent by this backend are:
+SANE_FRAME_G31D, SANE_FRAME_G32D, SANE_FRAME_G42D and SANE_FRAME_TEXT.
+These frames are generated based on the compression and barcode options.
+These frames are never sent in preview mode.
+.TP
+.B fake\-inquiry
+This option is used for debugging purposes and its use is not encouraged.  
+Essentially, it allows the backend to initialize in the absence of
+a scanner.  This is useful for development and not much else.  
+This option must be specified earlier in the configuration file than
+the devices which are to be "faked".
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/bh.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-bh.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-bh.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /Users/mike/Documents/wine/usr/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/Users/mike/Documents/wine/usr/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_BH
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  E.g.,
+a value of 255 requests all debug output to be printed.  Smaller
+levels reduce verbosity.
+
+.SH "SUPPORTED FEATURES"
+.TP
+.B ADF support
+With document scanners, automatic document feeder (ADF) support is a key
+feature.  The backend supports the ADF by default and returns 
+.B SANE_STATUS_NO_DOCS 
+when the out-of-paper condition is detected.  The SANE frontend
+.B scanadf
+is a command line frontend that supports multi-page scans.  It has been
+used successfully with this backend.  The SANE frontend
+.B xsane
+is an improved GUI frontend by Oliver Rauch.  Support for multi-page
+scans is included in xsane version 0.35 and above.
+
+.TP
+.B Duplex scanning
+Some models, such as the COPISCAN II 6338, support duplex scanning.  That
+is, they scan both sides of the document during a single pass through the
+scanner (the scanner has two cameras).  This backend supports duplex 
+scanning (with the 
+.B \-\-duplex
+option).  The front and back page images are delivered consecutively
+as if they were separately scanned pages.
+
+.TP
+.B Hardware compression
+The scanner is capable of compressing the data into several industry
+standard formats (CCITT G3, CCITT G3-2D, CCITT G4).  This results in 
+increased performance as less data is passed from the scanner to the
+host over the SCSI bus.  The backend supports these compression formats
+via the 
+.B \-\-g31d, \-\-g32d, \-\-g42d
+options, respectively.  Many SANE frontends are not equipped to deal with
+these formats, however.  The SANE frontend
+.B scanadf
+supports these optional frame formats.  The compressed image data 
+is written directly to a file and can then be processed by a scan-script 
+using the
+.B \-\-scan\-script
+option.  Examples of this are given on the scanadf homepage.
+
+.TP
+.B Automatic Border Detection
+The scanner can automatically detect the paper size and adjust the
+scanning window geometry appropriately.  The backend supports this
+useful feature with the
+.B \-\-autoborder
+option.  It is enabled by default.
+
+.TP
+.B Batch Mode Scanning
+The batch scan mode allows for maximum throughput.  The Set Window
+parameters must remain constant during the entire batch.
+
+.TP
+.B Icon Generation
+The Icon function generates a thumbnail of the full page image, that can be
+transferred as if it were a separate page.  This allows the host to 
+quickly display a thumbnail representation during the scanning operation.
+Perhaps this would be a great way of implementing a preview scan, but 
+since a normal scan is so quick, it might not be worth the trouble.
+
+.TP
+.B Multiple Sections
+Multiple sections (scanning sub-windows) can be defined for the front and
+back pages.  Each section can have different characteristics (e.g. geometry, 
+compression).  The sections are returned as if they were separately
+scanned images.  Additionally sections can be used to greatly enhance the
+accuracy and efficiency of the barcode/patchcode decoding process by 
+limiting the search area to a small subset of the page.  Most Copiscan II
+series scanners support up to 8 user-defined sections.
+
+.TP
+.B Support Barcode/Patchcode Decoding
+The RSC unit can recognize Bar and Patch Codes of various types embedded
+in the scanned image.  The codes are decoded and the data is returned to
+the frontend as a text frame.  The text is encoded in xml and contains
+a great deal of information about the decoded data such as the location
+where it was found, its orientation, and the time it took to find.  
+Further information on the content of this text frame as well as some 
+barcode decoding examples can be found on the backend homepage.
+
+.SH LIMITATIONS
+.TP
+.B Decoding a single barcode type per scan
+The RSC unit can search for up to six different barcode types at a time.
+While the code generally supports this as well, the 
+.B \-\-barcode\-search\-bar
+option only allows the user to specify a single barcode type.  
+Perhaps another option which allows a comma separated list of barcode 
+type codes could be added to address this.
+.TP
+.B Scanning a fixed number of pages in batch mode
+The separation of front and back end functionality in SANE presents a
+problem in supporting the 'cancel batch' functionality in the scanner.
+In batch mode, the scanner is always a page ahead of the host.  The host,
+knowing ahead of time which page will be the last, can cancel batch mode
+prior to initiating the last scan command.  Currently, there is no mechanism
+available for the frontend to pass this knowledge to the backend.
+If batch mode is enabled and the \-\-end\-count terminates a scanadf session,
+an extra page will be pulled through the scanner, but is neither read
+nor delivered to the frontend.  The issue can be avoided by specifying 
+\-\-batch=no when scanning a fixed number of pages.
+.TP
+.B Revision 1.2 Patch detector
+There is an enhanced patchcode detection algorithm available in the RSC
+with revision 1.2 or higher that is faster and more reliable than the 
+standard Bar/Patch code decoder.  This is not currently supported.
+
+.SH OPTIONS
+.TP
+.B Scan Mode Options:
+.TP
+.B \-\-preview[=(yes|no)] [no]
+Request a preview-quality scan.  When preview is set to yes image
+compression is disabled and the image is delivered in a 
+SANE_FRAME_GRAY frame.
+.TP
+.B \-\-mode lineart|halftone [lineart]
+Selects the scan mode (e.g., lineart,monochrome, or color).
+.TP
+.B \-\-resolution 200|240|300dpi [200]
+Sets the resolution of the scanned image.  Each scanner model supports 
+a list of standard resolutions; only these resolutions can be used.
+.TP
+.B \-\-compression none|g31d|g32d|g42d [none]
+Sets the compression mode of the scanner.  Determines the type of data
+returned from the scanner.  Values are:
+.RS
+.br
+.B none
+\- uncompressed data \- delivered in a SANE_FRAME_GRAY frame
+.br
+.B g31d
+\- CCITT G3 1 dimension (MH) \- delivered in a SANE_FRAME_G31D frame
+.br
+.B g32d
+\- CCITT G3 2 dimensions (MR, K=4) \- delivered in a SANE_FRAME_G32D frame
+.br
+.B g42d
+\- CCITT G4 (MMR) \- delivered in a SANE_FRAME_G42D frame
+.br
+NOTE: The use of g31d, g32d, and g42d compression values causes the backend
+to generate optional frame formats which may not be supported by all SANE
+frontends.
+.RE
+
+.TP
+.B  Geometry Options:
+.TP
+.B \-\-autoborder[=(yes|no)] [yes]
+Enable/Disable automatic image border detection.  When enabled, the RSC unit
+automatically detects the image area and sets the window geometry to match.
+.TP
+.B \-\-paper\-size Custom|Letter|Legal|A3|A4|A5|A6|B4|B5 [Custom]
+Specify the scan window geometry by specifying the paper size of the
+documents to be scanned.
+.TP
+.B \-\-tl\-x 0..297.18mm [0]
+Top-left x position of scan area.
+.TP
+.B \-\-tl\-y 0..431.8mm [0]
+Top-left y position of scan area.
+.TP
+.B \-\-br\-x 0..297.18mm [297.18]
+Bottom-right x position of scan area.
+.TP
+.B \-\-br\-y 0..431.8mm [431.8]
+Bottom-right y position of scan area.
+.TP
+.B  Feeder Options:
+.TP
+.B \-\-source Automatic Document Feeder|Manual Feed Tray [Automatic Document Feeder]
+Selects the scan source (such as a document feeder).  This option is provided 
+to allow multiple image scans with xsane; it has no other purpose.
+.TP
+.B \-\-batch[=(yes|no)] [no]
+Enable/disable batch mode scanning.  Batch mode allows scanning at maximum throughput
+by buffering within the RSC unit.  This option is recommended when performing multiple
+pages scans until the feeder is emptied.
+.TP
+.B \-\-duplex[=(yes|no)] [no]
+Enable duplex (dual-sided) scanning.  The scanner takes an image of each side
+of the document during a single pass through the scanner.  The front page is
+delivered followed by the back page.  Most options, such as compression,
+affect both the front and back pages.
+.TP
+.B \-\-timeout\-adf 0..255 [0]
+Sets the timeout in seconds for the automatic document feeder (ADF).
+The value 0 specifies the hardware default value which varies based 
+on the scanner model.
+.TP
+.B \-\-timeout\-manual 0..255 [0]
+Sets the timeout in seconds for semi-automatic feeder.  The value 0 specifies
+the hardware default value which varies based on the scanner model.
+.TP
+.B \-\-check\-adf[=(yes|no)] [no]
+Check ADF Status prior to starting scan using the OBJECT POSITION command.
+Note that this feature requires RSC firmware level 1.5 or higher and dip
+switch 4 must be in the on position.  NOTE: This option has not been tested
+extensively and may produce undesirable results.
+.TP
+.B  Enhancement:
+.TP
+.B \-\-control\-panel[=(yes|no)] [yes]
+Enables the scanner's control panel for selecting image enhancement
+parameters.  When the option is set to no the following options are
+used to control image enhancement.  See the Bell+Howell scanner users'
+guide for complete information on ACE functionality.
+.TP
+.B \-\-ace\-function \-4..4 [3]
+Specify the Automatic Contrast Enhancement (ACE) Function.
+.TP
+.B \-\-ace\-sensitivity 0..9 [5]
+Specify the Automatic Contrast Enhancement (ACE) Sensitivity.
+.TP
+.B \-\-brightness 0..255 [0]
+Controls the brightness of the acquired image.  Ignored for ACE
+capable scanners.
+.TP
+.B \-\-threshold 0..255 [0]
+Select minimum-brightness to get a white point.  Ignored for ACE
+capable scanners.
+.TP
+.B \-\-contrast 0..255 [inactive]
+Controls the contrast of the acquired image.  This option is not
+currently used by the scanner (and perhaps never will be).
+.TP
+.B \-\-negative[=(yes|no)] [no]
+Swap black and white, yielding a reverse-video image.
+.TP
+.B Icon:
+.TP
+.B \-\-icon\-width 0..3600pel (in steps of 8) [0]
+Width of icon (thumbnail) image in pixels.
+.TP
+.B \-\-icon\-length 0..3600pel (in steps of 8) [0]
+Length of icon (thumbnail) image in pixels.
+.TP
+.B Barcode Options:
+.TP
+.B \-\-barcode\-search\-bar <see list> [none]
+Specifies the barcode type to search for.  If this option is
+not specified, or specified with a value of none, then the barcode decoding
+feature is completely disabled.  The valid barcode type are:
+.RS
+.br
+.B none
+.br 
+.B ean\-8
+.br
+.B ean\-13
+.br 
+.B reserved\-ean\-add
+.br 
+.B code39
+.br 
+.B code2\-5\-interleaved
+.br 
+.B code2\-5\-3lines\-matrix
+.br 
+.B code2\-5\-3lines\-datalogic
+.br 
+.B code2\-5\-5lines\-industrial
+.br 
+.B patchcode
+.br 
+.B codabar
+.br 
+.B codabar\-with\-start\-stop
+.br 
+.B code39ascii
+.br 
+.B code128
+.br 
+.B code2\-5\-5lines\-iata
+.br
+.RE
+.TP
+.B \-\-barcode\-search\-count 1..7 [3]
+Number of times that the RSC performs the decoding algorithm.  Specify
+the smallest number possible to increase performance.  If you are having 
+trouble recognizing barcodes, it is suggested that you increase this option
+to its maximum value (7).
+.TP
+.B \-\-barcode\-search\-mode <see list> [horiz\-vert]
+Chooses the orientation of barcodes to be searched.  The valid orientations
+are:
+.RS
+.br
+.B horiz\-vert
+.br
+.B horizontal
+.br
+.B vertical
+.br
+.B vert\-horiz
+.RE
+.TP
+.B \-\-barcode\-hmin 0..1660mm [5]
+Sets the barcode minimum height in millimeters (larger values increase 
+recognition speed).  Of course the actual barcodes in the document must be
+of sufficient size.
+.TP
+.B \-\-barcode\-search\-timeout 20..65535us [10000]
+Sets the timeout for barcode searching in milliseconds.  When the timeout
+expires, the decoder will stop trying to decode barcodes.
+.TP
+.B \-\-section <string> []
+Specifies a series of image sections.  A section can be used to gather
+a subset image or to provide a small area for barcode decoding.    
+Each section is specified in the following format (units are in millimeters):
+.PP
+.B <width>x<height>+<top-left-x>+<top-left-y>[:functioncode...]
+.PP 
+Multiple sections can be specified by separating them with commas.
+.PP
+For example
+.B 76.2x25.4+50.8+0:frontbar
+identifies an area 3 inches wide and 1 inch high with a top left corner 
+at the top of the page two inches from the left hand edge of the page.
+This section will be used for barcode decoding on the front page only.  
+.PP
+For example
+.B 50.8x25.4+25.4+0:frontbar:front:g42d 
+identifies an area 2 inches wide and 1 inch high with a top left corner 
+at the top of the page one inch from the left hand edge of the page.  
+This section will be used for barcode decoding on the front page as well 
+as generating an image compressed in g42d format.  
+.PP
+Ordinarily barcodes are searched in the entire image.  However, when you
+specify sections all barcode searching is done within the specific sections
+identified.  This can significantly speed up the decoding process.  
+
+The following functioncodes are available:
+.RS
+.br
+.B front
+\- generate an image for the front page section
+.br 
+.B back
+\- generate an image for the back page section
+.br
+.B frontbar
+\- perform barcode search in front page section
+.br 
+.B backbar
+\- perform barcode search in back page section
+.br
+.B frontpatch
+\- perform patchcode search in front page section
+.br 
+.B backpatch
+\- perform patchcode search in back page section
+.br
+.B none
+\- use no image compression
+.br 
+.B g31d
+\- use Group 3 1 dimension image compression
+.br 
+.B g32d
+\- use Group 3 2 dimensions image compression
+.br 
+.B g42d
+\- use Group 4 2 dimensions image compression
+.br
+.RE
+.PP
+If you omit a compression functioncode, the full page compression setting
+is used.  If you specify multiple compression functioncodes, only the 
+last one is used.
+
+.TP
+.B \-\-barcode\-relmax 0..255 [0]
+Specifies the maximum relation from the widest to the smallest bar.
+.TP
+.B \-\-barcode\-barmin 0..255 [0]
+Specifies the minimum number of bars in Bar/Patch code.
+.TP
+.B \-\-barcode\-barmax 0..255 [0]
+Specifies the maximum number of bars in a Bar/Patch code.
+.TP
+.B \-\-barcode\-contrast 0..6 [3]
+Specifies the image contrast used in decoding.  Use higher values when
+there are more white pixels in the code.
+.TP
+.B \-\-barcode\-patchmode 0..1 [0]
+Controls Patch Code detection.
+
+.SH BUGS
+This is a new backend; detailed bug reports are welcome -- and expected ;)
+.PP
+If you have found something that you think is a bug, please attempt to
+recreate it with the SANE_DEBUG_BH environment variable set to
+255, and send a report detailing the conditions surrounding the bug to
+.IR sane\-devel@lists.alioth.debian.org .
+
+.SH "SEE ALSO"
+sane(7), sane\-scsi(5), scanimage(1), scanadf(1)
+
+.SH AUTHOR
+The sane\-bh backend was written by Tom Martone, based on the sane\-ricoh
+backend by Feico W. Dillema and the bnhscan program by Sean Reifschneider
+of tummy.com ltd.  Some 8000 enhancements added by Mark Temple.

@@ -1,0 +1,169 @@
+.TH sane\-matsushita 5 "11 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-matsushita
+.SH NAME
+sane\-matsushita \- SANE backend for Panasonic KV-SS high speed scanners
+.SH DESCRIPTION
+The
+.B sane\-matsushita
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to some Panasonic KV-SS high speed scanners. This
+backend is stable.
+.PP
+At present, the following scanners are known to work with this
+backend:
+.PP
+.RS
+.ft CR
+.nf
+  Product id
+--------------
+   KV-SS25
+   KV-SS25D
+   KV-SS55EX (*)
+   KV-S2025C (*)
+   KV-S2045C (*)
+   KV-S2065L (*)
+.fi
+.ft R
+.RE
+.PP
+(*) WARNING: None of the advanced options of these scanners are available (ie no color, no high resolution, no automatic cropping). Basically, the driver does no more than what it does for the KV-SS25. I don't have access to such scanners, and thus cannot add these options.
+
+Other Panasonic high speed scanners may or may not work with that backend.
+
+Valid command line options and their syntax can be listed by using 
+.RS
+scanimage \-\-help \-d matsushita
+.RE
+
+.TP
+.B Scan Mode
+
+.TP
+.B \-\-mode
+selects the basic mode of operation of the scanner.
+.TP
+.B \-\-resolution
+selects the resolution for a scan. Each model supports all or a subset of these resolutions: 100, 150, 200, 240, 300, 360, 400.
+.TP
+.B \-\-duplex
+indicates whether to scan both side of the sheet.
+.TP
+.B \-\-feeder\-mode
+selects the number of pages to scan (one or until the tray is empty).
+
+.TP
+.B Geometry
+
+.TP
+.B \-\-paper\-size A4|...|Legal|Letter [A4]
+options selects the area to scan. It adjust the 
+.B \-l \-t \-x \-y
+options accordingly. It does not need to be the real size of the paper.
+
+.TP
+.B \-l \-t \-x \-y 
+control the scan area: \-l sets the top left x coordinate, \-t the top
+left y coordinate, \-x selects the width and \-y the height of the scan
+area. All parameters are specified in millimeters. It is possible to use
+the option
+.I \-\-paper\-size
+instead.
+
+.TP
+.B Enhancement
+
+.TP
+.B \-\-brightness
+controls the brightness of the acquired image. The value varies from 1 to 255, or less, depending on the scanner model.
+.TP
+.B \-\-contrast
+controls the contrast of the acquired image. Some models do not support that option.
+.TP
+.B \-\-automatic\-threshold
+automatically sets brightness, contrast, white level, gamma, noise reduction and image emphasis. These options are not available when automatic\-threshold is in use.
+.TP
+.B \-\-halftone\-pattern
+option sets the tonal gradation for the halftone mode. Pattern downloading is not implemented by the backend.
+.TP
+.B \-\-autoseparation
+provides automatic separation of text and images. 
+.TP
+.B \-\-white\-level
+option indicate the source of the white base.
+.TP
+.B \-\-noise\-reduction
+reduces the isolated dot noise. This option is not supported by all scanners.
+.TP
+.B \-\-image\-emphasis
+option sets the image emphasis. Some selection are not available on all scanners.
+.TP
+.B \-\-gamma
+options set the gamma curve. It is only valid for Gray modes, and is not available on all scanners. Gamma downloading is not implemented by the backend.
+
+
+.SH CONFIGURATION FILE
+The configuration file /Users/mike/Documents/wine/usr/etc/sane.d/matsushita.conf supports the device name to use (eg /dev/scanner) and the SCSI option to auto-detect the scanners supported.
+
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-matsushita.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-matsushita.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+
+
+.SH ENVIRONMENT
+.TP
+.B SANE_DEBUG_MATSUSHITA
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend. E.g.,
+a value of 128 requests all debug output to be printed. Smaller
+levels reduce verbosity.
+
+
+.SH LIMITATIONS
+.TP
+.B Memory in the KV-SS 25
+The KV-SS 25 has not enough internal memory to scan a whole A4 page in duplex mode at high resolution. The frontend will return a memory error in that case. Apparently, the KV-SS 25D has not that problem.
+.TP
+.B Pattern and gamma downloading
+The scanner, with the proper firmware, can download a halftone pattern
+and a gamma table. This is not implemented.
+.TP
+.B Sub-areas
+The scanner can support up to 3 sub-areas on each side to define some
+more precise enhancement options. This is not implemented.
+.TP
+.B Duplex mode
+The backend does not support the setting of different options for each side. The scan will occur with the same options (halftone pattern, brightness, image emphasis) for both sides.
+
+
+.SH SCANNING EXAMPLE
+To date, the only frontend capable of using this scanner at full speed is
+.B
+scanadf.
+
+A scanadf command line would be:
+
+scanadf \-d matsushita \-\-output\-file scan%04d.pbm \-\-start\-count 0 \-\-duplex \-\-resolution 300 \-\-feeder\-mode="All pages" \-\-paper\-size="A4"
+
+
+.SH BUGS
+
+None known.
+
+
+.SH "SEE ALSO"
+
+sane\-scsi(5), scanimage(1), xscanimage(1), xsane(1), sane(7)
+
+
+.SH AUTHOR
+
+.TP
+The package is actively maintained by Frank Zago.
+.I http://www.zago.net/sane/#matsushita

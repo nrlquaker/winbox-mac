@@ -1,0 +1,14 @@
+prefix=/Users/mike/Documents/wine/usr
+exec_prefix=/Users/mike/Documents/wine/usr
+libdir=/Users/mike/Documents/wine/usr/lib
+includedir=/Users/mike/Documents/wine/usr/include
+
+Name: FreeType 2
+URL: http://freetype.org
+Description: A free, high-quality, and portable font engine.
+Version: 20.0.14
+Requires:
+Requires.private: 
+Libs: -L${libdir} -lfreetype
+Libs.private: -lz -lbz2 -L/Users/mike/Documents/wine/usr/lib -lpng16 -lz
+Cflags: -I${includedir}/freetype2

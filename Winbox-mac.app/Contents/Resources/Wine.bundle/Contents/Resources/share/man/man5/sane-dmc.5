@@ -1,0 +1,140 @@
+.TH sane\-dmc 5 "13 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-dmc
+.SH NAME
+sane\-dmc \- SANE backend for the Polaroid Digital Microscope Camera
+.SH DESCRIPTION
+The
+.B sane\-dmc
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to the Polaroid Digital Microscope Camera.
+.SH "DEVICE NAMES"
+This backend expects device names of the form:
+.PP
+.RS
+.I special
+.RE
+.PP
+Where
+.I special
+is the UNIX path-name for the special device that corresponds to the
+scanner.  The special device name must be a generic SCSI device or a
+symlink to such a device.  Under Linux, such a device name could be
+.I /dev/sga
+or
+.IR /dev/sge ,
+for example.
+.SH IMAGING MODES
+The Polaroid DMC supports a number of imaging modes.  This driver supports
+five of the imaging modes:
+.PP
+.TP
+.B Full Frame
+This mode corresponds to the 801-by-600 pixel full-color full-frame image.
+.TP
+.B Viewfinder
+This mode corresponds to the 270-by-201 pixel grey-scale viewfinder image.
+This image is acquired very quickly.
+.TP
+.B Raw
+This mode corresponds to the 1599-by-600 pixel "raw" image from the
+CCD.  It is grey-scale, with pixels alternating horizontally between
+red, green and blue stripes.  The pixels are twice as high as they are
+wide, so the image is distorted.
+.TP
+.B Thumbnail
+This mode corresponds to the 80-by-60 pixel full-color thumbnail image.
+.TP
+.B Super Resolution
+This image is a 1599-by-1200 pixel full-color image constructed by filtering
+and interpolating the "raw" image.  The filtering and interpolation is
+done in software, so this mode is very slow.  Also, this mode places
+restrictions on how the image is read which means that the "preview" mode
+of xscanimage does not work in Super Resolution mode.  (xcam and the
+non-preview modes of scanimage and xscanimage work fine, however.)
+.PP
+.SH OTHER SETTINGS
+.TP
+.B ASA Setting
+This setting adjusts the camera's sensitivity.  You can choose one of
+25, 50, or 100 "equivalent" ASA.
+.TP
+.B Shutter Speed
+You can select a shutter speed from 8 to 1000 milliseconds.  The shutter
+speed is quantized in units of 32 microseconds.
+.TP
+.B White Balance
+You can choose one of "Daylight", "Incandescent" or "Fluorescent"
+white balances.  This setting more-or-less corresponds to the
+"Color Temperature" settings on Polaroid's Windows and Mac software.
+.SH CONFIGURATION
+The contents of the
+.I dmc.conf
+file is a list of device names that correspond to DMC
+scanners.  Empty lines and lines starting with a hash mark (#) are
+ignored.  A sample configuration file is shown below:
+.PP
+.RS
+/dev/scanner
+.br
+# this is a comment
+.br
+/dev/sge
+.RE
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/dmc.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-dmc.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-dmc.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /Users/mike/Documents/wine/usr/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/Users/mike/Documents/wine/usr/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_DMC
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  E.g.,
+a value of 128 requests all debug output to be printed.  Smaller
+levels reduce verbosity.
+.SH BUGS
+In the "Full Frame" and "Raw" modes, images must be read in units
+of entire lines.  The driver performs no buffering in these modes;
+if you ask sane_read to read a non-integral number of lines, it
+may read less than you ask for.  If you ask sane_read to read
+less than a single line, it returns SANE_STATUS_INVAL.
+.PP
+In the "Super Resolution" mode, images must be read in units of
+\fItwo\fR lines (3198 pixels or 9594 bytes.)  If you try to read less
+than two lines, you get SANE_STATUS_INVAL.  The Super Resolution mode
+is very slow.
+.PP
+In the "Viewfinder" and "Thumbnail" modes, the entire image must
+be read in one SCSI transfer.  In this case, the driver performs
+buffering and you can read the image in as small an increment as you
+like.
+.SH "SEE ALSO"
+sane(7), sane\-scsi(5)
+.SH AUTHOR
+David F. Skoll
+.PP
+The backend is derived from
+.BR sane\-hp
+by David Mosberger

@@ -1,0 +1,4111 @@
+commit 16f3060061a17cbc54f3415a7e2abc1c35f3fcd2
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Sat May 20 14:13:19 2017 +0200
+
+    pixma: i-SENSYS MF240 Series is working
+
+commit ad5fd9edc83f2c6b6e27e9a366cd8ff5e00376b8
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Fri May 19 20:24:14 2017 -0400
+
+    Updated NL translation from Martin Kho
+
+commit baf786742f0382bed3f1b58d9977229826e3df5f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon May 15 21:37:34 2017 +0900
+
+    po/*.po: sync with source code
+
+commit 05553c679fd02648fc5b6dd3a4abf75fe67e1d27
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Sun May 14 21:34:36 2017 -0400
+
+    updated uk.po translation
+    
+    Update from Yuri Chornoivan
+
+commit 479ccaedddcb0a491b351e20cac22595196df02a
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun May 14 19:48:41 2017 +0900
+
+    autotools: Sync derived files
+    
+    This was done by running
+    
+      autoreconf --force --install
+    
+    on Debian GNU/Linux 8.8 and reverting the removal of SANE specific
+    tweaks to ltmain.sh.
+
+commit 02037adb134a2b533bb3201833444aed7bedc8f6
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun May 14 19:47:31 2017 +0900
+
+    Fix unused parameter compiler warnings in check tools
+
+commit 85b91bcd248d2a40300b9fda76bdb88853fbcd0b
+Author: Jörg Frings-Fürst <debian@jff-webhosting.net>
+Date:   Sat May 13 18:11:40 2017 +0900
+
+    doc: fix typos, formatting and stylistic issues
+
+commit 1808a63b0091f0e5562586278b13d7ae63184f43
+Author: Jörg Frings-Fürst <debian@jff-webhosting.net>
+Date:   Sat May 13 18:07:26 2017 +0900
+
+    Replace the startup gamma with the same from the standalone version
+    
+    Fixes https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=629470
+
+commit 5c0812c51b6d48516acb9dd9efcfbe2b34f04a79
+Author: Jörg Frings-Fürst <debian@jff-webhosting.net>
+Date:   Sat May 13 18:05:43 2017 +0900
+
+    genesys.conf: fix comment typo
+
+commit e21bb28e5051d8fdd64df3c4ea2625b9f45538c8
+Author: Jörg Frings-Fürst <debian@jff-webhosting.net>
+Date:   Sat May 13 18:03:42 2017 +0900
+
+    Source code string typo fixes
+
+commit 09cf70563a1129116ab6888e944bfcb44fec8dd0
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat May 13 16:33:23 2017 +0900
+
+    configure.ac: Fix condition
+
+commit 9230e0c251f2351ce1c7b8d7fca08dc39c320925
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat May 13 13:12:06 2017 +0900
+
+    saned: Link against Avahi library
+
+commit da5ce7216cf63a454411fa781bc2ea30fa881974
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat May 13 13:09:25 2017 +0900
+
+    Add a header to dll.conf
+    
+    Document dll.conf in a header, point to the dll.d directory for external
+    backends and document the net backend w/ pointers to the manpages.
+    
+    Based on a patch by Julien BLACHE <jblache@debian.org>
+
+commit 77dcf26860b239dafb3094c863691aaef304805a
+Author: Christopher James Halse Rogers <christopher.halse.rogers@canonical.com>
+Date:   Sat May 13 13:07:01 2017 +0900
+
+    Fix potential assert in avahi backend
+    
+    avahi_browser contains a reference to an AvahiClient, which may be
+    avahi_client.  If it does, then freeing avahi_browser references avahi_client,
+    resulting in an assert() in Avahi's linked list macro.
+    
+    Fix this by freeing avahi_browser before avahi_client.
+    See https://bugs.launchpad.net/bugs/831867
+
+commit e6711c377f266d33a3d8bc28d7a508e3c4c29c79
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed May 10 19:10:26 2017 +0200
+
+    remove unused entry from ChangeLog
+
+commit 0cf531e44528a541d76c3571bca72f395b7892ae
+Author: Klaus Kämpf <kkaempf@suse.de>
+Date:   Tue May 9 10:52:12 2017 +0200
+
+    Update pieusb.conf and pieusb.desc
+
+commit 135b4a3909e0fe0d14062dc009bfba8085ebf167
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed May 10 11:51:35 2017 +0200
+
+    pixma.desc: fix version of backend
+
+commit 5b10b0b635157cdb9766197a5f2ea7f1d24a402a
+Author: René Rebe <rebe@exactcode.de>
+Date:   Fri May 5 07:05:30 2017 +0200
+
+        epson2: fixed network transport for new scanners
+    
+        increased command buffer due memory overrun, and always read receive
+        status, even for zero length on network scanenrs, should fix #315552
+
+commit 6ffeb9097386268e425ae2390ed2835853dbd439
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat May 6 20:40:25 2017 +0900
+
+    Fix test for API specification generation
+    
+    If none of the formats can be generated but API specs are requested,
+    bomb.  The original test aimed to do so but was testing against "no",
+    a value that was never assigned.
+
+commit f3f8afb08c2098d9659757a8e7b8c212a09ddf79
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat May 6 12:24:13 2017 +0900
+
+    kvs20xx.c: don't assume sane_get_devices() has been called
+    
+    Nor that that function is called with a non-NULL argument.
+    This aligns the implementation with that of kvs40xx.c.
+    
+    Fixes 315625.
+
+commit 8995b1fc81e4378d2b5b0b6b0d354735403210ed
+Author: Martin Husemann <martin@NetBSD.org>
+Date:   Tue Mar 15 18:07:00 2016 +0900
+
+    sanei_usb: fix number of bytes read for 64bit big-endian systems
+    
+    Fixes 315337.
+
+commit b1a2c6105443c5279684f0c6827c268594aa234d
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri May 5 19:46:28 2017 +0200
+
+    pixma: backend version 0.17.37
+
+commit 09c467deab5ca4301ab7da37241c3fc072b94399
+Author: Klaus Kaempf <kkaempf@suse.de>
+Date:   Wed May 3 17:52:15 2017 +0200
+
+    pieusb: Support ProScan 10T and Reflecta CrystalScan 3600
+    
+    Neither of these scanner have an automated slide transport and fail on
+    respective SCSI commands.
+    
+    - Add flags parameter to control if automatic slide transport is available
+    - Reflect flags in pieusb.conf.in
+    - rename SLIDE_LAMP_ON to SLIDE_INIT
+      it fails on scanners without automatic slide transport, so it has
+      nothing to do with the lamp.
+    - run SLIDE_INIT only FLAG_SLIDE_TRANSPORT is set
+    - pieusb.conf.in: Add Reflecta CrystalScan 3600
+
+commit 801558f959a03b5042d6df288cb1fd2c87035798
+Author: Aaron Muir Hamilton <aaron@correspondwith.me>
+Date:   Mon May 1 20:15:23 2017 +0000
+
+    Write density (resolution) JFIF header information with JPEG files.
+
+commit b219bc2c73113fd9d8f7c5795bd662f03a8610ea
+Merge: f624a9f 92e5979
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu May 4 18:26:55 2017 +0900
+
+    Merge branch 'icc-profiles'
+
+commit f624a9f72527fc2896562e338f9b7c07549af0f0
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon May 1 09:39:59 2017 +0900
+
+    utsushi.desc: sync with upstream
+
+commit 0ca2fc46136dbaa30da25f4b79b67871c7e2d39b
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Wed May 3 13:52:06 2017 +0200
+
+    fix 1200 dpi scanning for MB5000 series
+
+commit ff5c11622dafe58d1025f34a3672c7a059e963a7
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Wed May 3 13:48:20 2017 +0200
+
+    Fix scanbutton detection for MB5000 series
+
+commit 6af0e32bd6bd9e2c1b2adc5cb2a0561902eef526
+Author: Paul Newall <quandry@ntlworld.com>
+Date:   Mon May 1 19:49:41 2017 +0100
+
+    kodakaio.c patched to change avahi callback variable from global to local. Bug 315705
+
+commit e0741f71e289b878f0efad6cbb56b15d73b49f4e
+Author: Paul Newall <quandry@ntlworld.com>
+Date:   Sun Apr 30 18:09:59 2017 +0100
+
+    deleted a line in configure.ac. This was a commented out line left from when the backend kodakaio used CUPS to autodetect printers.
+
+commit 92e59791d2e478484409f5f2e634196863d7dafb
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Apr 30 20:05:12 2017 +0900
+
+    Fix [-Werror=implicit-function-declaration] compiler error
+    
+    The fileno() is only available if its feature test macro passes.  The
+    various symbols are defined appropriately in ../include/sane/config.h
+    during configuration of the build.
+
+commit adebd37b5cb3ec0cab3025300db5cdd03c2173cc
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Apr 30 20:00:28 2017 +0900
+
+    Fix [-Wpointer-arith] compiler warnings
+
+commit c3903cc476909884ace9fedbea5f69b3a4085b70
+Author: Aaron Muir Hamilton <aaron@correspondwith.me>
+Date:   Mon Apr 17 12:07:40 2017 +0000
+
+    Avoid attaching grayscale ICC profiles to rgb images, or vice-versa.
+    
+      If the ICC profile added does not match the colour format of the
+      image, libpng will abort. This can leave the scanner motors in an
+      incorrect state and possibly cause permanent damage.
+
+commit a907b61bd58f00fd6b1d8468d9d28d6d39232c79
+Author: Aaron Muir Hamilton <aaron@correspondwith.me>
+Date:   Mon Apr 17 12:07:39 2017 +0000
+
+    Add ICC profile embedding for PNG output.
+
+commit 2c653a926af83d7bb910307f441055a6d7603f0b
+Author: Aaron Muir Hamilton <aaron@correspondwith.me>
+Date:   Sun Apr 16 15:13:06 2017 +0000
+
+    Separate ICC profile loading into a separate file.
+    
+      This cuts out some duplicate code, and enables us to reuse this
+      logic for PNG, JPEG, and any other future output format.
+      sanei_load_icc_profile also allows us to know that an ICC profile
+      file is not long enough before we start to write it to the output;
+      this should prevent poorly-written software from overflowing into
+      image data when they read the bad profile based on its length.
+
+commit 611388db1d56b0ffd74af05c4a51fe518269c90d
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Thu Apr 27 21:59:24 2017 +0200
+
+    pixma.desc: fix usbid for PIXMA TS5000 Series
+
+commit 5389301a40d67ed627b1998e19a1af60da26e93f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Apr 27 22:26:01 2017 +0900
+
+    utsushi.desc: PID 0156 is a ES-400
+    
+    See Alioth issue 315695.
+
+commit a0321d2a92286afbc9557fa44e2de4f706cf2407
+Author: Aaron Muir Hamilton <aaron@correspondwith.me>
+Date:   Sun Apr 16 09:06:48 2017 +0000
+
+    Include physical resolution (pHYs section) in PNG output.
+
+commit 469dc738aafe42b231ecae778e393263028ab1b9
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Apr 27 21:17:34 2017 +0900
+
+    Only swap 16-bit PNG bytes on machines that are not big-endian
+    
+    The SANE API specifies that image bytes are in machine native order.
+
+commit 28eb09eec4c64d9070b5747c93c25134395cab53
+Author: Aaron Muir Hamilton <aaron@correspondwith.me>
+Date:   Sun Apr 16 00:27:54 2017 +0000
+
+    Swap bytes in 16-bit PNGs, because PNG is big-endian.
+
+commit 5fa4be5ae4f9937d79f076f7004a4b48ba765e8a
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Apr 26 11:06:00 2017 +0200
+
+    pixma: backend version 0.17.36
+
+commit 879565cefcac61e371581d09696ef6d738c2a720
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Apr 26 11:43:30 2017 +0200
+
+    new scanners Canon i-SENSYS MF230 and MF240 Series
+
+commit ddccf956b44509fc21cdcd4c52b6750e2ddab37a
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Apr 26 11:02:46 2017 +0200
+
+    pixma_mp150: MG5400 Series has button scan support
+
+commit f14285dba30404f23fc9de13d632e69f23f7cb75
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Thu Apr 6 11:20:40 2017 +0200
+
+    pixma_mp150: MG5400 Series doesn't need special image format post processing @ high dpi
+
+commit 0960bf9c72d25a0f8686314fbe9a6a0f9002ea3c
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Tue Apr 18 20:12:31 2017 +0900
+
+    utsushi.desc: sync with upstream
+
+commit dcddb9505c88485bda6cdcf77927d14008b449ee
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Tue Apr 11 21:22:05 2017 -0400
+
+    epjitsu backend v31
+    
+    - hardware gray support for fi-60F/65F (disabled pending calibration)
+    - merge fi-60F/65F settings
+    - improve desc, conf and man files
+
+commit 34e4dbf6c35946ca52678f6a7a61ef002fddb1c2
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Apr 10 20:23:03 2017 +0900
+
+    Bump Alpine and Fedora builder versions
+
+commit 9712e2aa2595f440252d40c26b680c3cf2b8ae30
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Sat Apr 8 21:44:27 2017 -0400
+
+    fujitsu backend v133 2017-04-08, MAN
+    
+    - initial support for fi-7600/7700
+    - autodetect various double feed capabilities using VPD
+    - call send_lut if we are using a downloaded gamma table
+
+commit 5edb87f9ac950473f8c3a57b4071c970887d8440
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Apr 8 21:08:12 2017 +0900
+
+    genesys: Trigger reallocation of gamma tables on next sane_open()
+    
+    Fixes 315491.
+
+commit 6eb4a1f164ef116a3ed10ee42883a15c268ea01e
+Author: Robert Ancell <robert.ancell@canonical.com>
+Date:   Tue Apr 4 11:36:05 2017 +1200
+
+    kodakaio: Fix crash when Avahi search fails
+
+commit ccb47215e653724f317f7d40138098762578a6f9
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Fri Apr 7 20:28:02 2017 +0900
+
+    Add missing double quote
+    
+    Accidently removed in 38ce7fc086a6ecbee94ef31901a6eb874fb611b1.
+    Thanks to Jon Nelson for pointing this out.
+
+commit 38ce7fc086a6ecbee94ef31901a6eb874fb611b1
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Apr 5 18:29:41 2017 +0900
+
+    Update SANE developer and backend maintenance status
+
+commit cbcab6dffadffdb40f87ddffaf2aa7e1618bb72b
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Tue Apr 4 11:28:18 2017 +0200
+
+    pixma: backend version 0.17.35
+
+commit 66ce95a5a1a716a92260701c76c0989abf4196bb
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Tue Apr 4 11:59:56 2017 +0200
+
+    new scanners Canon PIXMA G3000, E470, G3000, TS5000, TS6000, TS8000 and TS9000 [#315658]
+
+commit a2e26572729d62123b2f167fee9e671bf26b8987
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Tue Apr 4 11:27:38 2017 +0200
+
+    pixma: signal scan cancel from the frontend with new parameter s->param->frontend_cancel
+
+commit c5bfbc5a3a43a81776841289cd164a584c2e8ec2
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Tue Apr 4 11:25:53 2017 +0200
+
+    pixma: implement adf-wait for imageclass scanners
+
+commit 17f3899b1583971351ea7ac40e92660f6558268d
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Tue Apr 4 11:23:03 2017 +0200
+
+    pixma: new option adf-wait
+
+commit 3ef45ec3c3d56bfc60b339dac8a2f19543387ef3
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Tue Apr 4 11:16:20 2017 +0200
+
+    pixma: update docs for MG5400 Series
+
+commit e6c8ea6f0bcb2c6b6f7004feadc7db6cbfc3ee2b
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Wed Mar 22 12:33:27 2017 -0400
+
+    epjitsu backend v30 again
+    
+    - typo in previous commit broke low resolution scans on fi-65F
+
+commit a7fde11e15e5604c7b37bc9553cbd08086c08e53
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Tue Mar 21 21:35:59 2017 -0400
+
+    epjitsu backend v30
+    
+    - bump build number
+
+commit 891e3984d0410fa8c698d99d79948df3237e258d
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Tue Mar 21 20:39:47 2017 -0400
+
+    epjitsu v30
+    
+    - fix image truncation when using 150 DPI in Y direction
+    - add 200 and 400 DPI Y direction support for fi-60F/65F
+
+commit 42896939822b44f44ecd1b6d35afdfa4473ed35d
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Feb 19 16:45:45 2017 +0900
+
+    Address memory corruption and information leakage.
+    
+    Addresses CVE-2017-6318, Alioth#315576 and Debian's BTS#854804.
+
+commit eaa4d4407d96585b7cdbe194d8ac295eee3e6299
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Sat Mar 18 19:15:03 2017 -0400
+
+    epjitsu backend v29
+    
+    - fix infinite loop when scaling in Y direction
+
+commit 2f9ea038b157fc6d08ce882a1d9984d37b46d809
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Mar 11 10:48:35 2017 +0900
+
+    Fix typo
+    
+    See http://lists.alioth.debian.org/pipermail/sane-devel/2017-March/035099.html
+
+commit 1e028b72cae0f4caaf48868504bd2cd1667d6da7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Mar 6 20:54:59 2017 +0900
+
+    pixma: updated status for MG5400 Series
+    
+    See http://lists.alioth.debian.org/pipermail/sane-devel/2017-March/035072.html
+    and http://lists.alioth.debian.org/pipermail/sane-devel/2017-March/035082.html
+
+commit 928b803ef1f1bc1007ca3fa83418f103c6a7bdd7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Mar 5 15:35:06 2017 +0900
+
+    utsushi.desc: sync with upstream
+
+commit f450049bccc1e331790cb2546c2c1440fa3d24c0
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Tue Feb 14 18:52:25 2017 +0900
+
+    utsushi.desc: sync with upstream
+
+commit e3ed043500e786724cc77fdd0565993e878a51fc
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Dec 26 08:13:33 2016 +0900
+
+    Update backend maintenance status
+    
+    Following the project member list cleanup, only backends that list
+    a project member with git write access in the AUTHORS file are now
+    considered maintained.
+
+commit 7a0e1126b3eebd38944b8b281e6a481b95a35bbd
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Jan 6 23:30:31 2017 +0100
+
+    Revert "pixma_mp150.c: Fix scanbutton detection for MB5000 series"
+    
+    This reverts commit 53aa78df3a6980791ce250c471d019c5c59b83ec.
+
+commit 306f8f16e78b52948a6e09fa0957b3e364e0189f
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Jan 6 23:29:59 2017 +0100
+
+    Revert "pixma_mp150.c: fix 1200 dpi scanning for MB5000 series"
+    
+    This reverts commit dfc5487571ed2915bda7bdedbd4c79015004361b.
+
+commit 9bc734042f6a2af159772eef412efe7c65ebb02f
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Jan 6 23:28:56 2017 +0100
+
+    Revert "pixma_mp150.c: scan param 0x26-0x29 should contain localtime HHMM, also for MB5000 series"
+    
+    This reverts commit eb712c6bd8ca6a42a1d3941583fa18b9981b8712.
+
+commit 6c439bce791522aa9cd3fc04cf62087bdd6c6875
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Jan 6 23:28:31 2017 +0100
+
+    Revert "pixma_mp150.c: replace multiple if statements with case statement in handle_interrupt"
+    
+    This reverts commit 28dcd0aef4ac91b87527c17c8aa89e879f39f20d.
+
+commit 06b4b27ecfad1aa30c772fa0fac15d1c144c1e7a
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Jan 6 23:28:09 2017 +0100
+
+    Revert "pixma_mp150.c: fix parameter settings for MB5000 in send_scan_param"
+    
+    This reverts commit 1d2a40ec96aea0ba183415efea570301159d4159.
+
+commit 589e011992a21ae1edb4684eb89582350c47333f
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Jan 6 22:15:24 2017 +0100
+
+    Update the sane-pixma man-page for the new timout setting option.
+
+commit 1b442ce1ea7068bda1129c061071dc94bfd6a8d2
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Jan 6 21:37:52 2017 +0100
+
+    Added examples for new bjnp timer settings in the pixma config file
+
+commit cfc7a069d2696942bfeac90e0ff7aa50f83d0ec1
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Sat Dec 31 17:56:06 2016 +0100
+
+    Added timeout options for the bjnp protocol
+
+commit c2898cb6021fac6e2a526c2ce4692783ca69b18d
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Dec 30 21:36:26 2016 +0100
+
+    Remove incorrect comment left from old version
+
+commit 526f642f6487cd348b39a6e138c2bffa9a88d0f6
+Merge: 32be261 68cd274
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Dec 30 20:04:53 2016 +0100
+
+    Merge branch 'master' of ssh://git.debian.org/git/sane/sane-backends
+
+commit 68cd2744d1906ebf00b2bfdc90662992f8e5385c
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Dec 18 16:53:26 2016 +0900
+
+    Sort backends with LC_COLLATE=C
+
+commit d47957075ff0859f5bd52c683f5b6408c63d1e46
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 17 17:03:32 2016 +0900
+
+    Update git repositor write access info
+
+commit 078435eaf19d00e6b863a7802073863604c9e9dc
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Sep 12 19:58:42 2016 +0900
+
+    Fix typo
+
+commit 755e829caa23b9781863e4b1e1d24c3cfee9e8bf
+Author: Dave Platt <dplatt@radagast.org>
+Date:   Thu Dec 15 23:12:07 2016 -0800
+
+    avision.c: abort "wait for light" loop if interrupted
+    
+    Adds a "cancelled" flag to the Avision device structure, cleared
+    in sane_start() and set in sane_cancel().  Test this flag in
+    wait_4_light() and bail out of the 90-second "wait for the
+    light to warm up" loop if the scan is cancelled.
+
+commit 28963459a4ac43100b8e377d65332d81a2660c0d
+Author: Dave Platt <dplatt@radagast.org>
+Date:   Thu Dec 15 23:02:42 2016 -0800
+
+    avision.c: Recognize "backlight on" status
+    
+    Avision scanners can return an additional light-status value meaning
+    "Transparent Media Adapter back-light is on".  Accept this as
+    equivalent to "on" during the lamp-warmup check prior to starting a
+    scan.  Re-check the light status after sending the window command, as
+    the light selection might have been changed and a further warm-up
+    may be required.
+
+commit 6585b6f60d07a196e42c99b935e2754bbc80b3c8
+Author: Dave Platt <dplatt@radagast.org>
+Date:   Thu Dec 15 22:29:16 2016 -0800
+
+    avision.c: Add "skip-adf" option
+    
+    The code which tries aggressively to reset/initialize HP 82xx/83xx
+    Automatic Document Feeders doesn't work well if there's no ADF attached,
+    because the scanner reports a non-zero ADF model type in this case.
+    The retry code makes several attempts to initialize the ADF, and then
+    bails out with an "Operation not supported" error.
+    
+    Add a new "option skip-adf" which will cause the backend to believe
+    the "ADF not present" status if that's what the scanner reports.
+    
+    Fixes #313751
+
+commit f58ce8f9201364bd0fe28ef736d4b1345f3f71b2
+Author: Troy Rollo <troy@kawseq.com>
+Date:   Fri Dec 2 01:37:23 2016 +1100
+
+    HP3500: Always enable the second set of CCDs. This
+    prevents ghosting that occurs when only enabling the
+    first set of CCDs, even though at some resolutions
+    we will not get any data from the second set.
+
+commit 77986b1d14db5ba285d595ab7630748b3c6d9284
+Author: Troy Rollo <troy@kawseq.com>
+Date:   Fri Dec 2 01:20:43 2016 +1100
+
+    HP3500: Move to scan area more quickly if it is a
+    long way from the home position
+
+commit b1f3815014f11bbadd74d255ee4343e16ffee6b8
+Author: Troy Rollo <troy@kawseq.com>
+Date:   Tue Nov 29 21:11:06 2016 +1100
+
+    Add missing math library to HP3500 backend link flags
+
+commit fd7a3505f644573e832f417c7f0f62ca8ddeb7c8
+Author: Troy Rollo <troy@kawseq.com>
+Date:   Tue Nov 29 20:47:59 2016 +1100
+
+    HP3500 backend: fix #314811, greatly improve
+    	calibration, support harware calibration
+    	in 120DPI and 400DPI, and add support for
+    	hardware gamma correction.
+
+commit 6484ff8fc368db24b567e1d2fbb44cd86e0f9e43
+Author: Alex Belkin <abc@telekom.ru>
+Date:   Sun Nov 6 23:03:23 2016 +0300
+
+    Forgoten comma in backends man pages list.
+
+commit 69a008830b84437701022cbd96a8863ac61d3ddf
+Author: Alex Belkin <abc@telekom.ru>
+Date:   Sun Nov 6 22:28:03 2016 +0300
+
+    Pre-create temporary file for Jpeg scanning.
+    
+    Jpeg mode (as submitted by Samsung developer) uses temporary file with
+    fixed name. This opens attacks on reading its content or overwriting any
+    other user-writable file (with symlink). This change pre-creates
+    temporary file with O_CREAT|O_EXCL and mode 0600. Assuming usual +t
+    permissions for tmp this should mitigate issue.
+
+commit 226c2b9deb2f4f4b1d7c51ad4bb83d181e5e31b5
+Author: Alex Belkin <abc@telekom.ru>
+Date:   Sun Nov 6 21:50:06 2016 +0300
+
+    Update header and copyright statements for xerox_mfp.
+
+commit 58c1e43b83712899162030d83df3ecac151d69d3
+Author: Alex Belkin <abc@telekom.ru>
+Date:   Sun Nov 6 21:38:47 2016 +0300
+
+    Indent of xerox_mfp-tcp.c and xerox_mfp-usb.c
+    
+    This is purely indent commit without any code changes, in
+    follow-up to 83bbcfe7d546b4d0cd28269b647fb558c6a1e00a.
+    
+    Indent command used:
+        astyle -A8 -U -H -k3 -W3 -o xerox_mfp-{usb,tcp}.c
+    
+    Proof that code is not changed:
+        git log -w -p xerox_mfp-{usb,tcp}.c
+
+commit 610533a9a66d7232a8a0ecd360871e3a6fa67980
+Author: Alex Belkin <abc@telekom.ru>
+Date:   Sun Nov 6 21:24:38 2016 +0300
+
+    Update xerox_mfp man page.
+
+commit ba6a5710b508e73f4cb7152d034adc865f5201d7
+Author: Alex Belkin <abc@telekom.ru>
+Date:   Sun Nov 6 21:00:58 2016 +0300
+
+    Update sane.man to index xerox_mfp backend.
+
+commit 83bbcfe7d546b4d0cd28269b647fb558c6a1e00a
+Author: Alex Belkin <abc@telekom.ru>
+Date:   Sun Nov 6 20:24:02 2016 +0300
+
+    Run indent: astyle -A8 -U -H -k3 -W3 -o xerox_mfp.[ch]
+    
+    This is purely indent commit w/o any code changes.
+    To prove run `git diff -w`.
+
+commit e4aed53a1e46b9d46a76f814d414ef8d2c2276e3
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Sat Oct 8 19:32:43 2016 -0400
+
+    fujitsu backend v132
+    
+    - remove ipc_mode option and variables
+    - set ipc mode based on other options
+    - cleanup inverted logic DTC options
+    - fixes threshold option reported in #315069
+
+commit cfa98fd0d1271dd426ff2d6c565790d87cf3986d
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Sat Oct 8 14:25:33 2016 +0200
+
+    pixma: backend version 0.17.34
+
+commit 7e20475c8b45249d05315d5a889551924210666d
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Sat Oct 8 14:24:53 2016 +0200
+
+    pixma: new scanner Canon PIXMA MG3000 Series
+    
+    see bug report #315521
+
+commit 3b63fdab2b94f14765f8ba165546f6d69fc23ea9
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Oct 5 20:05:37 2016 +0200
+
+    pixma: backend version 0.17.33
+
+commit c751a9ca22934ef93ca6b7afd3d0aaea4969c5fc
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Oct 5 19:51:35 2016 +0200
+
+    fix ADF scanning for Canon MF57x0 devices
+    
+    - ignore result from calibrate(): don't interrupt @ PIXMA_STATUS_BUSY
+    - MF57x0 devices don't require abort_session() after the last page
+    - reported by Dmitry Deshevoy
+
+commit a9806de08ea65acb8a1109b480147a4a7ec76cb5
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 25 17:06:15 2016 +0900
+
+    AWARE: Treat compiler warnings as errors on debian-8-mini too!
+
+commit 490c4501c7ca59568bd9611665386c512163b51b
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 25 17:04:23 2016 +0900
+
+    Sync autofoo
+
+commit da49686efe16bc5f7b4ddef18ea0dcb5f7c18d77
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 25 17:00:54 2016 +0900
+
+    sane-find-scanner: disable USB if not supported
+    
+    This fixes a [-Wpedantic] compiler warning about ISO C forbidding empty
+    translation units.  The check-usb-chip.c file reduces to such a file in
+    the case USB support was explicitly disabled or no usable library found.
+
+commit 471e8ac0c1b565e5aea92f35ae173e167f3b61c7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 25 16:28:11 2016 +0900
+
+    sanei_pp: fix [-Wcpp] compiler warning
+    
+    The `#warning` directive is turned into an error by `-Werror`.  The
+    directive triggers is guaranteed to trigger with __GNUC__ when no
+    parallel support is available.  This would prevent strict CI builds.
+    
+    Output a message with all compilers that understand the pragma.  Those
+    that don't should ignore it, according to C99.
+
+commit 7d7030a40986d97d3cf7a5313bf889bce4af8131
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 25 15:53:46 2016 +0900
+
+    sanei_usb: : fix [-Wunused-parameter] compiler warnings
+    
+    These were issued in the absence of libusb.
+
+commit e6faafcdc94e253f7f4fe793fec6110ce37e8014
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 25 15:44:36 2016 +0900
+
+    xerox_mfp: fix [-Wunused-parameter] compiler warnings
+    
+    These are issued when libjpeg was not found during configuration.
+
+commit 32be261254a78d1f314b3ee86fd5e5b40ab91a86
+Merge: ec8bf64 97d2a3d
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Wed Sep 21 22:35:10 2016 +0200
+
+    Merge branch 'master' of ssh://git.debian.org/git/sane/sane-backends
+
+commit 97d2a3d22d9c6a6d0a277de0066c73e9059abd92
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Sep 21 22:11:09 2016 +0900
+
+    AWARE: Treat compiler warnings as errors on debian-8-full
+    
+    This build became compiler warning free in ee550e5d.  Let's keep it
+    that way!
+
+commit 4119f05d5f400803a9c952896125e9feabb07393
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Sep 21 21:54:39 2016 +0900
+
+    Fix USB ID typo
+
+commit ee550e5de8e636642b9895d54f6740aa38ee6ff8
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Sep 19 12:52:31 2016 +0900
+
+    pieusb: fix [-Wunused-parameter] compiler warnings
+    
+    The functions that trigger these warnings were not used.
+
+commit bf088a6ed15733237df446a84d6659c4e0145c9a
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Sep 19 17:45:35 2016 +0900
+
+    Merge comments
+    
+    This gets rid of a missing :usbid warning.
+
+commit e01f574b19be74081650e9be9bcb16a3420068ef
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Sep 19 17:44:48 2016 +0900
+
+    Merge duplicate entry
+
+commit 1a328e412fb7bf3872de20fe6e57b00ab913a75d
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Sep 19 15:26:14 2016 +0900
+
+    Add missing USB IDs
+    
+    Taken from http://www.linux-usb.org/usb.ids
+
+commit dd940a1f612f56d2acb929afd54614ebc6dfb309
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Sep 17 20:43:44 2016 +0900
+
+    utsushi.desc: sync with upstream
+
+commit fb0464d9e3e39a93306e98602ff879c43276de5c
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Sep 12 20:12:28 2016 +0900
+
+    niash: fix [-Wunused-but-set-variable] compiler warning
+    
+    This makes explicit what the compiler has effectively been doing all
+    along anyway since at least 727dd4ab (2004-08-03).
+
+commit 6f4b88b6173745f09e4ce1fa465db534eca85751
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Sep 12 20:05:42 2016 +0900
+
+    epson2: fix [-Wunused-but-set-variable] compiler warning
+    
+    This makes explicit what the compiler has effectively been doing all
+    along anyway since at least 728e032a (2009-06-01).
+
+commit 4dce101c05515200a6cd337451da664c1978f115
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Sep 19 10:04:35 2016 +0900
+
+    Keep generated *.eps and *.pdf files out of the repository
+
+commit 46bc0ff1c89a6759fd22f80fd1ceb9551268da4f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 18 21:41:03 2016 +0900
+
+    Sync autofoo
+
+commit 2b973d75fed73771664958ea6cb5b4b8fd7b1307
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 18 21:21:35 2016 +0900
+
+    Add fig2dev as prerequisite for API HTML docs
+    
+    The target for sane-html depends on sane.dvi which requires fig2dev.
+    
+    Thanks to:
+     - https://lists.debian.org/debian-user/2016/08/msg00484.html
+     - http://superuser.com/questions/1101439/error-building-sane-backend-on-debian
+
+commit db22a031d130d533f5fd41710ddabdc61280d313
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 18 21:19:12 2016 +0900
+
+    Fix typo introduced in fa41b180.  Fixes 315435
+
+commit 9d388c35937b75cf5f47410ead07ef2226ac8005
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Sun Sep 11 19:03:23 2016 -0400
+
+    canon_dr v56
+    
+    - add initial support for P-150M (and probably P-150)
+
+commit 39ceeae616a2e1638c2760d4364adcaa210a413b
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Sep 7 21:03:30 2016 +0900
+
+    md5: fix [-Wstrict-aliasing] compiler warnings
+
+commit 27a4da41b1761acba33e99aab4d782e726934c04
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Sep 7 21:01:26 2016 +0900
+
+    Prefer *our* `include/` files
+    
+    This fixes discrepancies in build results for VPATH builds.
+
+commit 737977199ccd2419a51e120c472981b1a1263ab0
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Sep 5 23:40:39 2016 +0900
+
+    umax_pp: fix [-Wunused-but-set-variable] compiler warning
+
+commit 50fa8efdcff0dd159d3ff51e219a3c08020ca54c
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 4 14:39:52 2016 +0900
+
+    gphoto2: fix libgphoto2 logging integration
+    
+    In libgphoto2-2.5.0 (tagged for release on 2012-07-10) the GPLogFunc no
+    longer takes a va_list.  Instead, it passes a formatted message.
+
+commit 23f052113b5567033da0d9c4679451d97c484220
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 4 12:50:19 2016 +0900
+
+    saned: fix [-Wunused-parameter] compiler warning
+    
+    The `__sane_unused__` attribute has been moved from sanei_backend.h to
+    sanei.h to make it generally useful instead of limited to backends.
+
+commit 0d527f6659e06175d855aaa1a70fc2be52aad1a7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 4 12:13:16 2016 +0900
+
+    Drop build environments
+    
+    Adding them did not quite have the effect I thought it would. I had
+    thought it would allow for easy linking to build logs by environment
+    name.  Alas, no such luck.
+    
+    This reverts commits:
+     - 9c44317289f1be0a72089ffd030be84caf75b58c
+     - 6209fecf3a11e90e2e5efc057cf650f4ab792b50
+
+commit 74b4a34e82124621616c699ac0d5ba0d5e93b6a1
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Sep 4 12:12:14 2016 +0900
+
+    dll: fix pedantic compiler warning
+
+commit 246673715d9abdbfbea349de4636322b242f9700
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Sep 3 14:36:49 2016 +0900
+
+    utsushi.desc: sync with upstream
+
+commit a65e74fe83ae96d5d00af6a05c751086cdae8d38
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 15:49:44 2016 +0900
+
+    umax_pp: fix [-Werror=unused-but-set-parameter] compiler warnings
+
+commit 4eaefe43713036f73ab322e8d6b519589055540d
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 15:27:50 2016 +0900
+
+    magicolor: fix [-Werror] compiler warning
+    
+    This casts away const-ness in the hope that libsnmp doesn't change
+    the session.peername.
+
+commit 31ac0db73672347732dc80cf8f2afe8e6f3d466b
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 15:25:43 2016 +0900
+
+    magicolor: fix [-Werror=pointer-sign] compiler warnings
+    
+    The libsnmp API requires a u_char *session.community :-(
+
+commit c32d48ef5fd4a47a93933e6ffba5c8a93d26e43f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 14:18:48 2016 +0900
+
+    kodakaio: fix [-Weror=format=] compiler warning
+
+commit 0337514b8f0e484c11b668d8ca0e0af998d3dfbc
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 14:18:00 2016 +0900
+
+    kodakaio: fix [-Werror=sign-compare] compiler warning
+
+commit 763816814bc072b19f1178e0d92031217d7f5f06
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 13:55:30 2016 +0900
+
+    hp5400: fix [-Werror=overflow] compiler warning
+    
+    This explicitly implements what gcc and clang assign.
+
+commit 9c44317289f1be0a72089ffd030be84caf75b58c
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 13:24:17 2016 +0900
+
+    Fix environment name (periods are not allowed)
+
+commit 984fefd55173f30f4cde3ed7acb462d660c676eb
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 13:21:11 2016 +0900
+
+    plustek_pp: fix [-Werror=sign-compare] compiler warning
+
+commit f0153bc7fe7fd79ef2b1b41d259adf3d20b9d641
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 12:57:17 2016 +0900
+
+    v4l: fix [-Werror=sign-compare] compiler warning
+
+commit 6209fecf3a11e90e2e5efc057cf650f4ab792b50
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 12:17:46 2016 +0900
+
+    Make referencing builds easier
+
+commit 235de98784897edb63d1ed1a32609b7786d799d0
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Aug 28 11:58:16 2016 +0900
+
+    md5: fix [-Wpointer-arith] compiler warnings
+    
+    This reverts commits 9aecb00947e6bf7ef1cf412aff2ab41202617b30 and
+    cdad5961f3888f0a3c0c525d0efab33174c11a24 which fixed a different
+    compiler warning that seems to have disappeared (at least on the
+    debian-8-full builds).
+
+commit bf53c714348dbf4654de887ae7e649fbad6b2288
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Aug 4 22:47:01 2016 +0900
+
+    Sync with upstream
+
+commit ffd93a9fad10ced31de037f2c6180f328a38b547
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Aug 3 22:43:06 2016 +0900
+
+    Sync autofoo
+
+commit cb3090cb5472b63d5cdfb5110652f568bd9477ad
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Aug 3 22:16:26 2016 +0900
+
+    pixma: Fix include guard typo
+    
+    This was introduced in f573865 on 2008-10-18.
+
+commit 23cc2e1ba043ea8309923f5f1dcc5acaeee38a95
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Aug 3 22:08:49 2016 +0900
+
+    Fix include guard typo
+    
+    This seems to have been present since the beginning of sanei/sanei_scsi.c.
+
+commit 63b55e2b591ba977a285a4c91fde0118c25246e7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Aug 3 22:05:03 2016 +0900
+
+    Drop check for sys/bitypes.h
+    
+    It was obsoleted in 70f3fdf on 2009-02-26.
+
+commit d263f25911a0b359b7edec0faa9320d5d13928da
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Aug 3 21:48:54 2016 +0900
+
+    Fix typo
+    
+    Appears to have been introduced in 0330a4d on 2009-02-02.  There is no
+    evidence that a scdds.h file has ever existed.
+
+commit 970464f7332a1995bfd825de285425f0c957b1da
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Aug 3 20:53:06 2016 +0900
+
+    Drop unused CPP define
+    
+    The last reference to it was removed in 5dcf165 on 2007-06-21.
+
+commit 5389808029f0f81d204630f6e78abe11dfd61122
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Tue Aug 2 21:56:09 2016 +0900
+
+    Fix memory leak
+
+commit 1006445982877970d376c0f657e04fc1481e2459
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Tue Aug 2 21:38:43 2016 +0900
+
+    Use DIR_SEP instead of hard-coding ":"
+    
+    Fixes 313540
+
+commit b021c3bee8e9edc7854050a3975cef003586b2e5
+Author: Troy Rollo <troy@kawseq.com>
+Date:   Sun Jul 31 22:47:25 2016 +1000
+
+    Fix bug 314571 - hp3500 backend does not set correct size for string option.
+
+commit 1859803563f8baadeb6c0926610b2f782350d1e4
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jul 27 21:17:08 2016 +0900
+
+    Add a Fedora 24 Clang builder
+
+commit f6c8be1380c2f12080cdbd7a81eb2d5156eaa154
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jul 18 20:55:14 2016 +0900
+
+    kvs40xx: fix [-Wunused-function] compiler warning
+    
+    This rather unceremoniously removed the function.  Note that a near copy
+    can be found in the kvs20xx backend code.
+
+commit effc26e4028f2d21a5bd9fec0458a78c0f6dc330
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jul 18 20:53:51 2016 +0900
+
+    kvs20xx: fix [-Wunused-function] compiler warning
+    
+    This rather unceremoniously removed the function.  Note that a near copy
+    can be found in the kvs40xx backend code.
+
+commit 2d468852288b5d80e9e8b6831467081fe3ec874e
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jul 18 17:32:21 2016 +0900
+
+    pnm: fix [-Wformat=] compiler warning
+
+commit 2f39c7227021e85b8fdde8161358858797bd7461
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jul 18 17:11:26 2016 +0900
+
+    v4l: fix [Wunused-parameter] compiler warnings
+
+commit 880992739020eee8cc0e005e6bdf853f2ff3572f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jul 18 17:10:56 2016 +0900
+
+    sm3600: fix [-Wunused-parameter] compiler warning
+
+commit 99c14f2d9503cd9a6c77d71d590e434e504052c6
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jul 18 16:51:08 2016 +0900
+
+    Use a single symbol to flag unused parameters
+    
+    The __sane_unused__ symbol was used slightly more often then UNUSEDARG
+    and, more importantly, defined in include/sane/sanei_backend.h.  That
+    makes it readily available to virtually all backends.
+
+commit b73a6e5017f6d4d2d0ef7a61bf6e2113f848be94
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jul 18 16:14:20 2016 +0900
+
+    niash: fix [-Wunused-parameter] compiler warning
+    
+    The attribute needs to go before the pointer designation for it to have
+    any effect.
+
+commit 61719e0a131a6f0d4bf53aa98ecf510ce7081ca7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jul 18 16:11:39 2016 +0900
+
+    dc240: fix [-Wunused-parameter] compiler warning
+    
+    The attribute needs to go before the pointer designation for it to have
+    any effect.
+
+commit ef8e258165526175c9ac2d262448f16b551d19e9
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Jul 14 21:12:38 2016 +0900
+
+    Sync autofoo
+
+commit 57350969f6f46195c5fd5e255b3d1906df401d19
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Jul 14 20:51:42 2016 +0900
+
+    sane.tex: mark up email as a URL
+
+commit 707baa0d160ff13331bed6063d2502b09f902f38
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Jul 14 20:50:14 2016 +0900
+
+    doc/sane.tex: drop html.sty in favour of url.sty
+    
+    The latter is part of the core TeX Live distribution which is readily
+    available on all major operating systems.
+
+commit bfd1626c4b119404429a847aaa92df77ca3fbb40
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jul 13 23:44:26 2016 +0900
+
+    Sync autofoo
+
+commit 8598f81d0b9542b6f4928b8b870a26b50f440379
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jul 13 23:43:35 2016 +0900
+
+    Fix figure orientation
+
+commit 00bc3e9b451f8dfb89553305cce89172be520bb1
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jul 13 23:40:19 2016 +0900
+
+    Generate EPS figures too
+    
+    It's good to know how this is done so that we can modify any original
+    figure if need be.
+
+commit cc8f99b900d5ae44248677f6881f1b74d7885bfb
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jul 13 23:24:29 2016 +0900
+
+    Generate PDF figures explicitly with fig2dev
+    
+    This utility has less dependencies and supports conversion to a pile of
+    other formats that may come in handy as well.
+    
+    Clean up of generated PDF figures has been moved to the clean target as
+    well.
+
+commit d7e1995d001b0d16b9920e751be923f6a8393bf1
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jul 13 22:37:44 2016 +0900
+
+    doc/sane.tex: Replace epsfig with graphicx
+    
+    The graphicx package allows for file specification without a hardcoded
+    extension.  This provides more freedom in chosing how to prepare images
+    in *.eps and *.pdf formats.
+    
+    Moreover, epsfig is considered mostly obsolete in the TeX community and
+    graphicx is the "current 'preferred' solution" to embed figures.
+    See https://www.ctan.org/pkg/epsfig.
+
+commit 0aab12b934a9f9620fb1236e13dd2b71a7426000
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jul 11 20:41:54 2016 +0900
+
+    Bump standard minor version
+    
+    This is to acknowledge the SANE_STATUS_GOOD fixes in net.tex that were
+    committed in 4daf488 and 1100883.
+
+commit 1ed3b9fa86e6bc6875a72a9b347164a5879ffe8b
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jul 11 20:37:08 2016 +0900
+
+    Reclassify doc/html.sty
+    
+    It is a package used by doc/sane.tex.
+
+commit 2481e1e98b02e927cdb9c2e6e404252ef9e49041
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jul 10 15:43:42 2016 +0900
+
+    Sync autofoo
+
+commit fa41b18001f74e8941813709f15a15cc9ea299e1
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jul 10 20:35:04 2016 +0900
+
+    Refactor API spec conversion support
+    
+    Unless explicitly asked to do without, all formats for which required
+    tools are found will be built.  Checks cover PostScript, PDF and HTML.
+    
+    All logic and files involved are now collected in a single "section"
+    and grouped in such a way that their function should be clearer.
+    
+    fixup! Refactor API spec conversion support
+
+commit d7c69d141ffb4f456d659b443aa4c3d3be82793e
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jul 10 19:40:04 2016 +0900
+
+    Add test for the TeX to HTML converter
+
+commit fe2fbe06e1b7db42ea2578e8d853cf83d7bb72a9
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jul 10 19:29:55 2016 +0900
+
+    Refactor TEXINPUTS handling
+
+commit f322cbc7f950b087e969ac115a5b4e14735881e4
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jul 10 15:41:08 2016 +0900
+
+    Add support for PDF API spec output
+    
+    Note that pdflatex internally uses epstopdf which in turn requires a
+    working ghostscript.
+
+commit 5a73fb24d1e7a5dcdd287ce7654050b1703cc9c6
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jul 10 14:48:43 2016 +0900
+
+    Be quiet but do not hide errors
+
+commit e0fd693bb170813f95241898a53ba3f9c261c22a
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jul 10 13:32:22 2016 +0900
+
+    Fix API spec generation for VPATH builds
+
+commit cb04102a20bc5b1e9cbb990805de3586a0a940c0
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jul 9 15:10:00 2016 +0900
+
+    Add GitLab CI musl build job
+
+commit be7af6835741c18ea93babd421c083c377b1f88d
+Author: Ruslan Nabioullin <rnabioullin@gmail.com>
+Date:   Sat Oct 29 20:27:47 2011 -0400
+
+    Fixed scanning status messages.  Fixes 313411
+
+commit d62d0a2e452e9ed1ae74cc20c01488543cda8ef9
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jul 6 20:23:12 2016 +0900
+
+    check-po.awk: fix awk invocation
+    
+    The awk utility has been moved to /usr/bin and the script relies on
+    features present in gawk but not in mawk.
+
+commit ddbdfd6206e30e513509720dd5137c26c9efc248
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jul 3 21:11:04 2016 +0900
+
+    Fix configure time test
+
+commit c17821e3609080309bcb8a3173cb071e1493a62c
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jul 2 19:23:01 2016 +0900
+
+    Fix configure time warning during CI build
+
+commit c96236862635f74d8a1c01654430d93bed83f756
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Fri Jul 1 23:45:43 2016 +0900
+
+    Sync autofoo
+
+commit a9c813944e9aa0ceb6c153d06dff286ba855b90e
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Fri Jul 1 23:37:49 2016 +0900
+
+    Make libusb-1.0 the default for USB support
+    
+    When libusb-1.0 is not found, libusb-0.1 will be tried.  On BeOS and
+    OS2, nothing should have changed in terms of detection of USB support.
+    
+    On all systems the --enable-libusb* flags are now ignored.  Instead, the
+    --with-usb and --without-usb flags now control support.  When neither is
+    given USB support will be enable if possible and disabled otherwise.  If
+    --with-usb is requested but not possible, ./configure will fail.  There
+    is no support to prefer libusb-0.1 over libusb-1.0.
+
+commit 418fbb987d731ed2468f48a6fb162f47ea7da55e
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Jun 30 21:50:33 2016 +0900
+
+    Sync autofoo, once again ...
+
+commit 602182931dceeedddcc6be3b144cbc1423bd9b4a
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Jun 30 21:49:25 2016 +0900
+
+    Improve test shell builtin invocation portability
+    
+    Looks like I missed this when committing 309a8140.
+
+commit 828cd013e9a4411158af8816a63b133b6da19ed5
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Jun 30 21:38:04 2016 +0900
+
+    Compile getopt replacement functions only if needed
+    
+    This ought to get rid of the last empty compilation unit warnings.  This
+    merges libfelib.la with liblib.la.  The former was always used together
+    with the latter.  The latter was only ever used without the former when
+    linking backends and tools.
+    
+    Tools might want to use the getopt functions, backends might just want
+    to use MD5.
+
+commit 89dc05006ec93e8fd8a103504701db720814669a
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jun 29 22:21:10 2016 +0900
+
+    Sync autofoo
+    
+    Looks like the sorting of the DIST_COMMON file list is not stable.
+
+commit a298bfe5a8c65236ac13130e891a93bf3cf58976
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jun 29 22:20:51 2016 +0900
+
+    Fix AS_IF condition
+
+commit f03f1f66d4a7704c20d221897665509d7f1a626a
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jun 29 22:15:06 2016 +0900
+
+    Sync autofoo files
+
+commit 1c946f7c194869966f6d3af9df499184d3035c20
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Tue Jun 28 22:42:09 2016 +0900
+
+    Compile replacement functions only if needed
+    
+    This ought to get rid of most empty compilation warnings.
+
+commit 0c2b86ac0b56ee7cb8b962102c54855f05887b08
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jun 27 22:33:28 2016 +0900
+
+    Fix distcheck issues in tools/
+    
+    Automake is smart enough these days to compile the *.lo files that are
+    used when linking.
+    
+    The umax_pp_CPPFLAGS are useless because backend/umax_pp_low.c undefines
+    BACKEND_NAME unconditionally and sets it to what was passed here ;-)
+
+commit 81f9557966ad335a76deff57a112607d9813ba7a
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jun 27 22:08:20 2016 +0900
+
+    Clean up .gitignore file content
+    
+    Removes empty lines and duplicates (note that .gitignore patterns are
+    recursive unless anchored with a leading /).
+
+commit 61f3fec68e14944be7ecf219ec604e599141cbdf
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jun 27 22:05:50 2016 +0900
+
+    Remove references to SANE CVS
+    
+    The references in in-file changelogs and the ChangeLog files have not
+    been modified.  Only those references that refer to current practices
+    or locations.
+
+commit c23791cbd71d58b2627cfc65bbf2cb20aeb51bba
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jun 27 21:51:43 2016 +0900
+
+    Sync AUTHORS content with current status
+    
+    We've been using git for a while ;-).  Also updates the write access
+    info and fixes encoding issues.
+
+commit cb4924f210bf758558b583220a14ed5a62f178dc
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jun 26 10:22:35 2016 +0900
+
+    Stop distclean from removing files willy-nilly
+    
+    The distclean target should only remove files that make creates.  If
+    there are any that need taking care of, they should be added in on a
+    per file basis in the Makefile.am that creates it.
+
+commit 0065aaa1c8cb823d20b1e0ff32b3f6197e73db3f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jun 26 10:11:42 2016 +0900
+
+    Remove overly zealous ignore patterns
+    
+    Text editor backup and temporary files like *~ are a per developer
+    issue, add them to your global .gitignore.  Other dot-files should
+    be ignored on a case-by-case basis.
+
+commit 8274a52eec3c20becf9901acaab4837b6b61c2f7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jun 26 10:07:26 2016 +0900
+
+    Sort .gitignore files
+
+commit b25ef62c2bb163fffea56000ef25544a236d2096
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jun 26 10:05:12 2016 +0900
+
+    Fix sorting of ignore files
+    
+    We haven't been using CVS since ... 2009-05-04 :-|
+
+commit 0bc7b6aed7e3ac8ee78190f0e795ce9c62c3f36e
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jun 26 09:16:54 2016 +0900
+
+    Sync *.po files with previous changes
+    
+    This changes the file/line references in all files (and picks up any
+    new messages as a side effect).
+
+commit bdade6bb07a0ec27e3930c0b3b86c28a5c2a5bd9
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jun 26 09:15:24 2016 +0900
+
+    Sync derived files with previous changes
+
+commit ec4fe7ec7200a881feba5b539256dc58ae1edbaf
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jun 26 08:50:04 2016 +0900
+
+    Prefer gettext's --disable-nls option
+
+commit c676acbe472f2a57763d0ce198e50b048d37bbda
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jun 26 08:49:14 2016 +0900
+
+    Switch to using the gettext build machinery
+    
+    This adds two automatically maintained English variants that handle
+    quote substitution in onrder to provide smart quotes.
+
+commit 0286bf46fc2992dfd2e9539fb939c243db13e91f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jun 26 08:30:45 2016 +0900
+
+    Add gettext build machinery files for I18N/L10N support
+    
+    These are courtesy of autopoint and target gettext-0.18.1 because that
+    is the version in Debian 7 (which is what Alioth is running).  The one
+    warning this produces on autoreconf is fixed in gettext-0.18.2, BTW.
+
+commit eecee6d1014537cabe427d44168fce9ac9894301
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jun 25 15:23:05 2016 +0900
+
+    Fix VPATH build issue
+    
+    The source *.po files weren't found when you configured outside of the
+    top source directory.
+
+commit 00984cd1119bb9bb5b794bfc0f1ef77369978d68
+Author: Yurii Kolesnykov <yurikoles@gmail.com>
+Date:   Sat Jun 25 03:34:12 2016 +0300
+
+    Fix compilation of saned.c under OS X
+
+commit ad176ba9fe1f7608d8ad8032407cf1f7dc66dad6
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Tue Jun 21 00:50:02 2016 +0200
+
+    epsonds: remove unused var
+
+commit 1dbabdce5d34e686608bb997245c49a823e19fb5
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Tue Jun 21 00:49:08 2016 +0200
+
+    epsonds: fix compilation
+
+commit 9b389a61c5e698e8bffb186bdbc005739128b427
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Tue Jun 21 00:43:39 2016 +0200
+
+    epsonds: added support for network scanners
+
+commit f13ca02b86a4d27951149723ca2ae81491991c18
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jun 20 21:42:56 2016 +0900
+
+    Fix variable name typo and other typographic nit-picks
+
+commit e7100e275d58d67b903e883e7a02e45d18f81ef7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jun 15 20:47:28 2016 +0900
+
+    Update documentation to reflect recent changes
+
+commit 5695d01077c7e575808a37a66df37d1f9fafa637
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jun 15 20:23:33 2016 +0900
+
+    Silence overly verbose targets
+    
+    This only takes effect with silent rules enabled.
+
+commit 43cdc1056af899520797b09f3f78ba64703ed74d
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jun 15 20:18:25 2016 +0900
+
+    Do not duplicate Warning on output
+
+commit 40bfec7a6b4a804201bad7f0517f16b0c6ae4110
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Jun 15 20:17:29 2016 +0900
+
+    GitLab-CI: fix configure option
+
+commit f75e271853f40c6cb00ce59cbb4e9d62d083a1b2
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Tue Jun 14 21:24:53 2016 +0900
+
+    Tweak GitLab CI builds
+    
+    The idea is to build as much as possible for the *-full flavour build,
+    make compiler warnings stand out and muddle on after errors so that we
+    get all the problems in a single log.
+
+commit ef7deff36c759efa8d371251febef6d37d4eb94b
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Tue Jun 14 21:20:48 2016 +0900
+
+    Add missing autofoo file
+    
+    This should have gone in with d853463e.
+
+commit d853463ef1b97082d657a0be32d1b27a04940ea2
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Tue Jun 14 06:30:48 2016 +0900
+
+    Sync derived files
+    
+    This was done with
+    
+      AUTOMAKE="automake --add-missing --copy" autoreconf --force
+    
+    on Debian GNU/Linux 8.5.
+
+commit 17d78ab7c326069c3a596f17ded6418ef42930bc
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Fri Feb 12 21:09:32 2016 +0900
+
+    Fix warnings of "newer" automake versions
+
+commit a7376ffa6dd1796c1678b33bd03bf19766e227de
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Fri Feb 12 20:52:57 2016 +0900
+
+    Fix libtoolize warning
+
+commit 7675cb7c3eb5b6e97fb87adc464b6bcc67cfd7dd
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Feb 11 17:43:14 2016 +0900
+
+    Drop Makefile.in from EXTRA_DIST
+    
+    Automake is smart enough to include this on its own.
+
+commit 7bfa818c57485310994650528124a7036894eb36
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Jan 14 21:22:00 2016 +0900
+
+    Set up compiler and linker early and in one place
+
+commit f80cf1dbbdd85f2a0b595aef83cc63faa0c91c04
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Jan 14 20:21:49 2016 +0900
+
+    Remove unused SANE_LINKER_RPATH macro
+
+commit e4ad1f58f31ec7110df716494b13cf96156b6a7c
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Jan 14 18:50:47 2016 +0900
+
+    Enable ISO C99 support for more compilers
+
+commit 444b572d1a559d93a6ad172f86bdcc9197377e75
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 9 18:43:36 2016 +0900
+
+    Use autoconf provided --docdir
+
+commit f1f4180e5b6f71bf3a674bbfcbf7932b401d7a96
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 9 18:24:20 2016 +0900
+
+    Collect autoconf bits in one place
+
+commit 35f1936aeba18b34628d35938529e0d2af0e58c7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 9 18:11:53 2016 +0900
+
+    Determine version bits and release programmatically
+
+commit 16497dc13838e14784778883fb2837fbcf9e288e
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 9 17:59:20 2016 +0900
+
+    Replace convenience variable by its expansion
+
+commit 9a52b5bc27c2a50e14161b4dcaba43f825cf91a4
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 9 17:48:27 2016 +0900
+
+    Fix variable name typo
+
+commit 79c623628a28b6c28321cad6518bf98cf7a705a4
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 9 17:48:03 2016 +0900
+
+    Fix new automake warnings
+
+commit 97fed76717367289a8e160dab4341d79586c1079
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 9 17:22:31 2016 +0900
+
+    Replace obsolescent macro with LT_INIT option
+
+commit c868a2e8d48e3c31051b6a8978c9b1df494bc36b
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 9 17:22:07 2016 +0900
+
+    Remove commented out code
+
+commit 4894b1513d829957e109e5c49b812dc688fe78b3
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 9 17:11:19 2016 +0900
+
+    Drop a pile of unnecessary macro invocations
+    
+    These are already taken care of by other macros.
+
+commit ae89c8f98362a4e50d4b1a0ce8f3586b77a81989
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 9 15:59:35 2016 +0900
+
+    Update to automake-1.11.6
+    
+    This turns on additional warnings and adds support for silent make
+    rules (so compiler warning really stand out ;-).
+
+commit 87e12bbf2e4312bf0bd18656afe579919c8788e1
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jun 13 22:24:21 2016 +0900
+
+    Sync derived files with autoreconf --force
+    
+    For the record, this was done on Debian GNU/Linux 8.5.
+
+commit 309a8140e7285f87d5fc5ee24b942f1713e80be8
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Oct 28 21:59:42 2015 +0900
+
+    Improve test shell builtin invocation portability
+    
+    POSIX 2008 obsoletes the -a and -o operands (according to the autoconf
+    documentation).
+
+commit d9e2f441139c0514c3d388976d1f8fc78a04de95
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Oct 28 20:59:22 2015 +0900
+
+    Double quote code passed to AC_LANG_PROGRAM
+    
+    Upon re-reading the autoconf documentation, this seemed the right thing
+    to do.  The AC_LANG_PROGRAM macro does not quote its arguments so any
+    occurence of [ and ] will get stripped out if not double quoted.
+    
+    Current code snippets passed do not use them but it is better to use a
+    consistent quoting approach for such snippets.  In other places in the
+    configure.ac file double quoting is used already.
+
+commit d3d5dc3da04cce842f7fa8d941676f2f5abc3bbd
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Oct 22 22:18:19 2015 +0900
+
+    Update to autoconf-2.69
+    
+    This gets rid of a number of obsoleted macros and replaces RETSIGTYPE
+    with a void literal which can be assumed for C89 and later.
+    
+    This changeset was prepared using autoupdate and modified to get rid of
+    whitespace and doubled [] changes.  Changes to acinclude.m4 were added
+    by hand.
+
+commit 2d6fad58b4c61d59bec3879dab9ccf0c1b88dd11
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Oct 22 20:15:45 2015 +0900
+
+    Respect GNU Standards user variables
+    
+    Several variables are considered "user variables" by the GNU Standards.
+    This means that the user can pass these to their ./configure and make
+    invocations as they see fit.  These variables include CPPFLAGS, CFLAGS
+    and LDFLAGS.
+    
+    This changeset pushes our use of these variables to the automake shadow
+    variables, AM_CPPFLAGS, AM_CFLAGS and AM_LDFLAGS, so that user variables
+    will no longer clobber flags required in order to build.
+
+commit 7a2b112d20e08337528128745bf7cc1d6096a1d8
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Oct 21 22:33:53 2015 +0900
+
+    Prefer make variables over literal substitutions
+    
+    The AC_SUBST and PKG_CHECK_MODULE invocations in configure.ac as well as
+    acinclude.m4 are sufficient to trigger automake to insert initialization
+    logic for the variables these introduce.  There is no need to do this by
+    hand.  Wherever these values are needed, it is better to use a variable.
+    This allows for one-off overrides on the make command-line (without the
+    need to run ./configure) for one thing.
+
+commit 2745528b60617d737a7a597c4ee5397359a6ddfd
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Oct 19 21:52:47 2015 +0900
+
+    Fix non-POSIX automake file variable warning
+    
+    This addresses warnings about the use of the $(wildcard) function.
+    It has been replaced by a plain shell glob.  There is one case where
+    this will result in an error, when there are no matches, but that is
+    when the targets that use it make no sense.  It is probably good to
+    get an error in that case.
+
+commit d81836bd2332e42136a15a72961c0b9295d94b58
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Oct 19 21:04:53 2015 +0900
+
+    Add automake subdir-objects option
+    
+    This addresses autoreconf output such as:
+    
+      tools/Makefile.am:37: warning: source file '../backend/sane_strstatus.c' is in a subdirectory,
+      tools/Makefile.am:37: but option 'subdir-objects' is disabled
+    
+    The option was introduced in automake version 1.9 and is slated for
+    unconditional activation with automake-2.0.
+
+commit d38a098ec6fce0aa18dd757677c5a07ff1a44163
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Oct 19 20:20:56 2015 +0900
+
+    Rename configure.in to configure.ac
+    
+    This name has been preferred since autoconf-2.52 and automake-1.5.
+    Both were released in the summer of 2001.  Support for configure.in
+    is slated for removal in automake-2.0.
+    
+    The configure.ac file itself requires autoconf-2.54 or later (and
+    does not care about the automake version).
+
+commit c9027378a12a6f67b22ee5fe203df1739486e3ad
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Jun 13 20:35:34 2016 +0900
+
+    xerox_mpf: Make JPEG support an option
+
+commit 359bb9c3d48c87324b2ead602de76e0e35daadba
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Jun 12 20:32:30 2016 +0900
+
+    Add CI support to test selected build scenarios
+
+commit 5ba37467e88ca8052973b37128ce8fd36ad5d61d
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Thu Jun 9 21:51:18 2016 -0400
+
+    fujitsu backend v131
+    
+    - hide compression-arg option when jpeg disabled
+    - add Send/SC/GHS macros for recent scanners
+    - add initial support for fi-74x0
+    - add initial support for fi-7030
+    - set has_MS_lamp=0 for fi-71x0
+    - add I18N macros to all option titles and descriptions
+    - add usb ids for many newer scanners
+
+commit ec8bf64396b394c4d483b811f9948871f12882b4
+Merge: 1d2a40e 1e01365
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Sat May 21 22:06:57 2016 +0200
+
+    Merge branch 'master' of ssh://git.debian.org/git/sane/sane-backends
+
+commit 1e013654cc3af09f4731ab9ec8d8324d03a7de4a
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Mon May 9 11:10:35 2016 +0200
+
+    pieusb: mkostemp -> mkstemp
+
+commit 926bfade544de4a4fd5f1a8082b85a97e2443770
+Author: Alex Belkin <abc@telekom.ru>
+Date:   Sat May 7 22:33:03 2016 +0300
+
+    Color scanning for Samsung models, which support JPEG Lossy compression.
+    
+    Patch is submitted by Laxmeesh Onkar Markod <m.laxmeesh@samsung.com>
+    
+    Patch to code is applied almost verbatim, except, insignificant
+    formatting fixes and making new functions static.
+    
+    Also, new USB ids added and scanner support is changed as reported.
+
+commit 1d2a40ec96aea0ba183415efea570301159d4159
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Sat Apr 30 15:32:55 2016 +0200
+
+    pixma_mp150.c: fix parameter settings for MB5000 in send_scan_param
+
+commit 28dcd0aef4ac91b87527c17c8aa89e879f39f20d
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Wed Apr 27 18:45:22 2016 +0200
+
+    pixma_mp150.c: replace multiple if statements with case statement in handle_interrupt
+
+commit eb712c6bd8ca6a42a1d3941583fa18b9981b8712
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Wed Apr 27 17:55:52 2016 +0200
+
+    pixma_mp150.c: scan param 0x26-0x29 should contain localtime HHMM, also for MB5000 series
+
+commit c8169b1e656f7f95c67946298da5a0e1c143f8e8
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Apr 22 23:58:23 2016 +0200
+
+    pixma.h: step version of the backend to 0.17.32
+    sane-pixma.man pixma.desc: mark Maxify MB5000 as complete (but ADF does not work)
+
+commit dfc5487571ed2915bda7bdedbd4c79015004361b
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Apr 22 22:42:48 2016 +0200
+
+    pixma_mp150.c: fix 1200 dpi scanning for MB5000 series
+
+commit d5e1323738a4ed2edc96b566138c7cc6c55f3f5e
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Apr 22 21:05:40 2016 +0200
+
+    pixma.h: step pixma backend version to 0.17.31
+
+commit c2985f0fd60279bca0dcfed3d3fb60cc33cfe4dc
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Fri Apr 22 21:03:48 2016 +0200
+
+    pixma_bjnp_private.h: change minimum timeout value for the bjnp protocol to 1 sec
+    as 500 ms gives errors on scanimage -A (it workked for scanbd)
+
+commit 4b2f171a13248a8e3d79379e368c54fb71ed97e2
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Wed Apr 20 11:19:32 2016 +0200
+
+    pixma_bjnp.c pixma_bjnp_private.h: set minimum timeout for network operations to 500ms
+
+commit affe1ac821b17813188bd91045ced32fe4fcfe56
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Wed Apr 20 10:58:54 2016 +0200
+
+    pixma_bjnp.c pixma_bjnp_private.h: make bjnp protocol follow timeouts set by backend
+
+commit 53aa78df3a6980791ce250c471d019c5c59b83ec
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Mon Apr 18 22:00:15 2016 +0200
+
+    pixma_mp150.c: Fix scanbutton detection for MB5000 series
+
+commit 1452cf2e0d9f56602a5ca9b07e52f8d8f6b9ec8a
+Author: Louis Lagendijk <louis.lagendijk@gmail.com>
+Date:   Sat Apr 16 21:37:25 2016 +0200
+
+    pixma_bjnp: Remove dead code in polling
+
+commit 19c128a23e27c1ab5a030fa6ff74da1b740629bb
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Tue Apr 12 18:30:24 2016 +0200
+
+    README.linux: move installation description into new document INSTALL.linux
+
+commit 51943537c314c9060138df8b37307377c307ba3a
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Tue Apr 12 18:14:55 2016 +0200
+
+    pixma: backend version 0.17.30
+
+commit 270a8cd3bebfb2a630a1b74d5abd0b6fe2fc2e5d
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Tue Apr 12 18:13:36 2016 +0200
+
+    pixma: Canon PIXMA MG7700 Series is working
+
+commit 2556ffc2c593c3408cc554ecc97e07db457c975d
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Thu Mar 31 11:21:27 2016 +0200
+
+    pixma_mp150: MG7700 Series doesn't need special image format post processing @ high dpi
+
+commit e6b6ad9d4847e86aed8be0837a19bfada881f52d
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Tue Apr 5 20:30:10 2016 -0400
+
+    canon_dr backend v55
+    
+    fixed-width scanners were calculating left-side offset incorrectly in color
+    initial support for DR-F120
+    rename all DUPLEX_INTERLACE_* to indicate start and end of line
+
+commit 41a416e4afcf6cada69193dc408ef184d0e5f678
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Mon Mar 21 18:59:47 2016 +0100
+
+    epsonds: fixed resolution setting bug, DS-60000 workaround is needed no more
+
+commit 52bc4d241c9587e99be2ae4566ad01469a3ecab9
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Mon Mar 21 10:53:29 2016 +0100
+
+    pixma: backend version 0.17.29
+
+commit bc1637bb39794b415a2e73ee990e4763c73be3f9
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Tue Feb 16 16:20:58 2016 +0100
+
+    pixma_mp150: MG3600 Series doesn't need special image format post processing @ 1200dpi
+
+commit 23eb95582da718791103b83ea002e947caa0f5fc
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Fri Mar 4 13:38:12 2016 +0100
+
+    pixma: backend version 0.17.28
+
+commit eba9c9e2391d59459e5fa3f362d8dc08d14c7b9c
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Fri Mar 4 13:36:08 2016 +0100
+
+    pixma_imageclass: software lineart for all imageCLASS, imageRUNNER, i-SENSYS and laserBase scanners,
+                      supported by this sub-backend
+    
+    imageCLASS scanners:
+    D420, D480, D530, MF810/820, MF3240, MF4010, MF4150, MF4270, MF4320, MF4360,
+    MF4410, MF4570dw, MF4690, MF5630, MF6500, MF8030, MF8170c
+    
+    i-SENSYS scanners:
+    MF210, MF220, MF3010, MF4500, MF4700, MF4800, MF5880dn, MF5900, MF6100,
+    MF6680dn, MF8200C, MF8300, MF8500C
+    
+    imageRUNNER scanners:
+    iR1133
+    
+    laserBase scanners:
+    MF5650
+
+commit 38d6f1ba6dd48d8139b3ef504b4c7920d0e4736b
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Fri Mar 4 13:08:31 2016 +0100
+
+    pixma_imageclass: MF6100 Series document feeder does not have 600DPI capability
+
+commit 328e9b93d71d1f9b031c4066e4cba00893703c4a
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Thu Mar 3 21:59:24 2016 +0100
+
+    raise build number
+
+commit 8ad2c60d82797cc3495f63f8230bdf6f999067a1
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Thu Mar 3 21:58:55 2016 +0100
+
+    use half step mode for LiDE 110 600 dpi scan
+
+commit 52ea420d44a26832f662c837bbbe4d2f7002875a
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Thu Mar 3 21:46:43 2016 +0100
+
+    use half step for LiDE 210 600 dpi scans
+
+commit bd0b0cd218504868f32962a5558449956c8ce242
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Thu Mar 3 21:39:25 2016 +0100
+
+    use rewind instead of slow_back_home
+    
+    - if required by flags, do a rewind instead a slow_back_home that pollutes
+      shading settings
+
+commit 3dee0f8d48e26e3aceb0243d03199af5870f30e2
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Thu Mar 3 21:31:01 2016 +0100
+
+    implement rewind for gl847 and gl124
+
+commit de635a32f9638f5fad5806ab5de9498f5fa47ca9
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Thu Mar 3 21:12:29 2016 +0100
+
+    add rewind function to command set
+
+commit 270d6a4242c95d6d376f442ca701e067e3fc74d1
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Mon Feb 29 21:14:30 2016 +0100
+
+    fix Lide 110 gray mode max speed
+
+commit 2f891c13bb5cb1728479ee08ba45b756f68a3287
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Thu Mar 3 13:40:46 2016 +0100
+
+    pixma: backend version 0.17.27
+
+commit bbd327f5e7c973db331f3f309788d852367bc79a
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Thu Mar 3 13:38:33 2016 +0100
+
+    pixma_imageclass: reduce timeout for failed first usb command to 2 seconds
+
+commit c41640f36433e646989665bac0ac5da460f2d9a9
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Thu Mar 3 13:36:44 2016 +0100
+
+    pixma: new global parameter to set duration of receive timeout loop
+    
+    The default value for receive timeout loop duration has not been changed.
+    The loop still takes 8 seconds if a timeout occurs.
+
+commit 9897357727b65d13167b89cd1d1fe816f4d72563
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Sun Feb 28 21:26:27 2016 +0100
+
+    enable pixel averaging whne bleow 600 for all models
+
+commit d784dec60b096b8e8fe18f5f7b5c1921249d6ed2
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Sun Feb 28 12:26:12 2016 +0100
+
+    motor table fixes
+    
+    - add target speed for 600 dpi gray
+    - add slope table for 4800/2400 dpi, gray and color
+
+commit 759729331cc60a86d884518064b2dc92736f7abd
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Sun Feb 28 12:18:56 2016 +0100
+
+    fix maximum speed compute in gray mode
+
+commit e1b1ba8aeecf2eefa2855ec8c77604a8070027ab
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Fri Feb 26 05:57:35 2016 +0100
+
+    fix expiration time option reading
+
+commit 61d6f5c2140e6e659db20916937cc95c5c7256f3
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Thu Feb 25 21:37:55 2016 +0100
+
+    mode set fixes
+
+commit fa2c9dc9b216fa7b7f1baf013b7cbe8eb3df8597
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Thu Feb 25 21:37:00 2016 +0100
+
+    fix GPIO during scan
+
+commit c5117ed0f1b522eab10fd2248f140b2acad2a708
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Wed Feb 24 21:43:29 2016 +0100
+
+    doc and version update
+
+commit 747275a00f03e4ab643461448985ce20879e1d12
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Wed Feb 24 21:15:26 2016 +0100
+
+    add 1200 and 2400 dpi mode for LiDE 120
+
+commit 2a18600792c00f9ca37ff5b52d2cc1c8202d8b4b
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Wed Feb 24 06:35:46 2016 +0100
+
+    make 1200 dpi scan mode work for LiDE 120
+
+commit b11a69d27572aa938cedff303ba7560ca9793943
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Wed Feb 24 06:17:50 2016 +0100
+
+    make 600 dpi mode work for LiDE 120
+    
+    - add override for registers 0x16 and 0x70 since 120's sensor
+      is set differently according to resolution
+
+commit 15e203de89abe53f732aa431548645c5c9838237
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Tue Feb 23 21:11:00 2016 -0500
+
+    Various copyright comment updates
+
+commit 1465543cc0dd9e4fb4b3706ca6793e90a35ce389
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Tue Feb 23 21:07:06 2016 -0500
+
+    fujitsu backend v130
+    
+    run init_model before init_ms so some scanners can override
+    set all M309x and M409x scanners s->broken_diag_serial = 1
+
+commit 963de58dfc4498693aeeec35a9ff23363af6ac67
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Tue Feb 23 20:42:52 2016 -0500
+
+    Enable padded read for DR-3080CII
+
+commit 1207ce5a40664c04b934bd0a6babbc1575361356
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Tue Feb 23 20:36:32 2016 -0500
+
+    Support SANE_USB_WORKAROUND env var
+    
+    Here, we add a new env var (SANE_USB_WORKAROUND) to sanei_usb.c.
+    This allows end users to conditionally enable the workaround added
+    in commit 014b45d920f1fb630e1a31bb01f1da02ea2a6a87. The default is
+    to not enable the workaround, because more recent Linux kernels no
+    longer seem to need it. Some users have even reported failure with
+    the workaround enabled.
+
+commit 219198838be069d7e3d48b53762727f1bbfb93e5
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Tue Feb 23 21:39:22 2016 +0100
+
+    LiDE 120 working [75-300] dpi
+    
+    - fix sensor pixel number
+    - enable calibration
+    - default to 16 pixel DUMMY
+
+commit 4fd1d10228047a740f28b1cd25579b7c40c93b1f
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Mon Feb 22 21:45:02 2016 +0100
+
+    tune scanarea geometry
+
+commit a74ebe551daf8750821b1ab57324e54141a84461
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Sun Feb 21 22:14:48 2016 +0100
+
+    first almost correct scan at 300 dpi
+
+commit 8f938f2d00d27070e826f88a77264ee36d0bbedf
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Sun Feb 21 09:48:26 2016 +0100
+
+    GL124 DAC and SENSOR setup changes
+
+commit f56ffa63b99db4767b35d294fef96476b228f993
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Sun Feb 21 09:47:47 2016 +0100
+
+    doxygne fix
+
+commit 2e1102dc3ab1ee4d7bfec3e7cbf6e3a1527f5264
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Thu Feb 18 21:41:38 2016 +0100
+
+    add dedicated reference slope tables for LiDE 120
+
+commit 214dfad1d5aa841b597187004747ec88c507cf06
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Wed Feb 17 21:43:05 2016 +0100
+
+    use dedicated LiDE120 GPIO
+
+commit 387cea7d6ce75af9441c5841221267bef7b7924c
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Wed Feb 17 21:04:55 2016 +0100
+
+    define dedicated motor/sensor/gpio for LiDE 120
+
+commit e90f8cb8a1e62f6865d9e237fd1f0e7f773e5094
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Fri Feb 12 08:11:20 2016 +0100
+
+    latin1 -> utf8
+
+commit d74d3bcd887d2a3d59ee96e04eb68f15c0a3b882
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Thu Feb 18 22:34:16 2016 +0100
+
+    README.linux: add some hints for individual SANE installations
+
+commit 926a7e67b6f81ffdb1b4f67a55bf84862efcf6b9
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Feb 17 21:24:18 2016 +0100
+
+    pixma: fix scanner names
+
+commit 235dc80b5f3faaf195eef1e177a1f38284ca3bee
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Feb 17 21:10:44 2016 +0100
+
+    pixma: Canon i-SENSYS MF6100 Series is working
+
+commit 6d89f7ef25266cc9a53440bbf68ff2e1a37d4b86
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Feb 17 21:06:04 2016 +0100
+
+    pixma: backend version 0.17.26
+
+commit 7a227dcaf2771b31feb852e6a83336976966a0ab
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Feb 17 21:03:18 2016 +0100
+
+    pixma_imageclass: wait for 8sec to throw last page out of ADF feeder @ ADFDUP
+
+commit 23efb9f55f466179df86848912acbed1a94c10ff
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Feb 17 21:01:48 2016 +0100
+
+    pixma_imageclass: PIXMA_ENO_PAPER check also for ADFDUP scans
+
+commit 29ceb0e377009cd6829d8f68c58a2197ac19a20d
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Feb 17 20:59:32 2016 +0100
+
+    pixma_imageclass: fix for failed first usb command (timeout)
+    
+    Sometimes the first usb command to the scanner fails after a previous scan.
+    A workaround was to reconnect the usb cable. This fix simply resends the
+    failed command.
+
+commit 8f1202d6537568e56b4886ebe5d41d0210ffacd9
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Feb 17 20:55:49 2016 +0100
+
+    pixma_imageclass: fixes for MF6100 Series
+    
+    - special ADF settings
+    - the MF6100 Series is a Generation 2+ scanner, but uses the old read image command
+
+commit 02855737ee84e3c72bceff9ba06fddc5a5d99860
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Feb 17 20:32:00 2016 +0100
+
+    pixma: use usb timeout instead of sleep timer while waiting for usb response
+
+commit 4771fab9c16b477dc376bd2e5fdd8d0dc7f2c478
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Feb 17 20:30:47 2016 +0100
+
+    pixma: reduce global usb read and write timeouts to 1 sec
+
+commit 99f7e7872f2619c3ebec2590b91de3fb0ca28a1a
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Feb 13 17:37:34 2016 +0900
+
+    Disable use of pthreads if pthread.h cannot be found
+
+commit 04d5e4a0cf775f6483873a3f1e70a173587546b6
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Feb 13 17:34:46 2016 +0900
+
+    Move #include <pthread.h> to sanei_thread.h
+    
+    The sanei header file may need pthread_t.  If it does, make sure it
+    is available.
+
+commit af35e9ba749cce6e735d685ec4495e8c8d85778c
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Thu Feb 11 12:06:34 2016 +0100
+
+    pixma: Canon Pixma MG3600 Series is working
+    
+    Reported by Rajib Bandopadhyay
+
+commit 7bd773ade5ff1bc4170d2a1773428efe759aaa75
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Tue Feb 9 09:55:26 2016 +0100
+
+    LiDE 120 support wip
+
+commit 056f590f2d147099554d97a89dd5e0ddfa8d6dda
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Sat Jan 23 00:55:31 2016 +0100
+
+    epsonds: fixed comment
+
+commit cf2dfea0008d16cb70f8baeaae5a414e9bdafda3
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Fri Jan 22 20:44:36 2016 +0100
+
+    epsonds: extend the bug fix to all depths
+
+commit 8fd6151acd1a1b313b1c9fabb5e2691ba45de9d6
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Fri Jan 22 17:38:00 2016 +0100
+
+    epsonds: fix stripes on DS-60000 at 1bpp/300dpi
+
+commit 4fa7f4f6f8b69f41fd5d03abc12d16e0f2e876b3
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Fri Jan 22 17:01:57 2016 +0100
+
+    epsonds: clear endpoints on startup in order to fix some strange scanner / xhci combo
+
+commit f78e85cad666492fadd5612af77fa7c84e270a12
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Fri Jan 8 18:35:20 2016 +0100
+
+    pixma: backend version 0.17.25
+
+commit b08c324223732407d736a79ab8c59f01b3774736
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Fri Jan 8 18:34:27 2016 +0100
+
+    pixma: Canon PIXMA MG5700 Series is working
+    
+    Reported by Andrew Reginato, bug #315244
+
+commit 0f47b47b759908e7b11800404d269087d60d87ad
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Fri Jan 8 17:32:36 2016 +0100
+
+    pixma_mp[150|810]: disable send_time()
+    
+    The function send_time() makes trouble with a lot of scanners.
+    We send a warning to the debug output instead of sending the time.
+    
+    fix for [#315248] Canon MP250 with pixma backend is not working
+
+commit b040b150a08b0b5394ad3bc91a45966d97f58152
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Fri Jan 8 16:54:30 2016 +0100
+
+    pixma: fix for [#315244] Add support for Canon PIXMA MG5700, MG6800, MG6900 and MG7700
+    
+           These scanners are new and need further testing!
+
+commit 81c429082c3c139f8616de4a73733953cd5aa33f
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Fri Jan 8 16:43:46 2016 +0100
+
+    pixma: update copyright
+
+commit 9aecb00947e6bf7ef1cf412aff2ab41202617b30
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Fri Jan 8 21:26:31 2016 +0900
+
+    md5: Avoid the need for casting
+    
+    This also modifies the code slightly to follow the original array
+    access more closely.
+
+commit cdad5961f3888f0a3c0c525d0efab33174c11a24
+Author: Volker Diels-Grabsch <v@njh.eu>
+Date:   Sun Dec 6 01:23:51 2015 +0100
+
+    Introduce md5_set_uint32
+    
+    This fixes the following GCC warning:
+    
+    warning: dereferencing type-punned pointer will break strict-aliasing rules
+
+commit f3471c2ca6ea22846dd6619aff7913610722a6c0
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 2 17:50:34 2016 +0900
+
+    saned: Use system header IPv6 test macros if available
+    
+    This should fix [-Wstrict-aliasing] compiler warnings on those systems
+    where the IN6_IS_ADDR_LOOPBACK and IN6_IS_ADDR_V4MAPPED macros exist.
+    POSIX.1-2001 states that they shall be defined in netinit/in.h so most
+    systems will probably have them.
+
+commit 0de5416a9bafa1ade52722c509817276bbf87d8a
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 2 16:06:34 2016 +0900
+
+    umax_pp: fix memory leak
+    
+    Found courtesy of [-Wunused-but-set-variable] compiler warning.
+
+commit 9d78ace3b7e60afa2b3cb829ac23e5f8b4ccdc07
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Jan 2 16:06:00 2016 +0900
+
+    umax_pp: fix [-Wunused-but-set-variable] compiler warnings
+
+commit 3f0c3df2fcde8d0cf30ab68c70cb5cad984dda6f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Dec 31 17:51:00 2015 +0900
+
+    kvs40xx: fix [-Wstrict-aliasing] compiler warnings
+
+commit b1f886a2e36555fb0b01c8eb22a0041aebe25795
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Dec 31 17:47:40 2015 +0900
+
+    kvs20xx: fix [-Wstrict-aliasing] compiler warnings
+
+commit 0e3a5c4197fe36eae739a6086b484ff16b83d663
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Dec 31 17:43:25 2015 +0900
+
+    kodakaio: fix [-Wformat=] compiler warnings
+    
+    This uses the ANSI C approach that is used in a lot of existing code
+    rather than what ISO C99 allows for consistency.
+
+commit cadb4b0fff00540159625320416e5601c4704627
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 17:45:56 2015 +0900
+
+    saned: fix [-Wmaybe-uninitialized] compiler warning
+
+commit 572e61d39a10ac7299d95005fa7543afe4957d80
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 14:56:12 2015 +0900
+
+    p5: fix [-Wunused-but-set-variable] compiler warnings
+
+commit f9e44963801be2940c71e49d7c76a4e59b28dfc7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 14:51:21 2015 +0900
+
+    xerox_mfp: fix [-Wunused-but-set-variable] compiler warning
+
+commit f276e3e05503c5f44890df5a8105959ea07dbb6d
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 14:49:25 2015 +0900
+
+    umax1220: fix [-Wunused-but-set-variable] compiler warning
+
+commit e28bdadae98f203188253c5b0a8825a284c8c066
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 13:27:47 2015 +0900
+
+    u12: fix [-Wunused-but-set-variable] compiler warning
+
+commit 70c9e1d13ce705249ddbbee2dad5e6307fe77ffa
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 13:25:18 2015 +0900
+
+    sm3840: fix [-Wunused-but-set-variable] compiler warnings
+
+commit 9d4f2a72098436e4a65d2047a151ba3c0af82907
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 13:18:13 2015 +0900
+
+    sm3600: fix [-Wunused-but-set-variable] compiler warning
+
+commit 82720a2023d8e75480036a9e86f8a57d0bfe6a10
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Dec 24 19:01:09 2015 +0900
+
+    sharp: fix [-Wunused-but-set-variable] compiler warning
+
+commit da010d6088a75ed85472c46e9a29ace18cd7eda9
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Dec 24 17:44:04 2015 +0900
+
+    niash: fix [-Wunused-but-set-variable] compiler warning
+
+commit 86c5d6d7bd52dcb4208c7d5a1ba8844e8c8011e5
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Dec 24 17:38:41 2015 +0900
+
+    nec: fix [-Wunused-but-set-variable] compiler warning
+
+commit 220429ff9ebc78e9869e431125ffd9a235efa93d
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 22:27:47 2015 +0900
+
+    mustek_usb2: fix [-Wunused-but-set-variable] compiler warnings
+
+commit 7efb05627273266a8171d3f9244bbd7a433d6e44
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 22:19:01 2015 +0900
+
+    mustek_pp: fix [-Wunused-but-set-variable] compiler warning
+
+commit 664398cc311b85647a804bee0f8f230a0e3a3f49
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 22:12:07 2015 +0900
+
+    mustek: fix [-Wunused-but-sed-variable] compiler warnings
+
+commit 8b75c6d45002ffafae6cfbf2edd64b3de35d3b04
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 22:17:40 2015 +0900
+
+    microtek2: fix another [-Wunused-but-set-variable] compiler warning
+    
+    This allows for the fact that the backend may be compiled with and
+    without support for authorization.
+
+commit c1458770955b5476eedc89755bb424744b05b055
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 22:11:31 2015 +0900
+
+    microtek2: fix [-Wunused-but-set-variable] compiler warnings
+
+commit 26aa8b52f60adf7553b2872f54a85cfd7b20dd98
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 17:41:09 2015 +0900
+
+    magicolor: fix [-Wunused-function] compiler warning
+    
+    This function is only used when SNMP support is activated.
+
+commit 292dd42bb6585e2801623d1f33497581626d9d72
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 21:50:42 2015 +0900
+
+    magicolor: fix [-Wunused-but-set-variable] compiler warning
+
+commit d0e85e9d5e775f143f3db98e762d72861f60a82b
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 21:48:09 2015 +0900
+
+    ma1509: fix [-Wunused-but-set-variable] compiler warning
+
+commit 7c0f5ec66c7fd673d27876b538e52440a897cc1f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 17:36:57 2015 +0900
+
+    lexmark: fix [-Wmaybe-uninitialized] compiler warning
+    
+    This adds a default handler to switch statement so low_get_start_loc()
+    bails before the start_600 variable is used.
+
+commit 068c3bb75d3972dd2218caa84a6de761c5ca0db8
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 17:28:34 2015 +0900
+
+    kodakaio: fix [-Wunused-function] compiler warning
+    
+    The function is only used when Avahi support is enabled and has been
+    put in a suitable compilation scope.
+
+commit 610dc9ceb4d9eb061209d935e2b1966dfca5a74c
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 21:38:08 2015 +0900
+
+    kodak: fix [-Wunused-but-set-variable] compiler warning
+
+commit 2724f85552def3fa0c92d88389854c283eac38d3
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 21:36:54 2015 +0900
+
+    hpsj5s: fix [-Wunused-but-set-variable] compiler warning
+
+commit aabb63dbbfdfea9f444019a19171bdcace08b0dd
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 21:35:39 2015 +0900
+
+    hp4200: fix [-Wunused-but-set-variable] compiler warnings
+
+commit a82798d5e1d8352daa1d519d77a7a22771c8439e
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 21:33:40 2015 +0900
+
+    hp3500: fix [-Wunused-but-set-variable] compiler warning
+
+commit 51277aec4a6959f88d46d7ca14cfb94166c328eb
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 21:24:10 2015 +0900
+
+    hp: fix [-Wunused-but-set-variable] compiler warnings
+
+commit a97b1738dfcc16cd0a7fd68f95df8b013f3cb206
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 21:19:46 2015 +0900
+
+    gphoto2: fix [-Wunused-but-set-variable] compiler warning
+
+commit cbeb98daeceb262b3a868c1b2ea2102b98760e61
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 21:10:29 2015 +0900
+
+    epson: fix [-Wunused-but-set-variable] compiler warning
+
+commit cbc72a017123b81a21c6b69ffcb6f828cc810f03
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 21:08:46 2015 +0900
+
+    dmc: fix [-Wunused-but-set-variable] compiler warning
+
+commit fb4147c4f13f7f39c00a807ecc327b5824df21f5
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 20:58:07 2015 +0900
+
+    dc240: fix [-Wunused-but-set-variable] compiler warning
+
+commit bcfa3f6591744e43a0aa7be228505423b25f7731
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 20:56:49 2015 +0900
+
+    dc210: fix [-Wunused-but-set-variable] compiler warning
+
+commit c31cf621062ae4ef69a80d51879d242978853859
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 20:55:36 2015 +0900
+
+    dc25: fix [-Wunused-but-set-variable] compiler warnings
+
+commit 43b296471bc5a902de470f57df681d0c04964b91
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 20:51:28 2015 +0900
+
+    coolscan: fix [-Wunused-but-set-variable] compiler warnings
+
+commit 50ca4bc97670fed1083a5677ddfa71f74bd495dc
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 20:49:17 2015 +0900
+
+    cardscan: fix [-Wunused-but-set-variable] compiler warning
+
+commit c2b7b1af748527dd8ba0fcabc4310fcac1bdf491
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 20:46:13 2015 +0900
+
+    canon636u: fix [-Wunused-but-set-variable] compiler warning
+
+commit e8818437456f36c721f12d311bdb65f3d45606c7
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 20:39:15 2015 +0900
+
+    canon: fix [-Wunused-but-set-variable] compiler warnings
+
+commit 592430016c97b4362314c63a1ac7c96f23d71e4d
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 20:30:02 2015 +0900
+
+    avision: fix [-Wunused-but-set-variable] compiler warning
+    
+    The variable seems to have been superseded by conv_out_size in the
+    else branch of set_calib_data().
+
+commit 5b8fdd317f1bb4076b8fe661db78c230af21004b
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 20:27:20 2015 +0900
+
+    artec_eplus48u: fix [-Wunused-but-set-variable] compiler warning
+    
+    This leaves the sane_close() implementation just as broken as it has
+    been from the initial commit sometime in 2002.
+
+commit ec1936713e67b192d057b2f552a25622f88844a1
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 20:26:21 2015 +0900
+
+    artec_eplus48u: fix [-Wunused-but-set-variable] compiler warning
+    
+    The variable was only used to silence a [-Wunused-parameter] warning.
+
+commit 5b21a24312f2cf2ced5d5c70b0f7d2c1f0c58f35
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 19:57:13 2015 +0900
+
+    artec: fix [-Wunused-but-set-variable] compiler warning
+    
+    The variable is used to assign return values but is not referenced by
+    anything itself.
+
+commit 57ae115eafa5b52b84b8e2878982cdad7c1a9f13
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 17:12:41 2015 +0900
+
+    sanei_thread: fix [-Wmaybe-uninitialized] compiler warning
+
+commit cd3453948dd812aaa77d921b198351b340f8c748
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Dec 23 18:53:06 2015 +0900
+
+    sanei_usb: const_cast data buffer
+    
+    The libusb_bulk_transfer() API caters to both reads and writes and
+    as a result of that will not take a const pointer.
+
+commit be084e0d7bb7933e1826e6e48b42f43bc3cb077a
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 17:05:17 2015 +0900
+
+    sanei_usb: Move variable declarations to scope of usage
+    
+    Fixes an [-Wunused-variable] when compiling without libusb.
+
+commit 0d7882e34b5f5625261258a3a341a58a04beb304
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Dec 26 16:51:44 2015 +0900
+
+    Change compile time warning policy
+    
+    The -Wall flag is now always enabled (when using gcc).  The -Wextra
+    flag (previously known as -W) and -pedantic flags are, by default,
+    enabled during development but disabled for releases.
+    
+    All other flags have been removed.
+
+commit 5136e664b8608604f54a2cc1d466019922b311e6
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Dec 20 21:58:45 2015 +0900
+
+    Document ChangeLog policy change
+
+commit 674b75fc913187415b4f151a52e4bc7004c5d5b0
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Dec 20 17:33:55 2015 +0900
+
+    Improve readability of condition
+    
+    This also fixes the following GCC warning:
+    
+      warning: logical not is only applied to the left hand side of comparison
+
+commit 58052a7ce6b205e25a2fc85f31158595cad00258
+Author: Volker Diels-Grabsch <v@njh.eu>
+Date:   Sat Dec 5 21:33:48 2015 +0100
+
+    Change GCC mode from ISO C90 to ISO C99
+    
+    Add GCC flag "-std=c99".  Also remove GCC flag "-ansi" which is an
+    alias for "-std=c90" and would make the flag "-std=c99" ineffective.
+    This fixes all occurrences of the following GCC warning:
+    
+    warning: ISO C90 does not support '__func__' predefined identifier
+
+commit baec5e039504de390cae41557b0b8323343721c3
+Author: Volker Diels-Grabsch <v@njh.eu>
+Date:   Sat Dec 5 10:48:59 2015 +0100
+
+    Use consistently __func__ instead of __FUNCTION__
+    
+    Some parts of SANE used __FUNCTION__ while other parts used __func__.
+    Now, __func__ is used consistently throughout the SANE sources.  This
+    fixes all occurrences of the following GCC warning:
+    
+    warning: ISO C does not support '__FUNCTION__' predefined identifier
+
+commit 93298674d02b1127efdf4e726e92e797a0081c9e
+Author: Volker Diels-Grabsch <v@njh.eu>
+Date:   Sat Dec 5 20:44:14 2015 +0100
+
+    Merge all compatibility macros around __func__ and __FUNCTION__
+    
+    Various parts of SANE introduced their own compatibility macros for
+    old compilers that don't support __func__.  Most of these definitions
+    are identical or have minor differences.  This patch replaces them
+    with a single instance in the central header file for backends.
+
+commit 7c8c8e29beed2c4e6f96db08031c12c9001ca784
+Author: Volker Diels-Grabsch <v@njh.eu>
+Date:   Sun Dec 6 03:32:51 2015 +0100
+
+    Remove dead code due to unused variables
+    
+    This fixes some occurrences of the following GCC warning:
+    
+    warning: variable '...' set but not used
+
+commit aba87a4582d594cf953b4bda5b5d42e37e13f21c
+Author: Volker Diels-Grabsch <v@njh.eu>
+Date:   Sun Dec 6 01:30:30 2015 +0100
+
+    Mark internal function toupper_ascii as static
+    
+    This fixes the following GCC warning:
+    
+    warning: no previous prototype for 'toupper_ascii'
+
+commit 13b6faee2a0696eb02a61f22121b7f4854987f2e
+Author: Volker Diels-Grabsch <v@njh.eu>
+Date:   Sun Dec 6 03:03:06 2015 +0100
+
+    Fix interface of helper function write_many
+    
+    This fixes two occurrences of the following GCC warning:
+    
+    warning: cast discards 'const' qualifier from pointer target type
+
+commit badd7025b21b2207cfb95001aeb324597e24b301
+Author: Volker Diels-Grabsch <v@njh.eu>
+Date:   Sun Dec 6 02:37:10 2015 +0100
+
+    Bugfix: On error, return the actual error code in sanei_magic_rotate
+    
+    Up to now, on failure the sanei_magic_rotate function returned a
+    success status.  This fixes the following GCC warning:
+    
+    warning: variable 'ret' set but not used
+
+commit 6aced758f4a95fd858906f3e898ee967a9718641
+Author: Volker Diels-Grabsch <v@njh.eu>
+Date:   Sun Nov 29 16:02:01 2015 +0100
+
+    Fix typos in comments
+    
+    While reading through the SANE sources I noticed some annoying typos
+    in the comments.  This patch is my contribution to make the SANE
+    sources slightly more pleasant to read.
+
+commit 6d8b8d5aa6e8da2b24e1caa42b9ea75e9624b45d
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Tue Dec 15 16:17:53 2015 +0100
+
+    epsonds: fix duplex w/ double feed detection
+
+commit e9b52639e8dca938b5569b1697c36796ab92174a
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Tue Dec 15 07:23:42 2015 -0500
+
+    Add note about changelogs
+
+commit 06d876f74e5d07cb82d02ca1222926a61a3e458b
+Author: Stéphane Voltz <stef.dev@free.fr>
+Date:   Tue Dec 15 06:05:07 2015 +0100
+
+    fix for #315050
+    
+    - handle case where linesel is rounded to 0 when scan y resolution is
+      below minimal scan resolution but higher than half of the minimum
+
+commit 753d123f36d08cdb8047adac7c89a9fe015c4b25
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Sat Nov 28 08:34:58 2015 -0500
+
+    canon_dr desc update
+    
+    add note about mode switch on P-208
+
+commit f1593204c72124f3077b0b29f3c128d30be415b5
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Fri Nov 27 21:26:46 2015 +0900
+
+    Drop execute permission
+    
+    Source code, description files and configuration templates should never
+    need to be executed.
+
+commit e094c5b43b6d8d8bec84bd5b1ab2c6009f38e14b
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Fri Nov 13 22:06:30 2015 +0900
+
+    Invert sense of sanei_thread validity check
+    
+    Double negatives suck.
+
+commit fe12d31e6873f5c3de330f1de4c4fbc851df1e9f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Fri Nov 13 21:41:56 2015 +0900
+
+    Fix SANE_Pid related -Wsign-compare warnings
+    
+    This may fix threading related issues on WIN32 platforms, BTW.
+
+commit ed59056d40a143b3cf9243ea0068448a88ce3108
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Mon Nov 23 21:26:09 2015 -0500
+
+    canon_dr backend v54
+    
+    - br_x and br_y locked to page_width/height until changed
+
+commit d0ea697ab83360bf0ccddcd02565f85ea0f96b50
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Mon Nov 23 21:08:30 2015 -0500
+
+    fujitsu backend v129
+    
+    - br_x and br_y locked to page_width/height until changed
+    - add USB ID's for fi-6xxxLA and fi-6xxxZLA scanners
+    - add USB ID's for unsupported SP11xx scanners (genesys based)
+
+commit e6a249e0424f6854b7ed12f8272633a0edecfa90
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Thu Nov 12 21:10:49 2015 -0500
+
+    revert mustek_usb2 backend upgrade
+    
+    Instead of 100+ revert commits, I've lumped everything into a
+    single commit. This removes all of dedf0ac30 through db7f038f1,
+    plus the parts of 497d59180 which were specific to mustek_usb2
+
+commit 21c5f4d814f93a363377798635c7f1cbc1c79342
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Nov 11 22:38:56 2015 +0900
+
+    Add missing #include for malloc()
+
+commit 7dc416b7ae3f0db7c5ce97b5bce0f05f869d877f
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Nov 11 22:38:32 2015 +0900
+
+    Remove unnecessary cast
+
+commit fff1c5962a94ab410dba4fed541312554c8edf8d
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Nov 11 22:35:34 2015 +0900
+
+    Fix "discards 'const' qualifier from pointer target type" warnings
+    
+    The line variable is not (and cannot be) declared 'const'.  The string
+    variable points to a location in line, hence it is safe to cast away
+    'const'ness of the sanei_config_skip_whitespace() return value.
+
+commit 38153b33e1657137e6956e63a9fcb76d665f86f2
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Nov 11 22:33:34 2015 +0900
+
+    Fix "discards 'const' qualifier from pointer target type" warning
+    
+    The device2 variable is not modified so let's make that clear.
+
+commit d2576bbb948dd9d8e06f66dc4cede774c5518751
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Nov 11 22:30:10 2015 +0900
+
+    Fix "discards 'const' qualifier from pointer target type" warnings
+    
+    The cs3_xfree() functions is really just a checked call to free() so its
+    signature has been changed to match that.  The warnings that causes have
+    been fixed in the same way and on the same grounds as the previous commit.
+
+commit e65fd1b4cb5e9463d16a6fb4cd8eeb129ba58e63
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Nov 11 22:28:17 2015 +0900
+
+    Fix "discards 'const' qualifier from pointer target type" warnings
+    
+    The resources pointed to have been acquired by the backend.  It is safe
+    to cast away the 'const' qualifier when releasing these resources.
+
+commit 497d59180649a831691220aefcc8ec81d5f90960
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Sun Nov 8 17:17:37 2015 -0500
+
+    automake for recent changes
+    
+    updates to mustek_usb2, canon_dr and umax_pp require automake run
+
+commit db7f038f108ca12966b947dd80f3772e2133495e
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Jul 14 23:15:02 2012 +0200
+
+    Fix a bug introduced during refactoring that caused discolored stripes to appear at the left and right sides of the scan area.
+
+commit a64477bf1a381458e0500ef7c62da521d6c4d97f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Jul 14 16:44:28 2012 +0200
+
+    Remove USB 2.0 mode, as it causes horrible backtracking for resolutions > 300 dpi.
+
+commit 98248f6088850045579a1e46f2e8aa16302f9dd9
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Jun 30 22:37:21 2012 +0200
+
+    properly add new handle to linked list
+
+commit 3b48a6d10560e855cef815ca5c1ecbb50fd02d00
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Jun 30 00:04:06 2012 +0200
+
+    fix integer overflow bug in image data conversion
+
+commit d0ea79f00059a4a8c3a2ac710fd0443c8bbb3d3a
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 27 12:23:53 2012 +0200
+
+    Add model-specific functions for computing the number of motor steps.
+
+commit 15fbbf60a6d8c9956a6b6a874f2d0b734ab1b935
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 15 22:42:17 2011 +0200
+
+    Split SetMotorSteps into a function that computes the number of steps for the various motor states and and a function that writes the step counts to the controller's registers.
+
+commit 70dcfa4cedf3619575d413126d3530b28e490fd3
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 15 21:16:00 2011 +0200
+
+    Simplify SetMotorStepTable*.
+
+commit 27b636d294876c7aac0b53922bacac627ba873c9
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 15 19:58:09 2011 +0200
+
+    Provide model-specific function for computing the motor current.
+
+commit 8f405f5a937fd05a67a7554138c047fb5abe5e2c
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 15 18:13:44 2011 +0200
+
+    Update motor table generation according to new dumps.
+
+commit 2fa054456e723d7741be4eeb09bb879b802fad9d
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 15 15:09:21 2011 +0200
+
+    Detect USB controller type.
+
+commit d8a203a69373bb6f207de9ddc9c30a60da4a2cc9
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 15 14:35:06 2011 +0200
+
+    Add function to compute scan motor table for 4800H48U, rearrange code in Asic_SetWindow.
+
+commit ceb7d29690f2ce8f32576caa4b7197fc91b024c1
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 8 17:39:31 2011 +0200
+
+    Fix some misuse of SENSOR_DPI constant.
+
+commit 30e39071560412b362e03a105e20996093074d81
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 8 16:44:15 2011 +0200
+
+    Allow for model-specific parameters in mustek_usb2_high.c.
+
+commit 47c56e3f19b38c97db4f2d14f780343adca9024f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 8 14:55:42 2011 +0200
+
+    Add some motor-related code for the Microtek 4800H48U.
+
+commit 7b26e0e3fa48742b66bd4632772d70d140058c70
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun May 8 13:56:17 2011 +0200
+
+    Simplify SimpleMotorMove.
+
+commit 0a1125895b3f1ed0058729fcc29d6858ac6d5e56
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat May 7 13:58:24 2011 +0200
+
+    Add some information about the values retrieved by GetChipStatus.
+
+commit c691b0224130763239966c1d7856e96810289238
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat May 7 13:28:52 2011 +0200
+
+    Remove restriction to 8-bit color in negative mode.
+    
+    The only reason for that restriction was that the histogram stretching code, which has been removed earlier, could only handle 8-bit color.
+
+commit 4ced7a900a6463c460121eaed7583f4249ef74c2
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat May 7 12:45:50 2011 +0200
+
+    Improve debug logging and fix a bug in TestDRAM.
+
+commit e1c00bd9ab9d3f4b568d5bb6d09e0812cbef7b7f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed May 4 23:30:14 2011 +0200
+
+    Introduce SetMotorCurrentAndPhase for Microtek scanner, fix old bug in simplification of Mustek variant.
+
+commit 96b4950499d0cf44369fc8e50099925de2ac3c4f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Mon Apr 25 20:25:02 2011 +0200
+
+    Register related fixes.
+
+commit 5d556cd5e65ba9d1df30e3a3beb0322549d040ff
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Mon Apr 25 19:26:32 2011 +0200
+
+    Introduce structure for specifying model-specific parameters on the ASIC level.
+
+commit 529b6a1d6dc3ff52945f8bf3323bf571596e8088
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 24 21:01:10 2011 +0200
+
+    Fix bug in device list handling.
+
+commit 877f250b5c32f8403ab321d14fd76afd7e2c2d1d
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 24 20:54:19 2011 +0200
+
+    Resolve issue with debug logging.
+
+commit 272c1d6fdeb8af9d6d4b61f85b4a77ca2ebbb645
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 24 20:30:19 2011 +0200
+
+    Add preliminary model entry for the Microtek 4800H48U.
+
+commit 7fda9bbf93f4565e1334ebafd0b6caf13d462de4
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 24 20:21:41 2011 +0200
+
+    Introduce support for multiple scanners.
+    
+    Keep all state local and ensure that all resources are freed by sane_exit. Ensure that each function returns only those error codes that are valid according to the SANE standard.
+
+commit 6865eaf6edef0cc5ea30bcc0d72b52189132f4d6
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 24 14:49:06 2011 +0200
+
+    Simplify sane_read, other fixes to mustek_usb2.c.
+
+commit 63793907e2c2120511603a504396f7053fdc5149
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 24 14:15:59 2011 +0200
+
+    Minor fixes to image processing.
+
+commit bc203e8aa125f276ce84498091185482a22d3527
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 24 13:55:35 2011 +0200
+
+    Sanitize option handling and add support for scanner buttons.
+
+commit b2b3cf767a9a91677b0ac13a6645ed918ca71d55
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 24 00:59:19 2011 +0200
+
+    Use standard macros for byte swapping.
+
+commit 281f53aa1829a61286232efed7a9d6253cec32d4
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 24 00:39:59 2011 +0200
+
+    Remaining endian safety fixes.
+
+commit 80b7249ebf9c57b60cbc0a25288cc04ba2302b56
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Apr 23 22:42:45 2011 +0200
+
+    Resolve minor thread safety problem.
+
+commit de84f51270f05ead6758d2811a2d36160c412cb1
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Apr 23 19:31:50 2011 +0200
+
+    Simplify row stride calculation in Asic_SetWindow().
+
+commit 7cd88d41222c85bd262fbf681401ae8c2dab1bce
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Apr 23 19:21:52 2011 +0200
+
+    Remove Scanner_ScanSuggest.
+
+commit 3f5592ef8e7eedc0a9ff52b8091f9b41b9c2d56f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Apr 23 19:04:31 2011 +0200
+
+    Move global state variables of mustek_usb2_high.c into scanner structure.
+
+commit 60a244ed1e1a4e4f8c4dbd83f12141c0c35202ab
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Apr 23 18:08:28 2011 +0200
+
+    Store size of shading table in ASIC structure.
+
+commit ed1997b22f5f11ccc96262ed841f03b705982737
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Apr 23 17:22:15 2011 +0200
+
+    Do not test for NULL before calling free().
+
+commit 35c6a52834271e41960030b0c24f8cda2245230d
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Apr 23 15:28:26 2011 +0200
+
+    Fix error propagation in mustek_usb2_high.c and a layering violation.
+
+commit babee5168909c8c3b8d01c36ab509ea4f7092c4f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Thu Apr 21 23:25:34 2011 +0200
+
+    Fix indentation of debug macros.
+
+commit c0e44738a41c2cd772125d0774772a541dbac7c5
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Thu Apr 21 23:23:18 2011 +0200
+
+    Simplify debug output in mustek_usb2.c.
+
+commit c377a0245332df3f5e07c3cbd5ead889f18e0549
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Thu Apr 21 23:10:08 2011 +0200
+
+    Simplify debug output in mustek_usb2_high.c.
+
+commit eebbe92c4e73922f1fa1368852a77697c23a1ad1
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Thu Apr 21 22:45:21 2011 +0200
+
+    Simplify debug logging in mustek_usb2_asic.c.
+
+commit 2c712f27c90109e2106d7e8d2f5eeb5af6314260
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Thu Apr 21 00:12:26 2011 +0200
+
+    Remove uninformative function name prefixes, move gamma table creation into separate function.
+
+commit c1dc16d709459e054f50604f86f1ee41c0e7177f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed Apr 20 23:10:53 2011 +0200
+
+    Extensive changes to reduce the amount of global variables in mustek_usb2_high.c.
+    
+    Might have made MustScanner_SetupScan less readable, though.
+
+commit 9444bf1156f0ab52937d101ba6120ae8685b645b
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 22:54:14 2011 +0200
+
+    Reorganize some MustScanner_* functions.
+
+commit bd7107ca057b1f45313d96114c6376bb5ee7c200
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 22:29:32 2011 +0200
+
+    Remove some unneeded global variables from mustek_usb2_high.c.
+
+commit 589d6e15eee356121582eae90d7a938ff094c1e6
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 21:57:18 2011 +0200
+
+    Endian-safe macros; moved remaining ASIC state into structure.
+
+commit f89a7962deafc3b015700469bc2976ac1b931165
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 21:00:26 2011 +0200
+
+    Fix indentation.
+
+commit df045634cb6a9667c625fb88ecb36bcb58310cda
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 19:14:53 2011 +0200
+
+    Misc fixes.
+
+commit 86f399bd21d7794ba07265b503fea39baa1bb859
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 19:00:30 2011 +0200
+
+    Code in mustek_usb2.c should not use global state of mustek_usb2_high.c.
+
+commit 74effd61fd8c9663b994459e8f5a738cc95c4932
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 18:25:00 2011 +0200
+
+    Remove histogram stretching for negative images.
+
+commit 4962b35abd7426b7b51a00d907a538a2a38dc859
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 15:56:40 2011 +0200
+
+    Use prefix 'p' instead of 'lp', fix other style issues.
+
+commit 9e2aabc97690baae4dd5a7d79d5e7d18df2cf697
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 15:27:14 2011 +0200
+
+    If g_isCanceled is true, the thread has already been canceled.
+
+commit a75bd3e8f789435ac5d86ef100dd04e8bd155f76
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 15:18:58 2011 +0200
+
+    Improve error handling in mustek_usb2_high.c.
+
+commit 1d0f3ca42ee9d84bd4afc2f379e46bc6a376de96
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 14:51:01 2011 +0200
+
+    Fix remaining comments.
+
+commit 9226162537706c982405a7469e7003c4d61808e0
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 14:23:46 2011 +0200
+
+    Normalize naming of constants, structures, and enums.
+
+commit d7ebb1553b8e28a9291493aa94003737f0c87298
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 13:48:45 2011 +0200
+
+    Remove USB host type enum.
+
+commit 41ac627e5f4dbd84c082d1756414ef9922c294e7
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 17 13:45:42 2011 +0200
+
+    Get rid of unnecessary forward declarations.
+
+commit da64a1fc1efd8a2e8b8245d6101deb103eea1dc4
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Apr 16 21:37:20 2011 +0200
+
+    First hack to build mustek_usb2* source files separately.
+
+commit 3479acf538335e1290ca00a5e5fef3097a835579
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Apr 16 20:24:26 2011 +0200
+
+    Merge mustek_usb2_reflective/transparent.c into mustek_usb2_high.c.
+
+commit a45931dd11e5fd270d963c5d4e1b882fa3755c90
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Apr 15 20:12:28 2011 +0200
+
+    Remove MustScanner_GetScannerState.
+
+commit c9516d53656ed5a7e45dc63b1f2202c96269a7ef
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed Apr 13 00:22:06 2011 +0200
+
+    Merge Reflective_Reset, Transparent_Reset, and MustScanner_Prepare into new function MustScanner_Reset.
+
+commit b2f52afa321331bf5214cdfe00d15ef479b88651
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 10 18:53:37 2011 +0200
+
+    Further cleanup of mustek_usb2.c.
+
+commit ccce2d4a9a9e2762f8802af051db3f9ed2922ac8
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Apr 10 18:42:05 2011 +0200
+
+    Further cleanup of mustek_usb2.c.
+
+commit 39141a4c0265d97fe4d77084a5a63eaaafd8b8c4
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed Mar 30 20:57:54 2011 +0200
+
+    Return SANE_STATUS_UNSUPPORTED unconditionally in sane_set_io_mode and sane_get_select_fd.
+
+commit d9c1df0bb84bffb23ee54be2fbd977e2a18ff4ed
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed Mar 30 19:41:05 2011 +0200
+
+    Remove vestigial support for custom gamma tables.
+
+commit acf84e0c9474382d78ae85120c2671b5525bd079
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Tue Mar 29 18:25:19 2011 +0200
+
+    Clean up function StopScan.
+
+commit 9158d10df92b7d96bda66d9e601f248c5474259f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Mar 19 14:55:33 2011 +0100
+
+    Further simplification of MustScanner_Get*Line functions.
+
+commit 1f6b405451fda5fe349df1653e3423e8fc360e3b
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Mar 19 14:14:30 2011 +0100
+
+    First attempt at simplifying the Get*Line functions.
+
+commit a6b15f18ccc430db08c638510bcd603d569723ee
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Mon Mar 14 00:50:30 2011 +0100
+
+    Break remaining long lines.
+
+commit 25242ff9c85f06275ca190896fe37b6d8902e122
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Mon Mar 14 00:21:44 2011 +0100
+
+    Clean up mustek_usb2_high.c.
+
+commit c8982a99392cb7c982f12201a978fb4ae5e9e15a
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 13 21:13:26 2011 +0100
+
+    Do not use prefix "by" for byte variable names.
+
+commit d7b4e02780acd916ebbdd1cf8a9cc99945ea1acd
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 13 21:07:55 2011 +0100
+
+    Use SANE_Status and SANE_TRUE/SANE_FALSE consistently.
+
+commit 8b3c78838ae099d0099b54fbd640c0db1bb3b88c
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 13 20:06:24 2011 +0100
+
+    Create common helper function for Asic_CarriageHome and Asic_MotorMove, remove MotorBackHome.
+
+commit ed5dc8a7cdfb7c32faff37e7ea23446b5de9fc41
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 13 19:41:40 2011 +0100
+
+    Further refactoring of Asic_SetWindow.
+
+commit 82a40d5dca84990f41c15998ae89425eaa576ff6
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 13 19:24:17 2011 +0100
+
+    Refactoring of Asic_SetWindow.
+
+commit 93a79af5d3322fd06369c59a7e72f6773f9bed52
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 13 15:54:02 2011 +0100
+
+    Fix indentation.
+
+commit b43f0688dbb309b7841e89074aab00d4aa61c3a2
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 13 15:15:47 2011 +0100
+
+    Use symbolic constants in more places.
+
+commit 3c87b646b5831b24e6d9d13f26f2a08ec83b6cff
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 13 14:48:40 2011 +0100
+
+    First attempt at merging Asic_SetCalibrate into Asic_SetWindow.
+
+commit 033ebe6d9b6db266fb8146a4ac17d82043b5636a
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Mar 12 19:25:59 2011 +0100
+
+    Made error handling in mustek_usb2_asic.c more consistent.
+
+commit 96c6ee1dae3dffe2eae9cf3466a0d246d9e3317d
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Mar 12 16:20:36 2011 +0100
+
+    Cleaned up firmware state handling.
+
+commit c1f22ef9a9a3be1db26fc03721156a72156870b5
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Mar 12 14:18:48 2011 +0100
+
+    Clean up Asic_SetCalibrate, make Asic_SetCalibrate and Asic_SetWindow more similar.
+
+commit 3cd05daccad6bb1e50cc4030c0b471ed00897367
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sat Mar 12 02:13:34 2011 +0100
+
+    Refactoring the smaller high level ASIC functions.
+
+commit de5b647c4a47938f186b4661615dfbbd3315636d
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 23:48:21 2011 +0100
+
+    Refactored medium level ASIC functions.
+
+commit 693da258ce3bbcaf5c8ea31b9a08b77af615c0f2
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 18:36:07 2011 +0100
+
+    Move some definitions from mustek_usb2_asic.h to more appropriate headers.
+
+commit 2776b336d15b0e8094271c69dfda7055cd1d896b
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 18:17:54 2011 +0100
+
+    Simplify LLFSetMotorCurrentAndPhase.
+
+commit dea59ee824157d33c64df719869ee937749f5428
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 17:44:11 2011 +0100
+
+    Refactored all low-level motor functions except LLFSetMotorCurrentAndPhase.
+
+commit e47fee8dcc88ef4fc3e68ed65def29aacb56d17d
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 16:27:03 2011 +0100
+
+    Simplified computation of motor current, removed a redundant register assignment.
+
+commit 5688a78ace501c9a0ca36cee5f67a5929d652e81
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 16:08:35 2011 +0100
+
+    Simplify low-level ASIC functions, add missing error checks.
+
+commit 1d8a008856d049df910b1d68599a622986ce85c4
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 14:25:09 2011 +0100
+
+    Simplify SetRWSize, use symbolic constants for registers whenever possible.
+
+commit 794b15ff9e1daf87b80898aade0dc401e1f597d8
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 13:38:40 2011 +0100
+
+    Simplyfied Asic_SetShadingTable.
+
+commit 6d5a5123ea3c41ada76e984670b988f847de2145
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 13:12:31 2011 +0100
+
+    Remove whitespace at the end of debug output lines.
+
+commit d418094b64ad7ae2558860568c3e1e28a5a6cbc7
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 13:08:03 2011 +0100
+
+    Some motor table related fixes.
+
+commit 3d1b409a1b526025c52c314f143cedd4d2d5d05f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 02:28:14 2011 +0100
+
+    Fix a few comments.
+
+commit 88cac5b4ade1ad4ace0da5be843c879e9256c71c
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 02:25:43 2011 +0100
+
+    Begin simplifying LLFSetMotorCurrentAndPhase, ensure all fields of LLF_MOTOR_CURRENT_AND_PHASE are initialized.
+
+commit fb55a9260404049e00f13e627d7e3c8e06b397b8
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 02:08:46 2011 +0100
+
+    Remove even more unused code from mustek_usb2_asic.c.
+
+commit 77ea9b01c374833e061ecee271d81a37f38dad77
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Fri Mar 11 00:07:43 2011 +0100
+
+    Improved readability of functions in mustek_usb2_high.c.
+
+commit ca1e0db16f6aeb5c92e2ddf08700981f6799fc4e
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Thu Mar 10 01:39:01 2011 +0100
+
+    Remove unused code and fix indentation in mustek_usb2_high.c.
+
+commit 3f7cf8a65f48447fbc70808229ef6d2f50c3e412
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed Mar 9 01:56:04 2011 +0100
+
+    Remove DISABLE bit flag constants.
+
+commit 073fe96611477986de970ab0c444f73024ecea33
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed Mar 9 01:26:09 2011 +0100
+
+    LLF_MOTOR_CURRENT_AND_PHASE: only first byte of arrays MotorCurrentTableA/B is ever used
+
+commit 4b242a71394221a2155379b8e89340610a8ed725
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed Mar 9 01:18:10 2011 +0100
+
+    Remove unused parameter isOrderInvert from MustScanner_GetMono*Line.
+
+commit 78863d13deacf657ef15b6078d0926fadbd9991a
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed Mar 9 01:05:41 2011 +0100
+
+    Remove redundant typecasts.
+
+commit cf6c88bfd1debd288ca563b54120e8ff3903f634
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed Mar 9 00:41:21 2011 +0100
+
+    Try to reduce differences between mustek_usb2_reflective.c and mustek_usb2_transparent.c, part 1.
+
+commit 972fc54793d767a6cd18c722ae36feb408f45f9f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Wed Mar 9 00:02:06 2011 +0100
+
+    Move some code that was duplicated in mustek_usb2_transparent.c and mustek_usb2_reflective.c to mustek_usb2_high.c.
+
+commit db37c13bb337c153ddd83902b8c9ad0b4a445c2a
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Tue Mar 8 23:10:57 2011 +0100
+
+    Remove information-less comments, break long lines, fix indentation.
+
+commit fa8101e05e0432a385e782acd663ce56e0c00367
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Tue Mar 8 18:37:55 2011 +0100
+
+    Remove unused enum FS_NULL.
+
+commit ccde6b063555892ae55ac6c7bfeb8a7d44e02a4e
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Tue Mar 8 18:29:13 2011 +0100
+
+    Remove unused fields of struct GETPARAMETERS.
+
+commit 2be2be76aec39dbef8bbe0501eabaaf0838b3cbc
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Tue Mar 8 18:26:32 2011 +0100
+
+    Unified style of struct and enum definitions.
+
+commit ce6d7010d3fc0bfc5a54cd3411660db43e382bac
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Tue Mar 8 18:15:30 2011 +0100
+
+    Pixel flavor is never PF_WhiteIs0, so the associated code can be removed.
+
+commit 76a23c3bc4c80f91f223f29ae8cc5c91a1a8e4f8
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 20:31:48 2011 +0100
+
+    Remove dead "auto level" code, sanitize key handling.
+
+commit e7c44fe6799e5c1d4bce272b539927337b7a2aca
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 20:19:27 2011 +0100
+
+    Cleanup of Asic_SetWindow
+
+commit 16485d47da8b2d0a829e378afa1443c1ef4839f8
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 19:37:25 2011 +0100
+
+    Optimize motor table calculation.
+
+commit 8821c2882f51d309a7832b362407c46ff11ccd4a
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 19:16:16 2011 +0100
+
+    First attempt at cleaning up mustek_usb2_asic.c.
+
+commit 30087b3f43f4e6f2dd83373145dbe0a533b27419
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 17:06:14 2011 +0100
+
+    Avoid some unorthodox language constructs.
+
+commit 030c7fa122dccca2f47c949ca46a5972efca20b8
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 16:55:39 2011 +0100
+
+    Remove redundant code from mustek_usb2_high.c.
+
+commit a554d61c17206e6b1585bacdfd41fe4aacea1a95
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 16:18:18 2011 +0100
+
+    Remove redundant code from mustek_usb2_asic.c, add a missing error check.
+
+commit a49bff1a60386c88168d9aa8a94cdc0ccecac7fd
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 15:39:23 2011 +0100
+
+    Simplify DRAM test.
+
+commit bc9252c09464b7ed460bf726dcca3d67f97cd74d
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 15:27:19 2011 +0100
+
+    Remove bogus automatic warmup and power saving functions.
+
+commit 0f63d16121ea84f99f75331582c3bdd0cd0d4e1f
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 15:13:46 2011 +0100
+
+    Remove redundant code from mustek_usb2.c.
+
+commit 694a69dcab0dddf2ab12eebba49c66c7ac20fdad
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 14:48:40 2011 +0100
+
+    Remove unused definitions from mustek_usb2.h.
+
+commit 21be236e840be4f8ca4bead69844f7cd691a8353
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 13:57:10 2011 +0100
+
+    Remove unused definitions from mustek_usb2_asic.h.
+
+commit 2404326ddeaf7552e094062b1ed57521e9a21cb4
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 02:41:42 2011 +0100
+
+    Remove unused definitions from mustek_usb2_high.h and ensure that the remaining ones are used consistently.
+
+commit d1851a6512a113d1dc4f20beb86a8be29310b627
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 01:50:53 2011 +0100
+
+    Remove some particularly pointless comments, reduce size of block comments.
+
+commit 047631050c262142a0f52ed4e1ecc053b03869ad
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 01:15:12 2011 +0100
+
+    Remove pointless indirection.
+
+commit dedf0ac30d341b9bcbab7fb32050ff953cc73eff
+Author: Jan Hauffa <jhauffa@gmail.com>
+Date:   Sun Mar 6 01:03:14 2011 +0100
+
+    Remove unused global variable g_pDeviceFile and associated logic.
+
+commit 3b73e1e8a3b0085ad5db38837f0bf44f5a5b8919
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Sun Nov 8 09:24:37 2015 -0500
+
+    fujitsu backend v128
+    
+    do not ask fi-4340 for serial number
+
+commit 72ecee97ce9db13f148aedf52eb46911212d58e4
+Author: Thomas Klausner <wiz-guest@users.alioth.debian.org>
+Date:   Tue Oct 27 20:06:00 2015 +0900
+
+    Add DragonFly BSD support (fixes 315205)
+
+commit a4cc05f677f110c9361f3274fc5d15087a2f8906
+Author: Thomas Klausner <wiz-guest@users.alioth.debian.org>
+Date:   Tue Oct 27 20:09:00 2015 +0900
+
+    Add DragonFly BSD support to sane-find-scanner (fixes 315206)
+
+commit 1baab222e418275ec6fd14afad91b64d0110fdbd
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Nov 8 18:49:58 2015 +0900
+
+    Add missing include (fixes 315207)
+    
+    Both Linux and NetBSD mention this header for use of setsocketopt().
+    DragonFly BSD needs it for the SOL_SOCKET symbol.
+
+commit b0a99cb48938cae5a88c5f37a9a91b60589bad4e
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Nov 8 18:36:57 2015 +0900
+
+    Fix non-portable endian.h include issue (315209)
+
+commit d7516a11ebd6a8d96380c5ee256b171be1cb5e35
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sun Nov 8 18:16:17 2015 +0900
+
+    Fix sane-desc testsuite logic
+    
+    This fixes test failures for release tarballs (pointed out by Mike
+    Frysinger), clamps down on wildcards and prints a failure message
+    when a test does not succeed.
+
+commit 358cbd7f319c64055cd76fedf62a92500b0c5cf5
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Fri Nov 6 21:39:35 2015 -0500
+
+    canon_dr v53 continued
+    
+    reorder geometry group options
+    use bg_color to fill missing image data
+
+commit 398610336b6aadf1a0c37390a0a5e2bd926bdfdf
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Fri Nov 6 12:19:20 2015 -0500
+
+    canon_dr backend v53
+    
+    add swskip option
+
+commit b4bc0eb518ce74ffbfdbe0ce1a14bb404804cd57
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Fri Nov 6 11:46:17 2015 -0500
+
+    canon_dr backend v53
+    
+    replace image processing methods with sanei_magic
+
+commit 666c9a74ff26fd530b40db28f03b447209cf419e
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Thu Nov 5 21:42:29 2015 -0500
+
+    canon_dr backend v52
+    
+    improve dropout option handling
+    add software dropout implementation for downsampled modes
+
+commit 9dc79245291f6d4312c5656fff4232b07f70b673
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Wed Nov 4 13:49:02 2015 -0500
+
+    canon_dr backend v52
+    
+    add must_downsample and must_fully_buffer
+
+commit 01063a769d5431ca83069a9cf240894f893d01f0
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Wed Nov 4 13:05:05 2015 -0500
+
+    canon_dr backend v52
+    
+    set can_color=1 by default (recent models dont have 'C' in name)
+    enable jpeg for DR-6080
+
+commit 0b822359b3e1798294e30a7ea9cfd6fd9a1e3e85
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Wed Nov 4 13:00:10 2015 -0500
+
+    cardscan backend v3
+    
+    add USB IDs for newer model 800c
+
+commit 33495ef9b42a783c8f5f2c056ac5699481d3cc7e
+Author: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Date:   Thu Oct 15 12:35:00 2015 +0900
+
+    Add missing <sys/types.h> includes
+
+commit 4f803bff0872460433dae1ac2a2954ad1016b678
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Thu Oct 22 22:23:47 2015 +0900
+
+    Escape [] for configure help strings
+
+commit 471453d2b825a569d467d60160b0eaaf6746bf67
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Oct 19 20:51:04 2015 +0900
+
+    Drop unused INCLUDES substitution variable
+    
+    This addresses the following autoreconf output:
+    
+      configure.ac:85: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+    
+    The INCLUDES variable is not referenced anywhere in configure.ac or
+    configure.  In addition, none of the Makefile.am files use it.
+
+commit 32c25b8b8235762d9feb5dbd0e81496a56e15569
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Oct 19 21:11:53 2015 +0900
+
+    Fix duplicate automake file variable initialization issue
+    
+    This was introduced in 74c00494.
+
+commit f8d35b8d2fdcacc9b664594d141102c2c80ac076
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Mon Oct 26 08:34:17 2015 -0400
+
+    Update canon_dr.desc
+    
+    We had a few scanners that were reported by email or in tracker
+    tickets, which had not been updated in the desc file.
+
+commit 716340e7320e7f946329ad7a3cd911d676c92f6d
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Sat Oct 17 13:55:17 2015 +0900
+
+    Include sys/types.h for u_long.  Fixes compile on OS X
+
+commit 03d90ac2edf287bb0358044d7abdd9f6008dffc5
+Author: Alessandro Zummo <a.zummo@towertech.it>
+Date:   Wed Oct 14 21:55:31 2015 +0200
+
+    epsonds: do not enable double feed detection by default
+
+commit a90d7c91b36b06bd002af890863c1d608dcdd7d4
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Oct 14 19:05:03 2015 +0200
+
+    changelog for recent work
+
+commit 4a83d9c8a4f4c396f5261d62bf7d2f9b8684eba9
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Oct 14 19:04:27 2015 +0200
+
+    Pixma backend version 0.17.24
+
+commit 3095ab46c45e004163f5fb36efa00ce378770a9e
+Author: Rolf Bensch <roben-guest@alioth.debian.org>
+Date:   Wed Oct 14 19:02:43 2015 +0200
+
+    new scanners Canon PIXUS MP5/SmartBase MPC190/imageCLASS MPC190 and Canon MP10/SmartBase MPC200/imageCLASS MPC200
+
+commit 06b865cfd24f1e6c71506684d73ef79b43edc3cf
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Wed Oct 14 20:39:39 2015 +0900
+
+    Prevent possible buffer overflows [-Wstrncat-size].  Fixes 315198
+
+commit 18e4c4a08622e2ee4536dcb423d4548a4bc7a7e3
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Tue Oct 13 23:32:40 2015 +0900
+
+    Revert "Prevent use of uninitialized variable"
+    
+    This change introduces a variable that shadows the file scope one.
+    
+    This reverts commit 45e66aee952dcdada88293901580a111262fc1e9.
+
+commit 36876a83663832cf89fa945737d004ce9b46fb01
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Oct 12 20:55:19 2015 +0900
+
+    saned: minor improvement of help message wording
+
+commit 32986192bd9ce14276e1ae144d71d42461e591b9
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Oct 12 20:42:50 2015 +0900
+
+    fix: declaration-after-statement warning
+
+commit 42aa01e4e558e0019df00702579c928f9fd126e6
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Oct 12 20:42:01 2015 +0900
+
+    fix: missing-field-initializers warning
+
+commit fa001c2193045844dd3318f9538b309e11089c9c
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Oct 12 20:49:07 2015 +0900
+
+    Follow getopt_long usage in scanimage.c
+    
+    This is on the off chance that getopt_long is not in the system's
+    standard library.
+
+commit 45e66aee952dcdada88293901580a111262fc1e9
+Author: Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Date:   Mon Oct 12 20:47:43 2015 +0900
+
+    Prevent use of uninitialized variable
+
+commit eab8fd457d2b8f38f9425f87258cf4fe42dac15c
+Author: Matteo Croce <matteo@openwrt.org>
+Date:   Sun Oct 11 19:50:04 2015 +0200
+
+    saned: add '-b' option to bind to a specific address
+
+commit fed2a2cf60511d87e413148f1b9063f9ea4e6917
+Author: Matteo Croce <matteo@openwrt.org>
+Date:   Sun Oct 11 19:50:03 2015 +0200
+
+    saned: use getopt_long() for option parsing
+    
+    The help message has been adjusted to match getopt_long conventions.
+
+commit 418d1ecea7571d10acd08df2edc7967a91e14b0d
+Author: Matteo Croce <matteo@openwrt.org>
+Date:   Sun Sep 20 19:55:37 2015 +0200
+
+    saned: move help message to usage() function
+
+commit a79cd0abe7daed1a749c8ad2cd7e2a89cc6153e4
+Author: Matteo Croce <matteo@openwrt.org>
+Date:   Sun Sep 20 19:55:36 2015 +0200
+
+    saned: parse inetd args in main()
+    
+    move argument parsing logic from run_inetd() to main()
+
+commit 2c3cb206ce55a7ac9ff9b479de452a332ba2aa1a
+Author: Matteo Croce <matteo@openwrt.org>
+Date:   Sun Sep 20 19:55:35 2015 +0200
+
+    saned: parse standalone args in main()
+    
+    move argument parsing logic from run_standalone() to main()
+
+commit 2239d2aaff16964a5d67293f5e4220d235e2c84d
+Author: Alexander Hofmann <alexander.hofmann@new-h.de>
+Date:   Tue Oct 6 17:42:05 2015 +0200
+
+    Replace obsolete interface with standard include files
+
+commit 56e69f0998005db432b4f7dd38693a870f663520
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Mon Oct 5 08:21:39 2015 -0400
+
+    added kvs1025.conf.in and utsushi.desc
+
+commit 69a9a3116eb18f8d0c618217e033a1c134215954
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Sun Oct 4 21:25:08 2015 -0400
+
+    minor release doc update
+
+commit 5e1d45cad7d7933b7120646ae5174ccdc8a9b49f
+Author: m. allan noah <kitno455@gmail.com>
+Date:   Sun Oct 4 21:13:39 2015 -0400
+
+    reopen sane-backends 1.0.26git

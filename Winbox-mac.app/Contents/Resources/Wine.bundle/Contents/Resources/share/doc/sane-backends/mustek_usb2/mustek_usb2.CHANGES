@@ -1,0 +1,137 @@
+mustek_usb2.CHANGES -*-text-*-
+
+V 1.0-10 (2005-10-16)
+
+- Removed typedefs for DWORD, WORD and so on. Used int, unsigned short, ...
+  directly in the code.
+
+V 1.0-9 (2005-10-02)
+
+- Removed global variables in mustek_usb2.c: 
+  Deleted the following variables (not necessary):
+    m_bIsOpen
+  Moved the following varaiables to Mustek_Scanner structure:
+    m_bIsScanning
+    m_bIsReading
+    setpara
+    getpara
+    read_rows
+    Scan_data_buf
+    Scan_data_buf_start
+    scan_buffer_len
+  Used local variables instead:
+    dpi_list;
+- Minor cleanups.
+- Fixed check for Scan_data_buf != NULL.
+- Moved check for Scan_data_buf to sane_close ().
+- Avoid typedef'ing to long int in mustek_usb2_asic.h. Used int instead.
+  Fixed DBG messages accordingly.
+- Fixed some compilation warnings on 64 bit platforms.
+
+V 1.0-8 (2005-10-01)
+
+- Added/modified checks for libpthread in acinclude.m4/configure.in. Disable
+  backend if it's not there.
+
+V 1.0-7 (2005-09-30)
+
+- Added usleep in Asic_ScanStop() to avoid freezes after cancellation of a
+  scan.
+- Added sane_constrain_value call in sane_control_option().
+- Test with tstbackend succeeded this.
+- Changed usage of perror to DBG.
+- Removed _Open and _Close. These functions didn't do much at all.
+- Removed (commented out) code that tries to read values from config file.
+
+V 1.0-6 (2005-09-29)
+
+- Commented out unused code.
+- Made all symbols that don't belong to the SANE API static.
+- Changed all fprintfs to DBG messages.
+- Used real device name. Used real model name.
+- Added manual page (sane-mustek_usb2).
+- Fixed backend name in AUTHORS.
+
+V 1.0-5 (2005-09-28)
+
+- Merged all asic-related code into mustek_usb2_asic.c and .h.
+- Merged function definitions from mustek_usb2_tarnsparent.h and
+  mustek_usb2_refelective.h to their respective .c files. Filename changes
+  are finished now.
+- Moved defines used in mustek_usb2_high.c to moustek_usb_high.h.
+- All license/comment headers name the right scanner now.
+- Fixed "already included check" of header files
+- Used indent -gnu on all files.
+- Fixed compilation warnings and several bugs ("=" instead of "==" and similar
+  stuff) in mustek_usb2_asic.c, mustek_usb2_transparent.c,
+  mustek_usb2_reflective.c, mustek_usb2_high.c, mustek_usb2.c.
+
+V 1.0-4 (2005-09-27)
+
+- Changed filenames (preliminary, may be changed again):
+  mustek_a2nu2.c			--> mustek_usb2.c
+  mustek_a2nu2.h			--> mustek_usb2.h
+  a2nu2/spicall/MustScanner.c		--> mustek_usb2_high.c
+  a2nu2/spicall/MustScanner.h		--> mustek_usb2_high.h
+  a2nu2/spicall/ScannerDefine.h		--> included in mustek_usb2_high.h
+  a2nu2/spicall/ScannerReflective.c	--> mustek_usb2_reflective.c
+  a2nu2/spicall/ScannerReflective.h	--> mustek_usb2_reflective.h
+  a2nu2/spicall/ScannerTransparent.c	--> mustek_usb2_transparent.c
+  a2nu2/spicall/ScannerTransparent.h	--> mustek_usb2_transparent.h
+  a2nu2/spicall/spicall.c		--> included in mustek_usb2.c
+  a2nu2/spicall/spicall_ex.h
+  a2nu2/spicall/spicall_g.h		--> included in mustek_usb2_high.c
+  a2nu2/include/asic.h			--> included in mustek_usb2_asic_low.h  
+  a2nu2/include/debug.h			--> removed
+  a2nu2/include/ini.h
+  a2nu2/include/msam.ini		--> removed
+  a2nu2/include/public.h		--> included in mustek_usb2_typedef.h
+  a2nu2/include/spicall.h		--> included in mustek_usb2.h
+  a2nu2/include/typedef.h		--> mustek_usb2_asic_low.h
+  a2nu2/conf/ini.c			--> removed
+  a2nu2/asic/asic.c			--> mustek_usb2_asic.c
+  a2nu2/asic/asic_libusb.c		--> removed (used sanei_usb)
+  a2nu2/asic/asic_libusb.h		--> removed
+  a2nu2/asic/asic_mid.c			--> mustek_usb2_asic_mid.c
+  a2nu2/asic/asic_mid.h			--> included in mustek_usb2_asic_mid.c
+  a2nu2/asic/asic_motor.c		--> mustek_usb2_asic_motor.c  
+  a2nu2/asic/asic_motor.h		--> mustek_usb2_asic_motor.h
+  a2nu2/asic/asic_usb.c			--> mustek_usb2_asic_low.c  
+  a2nu2/asic/asic_usb.h			--> included in mustek_usb2_asic_low.h
+  a2nu2/asic/DefineScanner.h		--> mustek_usb2_asic_low.h  
+  a2nu2/asic/ScanRegDef.h		--> included in mustek_usb2_asic_low.h
+
+- Changed backend name to mustek_usb2.
+- Used dos2unix to change dos line endings to unix.
+- Added mustek_usb2.TODO.
+- Changed several occurences of "//" to "/* */".
+- Used DBG instead of XDBG.
+- Defined DBG levels in mustek_usb2_asic_low.h.
+- Changed code to use sanei_usb instead of home-grown usb functions.
+
+V 1.0-3 (2005-08-31)
+
+- Updated code from Mustek, mostly changed // to /* */
+- Enabled compilation warnings again.
+- Scanner is confirmed to work at least on Linux.
+
+V 1.0-2 (2005-08-30)
+
+- Initial version based on the code from Roy Zhou, Jack Xu, Vinci Cen.
+- This version is just to make it compile at all and to trim down the package
+  size by removing all the unneeded backends. Before inclusion into SANE can
+  be done, the sub directories, several libraries and the amount of files has
+  to be fixed (and lots of other stuff).
+- Based everything on current CVS.
+- Fixed AUTHORS.
+- Added mustek_pro.CHANGES.
+- Fixed dll.conf.
+- Fixed .desc file.
+- Adjusted configure.in to build only test, net and mustek_a2nu2 backends.
+- Adjusted backend/Makefile.in.
+- Disabled compilation warnings, otherwise the "//" comments will cause
+  errors.
+- Fixed several upper/lower case problems.
+- Removed definition of Option_Value.
+- Started renaming doc files to new backend name: msutek_usb2.
+- Added GPL+SANE exception to all remaining files.

@@ -1,0 +1,97 @@
+libgphoto2_port 0.12.0
+
+API:
+gp_log_data was changed to
+void gp_log_data (const char *domain, const char *data, unsigned int size, const char *format, ...)
+to enable more compact debug logging.
+
+
+libgphoto2_port 0.10.1
+
+API:
+gp_port_reset(GPPort*) added for a usb reset of the device.
+
+libgphoto2_port 0.10.0
+
+API:
+   * GPPortInfo is now abstract, and a pointer in the background.
+
+     Use gp_port_info_get_* functions to access variables.
+
+	info.type -> gp_port_info_get_path(info, &type);
+	info.path -> gp_port_info_get_path(info, &path);
+	info.name -> gp_port_info_get_name(info, &name);
+
+     (gp_port_info_get_type(), gp_port_info_get_name() and
+      gp_port_info_get_path() should be the only ones necessary,
+      if at all.)
+
+     The gp_port_info_set_* and gp_port_info_new are internal to
+     libgphoto2_port.
+
+Build:
+   * Switch build to use ELF symbol versions to avoid
+     major version bumps. Introduced LIBGPHOTO2_0_0
+     and LIBGPHOTO2_5_0 ELF versions.
+
+     libgphoto2_port.sym is now libgphoto2_port.ver
+     but with similar tasks.
+
+Library Loader:
+   * Bumped the GPPortInfo path size to 4096, since 64byte
+     is not sufficient for paths on UNIX systems when using
+     disk:
+
+libgphoto2_port 0.8.1
+
+Build:
+   * Non-recursive iolib build: Makes "make -j2" useful, and dynamic
+     load checks without install possible.
+     Selective iolib rebuild is "make usb.la" now.
+     Selective iolib install is
+     "make DRIVERS='usb.la disk.la' install-iolibLTLIBRARIES".
+
+Library Loader:
+   * Return error if not a single iolib can be found and loaded.
+
+Tests:
+   * "make check" makes sure that loading iolibs from build tree works.
+   * "make installcheck" makes sure that loading installed iolibs works.
+
+------------------------------------------------------------------------
+
+libgphoto2_port 0.8.0
+
+   * various bug fixes and doxygenation
+
+USB:
+   * reset the USB device on close.  This cures the infamous "Canon hang 
+     on second init" problem.
+
+Disk:
+   * handle automounter properly.
+
+------------------------------------------------------------------------
+
+libgphoto2_port 0.7.2
+
+Build:
+   * Put auto* files into auto-aux/ and auto-m4/.
+   * Introduce libgphoto2_port-uninstalled.pc pkgconfig file (#1643245).
+
+USB:
+   * Reported wMaxPacketsize of the IN endpoint to the camlib
+     via GPPortSettings.
+
+------------------------------------------------------------------------
+
+libgphoto2_port 0.7.1
+
+Build:
+   * Fix usb, disk and ptpip iolibs to not pick up old gphoto2 headers.
+
+------------------------------------------------------------------------
+
+libgphoto2_port 0.7.0
+
+   * Added a few internal functions.

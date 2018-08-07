@@ -1,0 +1,40 @@
+; File generated automatically from ./dlls/cfgmgr32/cfgmgr32.spec; do not edit!
+
+LIBRARY cfgmgr32.dll
+
+EXPORTS
+  CM_Connect_MachineA@8=setupapi.CM_Connect_MachineA @10
+  CM_Connect_MachineW@8=setupapi.CM_Connect_MachineW @11
+  CM_Create_DevNodeA@16=setupapi.CM_Create_DevNodeA @12
+  CM_Create_DevNodeW@16=setupapi.CM_Create_DevNodeW @13
+  CM_Disconnect_Machine@4=setupapi.CM_Disconnect_Machine @26
+  CM_Enumerate_Classes@12=setupapi.CM_Enumerate_Classes @30
+  CM_Get_Class_Registry_PropertyA@28=setupapi.CM_Get_Class_Registry_PropertyA @55
+  CM_Get_Class_Registry_PropertyW@28=setupapi.CM_Get_Class_Registry_PropertyW @56
+  CM_Get_DevNode_Registry_PropertyA@24=setupapi.CM_Get_DevNode_Registry_PropertyA @59
+  CM_Get_DevNode_Registry_PropertyW@24=setupapi.CM_Get_DevNode_Registry_PropertyW @60
+  CM_Get_DevNode_Registry_Property_ExA@28=setupapi.CM_Get_DevNode_Registry_Property_ExA @61
+  CM_Get_DevNode_Registry_Property_ExW@28=setupapi.CM_Get_DevNode_Registry_Property_ExW @62
+  CM_Get_Device_IDA@16=setupapi.CM_Get_Device_IDA @65
+  CM_Get_Device_IDW@16=setupapi.CM_Get_Device_IDW @66
+  CM_Get_Device_ID_ExA@20=setupapi.CM_Get_Device_ID_ExA @67
+  CM_Get_Device_ID_ExW@20=setupapi.CM_Get_Device_ID_ExW @68
+  CM_Get_Device_ID_ListA@16=setupapi.CM_Get_Device_ID_ListA @69
+  CM_Get_Device_ID_ListW@16=setupapi.CM_Get_Device_ID_ListW @70
+  CM_Get_Device_ID_List_SizeA@12=setupapi.CM_Get_Device_ID_List_SizeA @73
+  CM_Get_Device_ID_List_SizeW@12=setupapi.CM_Get_Device_ID_List_SizeW @74
+  CM_Get_Device_ID_Size@12=setupapi.CM_Get_Device_ID_Size @77
+  CM_Get_Device_Interface_List_SizeA@16=setupapi.CM_Get_Device_Interface_List_SizeA @87
+  CM_Get_Device_Interface_List_SizeW@16=setupapi.CM_Get_Device_Interface_List_SizeW @88
+  CM_Get_Device_Interface_List_Size_ExA@20=setupapi.CM_Get_Device_Interface_List_Size_ExA @89
+  CM_Get_Device_Interface_List_Size_ExW@20=setupapi.CM_Get_Device_Interface_List_Size_ExW @90
+  CM_Get_Parent@12=setupapi.CM_Get_Parent @109
+  CM_Locate_DevNodeA@12=setupapi.CM_Locate_DevNodeA @122
+  CM_Locate_DevNodeW@12=setupapi.CM_Locate_DevNodeW @123
+  CM_Locate_DevNode_ExA@16=setupapi.CM_Locate_DevNode_ExA @124
+  CM_Locate_DevNode_ExW@16=setupapi.CM_Locate_DevNode_ExW @125
+  CM_Reenumerate_DevNode@8=setupapi.CM_Reenumerate_DevNode @144
+  CM_Reenumerate_DevNode_Ex@12=setupapi.CM_Reenumerate_DevNode_Ex @145
+  CM_Set_Class_Registry_PropertyA@24=setupapi.CM_Set_Class_Registry_PropertyA @161
+  CM_Set_Class_Registry_PropertyW@24=setupapi.CM_Set_Class_Registry_PropertyW @162
+  CMP_WaitNoPendingInstallEvents@4=setupapi.CMP_WaitNoPendingInstallEvents @184

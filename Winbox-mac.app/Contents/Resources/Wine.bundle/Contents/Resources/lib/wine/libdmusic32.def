@@ -1,0 +1,7 @@
+; File generated automatically from ./dlls/dmusic32/dmusic32.spec; do not edit!
+
+LIBRARY dmusic32.dll
+
+EXPORTS
+  CreateCDirectMusicEmulatePort@12=DMUSIC32_CreateCDirectMusicEmulatePort@12 @1
+  EnumLegacyDevices@8=DMUSIC32_EnumLegacyDevices@8 @2

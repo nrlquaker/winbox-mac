@@ -1,0 +1,134 @@
+.TH sane\-find\-scanner 1 "13 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-find\-scanner
+.SH NAME
+sane\-find\-scanner \- find SCSI and USB scanners and their device files
+.SH SYNOPSIS
+.B sane\-find\-scanner
+.RB [ \-h | \-? ]
+.RB [ \-v ]
+.RB [ \-q ]
+.RB [ \-p ]
+.RB [ \-f ]
+.RB [ \-F 
+.IR filename ]
+.RI [ devname ]
+
+.SH DESCRIPTION
+.B sane\-find\-scanner
+is a command-line tool to find SCSI and USB scanners and determine their Unix
+device files. Its primary aim is to make sure that scanners can be detected by
+SANE backends.
+.PP
+For 
+.B SCSI
+scanners, it checks the default generic SCSI device files (e.g., 
+.IR /dev/sg0 )
+and 
+.IR /dev/scanner .
+The test is done by sending a SCSI inquiry command and looking for a device
+type of "scanner" or "processor" (some old HP scanners seem to send
+"processor"). So 
+.B sane\-find\-scanner
+will find any SCSI scanner connected to those default device files even if it
+isn't supported by any SANE backend.
+.PP
+For
+.B USB
+scanners, first the USB kernel scanner device files (e.g.
+.IR /dev/usb/scanner0 ),
+.IR /dev/usb/scanner ,
+and
+.IR /dev/usbscanner )
+are tested. The files are opened and the vendor and device ids are determined,
+if the operating system supports this feature. Currently USB scanners are only
+found this way if they are supported by the Linux scanner module or the
+FreeBSD or OpenBSD uscanner driver. After that test, 
+.B sane\-find\-scanner
+tries to scan for USB devices found by the USB library libusb (if
+available). There is no special USB class for scanners, so the heuristics used
+to distinguish scanners from other USB devices is not
+perfect. 
+.B sane\-find\-scanner
+also tries to find out the type of USB chip used in the scanner. If detected,
+it will be printed after the vendor and product ids.
+.B sane\-find\-scanner
+will even find USB scanners, that are not supported by any SANE backend.
+.PP
+.B sane\-find\-scanner
+won't find most 
+parallel port scanners, or scanners connected to proprietary ports. Some
+.B parallel port
+scanners may be detected by
+.B sane\-find\-scanner -p. 
+At the time of writing this will only detect Mustek parallel port scanners.
+
+.SH OPTIONS
+.TP 8
+.B \-h, \-?
+Prints a short usage message.
+.TP 8
+.B \-v
+Verbose output. If used once, 
+.B sane\-find\-scanner
+shows every device name and the test result.  If used twice, SCSI inquiry
+information and the USB device descriptors are also printed.
+.TP 8
+.B \-q
+Be quiet. Print only the devices, no comments.
+.TP 8
+.B \-p
+Probe parallel port scanners.
+.TP 8
+.B \-f
+Force opening all explicitly given devices as SCSI and USB devices. That's
+useful if 
+.B sane\-find\-scanner
+is wrong in determining the device type.
+.TP 8
+.B \-F filename
+filename is a file that contains USB descriptors in the format of
+/proc/bus/usb/devices as used by Linux.
+.B sane\-find\-scanner
+tries to identify the chipset(s) of all USB scanners found in such a file. This
+option is useful for developers when the output of "cat /proc/bus/usb/devices"
+is available but the scanner itself isn't.
+.TP 8
+.B devname
+Test device file "devname". No other devices are checked if devname is given.
+.SH EXAMPLE
+.B sane\-find\-scanner \-v
+.br
+Check all SCSI and USB devices for available scanners and print a line for
+every device file.
+.PP
+.B sane\-find\-scanner /dev/scanner
+.br
+Look for a (SCSI) scanner only at /dev/scanner and print the result.
+.PP
+.B sane\-find\-scanner \-p
+.br
+Probe for parallel port scanners.
+.SH "SEE ALSO"
+.BR sane (7),
+.BR sane\-scsi (5),
+.BR sane\-usb (5),
+.BR scanimage (1),
+.BR xscanimage (1),
+.BR xsane (1),
+.BR sane\-"backendname" (5)
+
+.SH AUTHOR
+Oliver Rauch, Henning Meier-Geinitz and others
+.SH SUPPORTED PLATFORMS
+USB support is limited to Linux (kernel, libusb), FreeBSD (kernel,
+libusb), NetBSD (libusb), OpenBSD (kernel, libusb). Detecting the vendor and
+device ids only works with Linux or libusb.
+.PP
+SCSI support is available on Irix, EMX, Linux, Next, AIX, Solaris, FreeBSD,
+NetBSD, OpenBSD, and HP-UX.
+
+.SH BUGS
+No support for most parallel port scanners yet. 
+.br
+Detection of USB chipsets is limited to a few chipsets.
+

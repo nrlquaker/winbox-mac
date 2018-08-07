@@ -1,0 +1,317 @@
+History of the reverse engineering of the st2205 compression
+------------------------------------------------------------
+
+After some failed attempts by me (Hans de Goede), I asked help
+from Bertrik Sikken with reverse engineering the st2205 compression.
+He went the route of disassembling the windows binaries for uploading
+pictures, and wrote an algorithm description of the decompression on
+the picframe wiki:
+http://picframe.spritesserver.nl/wiki/index.php/ImageEncoding
+
+A copy of this page is included below.
+
+I used this description to write decompression code. The first version
+used header files with the lookup tables as C-code arrays and these
+header files were made by and given to me by Bertrik. I also wrote
+compression code by "simply" reversing the decompression algorithm.
+
+The lookup tables were a problem, as Bertrik copied them out of
+the windows code, and one could argue that they are copyrightable.
+
+Luckily the same tables are also present in the firmware of the
+picture frame, and we can read them from the frame. So the
+libgphoto2 st2205 camlib uses this approach to avoid any copyright
+issues.
+
+Below is a dump of:
+http://picframe.spritesserver.nl/wiki/index.php/ImageEncoding
+Made on 19 March 2010.
+
+Contents
+
+  • 1 Compressed image format
+      □ 1.1 Introduction
+      □ 1.2 Image decoding
+          ☆ 1.2.1 Image header
+          ☆ 1.2.2 8x8 pixel block
+              ○ 1.2.2.1 Decoding chrominance
+              ○ 1.2.2.2 Decoding luminance
+              ○ 1.2.2.3 Color decoding
+          ☆ 1.2.3 Shuffling/unshuffling
+      □ 1.3 Table overview
+
+Compressed image format
+
+Images written on the keychain by the Photoviewer application are stored in
+a compressed form. This section describes the compressed image format.
+
+NOTE: code for reading images from a ST2205-based picture photoframe has
+been included now (march 2010) in gphoto SVN
+
+Introduction
+
+The photo keychain can contain several images. A simple directory-like
+structure starting at address 0 contains pointers to where the actual
+compressed images are stored.
+
+Basic principles used in the encoding:
+
+  • 8x8 image blocks: an image has a dimension of 128x128 pixels and is
+    subdivided into 256 blocks of 8x8 pixels each.
+  • YUV-like encoding: each of these 8x8 pixel blocks is separated into a
+    brightness component and two color components and independently encoded
+    by a lossy compression algorithm.
+  • block shuffling: the order in which the blocks are encoded is usually
+    not simply linear top-down left-right, but is controlled by one of
+    several "shuffling tables" that determine where each decoded block goes
+    into the final image. By showing the decoding process in real time and
+    using a different shuffling table for each picture, the photo key chain
+    can create various transition effects between the previously decoded
+    photo and the currently decoding photo.
+
+Note the above (and below) 128x128 resolution and thus 256 blocks assumes a
+frame with a lcd a resolution of 128x128, for displays with a different
+reslution this numbers change accordingly.
+
+Image decoding
+
+An image is encoded as a 16-byte image header, followed by the 256 blocks
+encoding each for an area of 8x8 pixels. Typically, each 8x8 block is
+encoded using 48 bytes (or in some special cases 56 or 64 bytes, see
+below), this means a total size of 12304 bytes. Uncompressed, the image
+would require 32768 bytes (assuming 16-bit RGB565 format), saving space by
+a factor of about 2.66.
+
+Image header
+
+An image starts with a 16-byte header:
+
+┌─────────┬───────────────────────────────────────────────────────────────┐
+│  Byte   │                            Meaning                            │
+├─────────┼───────────────────────────────────────────────────────────────┤
+│0x00     │Image marker with a fixed value of 0xF5                        │
+├─────────┼───────────────────────────────────────────────────────────────┤
+│0x01/0x02│Image width (0x80) encoded as big-endian                       │
+├─────────┼───────────────────────────────────────────────────────────────┤
+│0x03/0x04│Image height (0x80) encoded as big-endian                      │
+├─────────┼───────────────────────────────────────────────────────────────┤
+│0x05/0x06│Number of 8x8 blocks in the image (0x100) encoded as big-endian│
+├─────────┼───────────────────────────────────────────────────────────────┤
+│0x07     │Shuffle pattern to use                                         │
+├─────────┼───────────────────────────────────────────────────────────────┤
+│0x08     │Unknown, bits 1 and 2 carry some special meaning. Usually      │
+│         │contains value 0x04.                                           │
+├─────────┼───────────────────────────────────────────────────────────────┤
+│         │Related to block shuffling, exact meaning unknown. Contain 0xFF│
+│0x09     │for shuffle pattern 1, for other shuffle patterns it contains a│
+│         │value depending on the picture frame resolution. For 128x128   │
+│         │frames it contains 1, for 96x64 frames it contains 0.          │
+├─────────┼───────────────────────────────────────────────────────────────┤
+│0x0A/0x0B│Length of following image data                                 │
+├─────────┼───────────────────────────────────────────────────────────────┤
+│0x0C-0x0F│Padding/unused (all 0x00)                                      │
+└─────────┴───────────────────────────────────────────────────────────────┘
+
+8x8 pixel block
+
+The 8x8 pixel block is encoded further as a variable length block, as
+follows:
+
+┌──────┬───────┬──────────────────────────────────────────────────────────┐
+│Offset│Meaning│                          Remark                          │
+├──────┼───────┼──────────────────────────────────────────────────────────┤
+│      │Length │Bit 0-6 is the length of the rest of the block (often     │
+│0x00  │byte   │0x2F). Bit 7 selects between 2-bit and 4-bit luma decoding│
+│      │       │mode                                                      │
+├──────┼───────┼──────────────────────────────────────────────────────────┤
+│      │Luma Y │Bit 0-6 is the base offset of the luminance channel for   │
+│0x01  │byte   │every pixel in the block. Bit 7 selects between two       │
+│      │       │luminance patterns tables (LUMA1 or LUMA2)                │
+├──────┼───────┼──────────────────────────────────────────────────────────┤
+│      │Chroma │Bit 0-6 is the base offset of the U chrominance channel   │
+│0x02  │U byte │for every pixel in the block. Bit 7 indicates extended    │
+│      │       │decoding of this chrominance channel                      │
+├──────┼───────┼──────────────────────────────────────────────────────────┤
+│      │Chroma │Bit 0-6 is the base offset of the V chrominance channel   │
+│0x03  │V byte │for every pixel in the block. Bit 7 indicates extended    │
+│      │       │decoding of this chrominance channel                      │
+├──────┼───────┼──────────────────────────────────────────────────────────┤
+│0x04  │Chroma │Variable length chrominance channel U decoding info, see  │
+│      │U data │below                                                     │
+├──────┼───────┼──────────────────────────────────────────────────────────┤
+│...   │Chroma │Variable length chrominance channel V decoding info, see  │
+│      │V data │below                                                     │
+├──────┼───────┼──────────────────────────────────────────────────────────┤
+│...   │Luma Y │Variable length luminance channel decoding info, see below│
+│      │data   │                                                          │
+└──────┴───────┴──────────────────────────────────────────────────────────┘
+
+Decoding chrominance
+
+Chrominance is encoded with a reduced resolution of 4x4 "pixels" per block.
+
+The chrominance decoding info consists of:
+
+┌─────────┬──────────┬────────────────────────────────────────────────────┐
+│ Offset  │ Meaning  │                       Remark                       │
+├─────────┼──────────┼────────────────────────────────────────────────────┤
+│         │Pattern   │Index into a color base pattern table (CHROMA). The │
+│0x00     │byte A    │table entry contains the pattern for the top 8      │
+│         │          │chroma pixels.                                      │
+├─────────┼──────────┼────────────────────────────────────────────────────┤
+│         │Pattern   │Index into a color base pattern table (CHROMA). The │
+│0x01     │byte B    │table entry contains the pattern for the bottom 8   │
+│         │          │chroma pixels.                                      │
+├─────────┼──────────┼────────────────────────────────────────────────────┤
+│         │          │Optional correction items for each chroma pixel     │
+│0x02-0x09│Correction│(using table CORR). This part is only present when  │
+│         │          │bit7 of the chroma byte is set.                     │
+└─────────┴──────────┴────────────────────────────────────────────────────┘
+
+The chrominance value is basically the sum of:
+
+ 1. chrominance base value (from the chroma U or V byte minus 0x40)
+ 2. one of the two base patterns selected from table CHROMA using pattern
+    byte A and B.
+ 3. optionally a set of correction values selected from table CORR (very
+    much like luminance)
+
+Chroma pixels in a segment are arranged in the following pattern:
+
+A00 A01 A02 A03
+A04 A05 A06 A07
+B00 B01 B02 B03
+B04 B05 B06 B07
+
+where Axx indicates data looked up using pattern byte A, and Bxx data
+looked up using pattern byte B.
+
+Note that the chroma info per channel (U and V) is either 2 or 10 bytes,
+which is why the total block size can be one of 48, 56, or 64 bytes (resp
+no corr, corr for 1 channel, corr for both channels). By far most blocks
+are 48 bytes big.
+
+Decoding luminance
+
+The luminance decoding info consists of:
+
+┌─────────┬───────────────────────────────────────────────────────────────┐
+│ Offset  │                            Meaning                            │
+├─────────┼───────────────────────────────────────────────────────────────┤
+│0x00-0x07│A set of indexes into table LUMA1 or LUMA2 to select a "base   │
+│         │pattern" for each row of pixels inside a block.                │
+├─────────┼───────────────────────────────────────────────────────────────┤
+│         │Correction items for each pixel in the block, where each       │
+│0x08-0x27│correction item is encoded in 4 bits. Each correction item is  │
+│         │actually an index into table CORR storing a value that is added│
+│         │to the luminance value of the pixel.                           │
+└─────────┴───────────────────────────────────────────────────────────────┘
+
+In short, the luminance channel of each pixel is basically the sum of:
+
+ 1. luminance base value as encoded in byte 0x01
+ 2. one of the base patterns selected from table LUMA1 or LUMA2 using bytes
+    0x00-0x07 (one byte for one pattern per row of 8 pixels)
+ 3. one of the correction values selected from table CORR using the nibbles
+    in bytes 0x08-0x27. This uses one nibble for each pixel, with the high
+    4 bits (high nibble) of a byte coding the correction for the first
+    pixel that bytes corrects, and the low 4 bits code the correction for
+    the second pixel. The first byte (at offset 0x08), codes the correction
+    for pixel 00 and 01, etc.
+
+Pixels are arranged in the following pattern:
+
+00 01 02 03 04 05 06 07
+08 09 0A 0B 0C 0D 0E 0F
+...
+38 39 3A 3B 3C 3D 3E 3F
+
+Color decoding
+
+The color space used in the images is a kind of YUV, using one luminance
+channel (called Y here) and two chrominance channels (called U and V here),
+as follows:
+
+R = 2 * (Y + V)
+G = 2 * (Y - U - V)
+B = 2 * (Y + U)
+
+Any underflows/overflows during the calculation of the RGB values should be
+saturated to either 0 or 255 respectively.
+
+And conversely (during encode):
+
+Y = (R + G + B) / 6
+U = B/2 - Y
+V = R/2 - Y
+
+where U and V should be constrained to the range -64 to +63.
+
+Shuffling/unshuffling
+
+Blocks of 8x8 pixels are stored in a shuffled sequence. The choice of the
+shuffle pattern is stored in byte 0x07 of the image header.
+
+The shuffle pattern is stored in table SHUFFLEx, which contains the (x,y)
+coordinates of each 8x8 pixel block. Currently there are 7 known shuffle
+patterns.
+
+Table overview
+
+Several tables are involved in encoding/decoding. Below is an overview of
+the various tables, their properties and what they are used for
+
+┌────────┬────────────┬───────────────────────────────────────────────────┐
+│ Table  │ Dimension  │                      Remark                       │
+├────────┼────────────┼───────────────────────────────────────────────────┤
+│        │256 entries │Entry contains brightness patterns for 1 row of 8  │
+│LUMA1   │of 8 signed │pixels within an 8x8 block.                        │
+│        │words       │                                                   │
+├────────┼────────────┼───────────────────────────────────────────────────┤
+│        │256 entries │Entry contains brightness patterns for 1 row of 8  │
+│LUMA2   │of 8 signed │pixels within an 8x8 block. Alternate table.       │
+│        │words       │                                                   │
+├────────┼────────────┼───────────────────────────────────────────────────┤
+│        │256 entries │Entry contains chroma patterns for 2 rows of 4     │
+│CHROMA  │of 8 signed │pixels within an 4x4 chroma block.                 │
+│        │words       │                                                   │
+├────────┼────────────┼───────────────────────────────────────────────────┤
+│        │256 entries │Entry contains the (x,y) coordinates for an 8x8    │
+│SHUFFLEx│of 2 bytes  │block. There are several tables like this, each one│
+│        │            │encoding for a different shuffle pattern.          │
+├────────┼────────────┼───────────────────────────────────────────────────┤
+│        │16 entries  │Correction values that are applied for each pixel. │
+│CORR    │of 1 signed │Values in this table:                              │
+│        │word        │-26,-22,-18,-14,-11,-7,-4,-1,1,4,7,11,14,18,22,26  │
+└────────┴────────────┴───────────────────────────────────────────────────┘
+
+The LUMA1, LUMA2 and CHROMA tables are stored inside the picframe in 16
+bits signed (2's complement) LE byte order format. LUMA1 starts at 0x8477,
+LUMA2 at 0x9477, CHROMA at 0xA477. These 3 tables are directly followed at
+0xB477 by various shuffle tables, which contain x, y coordinate pairs (1
+byte for each). There are a number of sets of shuffle tables, for different
+display resolutions. There are 8 or 7 tables per set, the first 2 tables
+are "generated" (0 = row by row, 1 = column by column), then 6 or 5 tables
+per resolution in ROM:
+
+┌──────────┬──────┬─────────────────────┐
+│Resolution│start │Number of sets in ROM│
+├──────────┼──────┼─────────────────────┤
+│128 x 160 │0xB477│6                    │
+├──────────┼──────┼─────────────────────┤
+│128 x 128 │0xC377│5                    │
+├──────────┼──────┼─────────────────────┤
+│120 x 160 │0xCD77│5                    │
+├──────────┼──────┼─────────────────────┤
+│96 x 64   │0xD92F│5                    │
+└──────────┴──────┴─────────────────────┘
+
+Retrieved from "http://picframe.spritesserver.nl/wiki/index.php/
+ImageEncoding"
+
+Powered by MediaWiki
+GNU Free Documentation License 1.2
+
+  • This page was last modified 20:49, 16 March 2010.
+  • This page has been accessed 4,256 times.
+  • Content is available under GNU Free Documentation License 1.2.

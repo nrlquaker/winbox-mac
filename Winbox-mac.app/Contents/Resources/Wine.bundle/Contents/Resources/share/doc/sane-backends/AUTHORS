@@ -1,0 +1,258 @@
+Authors of the SANE standard:
+
+ Andreas Beck and David Mosberger
+
+Backends:
+
+ abaton:        David Huggins-Daines
+ agfafocus:     Karl Anders Øygard
+ apple:         Milon Firikis
+ artec:         Chris Pinkham
+ artec_eplus48u:Sergey Vlasov, Andreas Nowack, David Stevenson, and
+                Michael Herder
+ as6e:          Eugene S. Weiss
+ avision:       Meino Christian Cramer, René Rebe (*)
+ bh:            Tom Martone
+ canon:         Helmut Koeberle, Manuel Panea, and Markus Mertinat
+                Mitsuru Okaniwa, Ulrich Deiters (*)
+ canon630u:     Nathan Rutman
+ canon_dr:      m. allan noah (*)
+ canon_pp:      Matthew Duggan, Simon Krix
+ cardscan:      m. allan noah (*)
+ coolscan:      Didier Carlier, Andreas Rick
+ coolscan2:     Andras Major
+ coolscan3:     Alessandro Zummo
+ dc25:          Peter Fales
+ dc210:         Brian J. Murrell
+ dc240:         Peter Fales
+ dell1600n_net: Jon Chambers
+ dll:           David Mosberger
+ dmc:           David F. Skoll
+ epjitsu:       m. allan noah (*)
+ epson:         Karl Heinz Kremer
+ epson2:        Alessandro Zummo
+ epsonds:       Alessandro Zummo
+ fujitsu:       Randolph Bentson, Frederik Ramm, Oliver Schirrmeister,
+                m. allan noah (*)
+ genesys:       Henning Geinitz, Gerhard Jaeger (*), Stéphane Voltz,
+                Pierre Willenbrock
+ gphoto2:       Peter Fales
+ gt68xx:        Sergey Vlasov, Andreas Nowack, David Stevenson, and
+                Henning Geinitz
+ hp:            Peter Kirchgessner (*)
+                Geoffrey Dairiki
+ hp3500:        Troy Rollo (*)
+ hp3900:        Jonathan Bravo Lopez
+ hp4200:        Adrian Perez Jorge, Andrew John Lewis, Arnar Mar Hrafnkelsson,
+                Frank Zago, Henning Geinitz
+ hp5400:        Martijn van Oosterhout, Thomas Soumarmon
+ hp5590:        Ilia Sotnikov (*)
+ hpljm1005:     Philippe Rétornaz
+ hpsj5s:        Max Vorobiev
+ hs2p:		Jeremy Johnson (*)
+ ibm:           M.F., Henning Geinitz
+ kodak:         m. allan noah (*)
+ kodakaio:	Paul Newall (*)
+ kvs1025:       Tao Zhang, m. allan noah (*)
+ kvs20xx:       unknown, m. allan noah (*)
+ kvs40xx:       unknown, m. allan noah (*)
+ leo:           Frank Zago
+ lexmark:       Fred Odendaal, Stéphane Voltz
+ ma1509:        Henning Geinitz
+ magicolor:     Reinhold Kainhofer(based on epson2 backend)
+ matsushita:    Frank Zago
+ microtek:      Matthew Marjanovic
+ microtek2:     Bernd Schroeder, Karsten Festag
+ mustek:        Andreas Bolsch, David Mosberger, Andreas Czechanowski,
+                Henning Geinitz, and James Perry.
+ mustek_pp:     Jochen Eisinger, Eddy De Greef
+ mustek_usb:    Tom Wang and Henning Geinitz
+ mustek_usb2:   Roy Zhou, Jack Xu, Vinci Cen, and Henning Geinitz
+ nec:           Kazuya Fukuda
+ net:           Andreas Beck, David Mosberger, Julien Blache
+ niash:         Ullrich Sigwanz, Bertrik Sikken
+ p5:		Stéphane Voltz
+ pie:           Simon Munton
+ pieusb:        Jan Vleeshouwers, Michael Rickmann, Klaus Kämpf
+ pint:          Gordon Matzigkeit
+ pixma:         Wittawat Yamwong
+                Nicolas Martin
+                Louis Lagendijk (*)
+                Dennis Lou
+                Rolf Bensch (*)
+ plustek:       Gerhard Jaeger (*)
+ plustek_pp:    Rick Bronson (former pp driver-code), Gerhard Jaeger (*)
+ pnm:           Andreas Beck, Gordon Matzigkeit, David Mosberger, Michael
+                Herder, and Henning Geinitz
+ qcam:          Scott Laird (original driver), David Mosberger (SANE backend),
+                despeckling filter by Patrick Reynolds, 
+                B&W fixes by Andrew Kuchling
+ ricoh:         Feico W. Dillema
+ rts8891:       Stéphane Voltz
+ s9036:         Ingo Schneider
+ sceptre:       Frank Zago
+ sharp:         Kazuya Fukuda and Abel Deuring
+ sm3600:        Marian Eichholz and Glenn Ramsey
+ sm3840:        Earle F. Philhower III
+ snapscan:      Kevin Charter, Franck Schneider, Michel Roelofs, Sebastien
+                Sable, Henrik Johansson, Chris Bagwell, and Oliver Schwartz (*)
+ sp15c:         Randolph Bentson
+ st400:         Ingo Wilken
+ stv680:        Gerard Klaver
+ tamarack:      Rogier Wolff
+ teco1:         Frank Zago
+ teco2:         Frank Zago, Gerard Klaver
+ teco3:         Frank Zago
+ test:          Henning Geinitz
+ u12:           Gerhard Jaeger (*)
+ umax:          Oliver Rauch and Michael K. Johnson
+ umax1220u:     Marcio L. Teixeira, Patrick Lessard
+ umax_pp:       Stéphane Voltz
+ v4l:           Juergen G. Schimmer, and Henning Geinitz
+ xerox_mfp:     Alex Belkin (*)
+
+Frontends:
+
+ jscanimage:    Jeff Freedman and Guido Muesch
+ saned:         Andreas Beck, David Mosberger, Julien Blache
+ scanimage:     Andreas Beck, David Mosberger, Gordon Matzigkeit,
+                m. allan noah (*), Julien Blache, Stéphane Voltz
+ tstbackend:    Frank Zago
+
+Sanei internal code:
+
+  Adrian Perez Jorge, Andreas Beck, Andreas Czechanowski, Christian Bucher,
+  David Mosberger-Tang, Frank Zago, Henning Geinitz,
+  Jeff Freedman, Jochen Eisinger, Marcio Teixeira, Yuri Dario,
+  Gerhard Jaeger (*), m. allan noah (*)
+
+Java API:
+
+ Jeff Freedman
+
+Miscellaneous coding:
+
+  Julien Blache, Mattias Ellert, Petter Reinholdtsen,
+  Chris Bagwell, Olaf Meeuwissen (*)
+
+Translators:
+
+  Giuseppe Sacco (*)
+
+(*) Maintainer with Git repository write access
+
+
+Please also read the file PROJECTS for projects that are planned or
+not yet included into the SANE distribution.
+
+
+Email addresses:
+
+Abel Deuring <a.deuring@satzbau-gmbh.de>
+Alessandro Zummo <a.zummo@towertech.it>
+Alex Belkin <abc@telekom.ru>
+Andras Major <andras@users.sourceforge.net>
+Andreas Beck <becka@uni-duesseldorf.de>
+Andreas Bolsch <ab@maths.nott.ac.uk>
+Andreas Czechanowski <m075@ins.uni-stuttgart.de>
+Andreas Nowack <nowack.andreas@gmx.de>
+Andreas Rick <andreas.rick@free.fr>
+Andrew Kuchling <amk@magnet.com>
+Bernd Schroeder <bernd@aquila.muc.de>
+Bertrik Sikken <bertrik@zonnet.nl>
+Brian J. Murrell <brian@interlinx.bc.ca>
+Chris Bagwell <cbagwell-guest@users.alioth.debian.org>
+Chris Pinkham <cpinkham@corp.infi.net>
+Christian Bucher <cbucher@vernetzt.at>
+David Etherton <etherton@netcom.com>
+David F. Skoll <dskoll@iname.com>
+David Huggins-Daines <bn711@freenet.carleton.ca>
+David Mosberger <David.Mosberger@acm.org>
+David Stevenson <david.stevenson@zoom.co.uk>
+Didier Carlier <didier@sema.be>
+Earle F. Philhower III <earle@ziplabel.com>
+Eddy De Greef <eddy_de_greef at scarlet dot be>
+Eugene S. Weiss <yossarian@users.sourceforge.net>
+Feico W. Dillema <dillema@acm.org>
+Franck Schneider <schnefra@hol.fr>
+Frank Zago <sane at zago dot net>
+Fred Odendaal <freshshelf at rogers dot com>
+Frederik Ramm <frederik@remote.org>
+Gerard Klaver <gerard at gkall dot hobby dot nl>
+Gerhard Jaeger <gerhard@gjaeger.de>
+Giuseppe Sacco <eppesuig@debian.org>
+Glenn Ramsey <glenn@componic.com>
+Gordon Matzigkeit  <gord@gnu.ai.mit.edu>
+Guido Muesch <odiug@faho.rwth-aachen.de>
+Helmut Koeberle <helmut.koeberle@bytec.de>
+Henning Geinitz <sane@geinitz.org>
+Henrik Johansson <henrikjo@post.urfors.se>
+Ilia Sotnikov <hostcc@gmail.com>
+Ingo Schneider <schneidi@informatik.tu-muenchen.de>
+Ingo Wilken <Ingo.Wilken@informatik.uni-oldenburg.de>
+James Perry <jamesp@epcc.ed.ac.uk>
+Jeff Freedman <jsf@hevanet.com>
+Jochen Eisinger <jochen.eisinger@gmx.net>
+Jon Chambers <jon@jon.demon.co.uk>
+Jonathan Bravo Lopez <jkdsoft@gmail.com>
+Juergen G. Schimmer <schimmi@nbgm.siemens.de>
+Julien Blache <jb@jblache.org>
+Jan Vleeshouwers <J.M.Vleeshouwers@tue.nl>
+Karl Anders Øygard <karlo@opera.no>
+Karl Heinz Kremer <khk@khk.net>
+Karsten Festag <karsten.festag@gmx.de>
+Kazuhiro Sasayama <kaz@hypercore.co.jp>
+Kazuya Fukuda <kaafuu@mug.biglobe.ne.jp>
+Kevin Charter <charter@cs.rice.edu>
+Klaus Kämpf <kkaempf@suse.com>
+Louis Lagendijk <llagendijk-guest at users.alioth.debian.org>
+M.F. <massifr@tiscalinet.it>
+Manuel Panea <Manuel.Panea@rzg.mpg.de>
+Marcio Teixeira <marciot@users.sourceforge.net>
+Marian Eichholz <eichholz@computer.org>
+Markus Mertinat <Markus.Mertinat@Physik.Uni-Augsburg.DE>
+Martijn van Oosterhout <kleptog@svana.org>
+Matthew Duggan <stauff1@users.sourceforge.net>
+Matthew Marjanovic <maddog@mir.com>
+Mattias Ellert <mattias.ellert@fysast.uu.se>
+Max Vorobiev <pcwizard@yandex.ru>
+Meino Christian Cramer <mccramer@s.netic.de>
+Michael Herder <crapmail@nurfuerspam.de>
+Michael K. Johnson <johnsonm@redhat.com>
+Michael Rickmann <mrickma@gwdg.de>
+Michel Roelofs <michelr@stack.nl>
+Milon Firikis <milonf@ariadne-t.gr>
+Mitsuru Okaniwa <m-okaniwa@bea.hi-ho.ne.jp>
+Nathan Rutman <nathan@gordian.com>
+Nicolas Martin <nicols-guest at users.alioth.debian.org>
+Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Oliver Rauch <Oliver.Rauch@Rauch-domain.de>
+Oliver Schirrmeister <oschirr@abm.de>
+Oliver Schwartz <oliverschwartz@users.sourceforge.net>
+Patrick Lessard <palessar@cgocable.ca>
+Patrick Reynolds <patrickr@virginia.edu>
+Paul Newall <quandry@ntlworld.com>
+Peter Fales <peter@fales-lorenz.net>
+Peter Kirchgessner <peter@kirchgessner.net>
+Petter Reinholdtsen <pere@hungry.com>
+Pierre Willenbrock <pierre@pirsoft.dnsalias.org>
+Randolph Bentson <bentson@grieg.holmsjoen.com>
+Reinhold Kainhofer <reinhold@kainhofer.com>
+Rene Rebe <rene@exactcode.de>
+Roger Wolff <R.E.Wolff@BitWizard.nl>
+Rolf Bensch <rolf at bensch hyphen online dot de>
+Roy Zhou <Roy@mail.mustek-hz.com.cn>
+Sebastien Sable <Sebastien.Sable@snv.jussieu.fr>
+Sergey Vlasov <vsu@altlinux.ru>
+Simon Krix <kinsei@users.sourceforge.net>
+Simon Munton <simon@munton.demon.co.uk>
+Stéphane Voltz <stef.dev@free.fr>
+Thomas Soumarmon <soumarmt@nerim.net>
+Tom Martone <tom@martoneconsulting.com>
+Tom Wang <tom.wang@mustek.com.tw>
+Tristan Tarrant <ttarrant@etnoteam.it>
+Troy Rollo <sane@troy.rollo.name>
+Ullrich Sigwanz <usigwanz@freesurf.ch>
+Ulrich Deiters <ukd@xenon.pc.Uni-Koeln.DE>
+Wittawat Yamwong <wittawat@web.de>
+m. allan noah <kitno455 at gmail dot com>

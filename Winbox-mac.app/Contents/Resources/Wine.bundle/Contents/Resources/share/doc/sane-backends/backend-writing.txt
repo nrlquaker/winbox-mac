@@ -1,0 +1,499 @@
+2006-01-01
+
+Here are a few rules and tips that should help writing a
+SANE-conforming backend and including it into the SANE package:
+
+
+GETTING STARTED
+---------------
+
+* You will need information about the protocol the scanner (or other image
+  application device) is using. The easiest way is to ask the manufacturer
+  about it. You should mention that the code will be open-source, however.
+
+* Read the SANE standard.
+
+* One approach is to write a stand-alone scanning program first. Debugging
+  this program is usually easier than using the SANE libraries. However, keep
+  in mind what you learned from the SANE standard.
+
+* Once your program works basically, insert its functions into a basically
+  empty SANE backend. You can get one by removing everything but the SANE
+  includes and SANE API function definitions from an existing backend (e.g.
+  test.c).
+
+* If you have any information about the scanner you want to support that
+  is not already mentioned in one of the .desc files, please contact the
+  sane-devel mailing list. Especially if you have written code (e.g. a test
+  program) or started writing a backend, contact us.
+
+* Keep other users informed about what you did and want to do. This way no
+  work is done twice and you may get volunteers for coding or testing.
+  Set up a website or at least write to sane-devel. If you have a website,
+  a link to it can be included in the .desc file and users looking for that
+  scanner will find it on the SANE website.
+
+* When you have a working backend but you don't want to have it included
+  in the SANE distribution yet, at least the .desc file can be included
+  (see below for details). So people will find a link to your backend at
+  the SANE webpage.
+
+
+CONFIGURATION AND BUILD SYSTEM
+------------------------------
+
+Sane-backends uses the autoconf and automake tools. The configure script is
+generated from configure.ac and aclocal.m4 by running "autoreconf".
+Simple checks (e.g. for headers) should be placed into configure.ac while
+for more complex stuff acinclude.m4 is the right file. After changes in one 
+of these files, "autoreconf" should be called.  This will then call a
+chain of autotools, such as autoconf to generate configure, autoheader
+to generate include/sane/config.h.in, and automake to generate various
+Makefile.in's from Makefile.am's.  All changes made by "autoreconf" must
+be commited together.
+
+When running configure, the Makefiles in the main and sub-directories are
+created from their respective Makefile.in files. Also include/sane/config.h
+which is included into to every c file is created from its .in file.
+
+Running "make" runs the respective targets in the sub directories recursively.
+
+The Makefile.am in each directory contains lists of files which are part of the
+distribution and which are therefore copied to the tar.gz archive, when a
+release is made. It's important that newly added files are also added to 
+a variable that will cause them to be distributed (EXTRA_DIST at a minimum).
+
+For creating binaries and libraries libtool is used. The ltmain.sh script
+contains special modifications for SANE. These modifications ensure that 
+the soname of each SANE backend library is "libsane.so". Without this 
+change, backend libraries (like "libsane-epson.so") could not used as 
+on-the-fly replacement for the dll backend.
+
+DIRECTORY OVERVIEW
+------------------
+
+This chapter explains some details about the files and directories used in the
+sane-backends distribution.
+
+sane-backends/
+  * acinclude.m4 aclocal.m4 compile config.guess config.sub configure 
+    configure.ac depcomp install-sh ltmain.sh Makefile.am Makefile.in missing
+    mkinstalldirs: Part of the build system as explained above.
+  * ChangeLog:
+    The ChangeLog contains all the changes made since the last stable release.
+    If anything is changed in git, write a decent commit message documenting
+    your work.  This commit message will be included as is in the ChangeLog
+    file for the next stable release.  Users of development code should refer
+    to the `git log` output or the on-line log.
+    For more details on the format, see the SANE git page on the website.
+  * ChangeLog-1.0.0, ChangeLog-1.0.1 (...):
+    These files contain the ChangeLogs of older releases. Once a new release has
+    been made, the current ChangeLog renamed to ChangeLog-1.something.something
+    and a new empty ChangeLog is created.
+  * AUTHORS COPYING INSTALL LICENSE:
+    General documentation + license.
+  * NEWS:
+    This is some kind of executive summary of the ChangeLog. It will be created
+    before a release. 
+  * PROBLEMS:
+    General (severe) problems that all SANE users should be
+    aware. Backend-specific trouble should normally not mentioned there. 
+  * PROJECTS:
+    Planned SANE-related development (e.g. ports, frontends). New backends won't
+    be listed here but a new .desc file will be created for them (see below).
+  * README:
+    General building instructions.
+  * README.aix README.beos (...):
+    Platform-dependent building and usage instructions. 
+  * sane-backends.lsm:
+    The .lsm file as used for the ibiblio archive.
+
+sane-backends/backend/
+  This is where the actual backend code is placed. As an example the file
+  structure for a backend named "newbackend" is listed below. Backend names must
+  be unique and should not contain any special characters. Lower case letters,
+  numbers and underscores "_" are ok.
+  Backend documentation of any kind should not be placed here but in the doc/
+  directory. Code which is useful for more than one backend should be placed in
+  sanei/ instead.
+  * newbackend.c:
+    The main backend file, usually contains the SANE API code. Mandatory. 
+  * newbackend.h:
+    Header file, containing includes and so on.
+  * newbackend.conf.in:
+    Configuration file for the backend, newbackend.conf will be created by 
+    running "make" from this file. Some variables are substituted, e.g. for 
+    installation directories. This is especially useful for firmware 
+    directories. See Makefile.am for a list.
+  * newbackend-low.c:
+    Contains low level code for the "newbackend" backend. Depending on the
+    complexity of the backend, splitting it to several files can be appropriate,
+    the total number of files shouldn't exceed approx. 10, however.
+  Other files:
+  * Makefile.am, Makefile.in:
+    Makefile.am contains rather complex rules for building the backends. For
+    adding backends, special care should be taken concerning the FIRMWARE_DIRS
+    (add your backend name here, if your scanner needs firmware files) and
+    other variables (see build system description). There is some
+    documentation inside of Makefile.am on what needs to be added and where.
+    At a minimum, a convenience library of form lib${backend}.la and
+    a installed library libsane-${backend}.la must be defined.  Any
+    sanei objects referenced should be listed in a
+    libsane_${backend}_la_LIBADD line.
+  * sane_strstatus.c:
+    Contains the code for the sane_strstatus() function to avoid code
+    duplication in every backend.
+
+sane-backends/doc/
+   Documentation for SANE. For some more details, see chapter DOCUMENTATION
+   below. Again an example for "newbackend":
+   * sane-newbackend.man: 
+     The manual page of the backend. From this file, "sane-newbackend.5" is
+     generated by running "make". 
+   * newbackend/ (directory)
+     Contains additional information about newbackend, e.g. READMEs or TODO
+     files. 
+   General files:
+   * Makefile.am:
+     "sane-newbackend.5" must be added to variable BACKEND_5MANS and
+      "sane-newbackend.man" to EXTRA_DIST. A backend documentation directory 
+      (if used) must be added to the BEDOCS variable.
+   * backend-writing.txt:
+     This file.
+   * descriptions.txt:
+     Describes the format of .desc files.
+   * doxygen-sanei.conf.in:
+     Used by doxygen to create the documentation of the sanei code.
+   * releases.txt:
+     Explains how to make releases of sane-backends.
+   * sane.tex, net.tex:
+     Contains the LaTeX source of the SANE standard.
+   * descriptions/ (directory)
+     Contains the .desc files for every backend that is included into 
+     sane-backends.
+   * descriptions-external/ (directory)
+     Contains the .desc files for backend that are not included into
+     sane-backends yet (external backends). These files should only be created
+     if the code it points to is really a SANE backend (and not just a command
+     line program). 
+
+sane-backends/frontend/
+     Contains the frontends scanimage, saned, and tstbackend.
+
+sane-backends/include/
+     Header files used by the SANE backends. The main directory contains the
+     headers used for general librar functions like getopt, while the
+     SANE-specific headers are located in include/sane/:
+     * config.h.in:
+       Main header file needed for portablility. config.h is created from this
+       file and must be included by every backend. 
+     * sane.h: 
+       Official SANE API header file. Don't change this without discussion on
+       the sane-devel mailing list.
+     * saneopts.h:
+       Defines several option NAMEs, TITLEs and DESCs that are (or should be)
+       used by several backends.
+     * sanei_*:
+       Sanei (SANE internal) headers. Needed for code used in several backends
+       like USB access. For more details, see the documentaion on the SANE website.
+
+sane-backends/japi/
+     Contains Java interface for SANE. See README.JAVA for details.
+
+sane-backends/lib/
+     Contains various library functions that may miss in the standard C library
+     of some platforms. 
+
+sane-backends/po/
+     Translations of SANEbackend options. See README for details.
+
+sane-backends/sanei/
+     Sanei (SANE internal) code. Needed for code used in several backends
+     like USB access. For more details, see the documentaion on the SANE 
+     website.
+
+sane-backends/testsuite/
+     Testsuite for SANE. See README for details.
+
+sane-backends/tools/
+     Contains several tools for SANE. There are backend-specific and general command line
+     tools as well as the hotplug support and .desc file generation code. See
+     README for details.
+
+
+PROGRAMMING
+-----------
+
+* A backend library is always only one file (libsane-backendname.so). Please do
+  not use multiple libraries e.g. for lower and higher level code.
+
+* To add the backend to the existing SANE code, the following must be done at
+  least:
+    - add the backend name to ALL_BACKENDS in configure.ac (and run autoreconf)
+    - Add new backend to BACKEND_CONFS, be_convenience_libs, be_dlopen_libs,
+      and define _lib${backend}_la_SOURCES and 
+      nodist_libsane_${backend}_la_SOURCES; using an existing backend as
+      a template.  Any sanei reference code should be listed in
+      libsane_${backend}_la_LIBADD as well as any external libraries
+      required to resolve all symbols.
+    - Add the source code files to the backend/ directories. All file names 
+      must start with the backend name (e.g. newbackend.c, newbackend.h and
+      newbackend-usb.c). 
+
+* Please follow the GNU coding standards.  It's clear that the style
+  outlined there is nobody's favorite, but it's much easier to
+  maintain SANE if everybody follows more or less the same coding
+  style.  It also looks more professional.  The GNU standards can be
+  found at:
+
+	http://www.gnu.org/prep/standards_toc.html
+	ftp://ftp.gnu.org/pub/gnu/standards/standards.text
+
+  Note that GNU emacs supports automatic indentation according to this
+  standard.  The command "indent -gnu" can be used to reformat
+  existing sources according to this standard.
+
+* Please be courteous to programmer's with terminals that are 80
+  characters wide.  It's not difficult to avoid long lines, so please
+  do so.  Note that in standard C you can split long strings into pieces
+  separated by white space.  For example,
+  "this is an awfully long string" can be written as "this is an "
+  "awfully long string".
+
+* Use only standard C for your backend.  ISO C99 support will be enabled
+  if supported by the compiler detected by configure.
+
+* Please do not depend on compiler specific features or, if you do, make
+  the dependency conditional so other compilers will still be able to
+  compile the files.  In particular:
+
+    - do not declare dynamically sized automatic arrays; instead,
+      use alloca() after including "../include/lalloca.h".  For example:
+
+		void
+		func (int n)
+		{
+		  char buf[n];
+		}
+
+      should be re-written as:
+
+		#ifdef _AIX
+		# include "../include/lalloca.h" /* MUST come first for AIX! */
+		#endif
+
+		#include "../include/sane/config.h"
+		#include "../include/lalloca.h"
+			:
+		void
+		func (int n)
+		{
+		  char *buf = alloca (n);
+		}
+    - Don't use any #pragma directives---they're completely
+      compiler-dependent.
+
+* If you use headers or libraries that may not be available on all systems,
+  write a check for configure.ac and include it conditionally. If your backend
+  depends on these libraries or headers, compile the backend only if they are 
+  available (see pint for an example).
+
+* Use #include ".../include/sane/..." to include the sane header files
+  instead of #include <sane/...>. Otherwise problems with different installed
+  SANE versions may occur. Also this makes clear that the local files are used.
+
+* Don't forget to #include ".../include/sane/config.h" in your backend before
+  any other includes. This must be done for any .c file that generates its own
+  object file. If you use lalloca.h see above for the correct includes.
+
+* Include sanei_backend.h after the other includes.
+
+* It's no longer necessary to #define PATH_MAX (now in sanei_backend.h).
+  If you define it, do so *after* the system includes.
+
+* Please use sanei functions whenever possible (e.g. 
+  sanei_config_read()). This makes porting to other os/platforms much
+  easier. Most of these functions are documented in their respective 
+  header files in include/sane/sanei_*.h. For most of them there is also
+  documentation in doxygen format: http://www.sane-project.org/sanei/. These
+  HTML pages can be generated by calling "doxygen sanei-doxygen.conf" in
+  the doc/ directory.
+
+* Initialize global variables explicitly in sane_init. Keep in mind that
+  sane_init can be called more than once (if sane_exit is called everytime
+  after sane_init). Therefore don't depend on automatic initialization to
+  0 / NULL.
+
+* Do make sure that your code is byte-order independent.  This is
+  particularly important for networking-related code and when dealing
+  with non-textual data files.
+
+* Don't use printf, fprintf or perror to output debug or error messages.
+  Use the DBG macro instead. If your backend can't detect a scanner for
+  whatever reason it shouldn't output anything as long as
+  SANE_DEBUG_BACKENDNAME isn't set. So don't use DBG(0, ...) in this case.
+
+* Please do not assume that `size_t' is `unsigned int'.  On some
+  systems, it's `unsigned long' and the size of this type may be
+  bigger than that of an int (this is true for practically any of the
+  64-bit systems).  To print a variable of type size_t portably, cast
+  the variable to u_long and print it with the %lu specifier.  E.g.:
+
+	size_t len;
+
+	DBG(3, "len=%lu\n", (u_long) len);
+
+* Please do not assume that `void *' has the same size as `int'.  On some
+  systems, it's `long' and the size of this type may be bigger than that of
+  an int (this is true for practically any of the 64-bit systems). Where this
+  comes up is with opaque handles. For example:
+
+  int OpaqueHandle;
+  MyScanner *s = (MyScanner *)OpaqueHandle;
+
+  will FAIL on most 64 bit systems. Please use `void *' or better
+  `SANE_Handle'.
+
+* Don't use exit() in your backend. You will exit the whole program, not only
+  your backend.
+
+* If you use wait() or waitpid() in your backend, check its return value. This
+  is important, if the status value is checked for e.g. WIFEXITED after the
+  call of wait() or waitpid(). Both functions may fail if the frontend already
+  did a wait for the children.
+
+* Please try to avoid compilation warnings. At least with "--disable-warnings"
+  there shouldn't be warnings when compiling backends. It's not necessary to
+  fix every "unused parameter" warning but take care that no warnings pointing
+  to really existing problems or ambiguities are missed. Some programming
+  techniques generating warnings on gcc may lead to errors on other systems.
+
+* To support translation of SANE options, please mark the descriptions (desc)
+  and title of options with SANE_I18N() and add all files using SANE_I18N() to
+  po/POTFILES. See po/README for details.
+
+* Please check for TL_X < BR_X and TL_Y < BR_Y to avoid segfaults or even
+  scanner damage. This should NOT be done in sane_control_option, it should
+  be possible to temporary set TL_X > BR_X or TL_ > BR, otherwise it is hard
+  for a frontend to set the correct values.
+
+
+TESTING
+-------
+
+* Please test a backend with "scanimage -T" (plus other options,
+  as appropriate/necessary) as this will make sure that sane_read()
+  always returns the correct amount of data etc.
+
+* You can also test a backend with tstbackend. tstbackend is not
+  compiled nor installed by default. To do that, cd into frontend and
+  run "make tstbackend".
+
+* Please test a backend not just with scanimage and xscanimage 
+  (+ other frontends), but also with saned.  Based on past experience,
+  it is often the case that remote scanning can uncover subtle bugs.
+  Note that you don't  have to use two different machines to test "remote"
+  scanning---you can use one and the same machine to test a backend via saned
+  (just be sure to enable the "net" backend in dll.conf and follow the
+  steps described in saned(8)).
+
+* Please test on every available platform/os. Even if no scanner is attached
+  to this system, test compilation and running scanimage. If you don't have
+  access to other platforms, ask sane-devel.
+
+* Please make sure that all global symbols exported from a SANE backend start
+  with the prefix "sane" or "sanei" to avoid clashes with exported symbols 
+  of other backends. Only symbols mentioned in the SANE standard should start
+  with "sane_*". Make sure, the sanei_* symbols are unique, e.g. by using
+  sanei_backendname_*.  Only export symbols that are absolutely necessary.
+  You can verify this by running GNU "nm" on the static library.  For example:
+
+	nm -g  backend/.libs/libsane-hp.a
+
+  would list all global symbols in the HP backend. 
+
+  "./configure; make; make libcheck" in the sane-backends root directory
+  will name all backend libraries, that contain "illegal" symbols.
+
+DOCUMENTATION
+-------------
+
+* Even if you haven't written a man-page for your backend yet, you *must*
+  create a .desc file which describes it. Anytime you submit source code for
+  your backend, you should include an update to the .desc file which reflects
+  the new state of the backend. The .desc files are used to create the HTML
+  lists of supported devices. These lists are updated automatically when you
+  change a .desc file in git. See e.g.
+  http://www.sane-project.org/lists/sane-mfgs-cvs.html for the results.
+
+* The .desc files are located in the directories "doc/descriptions" and
+  "doc/descriptions-external" (for included and external backends).
+
+* "doc/descriptions.txt" describes the format of the ".desc" files. There is
+  also a template for new .desc files: "template.desc.". The format of the
+  files in the two directories is very similar.  If you'd like to try parsing
+  your creation to recreate the sane-backends webpages, cd into "tools/" and
+  enter "make sane-desc". You can either use sane-desc directly (try 
+  "./sane-desc -h") or use "make html-pages" in "doc/". 
+
+* For external backends, you don't need to supply :manpage and :version. The
+  manpage link won't work anyway and version will be outdated soon.
+
+* When your backend is included in the SANE distribution, add an entry to
+  doc/sane.man, AUTHORS and sane-backends.lsm. The sane.man entry should point
+  to your documentation (man-page, website, readme).  Also move your .desc
+  file from "doc/descriptions-external" to "doc/descriptions" and update
+  them.
+
+* In your manual page (backend.man), use @LIBDIR@ and the other macros for
+  path names to the libraries, config files and documentation. Don't use fixed
+  paths as they will be wrong if SANE is installed with a different prefix
+  (e.g. /usr instead of /usr/local).
+
+* If you want to include READMEs, HTML files or other documentation, please
+  create your own directory (doc/backendname) and store your files in this
+  directory. If you only have a manual page a subdirectory isn't necessary.
+
+* Please keep your manpages and .desc files up-to-date especially regarding
+  version numbers.
+
+
+CHECKLIST: SUBMITTING A NEW BACKEND 
+-----------------------------------
+
+In sane-backends/
+* Add the author(s) name(s) to AUTHORS
+* Correct any related entries in the bug-tracking system
+
+In sane-backends/backend/
+* Use the command "indent -gnu" to reformat your code according to the
+  standard.
+* Add the backend name to dll.conf
+* Check that the SANE license is in the backend source files.
+* Add the source file names and the .conf file
+  to BACKEND_CONFS in Makefile.am
+
+In sane-backends/doc/
+* Add an entry for the man page in sane.man
+* Add the man page file in doc/Makefile.am
+* Move the description file from descriptions-external/ to doc/descriptions/
+* Check that the description file is correct: "cd doc; make html-pages" and
+  check the html pages result with a browser.
+* Check that the backend version is the same in the source and in the
+  description file.
+  
+In sane-backends/po/
+* Add all files using SANE_I18N() to po/POTFILES
+
+
+INCLUDING INTO git
+------------------
+
+* If you want to include your backend into SANE's git tree use the latest git
+  to make patches. Check the mailing list and the bug-tracking system for
+  information about bugs to avoid.
+
+* If your backend isn't included yet in the SANE's git tree, write an email to
+  the SANE mailing list (sane-devel) and ask for inclusion. Usually one
+  of the developers will check the backend for common mistakes and test
+  compilation. If everything is ok the backend will be added to the git tree.

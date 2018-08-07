@@ -1,0 +1,99 @@
+.TH sane\-dc25 5 "11 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-dc25
+.SH NAME
+sane\-dc25 \- SANE backend for Kodak DC20/DC25 Digital Cameras
+.SH DESCRIPTION
+The
+.B sane\-dc25
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to Kodak DC20 and DC25 cameras.  At present, only
+the DC25 has been tested, but since the code is based on a DC20
+interface program, it is likely to work for that model also.
+.SH "DEVICE NAMES"
+The current version of the backend only allows one camera to be
+connected.  The device name is always "0".
+.SH CONFIGURATION
+The contents of the
+.I dc25.conf
+specify the serial port and baud rate to use.  The baud rate 
+specifies the maximum rate to use while downloading pictures.  (The
+camera is always initialized using 9600 baud, then switches to the
+higher rate).  On my 90MHz Pentium, I usually have no problems downloading
+at 115200 baud as long as the system is not excessively busy and 
+the "interrupt-unmask flag" is set in the IDE driver (hdparm \-u1).
+Supported baud rates are: 9600, 19200, 38400, 57600, and 115200.
+.PP
+The dumpinquiry line causes some information about the camera to 
+be printed to stderr during startup.  Note:  This is not compatible
+with saned, so make sure you don't have any dumpinquiry lines if you are
+using saned (i.e. scanning on a remote machine using a
+network).
+.PP
+Empty lines and lines starting with a hash mark (#) are
+ignored.  A sample configuration file is shown below:
+.PP
+.RS
+port=/dev/ttyS0
+.br
+# this is a comment
+.br
+baud=115200
+.br
+dumpinquiry
+.RE
+.PP
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/dc25.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-dc25.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-dc25.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /Users/mike/Documents/wine/usr/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/Users/mike/Documents/wine/usr/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_DC25
+If the library was compiled with debugging support enabled, this
+environment variable controls the debug level for this backend. 
+A value of 128 requests maximally copious debug output; smaller
+levels reduce verbosity.
+
+.SH "SEE ALSO"
+sane(7)
+
+.SH AUTHOR
+Peter Fales, dc25\-devel@fales\-lorenz.net
+
+.SH BUGS
+Known bugs/limitations are:
+.PP
+I haven't figured out how to trigger an option reload following a "scan."
+This causes problems when a new picture is snapped for example, the
+slider that is used to select the picture from the camera may not be
+updated immediately.
+.PP
+More general comments, suggestions, and inquiries about frontends
+or SANE should go to the SANE Developers mailing list 
+(see http://www.sane\-project.org/mailing\-lists.html for details). 
+You must be subscribed to the list, otherwise your mail won't be
+sent to the subscribers.

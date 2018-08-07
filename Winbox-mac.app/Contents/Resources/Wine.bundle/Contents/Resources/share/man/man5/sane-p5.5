@@ -1,0 +1,160 @@
+.TH "sane\-p5" "5" "15 Feb 2010" "" "SANE Scanner Access Now Easy"
+.IX sane\-p5
+.SH "NAME"
+sane\-p5 \- SANE backend for the Primax PagePartner
+.SH "DESCRIPTION"
+The
+.B sane\-p5
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to the Primax PagePartner parallel port sheet fed scanner.
+.PP 
+This backend handles 100, 150, 200, 300 and 600 dpi scan resolutions,
+in color and gray modes. The 600 dpi is actually 300x600 with lines
+enlarged to match the vertical resolution.
+.PP 
+.B EPP/ECP MODES ONLY
+The current version of the backend uses only EPP or ECP mode to communicate 
+with the scanner. It is 
+recommended that you set your parallel port to EPP in BIOS with the current 
+version of this backend. ECPEPP will only
+work if you use a 2.4 or 2.6 kernel with ppdev character device support.
+.PP 
+
+.SH "DEVICE NAMES"
+This backend expects device names of the form:
+.PP 
+.RS
+.I port value
+.RE
+.PP 
+Where
+\fBvalue\fR is : 
+
+.RS
+.TP
+auto
+autodetect all parallel ports and probe
+them for scanner
+.TP
+/dev/parport0
+uses linux ppdev device, depending on the
+number of available parallel port, you
+have to use /dev/parport1, /dev/parport2, ...
+.PP 
+.RE
+You can rename any device using the
+.PP 
+.RS
+.br
+.I option name my_name
+.RE
+.PP 
+option. This option apply to the last port option. 
+
+.SH "CONFIGURATION"
+Please make sure to edit dll.conf
+.B before
+you use the backend, since this backend isn't enabled by default.
+.PP 
+
+.PP 
+
+
+
+.SH "FILES"
+.TP 
+.I /Users/mike/Documents/wine/usr/etc/sane.d/p5.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP 
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-p5.a
+The static library implementing this backend.
+.TP 
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-p5.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+
+.SH "ENVIRONMENT"
+.TP 
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /Users/mike/Documents/wine/usr/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/Users/mike/Documents/wine/usr/etc/sane.d" being searched (in this order).
+.TP 
+.B SANE_DEBUG_P5
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  E.g.,
+a value of 255 requests all debug output to be printed.  Smaller
+levels reduce verbosity.
+
+.PP 
+.RS
+.ft CR
+.nf
+level   debug output
+\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+ 0       critical errors
+ 1       errors
+ 2       warnings & minor errors
+ 4       information messages
+ 8       start/stop of functions
+ 16      tracing messages              
+ 32      I/O functions
+ 64      I/O functions with traces
+ 128     scanned/calibration data
+.fi
+.ft R
+.RE
+.PP 
+.TP 
+
+.PP 
+.RS
+.ft CR
+.nf
+.PP 
+ 
+.PP 
+.SH "SEE ALSO"
+sane(7), sane\-net(5), saned(8)
+
+.SH "AUTHOR"
+St\['e]phane Voltz <stef.dev@free.fr>
+
+.SH "CREDITS"
+Support for the Prima PagePartner has been made possible thank to an hardware donation
+by S\['e]bastien Lange.
+
+.SH "BUG REPORTS"
+If something doesn't work mail sane-devel@lists.alioth.debian.org or use the bug
+tracker at https://alioth.debian.org/tracker/?atid=410366&group_id=30186 .
+Please give as much information as you can. 
+
+.TP 
+.I SANE version
+run "scanimage \-V" to determine this
+.TP 
+.I the backend version and your scanner hardware
+run "SANE_DEBUG_P5=255 scanimage \-L 2>log" as root. If you don't get any output
+from the p5 backend, make sure a line "p5" is included into
+your /Users/mike/Documents/wine/usr/etc/sane.d/dll.conf.
+If your scanner isn't detected, make sure you've defined the right port address, or the
+correct device 
+in your p5.conf.
+.TP 
+.I the name of your scanner/vendor
+also a worthy information. Please also include the optical resolution and lamp type of your scanner, both can be found in the manual of your scanner.
+.TP 
+.I any further comments
+if you have comments about the documentation (what could be done better), or you
+think I should know something, please include it.

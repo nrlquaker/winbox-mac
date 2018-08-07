@@ -1,0 +1,32 @@
+/* This is one of the README files for libgphoto2/camlibs/digigr8. This is an 
+ * integral part of the libgphoto2/camlibs/digigr8 library source code and is 
+ * distributed with that source code under the LGPL license. a copy of which 
+ * license may be seen in the head directory of libgphoto2, in the file 
+ * COPYING.
+ * This file copyright Theodore Kilgore, 05/10/2009.
+ */ 
+
+CONCERNING 0x2770:0x9052 CAMERAS
+
+First, a general remark. The reader is strongly encouraged to read
+README.905C as well as this file. That file in fact pertains to all of the
+cameras which are supported by libgphoto2/camlibs/digigr8. All of what it says
+pertains to the 0x2770:0x9052 cameras, too, unless something to the contrary is
+stated below.
+
+
+The only camera known to use the ID 0x2770:0x9052 a Disney Pix Micro camera. It
+seems to be a VGA version of the smaller camera with the same name, which 
+reports itself as 0x2770:0x9050. The new camera has the resolution settings 
+640x480 and 320x240. Both cameras permit deletion of all photos. The same 
+operations are used for that as for the capture of an image to the computer
+(that is, the gphoto2 --capture-preview operation). The user is therefore 
+advised that the --capture-preview operation will also clear the camera's 
+memory and remove all images stored there. 
+
+The camera also has kernel support for webcam mode. To run the camera as a
+webcam will also delete all still photos stored in the camera.
+
+For further details please consult the file README.9050.
+
+Revised 01/12/2012

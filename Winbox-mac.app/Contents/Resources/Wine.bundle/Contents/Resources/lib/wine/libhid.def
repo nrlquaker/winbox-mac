@@ -1,0 +1,23 @@
+; File generated automatically from ./dlls/hid/hid.spec; do not edit!
+
+LIBRARY hid.dll
+
+EXPORTS
+  HidD_FreePreparsedData@4 @2
+  HidD_GetAttributes@8 @3
+  HidD_GetFeature@12 @5
+  HidD_GetHidGuid@4 @6
+  HidD_GetInputReport@12 @8
+  HidD_GetManufacturerString@12 @9
+  HidD_GetPreparsedData@8 @13
+  HidD_GetProductString@12 @14
+  HidD_GetSerialNumberString@12 @15
+  HidD_SetFeature@12 @18
+  HidP_GetButtonCaps@16 @21
+  HidP_GetCaps@8 @22
+  HidP_GetScaledUsageValue@32 @26
+  HidP_GetUsageValue@32 @29
+  HidP_GetUsages@32 @31
+  HidP_GetValueCaps@16 @33
+  HidP_InitializeReportForID@20 @34
+  HidP_MaxUsageListLength@12 @36

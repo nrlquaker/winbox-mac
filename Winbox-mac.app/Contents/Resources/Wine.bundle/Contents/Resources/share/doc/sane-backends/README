@@ -1,0 +1,195 @@
+How to configure, build, and install SANE.
+
+
+Introduction:
+=============
+SANE stands for Scanner Access Now Easy.
+This package contains the SANE libraries (this means backends and
+network scanning parts) and the command line frontend scanimage.
+You always find the most recent version of SANE on:
+
+  http://www.sane-project.org/
+
+At the same location there are also links to snapshots of the Git server and
+sometimes beta releases of sane-backends. These are unstable development
+versions, so be careful when using them. Please report any problems to us. See
+contact section for details.
+
+There are several graphical frontends available for SANE, see the list at
+http://www.sane-project.org/sane-frontends.html.
+
+
+Quick install:
+==============
+
+./configure
+make
+make install
+
+man sane
+
+
+Prerequisites
+=============
+
+In order to build SANE, the following tools and libraries are required:
+
+	- GNU make: version 3.70 or newer
+
+	- ISO C99 compiler: GNU C (gcc) is recommended for best results,
+	  but any ISO C99 compliant compiler should do
+
+
+Some more libraries are not strictly necessary to compile SANE, but some
+functionality may be lost if they are not available. Make sure that these
+libraries and their respective header files are available before running
+configure. On some Linux distributions the header files are part of separate
+packages (e.g. usb.h in libusb-devel or libusb-dev). These must also be
+installed.
+
+        - libusb: Strongly recommended if you use a USB scanner.
+          Some backends won't work without libusb at all.
+
+        - libjpeg (>=6B): For the dc210, dc240, and gphoto2 backends.
+
+        - libieee1284 (>=0.1.5): For some parallel port backends.
+
+        - libgphoto2 (>=2.0): For the gphoto2 backend.
+
+SANE should build on most Unix-like systems. Support for OS/2, MacOS X, BeOS,
+and Microsoft Windows is also available. For more details look at the
+operating system specific README.* files. For a detailed support matrix, see:
+
+    http://www.sane-project.org/sane-support.html
+
+This table may be out of date. Please tell us about any corrections or
+additions. Please mention your operating system and platform and all the other
+details mentioned in the table. See also the contact section.
+
+Please check that there aren't any older versions of SANE installed on your
+system. Especially if SANE libraries are installed in a different prefix
+directory (e.g. /usr/lib/) this may cause problems with external
+frontends. Please remove these libraries (libsane.*, sane/libsane-*) by using
+your packet manager or manually before installing this version of SANE.
+
+
+Configuration
+=============
+
+Simply invoke configure in the top-level directory.  Besides the usual GNU
+configure options, there are the following SANE specific options:
+
+ --disable-shared
+	Don't use shared libraries.  Useful for debugging or when there
+	is a problem building shared libraries.  This implicitly turns
+	on --disable-dynamic --enable-static as well.
+
+ --disable-dynamic
+	Disable dynamic loading of backends (in the dll backend).
+	configure normally turns on dynamic loading when it
+	can find the appropriate header files and libraries
+	(<dlfcn.h> and -ldl).
+
+ --enable-static
+        Use static libraries (turned off by default).
+
+ --enable-preload
+        Preload backends into DLL backend.  This is useful for debugging,
+	when dynamic loading is unavailable, to reduce runtime linking
+	overheads, or when you only want to distribute a single DLL with
+	all backends available.  If dynamic loading or shared libraries are
+	unavailable or disabled, this option is turned on automatically.
+
+ --enable-scsibuffersize=N
+        Specify the buffer size of the buffer for SCSI commands. The default
+	value is 131072 bytes (128 kb). This may be changed at runtime by
+	setting	the environment variable SANE_SG_BUFFERSIZE to the desired
+	value. The option is Linux-only at this time.
+	--enable-scsibuffersize and SANE_SG_BUFFERSIZE have no effect for
+	the Mustek, Umax and Sharp backends. For these backends, the buffer
+	size is set automatically and/or can be specified in the backend's
+	configuration file. Please refer to the backend's man pages for
+	details.
+
+--enable-locking
+	Means, that some backends will use a lockfile for allowing multiple
+	access to one scanner. This is useful, i.e. one frontend is scanning
+	the button status and another one will scan. The path to the lock
+	files is define by --localstatedir at the configure step and is
+	$localstatedir/lock/sane. The default group is uucp and can be
+	changed by using --with-group=newgroup. If you do not want any
+	backend to use a lockfile, simply use --disable-locking.
+
+To limit the backends that are compiled, set the variable BACKENDS to
+the list of backends to compile.  The following will limit compiling
+to the epson2 and fujitsu backends:
+
+  ./configure BACKENDS="epson2 fujitsu"
+
+To limit the backends that are preloaded into the DLL, set the variable
+PRELOADABLE_BACKENDS.  The following will limit compiling  to the epson2
+and fujitsu backends but only preloads the epson2 backend:
+
+  ./configure BACKENDS="epson2 futjisu" PRELOADABLE_BACKENDS="epson2"
+
+In addition to these configuration options, there are some more SANE-specific
+options and many standard-options.  To get a description of available options,
+invoke configure with option --help.
+
+If you plan on debugging one of the SANE programs, we recommend to run
+configure like this:
+
+   CFLAGS="-g -O -Wall" ./configure --disable-shared
+
+For operating system specific information, look at the README.* files.
+
+
+Build
+=====
+
+To build SANE, simply type "make" in the top-level directory.
+
+To clean up the executables and libraries in the source directory, type "make
+clean". To restore everything to the status after unpacking the package, type
+"make distclean".
+
+
+Installation and Configuration
+==============================
+
+Once the build has finished, install SANE with "make install".  By
+default, this will place the SANE libraries in /usr/local/lib/, the
+configuration files in /usr/local/etc/sane.d/, and the manual pages in
+/usr/local/man/.  The location of these directories can be overridden
+with configure options; see "configure --help" for details.
+
+Before running any SANE program, read the PROBLEMS file in this directory.
+
+For information on configuring and trouble-shooting the various SANE
+components, please refer to the manual page sane(7).
+
+The tools/ directory contains some small programs that may be helpful. They
+are described in tools/README.
+
+
+Removing
+========
+
+Type "make uninstall" to remove SANE from your system. This will also remove
+older versions of SANE if they have been installed at the same prefix.
+Warning: Your configuration files will be deleted also so make sure you have a
+backup. By default the configuration files are located in the directory
+/usr/local/etc/sane.d/.
+
+
+Contact
+=======
+
+For questions and general discussion about SANE contact the sane-devel mailing
+list. You must be subscribed to the list to send mail. See
+http://www.sane-project.org/mailing-lists.html for details.
+
+If you want to submit a bug report or feature request please use our bug
+tracking system.  See http://www.sane-project.org/bugs.html for details. You
+may also contact the author of a specific backend directly. See the AUTHORS
+file for a list of addresses.

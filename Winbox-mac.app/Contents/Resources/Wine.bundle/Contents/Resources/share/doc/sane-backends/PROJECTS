@@ -1,0 +1,30 @@
+PROJECTS (2005-10-03)
+
+Here is a list of projects that various people have expressed interest
+in.  Before starting working on one of these projects, it may be a
+good idea to get in touch with the relevant people. Please also read
+the files AUTHORS and README for projects that are included into the
+SANE-package. For frontends, look at the sane-frontends package.
+For backends or stand-alone drivers, add a .desc file or add an entry
+to unsupported.desc.
+
+Status    description
+--------- ----------------------------------------------------------------
+wanted    Somebody would like to have this feature but can't do it himself.
+planned   Only plans but no code yet.
+wip       Work in progress. There is (more or less) working code. For details,
+          look at the web page or contact the author.
+
+
+SANE on non-Unix platforms:
+----------------------------
+
+OS/2 support (wip)
+http://home.tiscalinet.de/fbakan/sane-os2.htm
+
+
+Misc:
+-----
+
+TWAIN interface for xsane-win32 (planned)
+Oliver Rauch <oliver.rauch@Wolfsburg.DE>

@@ -1,0 +1,36 @@
+About this driver
+=================
+
+This driver allows you to upload / download and delete pictures from
+Sitronix st2205 based picture frames. This are small, cheap picture
+frames with a 1.1, 1.5, 1.8 or 2.4 inch display and a USB id of 1403:0001
+
+st2205 based frames present themselves as a regular usb mass storage device,
+but cannot be used as a normal disk! Communication with the device happens by
+a special protocol which consist of reading / writing sectors of the disk at
+certain magic offsets. This driver uses the special "usbdiskdirect" port
+driver, which allows the direct sector access the camlib for these devices
+needs.
+
+
+About the st2205 access protocol
+================================
+
+The protocol for these devices was reverse engineered by Jeroen Domburg, who
+has created a hack which allows directly displaying an image on them from the
+PC (IOW using these picture frames as a second monitor). See the spritesmods
+wiki: http://picframe.spritesserver.nl/ . Many thanks to Jeroen for this work,
+on which this camlib is based!
+
+The protocol basically allows raw access to the flash chip on the picture
+frame, for example you need to do separate erase and program commands, and
+as an erase block is larger then what you program in a single program command
+you must make sure to always reprogram the entire range the single erase
+command cleared (and read the entire range before clearing, so you can write
+it back).
+
+
+About the st2205 image compression
+==================================
+
+See README.st2205-compression.

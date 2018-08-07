@@ -1,0 +1,59 @@
+SANE and NetBSD
+----------------
+
+Building:
+---------
+Don't forget to use GNU make (gmake). E.g. "MAKE=gmake ./configure". 
+SANE should compile and install out-of-the-box.
+
+SCSI-scanners:
+--------------
+SANE only supports the generic /dev/uk? devices. /dev/ss? won't work. If your
+scanner is detected by the ss driver, disable the driver with the "config"
+utility or compile a new kernel without ss. Set a link /dev/scanner to /dev/uk0
+(or whatever you use) and/or edit your backend's config file
+appropriately. Don't forget to set up permissions to the device file correctly
+for access by a non-root user (read/write). Auto-configuration using the "scsi
+*" lines in the config files doesn't work.
+
+Scanners with higher resolutions need bigger SCSI buffers. Therefore, edit
+sanei/sanei_scsi.c and look for these lines:
+
+#ifndef MAX_DATA
+# define MAX_DATA	(32*1024)
+#endif
+
+Increase the buffer size to e.g. 128 * 1024. Recompile.
+
+USB-scanners:
+-------------
+
+USB-Scanners are supported in principle. Using libusb is recommended.
+
+Problems when using libusb:
+
+Older kernels may need to be compiled WITHOUT DIAGNOSTIC. Disable it in the
+config file or use a GENERIC kernel without DIAGNOSTIC. If it is, you will get
+errors like "ugenioctl: USB_SET_TIMEOUT, no pipe".
+
+When using libusb, make sure, that /dev/ugen* and /dev/usb* devices are
+available. Use /dev/MAKEDEV to create them, if necessary.
+
+If you want to use libusb, disable the uscanner driver.
+
+Problems with uscanner driver:
+
+The uscanner driver also works (tested with the plustek backend). As the
+uscanner driver can't detect the vendor and product ids automatically, it's
+necessary to add the name of the device file to the backends's configuration
+file. Some backends also need the vendor and product id of the scanner.
+
+Some backends won't work with the uscanner driver becasue they need USB
+control messages. Use libusb instead.
+
+Parport-scanners:
+-----------------
+I don't have any information about these. Please contact me or the SANE mailing
+list if you succeded in using one of these.
+
+2003-04-24 Henning Meier-Geinitz <henning@meier-geinitz.de>

@@ -1,0 +1,136 @@
+About this driver
+=================
+
+This driver allows you to upload / download and delete pictures from
+appotech ax203 and ax206 based picture frames. This are small, cheap
+picture frames with a 1.1, 1.5, 1.8, 2.4 or 3.5 inch display and an USB id of:
+1908:0102
+1908:1315
+1908:1320
+1908:3335
+
+ax203 based frames present themselves as a usb mass storage cdrom, which
+contains the windows software. Communication with the device happens by
+issuing special (custom) scsi commands. This driver uses the special
+"usbscsi" port driver, which allows sending the custom scsi commands.
+
+Note that if your ax203 frame has a usb-id of 1908:1315, you need to tell
+Linux not to touch the HID device this version also presents in its USB
+descriptor, otherwise the frame gets confused and resets.
+Here is a kernel patch for this:
+http://marc.info/?l=linux-usb&m=126985692106903
+
+Alternative one could add the following on the linux kernel cmdline:
+usbhid.quirks=0x1908:0x1315:0x4
+But that does not help as it triggers this bug:
+http://www.spinics.net/lists/linux-input/msg07870.html
+
+Also if you have a 1908:1315 or 1908:1320 frame, these will work better
+(faster, no reset errors in dmesg), if you do the following as root, before
+plugging them in:
+modprobe usb-storage
+echo 1908:1315:b,1908:1320:b > /sys/module/usb_storage/parameters/quirks
+
+A patch for this is on its way upstream (7th april 2010).
+
+
+About the ax203 access protocol
+===============================
+
+The scsi commands for these devices was reverse engineered by several people,
+the ax203 camlib builds on top of their work, see:
+http://picframe.spritesserver.nl/wiki/index.php/Talk:HK_Unbranded_with_AppoTech_chipset
+
+The protocol consists of directly sending SPI commands to and from the SPI
+flash inside these devices, giving very raw access to the flash chip
+For example you need to do separate erase and program commands, and
+as an erase block is larger then what you program in a single program command
+you must make sure to always reprogram the entire range the single erase
+command cleared (and read the entire range before clearing, so you can write
+it back).
+
+In order to be sure we are sending the right commands the ax203 driver starts
+by reading the SPI flash's ID string, and if this is unknown it refuses to
+work. In this case please do "gphoto2 -L --debug 2> log" and mail me
+the log file.
+
+
+About the ax203 image compression
+==================================
+
+The ax203 family of picframe controllers actually comes with 4 different
+flavors of compression, see README.ax203-compression.
+
+
+Random ax203 notes
+==================
+
+Firmware versions 3.3.x and 3.4.x frames have a 2nd Parameter block at
+ABFS start + 0x1000, about which the following is known:
+bytes 4-5: 16 bit rgb 5-6-5 color value for menu background, big endian
+bytes 6-7: 16 bit rgb 5-6-5 color value for menu text, big endian
+byte 0xffe: 0x55  this byte and the next one are a magic marker to
+byte 0xfff: 0xaa  indicate the parameter block is valid
+
+ax3003 based frames contain 2 blocks with images, 1 with the images to be shown
+and one with images used inside the menus. The memory map for my ax3003 frame
+looks like this:
+ 407cc		Menu images file table, 2 bytes per file 16 bit big endian
+		start address / 256.
+ 70000		bootsplash
+ 79000		No pictures picture
+ 7f400		Pinguin picture, use unknown
+ 86900		Sync with PC picture
+ 8d200		?? Not JPEG data
+ 99200		Clock hands
+ a4600		Font + strings + clock hands for calendar display (English)
+ b0400		Font for digital clock
+ b7000		Font + strings + clock hands for calendar display (German)
+ c5000		Font + strings + clock hands for calendar display (French)
+ d2f00		Setup screen (English)
+ db300		Setup screen scrolled (English)
+ e3500		Setup screen (French)
+ eda00		Setup screen scrolled (French)
+ f5f00		Setup screen (German)
+ ff200		Setup screen scrolled (German)
+107a00		Setup screen bars
+10cb00		Calendar screen (English)
+114100		Clock screen
+11b800		Calendar screen (French)
+124900		Calendar screen (German)
+12d500		Wav file
+12e400		Wav file
+12ed00		Wav file
+136f00		Wav file
+14e700		ISO start
+180000		ABFS
+181000		Picture start
+1f0000		Picture end, boot loader ?
+1f8020		Something
+1f9000		Unused
+As you can see the jpeg data for the menu screens is rather large this is
+because it contains a ton of JPEG metadata from photoshop, if this were
+to be removed, a lot more of the memory could be used to actually store
+pictures.
+
+ax206 checksum command
+----------------------
+
+While working on support for the ax206's not quite raw flash access mode
+for eeproms with AAI, like the SST25VF080, I found out that at least the
+ax206 also has a command to read part of the eeprom and generate a 16 bit
+checksum for it. The layout of the scsi cmd buffer for this is as follows:
+byte       0: 0xcd (read from dev)
+byte  1 -  4: 0
+byte       5: 5
+byte       6: 5
+byte  7 -  8: size of area to checksum, byte 7 == MSB, 0 means 65536
+byte  9 - 10: 0
+byte 11 - 13: address to start checksum, byte 11 == MSB
+
+And then readback 64 bytes of scsi data, where the first 2 are the 16 bit
+checksum of all the bytes in the area with byte 0 being the MSB.
+
+
+Hans de Goede <hdegoede@redhat.com>
+16 Sep 2012

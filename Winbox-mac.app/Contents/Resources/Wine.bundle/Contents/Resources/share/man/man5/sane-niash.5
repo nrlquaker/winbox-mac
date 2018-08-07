@@ -1,0 +1,81 @@
+.\" $Id$
+.TH sane\-niash 5 "14 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-niash
+
+.SH NAME
+sane\-niash \- SANE backend for scanners based on the NIASH chipset.
+
+.SH DESCRIPTION
+The
+.B sane\-niash
+implements a SANE (Scanner Access Now Easy) backend that
+provides access to NIASH chipset based scanners. This backend will try to support
+the following models:
+
+.ft CR
+.nf
+MANUFACTURER:    MODEL:          USB ID:
+---------------  ----------------  ---------
+Agfa             Snapscan Touch    06BD-0100 (1)(a)
+Trust            Office Scan 19200 047B-1000 (1)(a)
+Hewlett-Packard  Scanjet 3300c     03F0-0205 (1)(a)(b)
+Hewlett-Packard  Scanjet 3400c     03F0-0405 (2)(b)
+Hewlett-Packard  Scanjet 4300c     03F0-0305 (2)(a)
+Silitek          ScanJet 4300c     047B-1002 (2)(b)
+.fi
+.ft R
+.PP
+.br
+ASIC: (1) \- NIASH00012/00013/00014 / (2) \- NIASH00019
+.br
+ANALOG FRONT-END: (a) \- ESIC ES8100QA / (b) \- WM8143-12
+.br
+
+.SH CONFIGURATION
+The
+.I niash.conf
+file is meant for future configuration options.
+Empty lines and lines starting with a hash mark (#) are
+ignored. Currently no configuration options exist.
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-niash.a
+The static library implementing this backend.
+
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-niash.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+
+.SH CAVEATS
+If you use a
+.br
+Hewlett-Packard Scanjet 3400c
+or
+.br
+Hewlett-Packard Scanjet 4300c
+.br
+together with Linux kernel
+.BR 2.6 ,
+kernel version
+.B 2.6.8
+or newer is necessary.
+
+.SH ENVIRONMENT
+.TP
+.B SANE_DEBUG_NIASH
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  Higher
+debug levels increase the verbosity of the output.
+
+Example:
+export SANE_DEBUG_NIASH=255
+
+.SH "SEE ALSO"
+.BR sane (7),
+.BR sane\-usb (5)
+.br
+http://www.sourceforge.net/projects/hp3300backend
+.SH AUTHOR
+Bertrik Sikken <bertrik@zonnet.nl>

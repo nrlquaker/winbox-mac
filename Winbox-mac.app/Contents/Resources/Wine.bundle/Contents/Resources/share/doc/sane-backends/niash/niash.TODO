@@ -1,0 +1,64 @@
+To do:
+======
+- implement coarse calibration to determine settings for analog-front-end
+  All CCDs encountered so far seem to need about the same settings however.
+
+- Store analog calibration data somewhere.
+  Use currently used values as default.
+
+- Suggestions by Marcin Cieslak:
+	- clean up structures
+	- clean up namespace
+	- clean up source formatting ('indent --gnu' ?)
+
+
+- implement real calibration, using 12 bit data at 600 dpi
+  instead of 8 bit data.at 150 dpi.
+  -> is now at 600 dpi, not yet at 12 bit
+
+- design a mechanism to set the scan and calibration areas
+  a) part of HWProps structure, or
+  b) set by user at first scan
+
+- further investigate scanner registers
+  a) study backtracking register more
+  b) identify bits in bit-oriented registers.
+
+- add more error checking ('sanity checking') on parameters
+
+- figure out what the USB interrupts mean that sometimes occur.
+
+
+
+Done
+====
+
+- Get rid of mytypes.h / fix types
+  Now an int is implicitly assumed to be 32 bit.
+
+- make backend comply with tstbackend
+-> all externs and publics removed when compiling towards sane
+
+- implement sane_cancel properly
+-> done by ullsig
+
+- implement timing mechanism for scanner lamp
+  so scanning can only start if the lamp was already on for 30 seconds
+Possible implementation:
+On startup: if lamp is off, turn it on and start timer
+On scan: if lamp is off, turn it on and start timer. Wait for timer expiry.
+On exit: if scanner chip is niash00012 then turn off lamp,
+  otherwise let the scanner turn it off automatically
+-> Implemented by Ullrich Sigwanz
+
+- try out parallel port scanning on HP3400/4300
+-> parallel port support will be dropped, no people to test/develop it
+
+- investigate vertical resolution setting of hp3400/4300.
+-> experiment with the motor table, formula is already known to generate it
+-> 600 dpi is possible by doubling most values in the table
+-> 150 dpi can be done by using register 0x06 to skip every other line
+
+- Add separate gamma tables for R, G, B. This should be easy (look at how
+  other backends do it) but is not really required yet.
+-> not required

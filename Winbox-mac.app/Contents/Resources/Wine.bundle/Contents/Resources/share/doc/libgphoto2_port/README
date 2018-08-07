@@ -1,0 +1,4 @@
+libgphoto2_port is a part of libgphoto2.
+
+It could be separated, but as nobody else is using it, it remains
+integrated into the libgphoto2 package.

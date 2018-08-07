@@ -1,0 +1,720 @@
+gt68xx.CHANGES -*-text-*-
+
+V 1.0.84 (2007-08-19)
+
+* Added Artec Ultima 2000 e+, Nortek Myscan 1200, NeatReceipts Scanalizer
+  Professional, Genius Colorpage Slim-1200.
+* Name and email address changes.
+
+V 1.0.83 (2007-01-28)
+
+* Added .conf entry for Plustek OpticPro S12 and S24. Updated .desc file.
+
+V 1.0.82 (2006-10-03)
+
+* Added support for Genius Colorpage SF600.
+
+V 1.0.81 (2006-05-21)
+
+* Added support for Plustek OpticPro S24 (some models). Added .conf entry for
+  Plustek OpticPro S12. 
+
+V 1.0.80 (2006-01-02)
+
+* Added Plustek OpticPro S(T)12 (product id 0x040b). Mostly untested.
+* Print warmup message 5 seconds after starting the warm-up.
+
+V 1.0.79 (2005-12-09) sane-backends 1.0.17
+
+* Silenced warning when scan is cancelled.
+* Silenced often non-fatal check_result error messages.
+* Reduced timeout for cancelling a scan. Some scanners freeze for 30 seconds
+  otherwise. Repeat is_moving test even if an error was received.
+* Run fix_descriptors before cancelling the scan. Without that, some gt6816
+  scanners are not detected anymore after closing the device.
+* Fixed wait_lamp_stable. Wait for a maximum time of 60 seconds. Print
+  warming up message after 5 seconds. Print how long warming up took.
+* For Mustek ScanExpress A3 USB, use more intelligent warm-up mechanism. The 
+  brightness for this scanner first decreases and then increases again. With the
+  previous logic the scanner always warmed up for at least 10 seconds even if it
+  wasn't necessary.
+* Warm up lamp also when changing from flatbed to transparency. Without this the
+  lamp may be too dark directly after changing the source.
+* Decreased scan width of Plustek OpticPro 1248U. This fixes some strange color
+  artifacts and results in less backtracking in some modes.
+
+V 1.0.78 (2005-10-16)
+
+* Minor modifications to sheet-fed scanner support.
+
+V 1.0.77 (2005-09-29)
+
+* Added support for Plustek OpticSlim M12 (untested). Based on patch from
+  Gerhard Jaeger <gerhard@gjaeger.de>. 
+* Fixed gt68xx homepage links in man page. Changed minimum version of libusb
+  to 0.1.8.
+
+V 1.0.76 (2005-09-18)
+
+* Fixed segfault that may happen with Mustek ScanExpress A3 USB.
+
+V 1.0.75 (2005-09-01)
+
+* Genius ColorPage Vivid 1200 X is reported to work.
+* Genius ColorPage Vivid 4 XE seems to be the same as 4 X, it just doesn't have
+  buttons.
+* Cleanup of .desc file.
+* Fixed gain setting.
+* Mustek ScanExpress A3 USB 600 dpi color scanning works now.
+
+V 1.0.74 (2005-08-20)
+
+* Increased number limit of scanners that can work with this backend to 50.
+* Added support for Genius ColorPage Vivid 1200 X (untested).
+
+V 1.0.73 (2005-08-19)
+
+* Enabled GT68XX_FLAG_NO_STOP for Mustek BearPaw 2400 CU Plus. Some of these
+  scanners don't seem to like that command.
+
+V 1.0.72 (2005-08-18)
+
+* Finally fixed the problem concerning scanning on *BSD. Scanning only worked
+  once. After that, the scanner wasn't even detected anymore beacuse the config
+  descriptor returned by the device was corrupted. This is a hardware bug. When
+  filling the internal memory of the scanner completely, the config descriptor
+  is overwritten. The work-around is to ask the scanner for the device
+  descriptor before closing the device. This rewrites also the config descriptor
+  to the memory of the scanner.
+* Fixed compilation warnings.
+
+V 1.0.71 (2005-07-10) Included in sane-backends 1.0.16
+
+* Changed resolution from 75 to 100 dpi and changed 16 bit/color to 12 based on
+  a user report for the Visioneer OneTouch 7300. Updated .desc.
+* Moved check for stable lamp to its own function.
+* Mustek ScanExpress A3 USB: Use CIS calibration. Use lamp warmup.
+* Fixed CCD on GT6801 scanning (color scanning was broken due to a change in
+  motormode_2.
+
+V 1.0.70 (2005-05-29)
+
+* Start exposure with the settings from the scanner entry.
+* CIS Calibration and exposure uses a broader spectrum now.
+* Expsoure limit is increased to 50 loops.
+* Genius Vivid 4x is reported to work so the UNTESTED label is removed now.
+* Visioneer 7300 is reported to work so the UNTESTED label is removed now.
+* Genius ColorPage Vivid 1200XE: Removed UNTESTED label. Fixed
+  resolutions. Adjusted margins. Fixed color order. Fixed linedistance.
+  Adjusted AFE.
+* Mustek ScanExpress 1248 UB: Fixed margins. Adjusted AFE. Adjusted
+  exposure. Adjusted gamma. Changed status to "complete".
+* Mustek BearPaw 2400 CU Plus: Adsusted exposure and AFE parameters. Hopefully
+  stripes and similar trouble are gone now.
+* Mustek BearPaw 1200 CU: Increased exposure to avoid vertical lines.
+* Updated manual page.
+
+V 1.0.69 (2005-05-20)
+
+* Mustek BearPaw 1200 CU Plus model 0x21b works now. Fixed firmware and offset
+  settings. Calibration is not completely ok yet, however.
+* Code cleanup for setup_scan (only one function for all chipsets).
+* Simplified line mode/pixel mode setting
+* Updated TODO.
+* Mustek BearPaw 2448 TA Plus is now only "basic". Too much trouble for
+  "good".
+* Removed option "fast preview". By default for preview mode 8 bits/pixel
+  are used.
+* Fixed indentation.
+* Full scan really scans from y=0 on gt6816 scanners now.
+
+V 1.0.68 (2005-05-07)
+
+* GT68XX_FLAG_NO_STOP is needed for BearPaw 2448 TA Plus.
+* Plustek OpticSlim 2400: Fixed list of resolutions. That fixed the
+  preview. Removed "untested" warning. Adjusted scan area.
+* Updated gt68xx.TODO.
+* Find firmwares independent of capitalization (bug #301580).
+
+V 1.0.67 (2004-11-14)
+
+* Fixed test to move home sensor at the start of scan.
+* Fixed gray mode linemode test. That stopped e.g. the Plustek OpticPro U 16 B
+  from working in gray mode.
+
+V 1.0.66 (2004-10-31)
+
+* Removed unused gain and offset options.
+
+V 1.0.65 (2004-10-11)
+
+* Used new lamp option from saneopts.h.
+* Fixed typos.
+* Added Packard Bell Diamond 2450 to .conf and changed status to "good".
+* Avoid error message when closing scanner.
+* Don't print max_white warning when debugging is not enabled.
+
+V 1.0.64 (2004-10-02)
+
+* Added Trust 240TH easy Webscan Gold to list of supported devices.
+* Changed status of Visioneer 7300 to basic.
+* Changed name of Genius 1200 EX to "XE". That seems to be the real name. Fixed
+  firmware name. Changed status to "minimal."
+
+V 1.0.63 (2004-09-03)
+
+* Fixed firmware name for Mustek 1248 UB. Changed status to basic. Removed
+  "unsupported" warning.
+* Added workaround for shared memory compilation problem on Windows.
+* It's now possible to add a new vendor/product id line to gt68xx.conf to test
+  yet unsupported scanners without changing the source code.
+
+V 1.0.62 (2004-08-08)
+
+* Added detection for Mustek ScanExpress 1248 UB. It's untested however and I
+  don't even know the name of the firmware.
+* Added new id for Mustek BearPaw 1200 CU Plus (0x021b). It's completely untested.
+
+V 1.0-61 (2004-06-18)
+
+* General:
+  * Re-enabled forked reader process when fork is not disabled. That's faster
+    with high resolutions and big scan widths.
+  * In gray and lineart mode the color to be used can be selected now.
+  * Resolution and depth lists are now in the "correct" order.
+  * Fixed "move to the end" bug when full scan is enabled.
+  * Used SANE_VALUE_SCAN_MODE_* macros.
+  * Added debugging code for brightness/calibration.
+  * Changed status of Genius Colorpage Vivid4x too good.
+  * Removed special command set for U16B (and Genesys Vivid4) as those scanners
+    are quite normal GT6816 devices.
+  * Removed special test for gt6816, 600 dpi, 16 bits -> linemode. The other
+    tests should change the settings to linemode if necessary.
+  * Added flag to indicate that a scanner doesn't support linemode. Print an error
+    if linemode is activated for that sort of scanners.
+  * Adjusted various debug levels.
+  * Added options to force backtracking and to set the number of lines to
+    backtrack.
+  * Increased default lamp-warmup time to 60 seconds. Also lamp-warmup doesn't
+    stop if lamp brightness is 0.
+  * reader_process returns an error now if read fails.
+  * Added gt68xx.TODO.
+  * Removed XDBG macros. Used DBG instead.
+  * Checks for correct gain and offset are in gt68xx_generic now.
+  * Fixed gain setting (including multiplier).
+  * Check for status of read_scanned_data every 10 ms. Avoids short stops before
+    scan data comes in.
+  * Added resolution limit for using backtracking.
+  * Reduced deafult CCD backtracking to 0x10 lines.
+* CCD coarse calibration:
+  * Check if calib has succeeded per color now (fewer loops).
+  * Added loop detection now.
+  * Use the brightest CCD element as max_white now.
+  * Added debugging DEFINE to check the position of the black mark.
+  * Print which color is currently calibrated.
+  * Changed debug messages.
+* CIS coarse calibration:
+  * Removed offset multiplier.
+  * Changed limits.
+  * Changed debug messages.
+  * Incresed exposure count.
+  * Removed special lamp-warmup in CIS calibration.
+  * CIS coarse calibration now does gain and offset at the same time
+    similar to CCD calibration. This change should avoid loops.
+  * Print which color is currently calibrated.
+* Mustek ScanExpress A3 USB:
+  * Fixed black mark.
+  * Use CCD calib now.
+  * Use inverted offset.
+  * Warm up for 10 seconds minimum.
+  * Fixes for geometry.
+* Plustek OpticPro U16B (and Genius Vivid 4):
+  * Linemode is not supported
+  * Reduced vertical res to 600 dpi.
+* Mustek BearPaw 1200 TA:
+  * Fixed position of black mark.
+* Mustek BearPaw 2448 TA Plus:
+  * Fixed position of black mark.
+* Mustek BearPaw 1200 CU:
+  * Increased start of white strip.
+
+V 1.0-60 (2004-04-19)
+
+* Mustek BearPaw 2448 TA PLUS:
+  - Fixed resolution settings (added missing 200 dpi mode)
+  - Fixed margins
+  - Fixed black mark
+  - Fixed TA margins
+  - Removed untested flag
+  - Changed status to "good"
+
+V 1.0-59 (2004-04-10)
+
+* Used 0, 4, 4 as linedistance for Mustek A3 USB.
+* Other mionor fixes for A3 USB.
+* Removed "unsupported scanner warning" from Mustek A3 USB.
+* Added Genius Colorpage Vivid4 to .conf file. Changed status to good. Added
+  to man page.
+* Fixed black mark for Mustek BearPaw 2448 TA Plus. This one and the Mustek A3
+  fixes are from Jakub Dvořák <xdvorak@chello.cz>.
+* Status of BearPaw 2448 TA/CS Plus is "basic" now.
+
+V 1.0-58 (2004-04-04)
+
+* Added BGR color order for pixel mode. Until now, only line mode worked in
+  that mode.
+* Plustek U16B uses setup_scan for gt6816 now.
+* Fixed linedistance for Plustek U16B.
+* Enabled 16 bit mode for Plustek U16B.
+* Fixed margins for Plustek U16B.
+* Made 600 dpi mode for Mustek BearPaw 2400 TA Plus a bit faster.
+* Changed Mustek ScanExpress A3 linedistance correction to 1, 5, 5 (?).
+* Added detection of Visioneer Onetouch 7300.
+
+V 1.0-57 (2004-03-28)
+
+* Plustek U16B: Added GT68XX_FLAG_SE_2400. Fixed color order.
+* Increased debug level for setup_scan.
+* Fixed CCD ocarse calibration.
+
+V 1.0-56 (2004-03-19)
+
+* Genius Vivid 4xe now has color order RGB.
+* Removed 50 dpi for Mustek BearPaw 2448 as that resolution doesn't work.
+* Make sure that the lamp of the Mustek A3 USB gets warmed up. It's a CIS
+  scanner with a lamp. That code is untested.
+* Full scan starts scanning from the start position of the white strip now.
+
+V 1.0-55 (2004-03-06)
+
+* Added detection for Genius Vivid 1200 EX.
+* Fixed product id of Mustek BearPaw 2448 TA Plus.
+* Other minor updates.
+ 
+V 1.0-54 (2004-02-10)
+
+* Added basic support for Plustek OpticSlim 2400. Thanks to Radoslaw Grzanka and
+  Detlef Gausepohl for providing details and testing.
+* Fixed calibration debug output.
+
+V 1.0-53 (2004-01-19)
+
+* Debug options are only enabled if the debug level is 1 and higher. This may
+  stop some people from activating dangerous options.
+* Added product id 0x0402 for Plustek U16B.
+
+V 1.0-52 (2004-01-01)
+
+* gt68xx_gt6801.c: Fixed a bug in the stop scan function for Plustek U16b.
+* Added support for Genius Vivid4xe.
+
+V 1.0-51 (2003-12-14)
+
+* Changed color order to RGB vor Genius Vivid 4x. Seems to work now. Updated
+  manpage and .desc.
+* Set linedistance correction to 0, 4, 2 for ScanExpress A3 USB. Not perfect
+  yet but better than before.
+* Added Genius Colorpage Vivid3 V2 and Googlegear 2000 as supported deviced
+  to manpage and .desc.
+* Changed Genius Colorpage Vivid3x status to good as it seems to work now.
+* Changed status of Mustek BearPaw 2448 TA Plus to minimal as it seems to at
+  least scan something.
+
+V 1.0-50 (2003-11-23)
+
+* Added Mustek BearPaw 2448 TA Plus. It's completely untested.
+* Added special command set for Plustek U16B. Changed stop scan command and
+  download_firmware. Everything is untested.
+* Added Plug-n-Scan 2400 M(T) to list of devices. No positive report yet.
+* Used request for memory writes and reads instead of a fixed value of 0x04.
+* Set Genius Vivid4x to GT6816. Untested.
+
+V 1.0-49 (2003-09-30)
+
+* Fixed wrong test for allocation in gt68xx.c.
+* Added ScanMagic 1200 UB Plus to man page and .desc.
+* Added Settings for Plustek OpticSlim 1200
+* Added detection of Genius Vivid 4x. It won't work out-of-the-box, however.
+* CCD coarse calib shouldn't run into an endless loop anymore. Plustek 1248U 
+  is much faster now.
+
+V 1.0-48 (2003-07-25)
+
+* Added RevScan 19200i to manpage and .desc file.
+* Updated .desc file to new :status system.
+* Added Fujitsu 1200CUS to man page, .conf and .desc.
+* Changed .conf file to be more readable.
+* Added RevScan 19200i to .conf file.
+* Added Plustek U16B to .desc and .conf, updated UT16B.
+
+V 1.0-47 (2003-06-05)
+
+* Don't check if the firmware is loaded. The check seems to confuse the USB
+  system on some UHCI chips.
+
+V 1.0-46 (2003-04-27)
+
+- Added Genius 3x as working scanner, removed testing flag.
+- Added Artec 2000 e+ to manpage.
+- Added detection for the Plustek OpticPro U16B.
+
+V 1.0-45 (2003-04-11)
+
+- Updated Mustek BearPaw 1200 CU Plus white strip value.
+- Set Mustek ScanExpress A3 USB to CCD. Black mark may be still wrong.
+- Minor formatting changes in the manpage.
+- Decreased ScanExpress A3 USB status to alpha because of CIS/CCD change.
+
+V 1.0-44 (2003-03-13)
+
+- Added Packard Bell Diamond 1200 Plus to .desc and manpage.
+- New flag to avoid running stop_scan before doing a scan. The Windows firmware
+  of the BearPaw 1200 CU Plus doesn't seem to like that.
+
+V 1.0-43 (2003-03-06)
+
+- Small requests are done with a response buffer of 8 bytes (instead of 64)
+  now. Looks like GT-6816 based scanners return 8 bytes if the firmware is
+  loaded and 64 bytes if it's not loaded.
+- Changed GT-6816 firmware check to ignore errors from above change. 
+  GT-6816 scanners work with the BSDs now (at least once).
+- Updated manpage concerning the BSDs.
+
+V 1.0-42 (2003-03-02)
+
+- Make sure that the firmware for plustek-like scanners is loaded. Didn't work for
+  Genius vivid3xe.
+- Added both Genius scanners to man page.
+- Removed warning from Genius Vivid3xe.
+
+V 1.0-41 (2003-02-27)
+
+- Added Genius Colorpage Vivid3xe.
+- Added request_type and request fields to the command set. Request is 0x01
+  or 0x04.
+
+V 1.0-40 (2003-02-22)
+
+- Added vid/pid 0x07b3/0x0400 to gt68xx.conf also
+- Added indormation about Medion 4394.
+- Mention ma1509 backend.
+- Fix segfault when calling sane_open with an empty device name.
+- Explicitely initialize global variables to avoid segfaults when calling
+  sane_init/sane_exit more than once.
+
+V 1.0-39 (2003-02-16)
+
+- Added BearPaw 2400 CS Plus as supported.
+- Make fast preview the default (otherwise BP 2400 TA Plus wouldn't work with
+  12/16 bits).
+- Added vid/pid 0x07b3/0x0400, that's another Plustek OpticPro 1248U.
+
+
+V 1.0-38 (2003-02-05)
+
+- Fixed resolutions for BearPaw 1200 TA (75 instead of 100).
+- Increase the lowest black for CCD coarse calibration to avoid too much black.
+- Adjusted internal gamma correction to avoid getting 0 for high gamma values.
+- CCD scanners use color mode for coarse+quality cal now. This fixes the
+  problem with extremly high gains and terrible quality cal in gray mode at
+  least for the BearPaw 1200 TA.
+--> Thanks to Alexei V. Mezin for reporting these bugs.
+- Preview isn't always in 8 bit mode now (can be selected by option).
+- Upper and lower limits for coarse calibration are unified now.
+- Added options for adjusting gain and offset.
+
+V 1.0-37 (2003-01-18)
+
+- Removed untested flag from A3 USB and Lexmark X70/X73.
+
+V 1.0-36 (2003-01-09)
+
+- Updated manpage and .desc concerning Lexmark X70.
+- Updated manpage concerning kernel 2.4.21-pre3 containing the 1-endpoint fix.
+- Fixed A3 USB resolution setting.
+- Updated A3 USB margins (Pedro Morais <morais@inocam.com>).
+- Added detection of Genius Colorpage Vivid3x. It's unknown if it works.
+- Updated .desc file.
+- Don't print calib line warnings by default.
+
+V 1.0-35 (2002-12-23)
+
+- Added "afe" option for gt68xx.conf for selecting default afe values.
+- Removed AFE and exposure SANE options.
+- Added documentation for afe option in gt68xx.conf.
+
+V 1.0-34 (2002-12-18)
+
+- fixed gt68xx_gt6801 -> lamp control.
+- adjusted Plustek 1248U geometry and afe values.
+- CCD gross calibration changed: start with the default value from module struct.
+  Is faster now for most cases.
+- Only 2.5 mm of calibration for GT-6801 scanners.
+
+V 1.0-33 (2002-12-10)
+
+- Updated ScanExpress 2400 USB values (from "Fan Dan" <dan_fancn@hotmail.com>).
+- Added implementation of gt6801 lamp control for CCD scanners.
+- Added flag for SE 2400 USB, added some quirks in gt68xx_gt6801.c.
+
+V 1.0-32 (2002-12-08)
+
+- "Coarse calibration for first scan only" is off by default now. As at least
+  CIS calibration is faster now, it doesn't seem to be necessary and produces
+  wrong images sometimes.
+- Added gamma table.
+- Setup gamma to 2.0 by default.
+- Fixed (hopefully) sigpipe when cancelling.
+- No geometry quantization anymore (not necessary). That should fix scanimage
+  warnings.
+- Plustek 1248U: do linemode for every resolution, fix color correction.
+- Set SANE_CAP_EMULATED for gamma value.
+- Added comments for every Model member in gt68xx_devices.
+- Added Plustek UT16B and Genius Vivid3x to .desc.
+- Added implementation for inverted offset for CCD scanners.
+- Added Mustek ScanExpress 2400 USB. Well, at least it's detected.
+- Added NEW marker to .desc.
+
+V 1.0-31 (2002-11-21)
+
+- Changed 150 to 200 dpi for Mustek BearPaw 2400 TA.
+- Fixed warnings in gt68xx_low.c
+- Used DBG instead of XDBG in gt68xx_low.c
+- Minor manpage fixes. Added man page links to other backends.
+- gt68xx_low.h: Fixed __FUNCTION__ bug on non-gcc compilers.
+- Added more details about the BSDs in the manpage.
+- Fixed color order for ScanExpress A3 USB.
+
+V 1.0-30 (2002-11-13)
+
+- Added basic support for Plustek OpticPro 1248U (from Gerhard Jaeger
+  <gerhard@gjaeger.de>). Only gray mode without calib seems to work until
+   now.
+- Removed 50 and 1200 dpi from Lexmark X73 (doesn't seem to work). Decreased
+  height.
+- Backend status is BETA now.
+
+V 1.0-29 (2002-11-07)
+
+- Changed option titles and descriptions to make them better readable.
+- Added translation markers for all options.
+- Added German translation for backend options.
+- Updated manpage and .desc file concerning scanner status.
+- Added untested flag for Mustek ScanEpress A3 USB and Lexmark X73.
+
+V 1.0-28 (2002-10-31)
+
+- Reduce scan width of 2400 TA Plus: otherwise the black mark would create
+  light vertical stripes.
+- Removed default parameters. Set AFE and exposure in every model struct.
+- Faster automatic gain setting for the CIS scanners. The default values from
+  the model struct and the last values are used for calculation.
+- Set default AFE values for ScanExpress 1200 UB Plus, BearPaw 1200 CU, BearPaw
+  2400 CU Plus.
+
+V 1.0-27 (2002-10-25)
+
+- Bugfix: override applies to all devices found by the last usb line.
+- Individual resolutions + depth values for every scanner.
+- Bugfix: Mirroring code had an off-by-one error (garbage in the first column).
+- Artec Ultima 2000, MD 9385: Removed 1200 dpi mode (doesn't seem to work?),
+  added 100 and 200 dpi modes. Renamed model to Artec Ultima 2000, because
+  that's probably the "father" of all the clones.
+- Mustek BearPaw 1200 CU: Added 200 dpi mode.
+- Added manual page.
+- Removed override for Packard Bell (seems to be exact Bearpaw 1200 CU Plus
+  clone).
+- Removed override for Trust Copmact Scan and Medion/Tevion/Lifetec LT 9452
+  (Mustek ScanExpress 1200 UB Plus clones).
+- Removed override for Tevion MD 9458 (seems to be an Artec Ultima 2000 (e +?)
+  clone). 
+  
+V 1.0-26 (2002-10-22)
+
+- Several fixes for Medion MD-9385 and Artec Ultima 2000 based scanners. The
+  Cytron MD 9385 works now.
+- Diabled Plustek-like firmware check again, didn't work for MD 9385.
+- Splitted flags for mirror_x and sset_home.
+
+V 1.0-25 (2002-10-20)
+
+- Fixed segfault for GT-6801 based scanners.
+- Added override for Medion MD9385.
+- Changed firmware detection code for Plustek scanners.
+- CIS autogain seraches max white and min black now (removed segment code).
+  Hopefully no more vertical stripes.
+- Adjusted ScanExpress 1200 UB Plus and BearPaw 1200 CU geometry and white
+  strip.
+
+V 1.0-24 (2002-10-12)
+
+- Added "override" keyword for gt68xx.conf. So model settings can be changed
+  at run-time. If set up correctly, firmware lines aren't necessary any more.
+- Added support for the Mustek BearPaw 2400 CU.
+- Tevion hack (now enabled by override option) also mirrors coordinates.
+- Mustek BearPaw 1200 TA 1200 dpi is set up for the Windows firmware again.
+- Added some basic I18N markers.
+- Removed option backtrack (setup automatically now).
+
+V 1.0-23 (2002-10-10),
+
+- Added detection of Mustek BearPaw A3 USB.
+- Added auto-detection of lamp status for CCD scanners (from David Stevenson).
+  No wait for the fixed time of 40 seconds any more.
+- The scan slider of the GT-6816 bsed scanners don't move home after
+  calibration/gain. TA mode is faster therefore.
+- Added hack for Tevion MD 9458 to solve the mirror and "scan-slider doesn't
+  come home" problems.
+- Fixed BearPaw 1200 TA 1200 dpi problem.
+- Fixed manual firmware selection in gt68xx.conf.
+- Added warning if power supply isn't ok.
+
+V 1.0-22 (2002-10-07),
+
+- Mustek Bearpaw 2400 CU Plus works in gray mode again
+- Line calibration uses the bit depth of the main scan now.
+- Vendor, product ids and other information is printed when debugging is active
+- Fixed segfault in attach ().
+- Fixed endianess issues (untested).
+- Code cleanup.
+
+V 1.0-21 (2002-10-07),
+
+- Added 12 bit modes for all scanners (Sergey Vlasov).
+- Fixed 2400 TA Plus in 12/16 bit modes in 1200/2400 dpi.
+- Disable depth option in lineart mode and for some scanners in gray mode.
+- Scan preview in 8 bit.
+
+V 1.0-20 (2002-10-06)
+
+- Calibration of the CCD scanners in gray mode should work better now.
+- Added 50 dpi mode for BearPaw 2400 TA Plus. Faster preview.
+- By default, /usr/local/share/sane/gt68xx/ is checked for firmware files.
+  Manual adjustment is only necessary if the firmware name is different from
+  default or at a different path.
+- Mixed and lower-case is tried when loading the firmware.
+- Adjusted geometry of BearPaw 1200 TA and 2400 TA.
+- Automatic gain fixes for TA mode.
+- Don't show "lamp off" option for CIS scanners.
+
+V 1.0-19 (2002-10-01)
+
+- Various minor fixes and adjustments concerning calibration.
+- Fixed sane_open detection of already known devices.
+- Added missing usleep for 2400 CU Plus.
+- Adjusted scan area for 1200 TA.
+- Removed detection of Artec Umltima 2000 (product id 0x4001) as this is not
+  a GT-68xx based scanner.
+- Fixed some compilation warnings.
+- Minor misc fixes.
+
+V 1.0-18 (2002-10-01)
+
+- Added detection of Artec Ultima 2000.
+- Updated Lexmark X70 settings.
+- Fixed segfault that occured when no device was detected.
+- Changed test for loaded firmware for GT-6801 scanners.
+
+V 1.0-17 (2002-10-01)
+
+- Added support for the Lexmark X70 and X73 scanners
+- Fixed shifted columns problem for BearPaw 2400 TA Plus and maybe 2400 TA.
+- Fixed y-margin for the BearPaw 1200 TA (at least I hope so)
+- Fixed BearPaw 2400 CU Plus firmware name
+- Removed gt68xx_test program from distribution. Didn't work anymore anyway.
+
+V 1.0-16 (2002-09-29)
+
+- Added calibration and auto-gain support for transparency adapter mode.
+- In transparency adapter mode, only the usable scan area is shown.
+- Autogain is repeated when source was change.d
+- Fixed geometry of ScanExpress 1200 UB Plus.
+- Fixed freeze at the end of scan for GT-6801-based scanners.
+
+V 1.0-15 (2002-09-27)
+
+- Low level reading is done in a separate process now (shm is back). Some
+  scanners should be faster therefore.
+- Added option "force backtracking". If disabled, no backtracking occurs
+  (->faster, but lines are lost).
+- Fixed hang in reader_process.
+- Fixed "auto gain once" (which really worked only once :-/)
+
+V 1.0-14 (2002-09-25)
+
+- Added basic transaprency adapter support for the Mustek Bearpaw 2400 TA
+  Plus. Other TA models may work also. No calibration or other nice features,
+  just pure external lamp on, internal lamp of.
+- Support for the Mustek BearPaw 1200 Cu Plus (hopefully).
+- Added Lineart (black/white) mode.
+- Added warming-up for CCD lamps and an option to disable shutting off the
+  lamp.
+- Print scanning time (debug level 3).
+- Removed "safe preview". Not longer necessary.
+
+V 1.0-13 (2002-09-25)
+
+- Major rewrite of the low level scan setup functions. Probably has broken
+  some of the supported scanners.
+- Geometry in the model struct is in mm now. Values for most scanners are
+  untested.
+- Added support for Mustek Bearpaw 2400 CU Plus.
+- CCD lamp is turned on when opening the frontend and turned off when leaving.
+- Auto gain is done only for the first scan.
+- Manual gain etc. options don't show up in automatic mode.
+- Faster automatic gain.
+- Bugfixes: gain/offset options, moving top-margin and exposure control.
+
+V 1.0-12 (2002-09-23)
+
+- Fixed bug concerning too little data transferred in sane_read.
+- Added detection of the Packard Bell Diamond 1200.
+- Changed some scanner names and added support for custom names in config file.
+- Use the size of the scan area in the model struct. This value may need
+  some tweaking for the gt6816 scanners.
+- Fixed the size of scanarea for the BearPaw 1200 CU/ScanEpress 1200 UB Plus
+- Disabled 16 bit mode for GT-6801 scanners. This isn't even supported by the
+  Windows driver.
+- General code cleanup. Removed gt68xx_mustek.c and SHM support.
+- Made the .tar.gz file size smaller.
+
+V 1.0-11 (2002-09-22)
+
+- 1200 dpi works now at least for the BearPaw 1200 CU. Maybe also for the
+  other scanners.
+- Added manual and automatic offset/gain/exposure control for the CIS
+  scanners. The image should be better now.
+- Added debug option to scan the full scan area including the calibration
+  strip.
+
+V 1.0-10 (2002-09-18)
+
+- 50, 75, 150, 300, 600 work now for the GT6801 scanners
+- Preview is fast again (can be set to safe/slow mode)
+- Calibration can be disabled by option
+- Added some more safety checks for USB commands
+- The gt68xx_test program can be used again
+
+V 1.0-9 (2002-09-17)
+
+- Added option to disable automatic gain (->less ugly colors for GT-6801
+  based models)
+- Fixed segfault that occured when a scan was cancelled
+- Preview uses slow but safe (?) 300 dpi 8 bit modes now
+- Fixed bug concerning X0/Y0 coordinates
+- Started implementing dpeth option (doesn't work yet)
+- Internal changes (use high_scan's wait_for_positioning)
+
+V 1.0-8 (2002-09-16)
+
+- Fixed distortion problem in color mode
+- Selected safer default option values
+- Changed file names to be more appropriate for SANE
+
+V 1.0-7 (2002-09-16)
+
+- Initial version based on Sergey Vlasov's gt68xx backend v 0.0.6
+- Added basic SANE interface in gt68xx.c
+- Added SANE options and SANE variables to gt68xx_high.h
+- Minor adjustments to gt68xx_low.h
+- Added support for Mustek BearPaw 2400 TA Plus

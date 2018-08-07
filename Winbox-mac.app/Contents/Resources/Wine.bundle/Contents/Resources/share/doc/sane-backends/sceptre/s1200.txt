@@ -1,0 +1,109 @@
+Scanner overview
+- One pass scanner
+- 10 DPI minimum. Max X=600 dpi, max Y=1200 dpi.
+- A4 size
+
+/*--------------------------------------------------------------------------*/
+
+Components:
+- Weltrend WT8616
+- TEMIC TSC 80C31 (CMOS 0 to 44 MHz Single-Chip 8 Bit Microcontroller)
+
+/*--------------------------------------------------------------------------*/
+
+SCSI overview
+- the SCSI implementation in this scanner is non-standard but simple.
+- there is no REQUEST SENSE command.
+- since there is no sense, it is impossible to know if a command has succeeded.
+
+/*--------------------------------------------------------------------------*/
+
+SCSI commands:
+
+TEST UNIT READY
+00 00 00 00 01 00
+  Returns 1 byte of data:
+    00 = scanner ready
+    ff = scanner not ready
+
+Vendor Spec
+02 00 00 00 04 00
+  Get 4 bytes of status. Used to check the button.
+  Default result when the button is not pressed
+    06 00 00 00 
+
+INQUIRY
+  result:
+    06 00 02 02 30 00 00 10  4b 49 4e 50 4f 20 20 20    ....0...KINPO       
+    56 69 76 69 64 73 63 61  6e 20 53 31 32 30 20 20    Vividscan S120      
+    53 31 33 20 20 20 20 20  02 01 00 00 4a 45 46 46    S13     ....JEFF    
+    ...
+
+MODE SEL
+15 10 00 00 18 00
+
+SCAN
+1B 00 00 00 00 00
+
+RECEIVE DIAG
+1C 00 00 00 03 00
+
+SEND DIAG
+1D 00 80 00 00 00
+
+SET WINDOW
+24 00 00 00 00 00 00 00 52 00
+  The window size is always 0x52 bytes. The parameters look standard:
+    - X/Y resolution       |
+    - Upper left X,Y       |- all three coded in 600 dpi units 
+    - Width, Length        |
+    
+  The supported scan modes are:
+    - lineart image comp=0, halftone=0, depth=1
+    - halftone image comp=0, haltone=1 to 4, depth=1
+    - grayscale image comp=2,  halftone=0, depth=8
+    - color image comp=5, halftone=0, depth=24
+  
+  Y resolution is not used (X is also used for Y)
+  X resolution is limited to 600 (if above, scanner defaults to 600)
+  Y resolution is limited to 1200 (if above, scanner defaults to 1200)
+  Image composition is byte 33, halftone is byte 36, depth is byte 34
+
+READ (10)
+28 00 00 00 00 00 00 FE 9A 00
+
+SEND (10)
+2A 00 03 00 00 02 00 03 00 00
+Sends 300h bytes of gamma. 100h bytes per color. What is the color order?
+
+GET DATA BUFFER STATUS
+34 01 00 00 00 00 00 00 10 00
+Returns:
+  - byte 0 to 7: ? (these bytes looks rather standard)
+  - byte 8 to 11: total size left to read
+  - byte 12 to 13: number of lines (constant during a scan)
+  - byte 14 to 15: pixels per line (constant during a scan)
+
+/*--------------------------------------------------------------------------*/
+
+Color shifts
+
+Color order returned by the scanner is Red, then Green, then Blue. There is a color shift, meaning the raster for the Red is not followed by the Green raster for the same line.
+The shifts are:
+  dpi          lines per color
+ 1200				 16
+ 1125				 15
+ 1050				 14
+  900				 12
+  750				 10
+  600				  8
+  450				  6
+  300                 4
+  150                 2
+   90				  1
+   75				  1
+   50				  0
+
+Some resolution give garbage. However that table might not be complete.
+
+

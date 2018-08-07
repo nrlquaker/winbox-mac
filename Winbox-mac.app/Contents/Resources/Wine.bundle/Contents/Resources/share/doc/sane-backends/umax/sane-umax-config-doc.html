@@ -1,0 +1,431 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Oliver Rauch">
+   <meta name="Description" content="unix scanner driver for UMAX scanners">
+   <title>SANE-umax - Configuration</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#51188E" alink="#FF0000">
+
+
+<table>
+<tr>
+<td width=200>
+<img SRC="sane-logo.jpg" alt="SANE-logo" hspace=60 align=BOTTOM>
+<br>
+<img SRC="sane-umax-text.jpg" alt="UMAX-logo" HSPACE=50>
+</td>
+<td>
+<blockquote>
+<h1><font color="#009900">Configuration</font></h1>
+</blockquote>
+</td>
+</tr>
+</table>
+
+
+<hr WIDTH="100%">
+
+<table>
+<tr>
+<td VALIGN=TOP WIDTH="250" BGCOLOR="#E0E0FF">
+<br>
+<ul>
+<li><a href="sane-umax-doc.html">Index</a></li>
+
+<li>
+Frontend options:
+<ul>
+<li><a href="sane-umax-standard-options-doc.html">Standard options</a></li>
+<li><a href="sane-umax-advanced-options-doc.html">Advanced options</a></li>
+</ul>
+</li>
+
+<li>
+Supported scanners:
+<ul>
+<li><a href="sane-umax-powerlook-doc.html">Power Look series</a></li>
+<li><a href="sane-umax-mirage-doc.html">Mirage series</a></li>
+<li><a href="sane-umax-astra-doc.html">Astra series</a></li>
+<li><a href="sane-umax-vista-doc.html">Vista series</a></li>
+<li><a href="sane-umax-uc-doc.html">UC series</a></li>
+<li><a href="sane-umax-others-doc.html">others</a></li>
+<li><a href="sane-umax-not-listed-doc.html">Not listed scanners</a></li>
+<li><a href="sane-umax-scanner-clones-doc.html">UMAX scanner clones</a></li>
+</ul>
+</li>
+
+<li><a href="sane-umax-parport-doc.html">UMAX parallel port scanners</a></li>
+<li><a href="sane-umax-config-doc.html">Configuration</a></li>
+<li><a href="sane-umax-speed-doc.html">Speed of UMAX scanners</a></li>
+<li><a href="http://www.rauch-domain.de/sane-umax">SANE-umax homepage</a></li>
+<li><a href="http://www.sane-project.org">SANE homepage</a></li>
+<li><a href="http://www.xsane.org/">XSane homepage</a></li>
+</ul>
+<br>
+</td>
+
+
+<td VALIGN=TOP BGCOLOR="#FFFFFF">
+<blockquote>
+<br>
+<h2>
+CONFIGURATION:
+</h2>
+
+<blockquote>The configuration file for this backend resides in
+<dl>
+<dd>
+/usr/local/etc/sane.d/umax.conf.
+</dd>
+</dl>
+</blockquote>
+
+<blockquote>
+Its contents is a list of options and device names that correspond to UMAX
+scanners. Empty lines and lines starting with a hash mark (#) are ignored.
+A sample configuration file is shown below:
+<br>
+<dl>
+<dd>option scsi-buffer-size-min 65536</dd>
+<dd>option scsi-buffer-size-max 131072</dd>
+<dd>option scan-lines 40</dd>
+<dd>option preview-lines 10</dd>
+<dd>option scsi-maxqueue 2</dd>
+<dd>option handle-bad-sense-error 0</dd>
+<dd>option execute-request-sense 0</dd>
+<dd>option force-preview-bit-rgb 0</dd>
+<dd>option slow-speed -1</dd>
+<dd>option care-about-smearing -1</dd>
+<dd>option calibration-full-ccd -1</dd>
+<dd>option calibration-width-offset -1</dd>
+<dd>option calibration-bytes-pixel -1</dd>
+<dd>option invert-shading-data -1</dd>
+<dd>option lamp-control-available 0</dd>
+<dd>#scsi Vendor Model Type Bus Channel ID LUN</dd>
+<dd>scsi UMAX * Scanner * * * * *</dd>
+<dd>/dev/scanner</dd>
+<dd># this is a comment</dd>
+<dd>/dev/sge</dd>
+</dl>
+</blockquote>
+
+<blockquote>
+The special device name must be a generic SCSI device or a
+symlink to such a device. To find out to which device your scanner is assigned
+and how you have to set the permissions of that device, have a look at
+<a href="http://www.sane-project.org/man/sane-scsi.5.html">sane-scsi</a>.
+</blockquote>
+
+<blockquote>
+When the generic scsi driver of the system supports selection
+of scsi buffer sizes the umax backend calculates the scsi buffer
+sizes in dependance of the numbers of bytes per scanline.
+With <i>scsi-buffer-size-min</i> and <i>scsi-buffer-size-max</i>
+the scsi buffer size can be defined in a range between 4KB and 1MB.
+Especially the minimum value is very important. If this value is
+set too small the backend is not able to send gamma tables to the
+scanner or to do a correct color calibration. This may result in
+strange color effects. If the minimum value is set too large then
+the backend is not able to allocate the requested scsi buffer size
+and aborts with out of memory error. The default is 32KB, for
+some scanners it should be increased to 64KB.
+
+<p>
+The option <i>scan-lines</i> defines the number of lines that
+shall be scanned with one scsi read command for a real scan.
+The number of lines that are read with one scsi command for
+preview scans are defined by the option <i>preview-lines</i>.
+Both have to be in the range between 1 and 65536.
+<p>
+With the option <i>scsi-maxqueue</i> you can define the number
+of scsi commands that shall be queued. UMAX scanners do not
+support command queueing - as far as I know. But some scsi controller
+drivers do support queueing in the kernel. In this case it does not
+make sense to queue more than 2 commands.
+<p>
+When you are able to do color previews but color scans do not
+work you can set the option <i>force-preview-bit-rgb 1</i>.
+This always sets the preview bit when acquiring a color scan.
+The image quality may be reduced.
+<p>
+Some scanners (especally very old scanners) may need the options
+<i>slow-speed</i> and/or <i>care-about-smearing</i>. The value
+-1 uses the value defined by the driver, 0 disables the feature,
+1 enables the feature. <b>Do not change these options unless
+you really know what you do, you can destroy your scanner
+by setting wrong values for this options!!!</b>
+<p>
+Some scsi drivers (or may be some scanners) do return an invalid
+error code when a scsi command is executed. There are different
+ways to handle such bad error codes. You can define the behaviour
+of the umax-backend by setting the option <i>handle-bad-sense-error</i>
+in umax.conf. You can set the following values:<br>
+<dl>
+<dd>0 : handle as device busy</dd>
+<dd>1 : handle as ok</dd>
+<dd>2 : handle as i/o error</dd>
+<dd>3 : ignore bad error code, continue sense handler</dd>
+</dl>
+In most cases it does work when this condition is handled as a
+device busy state so this is the default (0).
+<p>
+The option <i>execute-request-sense</i> disables(0) or enables(1)
+the scsi command REQUEST_SENSE. The command can be called when the
+scanner asks the driver to do calibration. The driver does
+not know the required calibration parameters for all scanners.
+Some scanners return the needed parameters when the driver
+executes the REQUEST_SENSE command. But there is a problem
+with the REQUEST_SENSE command on some systems with some
+scsi controller drivers. This can cause a system hang.
+So the safe way is to disable the REQUEST_SENSE command,
+but the driver may not be able to do correct calibration
+in this case.
+<p>
+For some scanners the calibration has to be done by the driver.
+For this the driver has to know some values about the calibration
+data. When the REQUEST_SENSE command is disabled or the scanner
+does not return the correct data the driver needs to know the
+correct parameters. For some scanners the parameters are stored
+in the driver. When these values are not set correct the image
+might look very strange. To be sure that you have a problem
+with the calibration please enable debug output.
+<p>
+<i>calibration-full-ccd</i>:<br>
+The calibration can be done for each element of the CCD (1)
+or for each pixel of the requested image(0). 
+The value -1 enables the value defined in the driver.
+<p>
+<i>calibration-width-offset</i>:<br>
+Some scanners use more pixels than calculated by image/CCD
+parameters. A value larger or equal 0 defines the offset.
+The value -1 enables the value defined in the driver.
+<p>
+<i>calibration-bytes-pixel</i>:<br>
+Some scanners use 1 byte calibration data although the
+scanner supports more than 8 bits/pixel. You can define
+1 or 2 bytes per pixel calinration data. 
+The value -1 enables the value defined in the driver.
+<p>
+<i>invert-shading-data</i>:<br>
+Some scanners need inverted shading data (1), others
+need original shading data (0).
+The value -1 enables the value defined in the driver.
+
+</blockquote>
+
+<h2>
+SCSI ADAPTER TIPS:</h2>
+
+<blockquote>
+The UMAX-scanners do block the scsi-bus for a few seconds while
+scanning. It is not necessary to connect the scanner to its own SCSI-adapter.
+But if you need short response time for your SCSI-harddisk (e.g. if your
+computer is a file-server), I suggest you use an own SCSI-adapter for your
+UMAX-scanner.
+</blockquote>
+
+<blockquote>
+The SCSI-adapters that are shipped with some Umax-scanners
+are very simple ones. I suggest not to use them. If you really want to
+try: the UDS-IS11 uses a DTC3181E chip (compatible to NCR5380). On linux
+you may have the chance to get it work with the recent g_NCR5380-driver.
+The card does not have IRQ/DMA. Try the following option for kernel boot
+option:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dtc_3181e=0x280,255
+<p>&nbsp;or use the following command:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; insmod g_NCR5380 ncr_irq=255
+ncr_addr=0x280 dtc_3181e=1
+<p>&nbsp;&nbsp;&nbsp;&nbsp; - ncr_irq=255 : no IRQ, no DMA
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - ncr_irq=254 : autoprobe IRQ
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - ncr_addr : can be: 0x220 0x240 0x280 0x2A0 0x2C0 0x300 0x320 0x340
+<br>&nbsp;
+<p>
+For
+<a href="http://support.umax.co.uk/technotes/f096B.htm">information about the umax-scsi-cards</a>
+take a look here.
+</blockquote>
+
+<blockquote>
+See the relevant hardware FAQs and HOWTOs for your platform
+for more information.
+<br>See also: <a href="http://www.sane-project.org/man/sane-scsi.5.html">sane-scsi</a>
+</blockquote>
+
+<h2>FILES:</h2>
+
+<blockquote>
+<ul>
+<li>The backend configuration file: /usr/local/etc/sane.d/umax.conf</li>
+<li>The static library implementing this backend: /usr/local/lib/sane/libsane-umax.a</li>
+<li>
+The shared library implementing this backend : /usr/local/lib/sane/libsane-umax.so<br>
+(present on systems that support dynamic loading)
+</li>
+</ul>
+</blockquote>
+
+<h2>ENVIRONMENT:</h2>
+
+<blockquote>
+<ul>
+<li>SANE_DEBUG_UMAX</li>
+</ul>
+</blockquote>
+
+<blockquote>
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend. E.g., a
+value of 128 requests all debug output to be printed. Smaller levels reduce
+verbosity:
+</blockquote>
+
+<center>
+<table BORDER>
+<tr BGCOLOR="#40E0D0">
+<td VALIGN=TOP COLSPAN="2"><b><font face="Arial">SANE_DEBUG_UMAX values</font></b></td>
+</tr>
+
+<tr>
+<td WIDTH="10%">
+<address>
+<b>Number</b></address>
+</td>
+
+<td WIDTH="90%">
+<address>
+<b>Remark</b></address>
+</td>
+</tr>
+
+<tr>
+<td>
+<address>
+0</address>
+</td>
+
+<td>print important errors (printed each time)</td>
+</tr>
+
+<tr>
+<td>
+<address>
+1</address>
+</td>
+
+<td>print errors</td>
+</tr>
+
+<tr>
+<td>2</td>
+
+<td>print sense</td>
+</tr>
+
+<tr>
+<td>
+<address>
+3</address>
+</td>
+
+<td>print warnings</td>
+</tr>
+
+<tr>
+<td>4</td>
+
+<td>print scanner-inquiry</td>
+</tr>
+
+<tr>
+<td>
+<address>
+5</address>
+</td>
+
+<td>print information</td>
+</tr>
+
+<tr>
+<td>6</td>
+
+<td>print less important information</td>
+</tr>
+
+<tr>
+<td>7</td>
+
+<td>print called procedures</td>
+</tr>
+
+<tr>
+<td>8</td>
+
+<td>print reader_process messages</td>
+</tr>
+
+<tr>
+<td>
+<address>
+10</address>
+</td>
+
+<td>print called sane-init-routines</td>
+</tr>
+
+<tr>
+<td>
+<address>
+11</address>
+</td>
+
+<td>print called sane-procedures</td>
+</tr>
+
+<tr>
+<td>
+<address>
+12</address>
+</td>
+
+<td>print sane-infos</td>
+</tr>
+
+<tr>
+<td>
+<address>
+13</address>
+</td>
+
+<td>print sane option control messages</td>
+</tr>
+</table></center>
+
+<h4>Example:</h4>
+
+<blockquote>
+export SANE_DEBUG_UMAX=8
+</blockquote>
+
+<center>
+<hr WIDTH="100%">
+<br>
+<font color="#009900">This page has been changed on 27th. feburary 2001</font>
+<br>
+<br>
+</center>
+</blockquote>
+
+</td>
+</tr>
+</table>
+
+<hr WIDTH="100%">
+
+<blockquote>
+Author: <a href="mailto:Oliver.Rauch@rauch-domain.de">Oliver Rauch</a>
+</blockquote>
+
+</body>
+</html>

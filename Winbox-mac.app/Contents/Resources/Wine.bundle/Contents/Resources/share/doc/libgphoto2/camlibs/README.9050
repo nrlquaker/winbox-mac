@@ -1,0 +1,70 @@
+/* This is one of the README files for libgphoto2/camlibs/digigr8. This is an 
+ * integral part of the libgphoto2/camlibs/digigr8 library source code and is 
+ * distributed with that source code under the LGPL license. a copy of which 
+ * license may be seen in the head directory of libgphoto2, in the file 
+ * COPYING.
+ * This file copyright Theodore Kilgore, 01/21/2008.
+ */ 
+
+CONCERNING 0x2770:0x9050 CAMERAS:
+
+First, a general remark. The reader is strongly encouraged to read 
+README.905C as well as this file. That file in fact pertains to all of the 
+cameras which are supported by libgphoto2/camlibs/digigr8. All of what it says
+pertains to the 0x2770:0x9050 cameras, too, unless something to the contrary is
+stated below.
+
+
+As of 01/20/2008, the only known camera with USB ID string 0x2770:0x9050 is the
+"Disney pix micro," found at KB Toys. Its functionality is very basic. On the 
+package it says the camera is able to take 20 photos, but in fact the number 
+of photos is variable. For, they are all compressed. 
+
+Since the compression algorithm is the same as that in the 0x905C cameras, this  
+camera is quite usable, for what it is. Resolution for this camera is fixed at 
+352x288 and can not be adjusted. In fact, the only thing on the camera which 
+can be controlled at all, aside from snapping photos one at a time, is to 
+delete photos one at a time or to delete all.  To delete one photo with the 
+delete button on the camera, press the button. To delete all, hold it down 
+longer. To the best of my ability to determine, the camera has no clip option, 
+no delayed-shooting option, and no multi-frame clips intended for AVI images. 
+However, the camera will do software deletion of all photos using the option 
+gphoto2 -D, while for the other cameras supported in camlibs/digigr8 the 
+gphoto2 -D option does nothing at all and is therefore considered as an 
+unsupported operation for those other cameras. However:
+
+
+WARNING
+
+The USB command to delete is the same as the command to shoot a frame 
+(gphoto2 option is --capture-preview). If you shoot a frame with the Disney 
+pix micro, it will delete whatever photos are on the camera !!!
+
+WARNING
+
+The camera has kernel support as a webcam, at 320x240 resolution. 
+
+Use of the camera in webcam mode will delete all photos stored on the 
+camera, too !!!
+
+
+WARRANTY?
+
+	Absolutely not. No warranty. Never. Not responsible for any actual
+	or potential damage or consequences to anyone or to the equipment of
+	anyone for using this program, whether the alleged damage or alleged
+	consequences are claimed to be real, imaginary, direct, collateral,
+	for pain and suffering, or are claimed to be inflicted upon any
+	"third party" who is not the user or installer of the program. The
+	program has been written for my pleasure and to broaden and deepen
+	my knowledge of computer hardware and software. The program has not
+	been written with the immediate expectation of financial gain or
+	profit on my part, nor has it been commissioned for pay. It is
+	presumed that any end-user of this program will have access to the
+	source code of the program and can judge for himself or herself
+	whether he/she wishes to use it or not, or can consult someone with
+	appropriate expertise to make such a judgment. 
+
+
+Theodore Kilgore
+01/21/2008, revised 01/22/2008, 01/12/2012

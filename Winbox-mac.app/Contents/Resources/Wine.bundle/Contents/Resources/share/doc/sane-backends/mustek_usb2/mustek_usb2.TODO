@@ -1,0 +1,9 @@
+.mustek_usb2.TODO -*-text-*-
+
+- Check if there is an easy way to avoid pthread
+- prepare for different scanners (and more than one scanner)
+- adjust debug levels (currently only DBG_FUNC is used in _high.c).
+- unify debug messages ("start"/"exit" functions etc.)
+- check all "HOLD"s in the code
+- check if 1200 x 2400 dpi modes can be added
+- try to add additional scanners

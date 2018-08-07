@@ -1,0 +1,82 @@
+.TH sane\-sm3600 5 "14 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-sm3600
+.SH NAME
+sane\-sm3600 \- SANE backend for Microtek scanners with M011 USB chip
+.SH DESCRIPTION
+The
+.B sane\-sm3600
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to some Microtek scanners with the Toshiba M011 custom
+USB chip.  This backend should be considered alpha.
+.PP 
+There are also backends for Microtek scanners with SCSI command set.
+Refer to sane\-microtek(5) and sane\-microtek2(5) for details.
+.PP
+At present, the following
+scanners are known positively to work with this backend:
+.PP
+.RS
+.ft CR
+.nf
+Vendor     Product id:     Remark:
+--------   --------------  -----------
+Microtek   ScanMaker 3600  all modes ok
+Microtek   ScanMaker 3700  reported to work
+Microtek   ScanMaker 3750  reported to work
+.fi
+.ft R
+.RE
+.PP
+If you own a Microtek scanner with the M011 chip other than the ones
+listed above, it may or may not work with SANE!
+
+.SH "FRONTEND OPTIONS"
+This backend dynamically enables the options for the frontend,
+that are supported by the scanner in dependence of the scanning-mode
+and other options. Not supported options are disabled.
+.PP
+The following options are supported by the Microtek2-driver:
+.PP
+Color, grayscale, halftone and lineart scans.
+.PP
+contrast, brightness, control, gamma correction.
+
+.SH "DEVICE NAMES"
+This backend does not support device names in a standardized form.
+
+.SH CONFIGURATION
+This backend does not support a configuration file right now.
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-sm3600.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-sm3600.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+
+.SH ENVIRONMENT
+.TP
+.B SANE_DEBUG_SM3600
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  E.g.,
+a value of 128 requests all debug output to be printed.  Smaller
+levels reduce verbosity. To see error messages on stderr set
+SANE_DEBUG_SM3600 to 1.
+
+.br
+E.g. just say:
+.br
+export SANE_DEBUG_SM3600=5
+
+.SH "SEE ALSO"
+sane\-microtek2(5), http://sm3600.sourceforge.net
+
+.SH AUTHOR
+.br
+Marian Eichholz (eichholz@computer.org)
+.br
+Glenn Ramsey (glenn@componic.com)
+.br
+

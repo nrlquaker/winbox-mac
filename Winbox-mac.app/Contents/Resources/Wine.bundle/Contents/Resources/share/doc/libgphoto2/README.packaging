@@ -1,0 +1,119 @@
+========================================================================
+libgphoto2 README.packaging
+========================================================================
+
+This file describes a number of things you should know when building
+packages (.debs, .rpms, ports, emerges, etc. pp.)
+
+
+========================================================================
+libgphoto2 and libgphoto2_port
+==============================
+
+The libgphoto2 library builds on the libgphoto2_port library, which is
+thus internally contained within every libgphoto2 release. By
+installing libgphoto2, you always also install libgphoto2_port.
+
+
+========================================================================
+Installed files
+===============
+
+A standard install of libgphoto2 does about this:
+
+   * The most important files:
+     * ${libdir}/libgphoto2.{a,la,so}
+     * ${libdir}/libgphoto2/<VERSION>/*.{a,la,so}        (camlibs)
+     * ${libdir}/libgphoto2_port.{a,la,so}
+     * ${libdir}/libgphoto2_port/<VERSION>/*.{a,la,so}   (iolibs)
+     In most cases, you can remove the *.a and *.la files from the
+     list of files to ship.
+   * Packaging helpers:
+     * ${utilsdir}/libgphoto2/print-camera-list
+     * ${utilsdir}/libgphoto2/print-usb-usermap (linux-hotplug, obsolete)
+     * ${udevscriptdir}/check-mtp-device
+     * ${udevscriptdir}/check-ptp-camera
+     Defaults: utilsdir=${libdir}, ${udevscriptdir}=${libdir}/udev.
+     You probably want to ./configure udevscriptdir=/lib/udev and possibly
+     utilsdir='${libexecdir}', depending on your system.
+   * Documentation:
+     * Man pages:
+       * ${mandir}/man3/libgphoto2.3
+       * ${mandir}/man3/libgphoto2_port.3
+     * ${docdir}/camlibs/README.*    (camlib docs)
+     * ${docdir}/{README,AUTHORS,NEWS}
+     * ${docdir}/apidocs.html/       API docs
+     * ${docdir}/{README,AUTHORS,NEWS}
+     You may want to install these files into your custom locations.
+     If you separate library from libfoo-devel packages, the former
+     should probably ship with the camlib docs, and the general README
+     and NEWS. Try configure --with-docdir=.
+   * Translated strings:
+     * ${datadir}/locale/*/LC_MESSAGES/libgphoto2-2.mo
+     * ${datadir}/locale/*/LC_MESSAGES/libgphoto2_port-0.mo
+     * ${datadir}/libgphoto2/<VERSION>/konica/*
+       These files are required for the konica camlib to work at all.
+   * For developers:
+     * ${includedir}/gphoto2/gphoto2*.h
+     * ${libdir}/pkgconfig/libgphoto2.pc
+     * ${libdir}/pkgconfig/libgphoto2_port.pc
+
+Note that utilsdir, udevscriptdir, etc. can be set at configure
+time. See "configure --help".
+
+
+========================================================================
+Permission setup
+================
+
+We consider it a bug in the package if the package does not offer a
+way for the user to just plug in his camera and use it. This may at
+most require adding the user to a "camera" or "plugdev" group.
+
+You will want to create HAL or UDEV rules by running this utility:
+
+   * print-camera-list
+
+This utility requires libgphoto2 and its camlibs being installed,
+either
+
+   * at package building time by doing a DESTDIR based temporary
+     install somewhere and setting LD_LIBRARY_PATH and CAMLIBS before
+     running print-camera-list
+   * at package installation time as a post installation hook
+
+The UDEV rules require two helper scripts/binaries, which obviously
+need to be installed by the package:
+
+   * check-mtp-device (not working yet)
+   * check-ptp-camera
+
+You can either use fixed permissions in the generated rules, or call
+your own permission setup script to dynamically decide what to do.
+
+(Contemporary example scripts are not being shipped yet.)
+
+
+========================================================================
+Development packages
+====================
+
+The recommended way to use libgphoto2 in a build process is to use
+pkg-config and thus these files really should be shipped in a package:
+
+   * /usr/lib/pkgconfig/libgphoto2.pc
+   * /usr/lib/pkgconfig/libgphoto2_port.pc
+
+We are still shipping
+
+   * /usr/bin/gphoto2-config
+   * /usr/bin/gphoto2-port-config
+
+for compatibility reasons, but that will obviously break when you have
+a /usr/lib64 vs. /usr/lib conflict. That problem is one the packager
+will have to resolve - we consider this mechanism obsolete.
+
+
+========================================================================
+End of file.
+========================================================================

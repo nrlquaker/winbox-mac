@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# get current path
+if test $(echo $0 | grep "Wine.app/Contents/MacOS/startwine"); then
+    WINE_DIRNAME="$(dirname "$0")/../Resources"
+else
+    WINE_DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+fi
+# exports to ensure wine finds all libs in the bundle
+export PATH="$WINE_DIRNAME/bin":$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"$WINE_DIRNAME/lib":"/usr/X11/lib"
+export DYLD_FALLBACK_LIBRARY_PATH="/usr/lib":"$WINE_DIRNAME/lib":"/usr/X11/lib"
+#export FONTCONFIG_FILE="$WINE_DIRNAME/etc/fonts/fonts.conf"
+# start wine
+exec "$WINE_DIRNAME/bin/wine" "$@"

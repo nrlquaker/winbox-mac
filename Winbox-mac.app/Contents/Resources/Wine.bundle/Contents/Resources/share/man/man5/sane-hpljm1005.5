@@ -1,0 +1,37 @@
+.TH sane\-hpljm1005 5 "13 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-hpljm1005
+.SH NAME
+sane\-hpljm1005 \- SANE backend for Hewlett-Packard LaserJet M1005 MFP Scanner
+.SH DESCRIPTION
+The
+.B sane\-hpljm1005
+library implements a SANE (Scanner Access Now Easy) backend that provides
+access to the following Hewlett-Packard scanner:
+.PP
+.RS
+LaserJet M1005
+.RE
+.PP
+If you own a scanner other than the ones listed above that works with this
+backend, please let us know this by sending the scanner's exact model name and
+the USB vendor and device ids (e.g. from
+.IR /proc/bus/usb/devices ,
+.I sane\-find\-scanner
+or syslog) to us. Even if the scanner's name is only slightly different from
+the models mentioned above, please let us know.
+.SH CONFIGURATION
+None required.
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-hpljm1005.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-hpljm1005.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH "SEE ALSO"
+.BR sane (7),
+.BR sane\-usb (5),
+
+.SH AUTHOR
+Philippe R\['e]tornaz <couriousous@mandriva.org>

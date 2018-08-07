@@ -1,0 +1,51 @@
+/* This is the README file for libgphoto2/camlibs/clicksmart310. This README 
+ * is an integral part of the libgphoto2/camlibs/clicksmart310 library source 
+ * code and is distributed with that source code under the LGPL license, a copy 
+ * of which license may be seen in any of the source files in 
+ * libgphoto2/camlibs/clicksmart310, 
+ * or in the head directory of libgphoto2. 
+ */ 
+ 
+ 
+The Logitech Clicksmart 310 camera is based upon a Sunplus spca50x chip, but 
+its command sequences are quite different from those cameras supported in 
+camlibs/spca50x. Hence, a separate library to support it. 
+
+The camera will do 352x288 and 176x144 resolution settings. The camera (not
+the driver software) compresses all photos in JPEG format. High-resolution 
+and low-resolution settings use different compression algorithms; not only are
+the low-resolution photos of smaller pixel dimensions, but they are also more
+highly compressed. 
+
+The hardware supports the following listed actions, all of which are 
+implemented here:
+
+-- JPEG photo format for both high-resolution and low resolution settings 
+-- download all photos (gphoto2 -P)
+-- download any selected list of photos (gphoto2 -p)
+-- delete all photos on camera
+-- shoot a clip, which is saved by the OEM driver as an AVI file and we 
+save the clip frames here as individual photos. If you want to see a movie
+from them, then try using the ImageMagick function "animate."
+
+The camera is "dual mode" and can also function as a webcam, supported by the 
+spca50x kernel module. All streaming video and all capture abilities of the 
+camera use isochronous data transmission and thus require support from 
+a kernel module. The hardware will not support the capture options of gphoto2. 
+
+The user should be aware that access to this camera through gphoto2 will
+fail if attempted with the spca50x kernel module already loaded. In that event 
+the kernel module will already have claimed the camera. Thus, if you have the 
+kernel module please make sure it is not installed. You may need to add 
+spca50x to  /etc/hotplug/blacklist to ensure that the module is not 
+automatically installed when the camera is plugged in.  
+
+Credits:
+
+Russell Bell <russell@rickstewart.com> has done extensive testing, and has 
+also participated in the coding. 
+
+Warranty: None.  
+
+Theodore Kilgore <kilgota@auburn.edu> 
+01/21/2006

@@ -1,0 +1,318 @@
+.TH sane\-microtek2 5 "13 Jul 2008" "" "SANE Scanner Access Now Easy"
+.SH NAME
+sane\-microtek2 \- SANE backend for Microtek scanners with SCSI-2 command set
+.SH DESCRIPTION
+The
+.B sane\-microtek2
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to Microtek scanners with a SCSI-2 command set.
+This backend can be considered alpha to beta. Some scanner models are reported
+to work well, others not. New development versions of this backend can be
+obtained from
+.B http://karstenfestag.gmxhome.de
+.PP
+There exists a different backend for Microtek scanners with SCSI-1 command
+set.
+Refer to sane\-microtek(5) for details.
+.PP
+And there is work in progress for the ScanMaker 3600.
+See
+.B http://sourceforge.net/projects/sm3600
+.PP
+At present, the following scanners are known positively to work with this
+backend:
+.PP
+.ft CR
+.nf
+Vendor     Product id        Remark
+--------------------------------------------------------------------
+Microtek   E3+               Parport and SCSI
+Microtek   X6                SCSI
+Microtek   X6EL              SCSI
+Microtek   X6USB             USB
+Microtek   ScanMaker V300    Parport and SCSI
+Microtek   ScanMaker V310    Parport and SCSI
+Microtek   ScanMaker V600    Parport and SCSI
+Microtek   ScanMaker 330     SCSI
+Microtek   ScanMaker 630     SCSI
+Microtek   ScanMaker 636     SCSI
+Microtek   ScanMaker 9600XL  SCSI; only flatbed mode?
+Microtek   Phantom 330CX     Parport
+Microtek   SlimScan C3       Parport
+Microtek   SlimScan C6       USB
+Microtek   Phantom 636       SCSI
+Microtek   Phantom 636CX     Parport
+Microtek   V6USL             SCSI and USB
+Microtek   V6UPL             USB; not stable
+Microtek   X12USL            SCSI; only 8bit color, work in progress
+Vobis      HighScan          SCSI (E3+ based models)
+Scanport   SQ300             Parport?
+Scanport   SQ4836            SCSI
+Scanpaq    SQ2030            Parport
+.fi
+.ft R
+.PP
+Additional information can be found at
+.BR http://www.sane\-project.org/ .
+.PP
+If you own a Microtek scanner other than the ones listed above,
+it may or may not work with SANE! Because equal scanners are sold under
+different names in different countries your model may be equivalent to one of
+the above.
+.PP
+The parport scanners work with the ppscsi + onscsi kernel modules. See
+.I http://cyberelk.net/tim/parport/ppscsi.html
+and
+.IR http://penguin-breeder.org/kernel/download/ .
+
+.PP
+The USB scanners work with the microtek kernel module. You may have to add the
+vendor and model codes to microtek.c if they aren't yet listed there.
+.PP
+Both parport and USB scanners need the generic SCSI support, so check if you
+have loaded the scsi_mod and sg modules!
+.PP
+If you try your scanner for the first time keep an eye on it. If it gets
+commands that it doesn't understand the scanhead may go beyond the scan area.
+The scanner then makes strange noises. In this case immediately switch off
+the scanner or disconnect its power cable to prevent damages!
+.PP
+If your scanner is a different one than the models mentioned above and it is
+working please tell the author about it. It would be nice if you add a logfile
+to this information (creation of the logfile: see below).
+.PP
+If your scanner is not working properly you also should create a logfile and
+send it to the author. He will use the information to improve the backend and
+possibly make your scanner work.
+.PP
+.br
+How to create the logfile?
+.TP
+\- put the line
+.br
+"option dump 2" into your
+.I microtek2.conf
+file or change the existing "option dump" to "2"
+.TP
+\- in a terminal (bash) type
+.br
+"export SANE_DEBUG_MICROTEK2=30" and then
+.br
+"scanimage \-l0 \-t0 \-x100 \-y20 2>scan.log >sout.pnm"
+.br
+You get two files: scan.log contains the logfile and sout.pnm the scanned
+image (if there was scanned something). Zip them before sending.
+
+.SH "FRONTEND OPTIONS"
+This backend dynamically enables the options for the frontend, that are
+supported by the scanner in dependence of the scanning-mode and other
+options.
+Not supported options are disabled.
+.PP
+The following options are supported by the Microtek2-driver:
+.PP
+Color, grayscale, halftone and lineart scans.
+.PP
+Highlight, midtone, shadow, contrast, brightness, exposure time control,
+gamma correction, threshold (dependent of the scan mode and the scanner
+capabilities)
+.PP
+Transparency media adapter, automatic document feeder
+.PP
+Additional options can be enabled or disabled in the
+.I microtek2.conf
+file. See the configuration section of this manpage.
+
+.SH "DEVICE NAMES"
+This backend expects device names of the form:
+.PP
+.RS
+.I  special
+.RE
+.PP
+Where
+.I special
+is the UNIX path-name for the special device that corresponds to the
+scanner.  The special device name must be a generic SCSI device or a
+symlink to such a device.  Under Linux, such a device name could be
+.I  /dev/sga
+or
+.I  /dev/sge
+for example.
+.SH "CONFIGURATION"
+The configuration file for this backend resides in
+.IR /Users/mike/Documents/wine/usr/etc/sane.d/microtek2.conf .
+
+Its contents is a list of device names that correspond to Microtek
+scanners with SCSI-2 interface. Empty lines and lines starting with
+a hash mark (#) are ignored.
+.PP
+The configuration file may also contain options. Global options that are valid
+for all devices are placed above the device names. Device-specific options
+are
+placed under the device name. Note that, except for option dump <n> and
+option strip-height <n>, the entry in the microtek2.conf file only enables
+the corresponding option for being showed in the frontend. There, in the
+frontend, you can switch the options on and off.
+Currently the following options are supported:
+.PP
+.RS
+option dump <n>
+.br
+option strip\-height <n>
+.br
+option no\-backtrack\-option <on/off>
+.br
+option lightlid\-35 <on/off>
+.br
+option toggle\-lamp <on/off>
+.br
+option lineart\-autoadjust <on/off>
+.br
+option backend\-calibration <on/off>
+.br
+option colorbalance\-adjust <on/off>
+.RE
+.PP
+.I option dump <n>
+enables printing of additional information about the SCSI commands that are
+sent to the scanner to stderr. This option is primarily useful for debugging
+purpose. This option has to be a global option and is best placed at the top
+of the
+.I microtek2.conf
+file.
+.PP
+If n=1 the contents of the command blocks
+and the results for the INQUIRY and READ SCANNER ATTRIBUTES command are
+printed to stderr.
+.PP
+If n=2 the contents of the command blocks for all other SCSI commands are
+printed to stderr, too. If n=3 the contents of the gamma table is
+printed, too. If n=4 all scan data is additionally printed to stderr.
+.PP
+The default is n=1.
+.PP
+.I option strip\-height <n>
+, where <n> is a floating point number, limits the amount of data that is
+read from the scanner with one read command.
+The unit is inch and <n> defaults to 1.0, if this option is not set in the
+configuration file. If less than <n> inch of data fit into the SCSI buffer,
+then the smaller value is used and this option has no effect.
+.PP
+If your system has a big SCSI buffer and you want to make use of the whole
+buffer, increase the value for <n>. For example, if <n> is set to 14.0,
+no restrictions apply for scanners with a letter, legal or A4 sized scan area.
+.PP
+.PP
+The following options enable or disable additional frontend options. If an
+option is set to <on> an appropriate option will appear in the frontend.
+.PP
+.I option no\-backtrack\-option <on/off>
+prevents the scanner head from moving backwards between the read commands.
+This speeds up scanning. Try it.
+.PP
+.I option lightlid\-35 <on/off>
+If you use the LightLid-35 transparency adapter you get an advanced
+option which switches off the flatbed lamp during the scan.
+.PP
+.I option toggle\-lamp <on/off>
+You get a button in the frontend where you can switch on and off the flatbed
+lamp.
+.PP
+.I option lineart\-autoadjust <on/off>
+You can tell the backend to try to determine a good value for the lineart
+threshold.
+.PP
+.I option backend\-calibration <on/off>
+Some scanners (e.g. Phantom 330CX and 636CX) need to have calibrated the data
+by the backend. Try this option if you see vertical stripes in your pictures.
+.PP
+.I option colorbalance\-adjust <on/off>
+Some scanners (e.g. Phantom 330CX and 636CX) need to have corrected
+the color balance. If this option is enabled you get advanced options
+where you can balance the colors. And you will have a button
+to use the values that the firmware of the scanner provides.
+.PP
+A sample configuration file is shown below:
+.PP
+.RS
+option dump 1
+.br
+option strip\-height 1.0
+.br
+/dev/scanner
+.br
+option no\-backtrack\-option on
+.br
+# this is a comment
+.br
+/dev/sge
+.br
+option lightlid\-35 on
+.RE
+
+This backend also supports the new configuration file format which makes
+it easier to detect scanners under Linux. If you have only one scanner it
+would be best to use the following configuration file for this backend:
+.PP
+.RS
+option dump 1
+.br
+option strip\-height 14.0
+.br
+option no\-backtrack\-option on
+.br
+option backend\-calibration on
+.br
+option lightlid\-35 on
+.br
+option toggle\-lamp on
+.br
+option lineart\-autoadjust on
+.br
+option colorbalance\-adjust off
+.br
+scsi * * Scanner
+.RE
+
+In this case all SCSI-Scanners should be detected automatically because of the
+.PP
+scsi * * Scanner
+.PP
+line.
+
+.SH "FILES"
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/microtek2.conf
+The backend configuration file.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-microtek2.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-microtek2.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH "ENVIRONMENT"
+.TP
+.B SANE_DEBUG_MICROTEK2
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  E.g.,
+a value of 255 requests all debug output to be printed.  Smaller
+levels reduce verbosity. To see error messages on stderr set
+SANE_DEBUG_MICROTEK2 to 1 (Remark: The whole debugging levels should
+be better revised).
+.br
+E.g. just say:
+.br
+export SANE_DEBUG_MICROTEK2=128
+.SH "SEE ALSO"
+sane\-scsi(5), sane(7)
+.SH "AUTHORS"
+Bernd Schroeder (not active anymore)
+.br
+Karsten Festag  karsten.festag@gmx.de
+
+
+
+
+

@@ -1,0 +1,12 @@
+; File generated automatically from ./dlls/dinput/dinput.spec; do not edit!
+
+LIBRARY dinput.dll
+
+EXPORTS
+  DirectInputCreateA@16 @1
+  DirectInputCreateEx@20 @2
+  DirectInputCreateW@16 @3
+  DllCanUnloadNow@0 @4 PRIVATE
+  DllGetClassObject@12 @5 PRIVATE
+  DllRegisterServer@0 @6 PRIVATE
+  DllUnregisterServer@0 @7 PRIVATE

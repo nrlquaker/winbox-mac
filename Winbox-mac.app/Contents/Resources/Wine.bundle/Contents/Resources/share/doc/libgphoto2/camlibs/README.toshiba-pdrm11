@@ -1,0 +1,36 @@
+This is the driver for the toshiba pdr-m11 camera.  It's not the greatest
+camera, but it is enough for me.
+
+What works:
+I can get a list of filenames, download jpeg thumbnails, and download all files
+
+What doesn't work:
+Tiff thumbnails don't work.  Deleting a file only works sometimes.
+
+
+The camera appears to be a 16bit little-endian processor (based on guesses from the data it sends back.)
+
+--------SIGNALS--------------------
+
+-signal-----length-----read/write---------data----------------
+
+1f40		0	w		(used in init)
+1f30		0	w		(used in init)
+
+9300		0	w		(sent right before retrieving a picture)
+9b00		0	w		(sent right before retrieving a thumbnail)
+
+ad00		8	r		30 01 <2picNum> <jpeg/tiff> 00 00 00
+
+ae00		2	w		01 00		(always follows a b200)
+b200		2	w		<2picNum>	(select a picture)
+
+b600		10	r		00 00 <number of pictures> 00 ?? ?? ?? ??
+b900		26	r		00 00 <12filename> 20 00 20 00 <4LengthOfPic> 64 46 3f 2e
+ba40		2	r		00 00 (used in delete)
+bf01		2	r		00 00
+d000		4	r		01 30 00 25	(check if camera is ready? (30 and 00 don't change 01 and 25 signal ready)
+e600		14	r		?? ?? ?? ?? ?? ?? ?? <2ThumbSize> ?? ?? ?? ?? ??
+d700		0	w		ping
+d800		0	w		ping (there is a d800 followed by a d701)
+d701		0	w		(ping?)

@@ -1,0 +1,134 @@
+.TH sane\-ma1509 5 "13 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-ma1509
+.SH NAME
+sane\-ma1509 \- SANE backend for Mustek BearPaw 1200F USB scanner
+.SH DESCRIPTION
+The
+.B sane\-ma1509
+library implements a SANE (Scanner Access Now Easy) backend that provides
+access to the Mustek BearPaw 1200F USB flatbed scanner. This scanner is based
+on the MA-1509 chipset. Other scanners that use this chip (if they exist) may
+also work.
+.PP
+This backend is ALPHA software.  Be careful and remove the power plug
+immediately if your hear unusual noises.
+.PP
+More details can be found on the ma1509 backend homepage 
+.IR http://www.meier\-geinitz.de/sane/ma1509\-backend/ .
+.PP
+Other Mustek USB scanners are supported by the gt68xx, mustek_usb and the
+plustek backends. See
+.BR sane\-mustek_usb (5),
+.BR sane\-gt68xx (5)
+and
+.BR sane\-plustek (5)
+for details.
+.PP
+This backend can only work with scanners that are already detected by the
+operating system. See 
+.BR sane\-usb (5)
+for details.
+.PP
+If you own a scanner other than the Mustek BearPaw 1200F that works with this
+backend, please let me know this by sending the scanner's exact model name and
+the USB vendor and device ids (e.g. from
+.I /proc/bus/usb/devices
+or syslog) to me.
+
+.SH "DEVICE NAMES"
+This backend expects device names of the form:
+.PP
+.RS
+.I special
+.RE
+.PP
+Where
+.I special
+is a path-name for the special device that corresponds to a USB scanner.
+With Linux, such a device name could be
+.I /dev/usb/scanner0
+or
+.IR libusb:001:002 ,
+for example.
+.PP
+
+.SH CONFIGURATION
+The contents of the
+.I ma1509.conf
+file is a list of options and device names that correspond to Mustek BearPaw
+1200F scanners.  Empty lines and lines starting with a hash mark (#) are
+ignored.
+.PP
+Instead of using the device name, the scanner can be autodetected by 
+.B "usb vendor_id product_id"
+statements which are already included into
+.IR ma1509.conf .
+This is only supported with Linux 2.4.8 and higher and all systems that
+support libsub. "vendor_id" and "product_id" are hexadecimal numbers that
+identify the scanner. If this doesn't work, a device name must be placed in
+.I ma1509.conf 
+as described above.
+.PP
+To set the time the lamp needs for warm-up, use
+.B option
+.B warmup-time
+in 
+.IR ma1509.conf .
+The time is given in seconds after the option. The default is 30 seconds.
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/ma1509.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-ma1509.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-ma1509.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /Users/mike/Documents/wine/usr/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/Users/mike/Documents/wine/usr/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_MA1509
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  Higher
+debug levels increase the verbosity of the output. 
+
+.SH "SEE ALSO"
+.BR sane (7),
+.BR sane\-usb (5),
+.BR sane\-gt68xx (5),
+.BR sane\-plustek (5),
+.BR sane\-mustek_usb (5),
+.BR sane\-mustek (5),
+.BR sane\-mustek_pp (5),
+.br
+.I http://www.meier\-geinitz.de/sane/ma1509\-backend/
+
+.SH AUTHOR
+Henning Meier-Geinitz <henning@meier\-geinitz.de>
+
+.SH BUGS
+Resolutions higher than 600 dpi don't work
+.br
+Transparency adapter and automatic document feeder is not supported yet
+.br
+No support for "high-speed" mode (jpeg)
+.PP
+More detailed bug information is available at the MA-1509 backend homepage
+.IR http://www.meier\-geinitz.de/sane/ma1509-backend/ .

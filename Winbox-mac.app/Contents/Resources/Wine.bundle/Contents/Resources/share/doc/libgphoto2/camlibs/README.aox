@@ -1,0 +1,122 @@
+This driver will download pictures from the Concord EyeQ Mini. This camera
+has Vendor:Product number 0x3e8:0x2182 and is one of several cameras occupying 
+the entry level in the digital camera market, as do the SQ905 cameras. I 
+mention the SQ905 cameras because the Concord EyeQ Easy has been reported to 
+me as an SQ905 camera. So that is how I obtained this creature, by accident. 
+I went to WalMart hoping to find an SQ905 camera which would do 640x480. I 
+found a Concord EyeQ Mini, thought it was probably the same thing as a 
+Concord EyeQ Easy, bought it, brought it home, and found out it was something 
+altogether different. Well, then, I just had to make it work...
+
+The chip inside the camera is unknown, but the .inf file provided with the
+camera calls it an "Aox." Apparently, Aox is the same company as Endpoints,
+Inc. The chip may be an Endpoints SE401 or SE402. 
+
+According to its manual, the camera can be used as a webcam, or to shoot a 
+short video sequence. AFAIK both of these features require kernel module 
+support in order to be used properly, and those features are not addressed 
+here. This camera library provides a driver for the Concord EyeQ Mini as a 
+still camera. 
+
+For those interested in the webcam features, there do exist Linux kernel drivers 
+for webcams with SE401 (module "se401") and SE402 module "epcam"). Those 
+drivers do indeed support cameras with Vendor number 0x3e8, but Product number 
+0x2182 is not listed in their source files. Furthermore, the mere act of adding 
+the number and re-compiling the kernel module does not seem all by itself to 
+make this camera work as a webcam. The author of these two kernel modules has 
+stated to me in e-mail that Endpoints was willing to share some information 
+with him about how to access the SE401 and SE402 chips in webcam mode. However, 
+my own request for similar information about the still camera functionality has 
+not been answered, as of 11/04/03. This camlib, therefore, has been constructed 
+by means of observation, combined with guesswork. 
+
+Features and quirks of the camera:
+
+The camera has two sizes of pictures. The high-resolution pictures are
+640x480 pixels. Their data format is a Bayer array, from which it is
+possible to create a PPM image. The camera holds a maximum of 23 pictures in
+high-resolution mode. The manufacturer's driver creates JPEG compressed 
+images from the downloaded data, and the user is certainly free to do same. 
+Here, high-resolution pictures will be saved in PPM format. 
+
+The low-resolution pictures are 320x240. According to the manual, these
+pictures are compressed in the camera and are downloaded as JPEG images.
+However, the compression used is unknown. Thus, it is currently not possible 
+to make pictures from the resulting files. You can just download them. Or, 
+better yet, figure out what the format is and let me know. The low-compression
+data download is not of fixed size, but may vary from one picture to the
+next. All low-resolution photos will be saved as RAW files, until such time 
+as they are better understood. 
+
+If you have a random mixture of low-resolution and high-resolution photos on
+the camera, then the camera will always download the low-resolution pictures
+first and the high-resolution photos only after that. In other words, in
+that situation the pictures will not be downloaded in the order in which you
+shot them. 
+
+The camera also supports "video clip" mode, in which the camera keeps taking 
+frames so long as one holds down the shutter button. Unfortunately, there is 
+not much point in implementing that until the low-resolution non-standard 
+encoded format is better understood, because that is what it uses. 
+
+Some things which work for me, with various gphoto2 options:
+
+gphoto2 --summary 
+will report the number of low-resolution pictures and the number of 
+high-resolution pictures separately, as well as the total number
+of pictures. 
+
+gphoto2 -P 
+is functional, but see previous remarks about high and low resolution  
+photos. 
+
+gphoto2 -p x-y 
+is functional, too, assuming there are at least y pictures in the camera 
+and x <= y.  
+
+gphoto2 --get-all-raw-data
+
+License: 
+
+LGPL (see the head of the libgphoto2 source tree; this camera library is a 
+part of the libgphoto2 project).
+
+Warranty: 
+
+None, neither expressed nor implied. This camera driver has been written 
+for the sake of the challenge, and in order to learn more about both hardware 
+and software support for the hardware from the actual experience of writing 
+a device driver. Those intending to use the Aox camera library should keep 
+these facts in mind, in order to keep an appropriate sense of perspective. 
+
+Nevertheless, the Aox camera library driver works for me and carries out for 
+me the functions which are described here. I seriously hope and intend that 
+it should work for others, too. Please report any problems or bugs to me or 
+to the gphoto-devel mailing list. 
+
+Copyright by Theodore Kilgore, November 11, 2003.
+kilgota at auburn.edu
+
+Additional remarks, June 27, 2004:
+
+First the good news:
+Thumbnail capability has been added, and the library should be fully functional 
+now with a GUI frontend. I have tested both gtkam and digikam. Gtkam works very 
+nicely for me, but for unknown reasons my digikam somehow fails to display the 
+thumbnails. That is probably the fault of my digikam setup, because it fails for 
+all of my cameras. It may work for you and if you want to use digikam then 
+certainly you should try it. 
+
+The bad news:
+The camera has "video clip" capability, meaning that with a certain camera 
+setting it is possible to hold down the shutter button and keep shooting 
+frames (the only limitation being the amount of free memory in the camera). 
+Unfortunately, the clip mode uses the non-standard compression, and thus 
+there is no point in trying to implement clip mode until the compression 
+is understood. 
+
+June 17, 2006: 
+
+New camera  D-MAX DM3588 - 0x03e8:0x2130 found by Amauri Magagna 
+<amaurimagagna@gmail.com>. The new camera seems to differ only in minor 
+details from the previously known cameras, but requires a separate model entry.

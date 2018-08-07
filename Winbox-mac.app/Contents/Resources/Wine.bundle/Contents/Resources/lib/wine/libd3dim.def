@@ -1,0 +1,5 @@
+; File generated automatically from ./dlls/d3dim/d3dim.spec; do not edit!
+
+LIBRARY d3dim.dll
+
+EXPORTS

@@ -1,0 +1,521 @@
+.TH sane\-plustek 5 "13 Feb 2013" "" "SANE Scanner Access Now Easy"
+.IX sane\-plustek
+.SH NAME
+sane\-plustek \- SANE backend for LM983[1/2/3] based
+USB flatbed scanners
+.SH DESCRIPTION
+The
+.B sane\-plustek
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to USB flatbed scanners based on National Semiconductor
+Merlin chipsets (LM9831, 9832 and 9833).
+If you're looking for parallel-port support for Plustek scanner
+please refer to the
+.B sane\-plustek_pp
+backend.
+
+.SH "SUPPORTED DEVICES"
+The Backend is able to support USB scanner based on the National
+Semiconductor chipsets LM9831, LM9832 and LM9833. The following tables
+show various devices which are currently reported to work. If your
+Plustek scanner has another Product ID, then the device is
+.B NOT
+supported by this backend.
+.br
+
+Vendor Plustek \- ID: 0x07B3
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+OpticPro U12       LM9831  600x1200dpi 42bit 512Kb 0x0010
+OpticPro UT12      LM9831  600x1200dpi 42bit 512Kb 0x0013
+OpticPro UT12      LM9832  600x1200dpi 42bit 512Kb 0x0017
+OpticPro UT16      LM9832  600x1200dpi 42bit 512Kb 0x0017
+OpticPro U24       LM9831 1200x2400dpi 42bit   2Mb 0x0011
+OpticPro U24       LM9832 1200x2400dpi 42bit   2Mb 0x0015
+OpticPro UT24      LM9832 1200x2400dpi 42bit   2Mb 0x0017
+.fi
+.ft R
+.PP
+
+Vendor KYE/Genius \- ID: 0x0458
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+Colorpage HR6 V2   LM9832  600x1200dpi 42bit 512Kb 0x2007
+Colorpage HR6 V2   LM9832  600x1200dpi 42bit 512Kb 0x2008
+Colorpage HR6A     LM9832  600x1200dpi 42bit 512Kb 0x2009
+Colorpage HR7      LM9832  600x1200dpi 42bit 512Kb 0x2013
+Colorpage HR7LE    LM9832  600x1200dpi 42bit 512Kb 0x2015
+Colorpage HR6X     LM9832  600x1200dpi 42bit 512Kb 0x2016
+.fi
+.ft R
+.PP
+
+Vendor Hewlett-Packard \- ID: 0x03F0
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+ScanJet 2100C      LM9831  600x1200dpi 42bit 512Kb 0x0505
+ScanJet 2200C      LM9832  600x1200dpi 42bit 512Kb 0x0605
+.fi
+.ft R
+.PP
+
+Vendor Mustek \- ID: 0x0400
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+BearPaw 1200       LM9831  600x1200dpi 42bit 512Kb 0x1000
+BearPaw 1200       LM9832  600x1200dpi 42bit 512Kb 0x1001*
+BearPaw 2400       LM9832 1200x2400dpi 42bit   2Mb 0x1001
+.fi
+.ft R
+* see also description for model override switch below!
+.PP
+
+Vendor UMAX \- ID: 0x1606
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+UMAX 3400          LM9832  600x1200dpi 42bit 512Kb 0x0050
+UMAX 3400/3450     LM9832  600x1200dpi 42bit 512Kb 0x0060
+UMAX 5400          LM9832 1200x2400dpi 42bit 512Kb 0x0160
+.fi
+.ft R
+.PP
+
+Vendor COMPAQ \- ID: 0x049F
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+S4-100             LM9832  600x1200dpi 42bit 512Kb 0x001A
+.fi
+.ft R
+.PP
+
+Vendor Epson \- ID: 0x04B8
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+Perfection 1250    LM9832 1200x2400dpi 42bit 512Kb 0x010F
+Perfection 1260    LM9832 1200x2400dpi 42bit 512Kb 0x011D
+.fi
+.ft R
+.PP
+
+Vendor CANON \- ID: 0x04A9
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+CanoScan N650/656U LM9832  600x1200dpi 42bit 512Kb 0x2206
+CanoScan N1220U    LM9832 1200x2400dpi 42bit 512Kb 0x2207
+CanoScan D660U     LM9832  600x1200dpi 42bit 512Kb 0x2208
+CanoScan N670/676U LM9833  600x1200dpi 48bit 512Kb 0x220D
+CanoScan N1240U    LM9833 1200x2400dpi 48bit 512Kb 0x220E
+CanoScan LIDE20    LM9833  600x1200dpi 48bit 512Kb 0x220D
+CanoScan LIDE25    LM9833 1200x2400dpi 48bit 512Kb 0x2220
+CanoScan LIDE30    LM9833 1200x2400dpi 48bit 512Kb 0x220E
+.fi
+.ft R
+.PP
+
+Vendor Syscan \- ID: 0x0A82
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+Travelscan 662     LM9833  600x1200dpi 48bit 512Kb 0x6620
+Travelscan 464     LM9833  600x1200dpi 48bit 512Kb 0x4600
+.fi
+.ft R
+.PP
+
+Vendor Portable Peripheral Co., Ltd. \- ID: 0x0A53
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+Q-Scan USB001      LM9832   300x600dpi 42bit 512Kb 0x1000
+Q-Scan USB201      LM9832   300x600dpi 42bit 512Kb 0x2000
+.fi
+.ft R
+.PP
+
+Vendor Visioneer \- ID: 0x04A7
+.br
+.ft CR
+.nf
+----------------------------------------------------------
+USB Model:         ASIC:  Properties:              Prod-ID
+----------------------------------------------------------
+Strobe XP100       LM9833  600x1200dpi 48bit 512Kb 0x0427
+.fi
+.ft R
+.PP
+
+.SH "OTHER PLUSTEK SCANNERS"
+For parallelport device support see the
+.B plustek_pp
+backend.
+.br
+The SCSI scanner OpticPro 19200S is a rebadged Artec AM12S scanner
+and is supported by the
+.B Artec
+backend.
+.br
+Only the National Semiconductor LM983[1/2/] based devices of Plustek
+are supported by this backend. Older versions of the U12, the UT12,
+the U1212 and U1248 (GrandTech chipset) are not supported.
+.PP
+.ft CR
+.nf
+Model             Chipset    backend
+------------------------------------
+U1248             GrandTech  gt68xx
+UT16B             GrandTech  gt68xx
+OpticSlim 1200    GrandTech  gt68xx
+OpticSlim 2400    GrandTech  gt68xx
+U12                P98003     u12
+UT12               P98003     u12
+1212U              P98003     u12
+.fi
+.ft R
+For a more complete and up to date list see:
+.B http://www.sane\-project.org/sane\-supported\-devices.html
+
+.SH "CONFIGURATION"
+To use your scanner with this backend, you need at least two
+entries in the configuration file
+.I /Users/mike/Documents/wine/usr/etc/sane.d/plustek.conf
+.RS
+.I [usb] vendor-id product-id
+.br
+.I device /dev/usbscanner
+.RE
+.PP
+.I [usb]
+tells the backend, that the following devicename (here
+.IR /dev/usbscanner )
+has to be interpreted as USB scanner device. If vendor- and
+product-id has not been specified, the backend tries to
+detect this by its own. If device is set to
+.I auto
+then the next matching device is used.
+.br
+The following options can be used for a default setup of
+your device. Most of them are also available through
+the frontend.
+.PP
+.B
+The Options:
+.PP
+option warmup t
+.RS
+.I t
+specifies the warmup period in seconds, if set to \-1, the 
+automatic warmup function will be used
+.RE
+.PP
+option lampOff t
+.RS
+.I t
+is the time in seconds for switching off the lamps in
+standby mode
+.RE
+.PP
+option lOffonEnd b
+.RS
+.I b
+specifies the behaviour when closing the backend, 1 --> switch
+lamps off, 0 --> do not change lamp status
+.RE
+.PP
+option mov m
+.RS
+.I m
+is the model override switch. It works only with Mustek
+BearPaw devices.
+.br
+.br
+.ft CR
+.nf
+m/PID |    0x1000    |    0x1001
+------+--------------+--------------
+  0   | BearPaw 1200 | BearPaw 2400
+  1   |  no function | BearPaw 1200
+.fi
+.ft R
+.RE
+.PP
+option invertNegatives b
+.RS
+.I b
+0 --> do not invert the picture during negativ scans,
+.br
+1 --> invert picture
+.RE
+.PP
+option cacheCalData b
+.RS
+.I b
+0 --> do not save calibration results,
+.br
+1 --> save results of calibration in ~/.sane/ directory
+.RE
+.PP
+option altCalibration b
+.RS
+.I b
+0 --> use standard calibration routines,
+.br
+1 --> use alternate calibration (only non Plustek devices, standard for CIS devices)
+.RE
+.PP
+option skipFine b
+.RS
+.I b
+0 --> perform fine calibration,
+.br
+1 --> skip fine calibration (only non Plustek devices)
+.RE
+.PP
+option skipFineWhite b
+.RS
+.I b
+0 --> perform white fine calibration,
+.br
+1 --> skip white fine calibration (only non Plustek devices)
+.RE
+.PP
+option skipDarkStrip b
+.RS
+.I b
+0 --> perform dark calibration, with enabled lamp using the
+dark calibration strip of the scanner. If the scanner does
+not have such a strip, the alternative way is to switch off
+the lamp during this step.
+.br
+1 --> always switch off the lamp for dark calibration, even
+a black strip is available
+.RE
+.PP
+option skipCalibration b
+.RS
+.I b
+0 --> perform calibration,
+.br
+1 --> skip calibration (only non Plustek devices)
+.RE
+.PP
+option enableTPA b
+.RS
+.I b
+0 --> default behaviour, specified by the internal tables,
+.br
+1 --> override internal tables and allow TPA mode (EPSON/UMAX only)
+.RE
+
+.PP
+option posOffX x
+.br
+option posOffY y
+.br
+option tpaOffX x
+.br
+option tpaOffY y
+.br
+option negOffX x
+.br
+option negOffY y
+.RS
+.I x y
+By using this settings, the user can adjust the given image
+positions.
+.B Please note, that there's no internal range checking for
+.B this feature.
+.RE
+.PP
+option posShadingY p
+.br
+option tpaShadingY p
+.br
+option negShadingY p
+.RS
+.I p
+overrides the internal shading position. The values are in steps.
+.B Please note, that there's no internal range checking for
+.B this feature.
+.RE
+.PP
+option redGamma r
+.br
+option greenGamma g
+.br
+option blueGamma b
+.br
+option grayGamma gr
+.RS
+.I r g b gr
+.RE
+By using these values, the internal linear gamma table (r,g,b,gr = 1.0)
+can be adjusted.
+.PP
+option red_gain r
+.br
+option red_offset ro
+.br
+option green_gain g
+.br
+option green_offset go
+.br
+option blue_gain b
+.br
+option blue_offset bo
+.RS
+.I r g b ro go bo
+These values can be used to set the gain and offset values of
+the AFE for each channel. The range is between 0 and 63. \-1
+means autocalibration.
+.RE
+
+.PP
+See the plustek.conf file for examples.
+.PP
+.B Note:
+.br
+You have to make sure, that the USB subsystem is loaded
+correctly and you have access to the device-node. For
+more details see
+.B sane\-usb (5)
+manpage. You might use
+.B sane\-find\-scanner
+to check that you have access to your device.
+.PP
+.B Note:
+.br
+If there's no configuration file, the backend defaults to
+.B device auto
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/plustek.conf
+The backend configuration file
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-plustek.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-plustek.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /Users/mike/Documents/wine/usr/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/Users/mike/Documents/wine/usr/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_PLUSTEK
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  Higher
+debug levels increase the verbosity of the output.
+
+Example:
+export SANE_DEBUG_PLUSTEK=10
+
+.SH "SEE ALSO"
+.BR sane (7),
+.BR sane\-usb (5),
+.BR sane\-u12 (5),
+.BR sane\-gt68xx (5),
+.br
+.I /Users/mike/Documents/wine/usr/share/doc/sane-backends/plustek/Plustek-USB.changes
+.br
+.I http://www.gjaeger.de/scanner/plustek/
+
+.SH "CONTACT AND BUG-REPORTS"
+Please send any information and bug-reports to:
+.br
+.B SANE Mailing List
+.PP
+Additional info and hints can be obtained from our
+.br
+Mailing-List archive at:
+.br
+.B http://www.sane\-project.org/mailing\-lists.html
+.PP
+or directly from the projects' homepage at:
+.br
+.B http://www.gjaeger.de/scanner/plustek/
+.PP
+To obtain debug messages from the backend, please set the
+environment-variable
+.I SANE_DEBUG_PLUSTEK
+before calling your favorite scan-frontend (i.e. xscanimage).
+.br
+.B i.e.: export SANE_DEBUG_PLUSTEK=20 ; xscanimage
+.PP
+The value controls the verbosity of the backend. Please note, that
+values greater than 24 force the backend to output raw data files,
+which could be rather large. The ending of these files is ".raw".
+For problem reports it should be enough the set the verbosity to
+13.
+
+.SH "KNOWN BUGS & RESTRICTIONS"
+
+.PP
+* The driver does not support these manic scalings up
+to 16 times the physical resolution. The only scaling
+is done on resolutions between the physical resolution
+of the CCD-/CIS-sensor and the stepper motor i.e. you 
+have a 600x1200 dpi scanner and you are scanning using 
+800dpi, so scaling is necessary, because the sensor only 
+delivers 600dpi but the motor is capable to perform 
+1200dpi steps.
+.PP
+* Plusteks' model policy is somewhat inconsistent. They 
+sell technically different devices under the
+same product name. Therefore it is possible that some
+devices like the UT12 or U12 won't work \- please check
+the model list above and compare the product-id to
+the one your device has.
+.PP
+* Negative/Slide scanning quality is poor.

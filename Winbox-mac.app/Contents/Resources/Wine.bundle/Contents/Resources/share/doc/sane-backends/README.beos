@@ -1,0 +1,29 @@
+SANE and BeOS
+-------------
+
+The information in this text is from an article of Philippe Houdoin
+<philippe.houdoin@free.fr> on sane-devel (29 Aug 2002).
+
+SANE 1.0.3 was first ported to BeOS, under the name BeSANE,
+by Massimiliano Origgi:
+http://www.intuiware.com/Products/BeSANE/index.html
+
+SANE 1.0.5 BeOS port and fixes to some issues with original BeSANE port were
+made by Philippe Houdoin but aren't released until now.
+
+BeOS GUI SANE frontend project (by Philippe Houdoin):
+http://philippe.houdoin.free.fr/phil/beos/sanity/index-en.html
+
+Updates of Sanity from Kaya Memisoglu:
+http://www.bebits.com/app/2847
+
+SANE was reported to work with the following configuration and features:
+
+Platform: BeOS R5.0.x ix86
+Latest SANE version tested: 1.0.5
+Compiler: gcc 2.95.3
+User-level SCSI support: yes
+USB support: yes
+Shared library support: yes
+Dynamic loading support: yes  
+X11 clients: no

@@ -1,0 +1,14 @@
+How to install this camlib:
+
+Copy the agfa-cl20 directory to ...../libgphoto2/camlibs
+
+Then, edit the file configure.in (in the libgphoto2 directory) on lines:
+148, and
+160
+to include "agfa-cl20" in the list of driver names.
+
+THEN you can run "sh autoconf.sh"
+./configure --prefix=/usr --with-drivers=agfa-cl20
+make
+make install
+

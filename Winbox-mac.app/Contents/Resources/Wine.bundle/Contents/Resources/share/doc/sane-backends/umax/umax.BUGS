@@ -1,0 +1,12 @@
+BUGS FROM UMAX BACKEND FOR SANE
+-------------------------------
+
+If you think that something is a bug and not a feature, please mail:
+Oliver Rauch <Oliver.Rauch@rauch-domain.de>
+
+KNOWN BUGS:
+
+	* pixel count in x-direction is sometimes wrong if xres > 600dpi (Vista S12)
+
+        * first scan with Astra 2400S produces wrong colors
+

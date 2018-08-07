@@ -1,0 +1,276 @@
+.TH sane\-umax 5 "14 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-umax
+
+.SH NAME
+sane\-umax \- SANE backend for UMAX scanners
+
+.SH ABOUT THIS FILE
+
+This file only is a short description of the umax-backend for sane! For detailed information take a look at
+sane\-umax\-doc.html (it is included in the sane source directory and in the xsane online help)!
+
+.SH DESCRIPTION
+
+The
+.B sane\-umax
+library implements a SANE backend that provides access to several UMAX-SCSI-scanners and some Linotye Hell SCSI-scanners,
+parallel- and USB-scanners are not (and probably will never be) supported!
+
+.B I suggest you hold one hand on the power-button of the scanner while you try the first scans!
+
+.SH CONFIGURATION
+
+The configuration file for this backend resides in 
+.IR /Users/mike/Documents/wine/usr/etc/sane.d/umax.conf .
+
+Its contents is a list of device names that correspond to UMAX and UMAX compatible scanners. Empty lines
+and lines starting with a hash mark (#) are ignored. A sample configuration file is
+shown below: 
+
+.nf
+ # this is a comment
+ #
+ option scsi\-maxqueue 4
+ option scsi\-buffer\-size\-min 65536
+ option scsi\-buffer\-size\-max 131072
+ option scan\-lines 40
+ option preview\-lines 10
+ option scsi\-maxqueue 2
+ option execute\-request\-sense 0
+ option force\-preview\-bit\-rgb 0
+ option slow\-speed \-1
+ option care\-about\-smearing \-1
+ option calibration\-full\-ccd \-1
+ option calibration\-width\-offset \-1
+ option calibration\-bytes\-pixel \-1
+ option exposure\-time\-rgb\-bind \-1
+ option invert\-shading\-data \-1 
+ option lamp\-control\-available 0
+ option gamma\-lsb\-padded 0
+ /dev/sge 
+\ 
+ #scsi Vendor Model Type Bus Channel ID LUN 
+ # The following scanner supports lamp control
+ option lamp\-control\-available 1
+ scsi UMAX * Scanner * * * * * 
+\ 
+ # scanner on /dev/scanner does not support lamp control
+ option lamp\-control\-available 0
+ /dev/scanner 
+.fi
+
+.TP
+execute\-request\-sense:
+values: 0 = disabled, 1 = enabled
+.br
+default = 0
+.br
+If set to 1 umax_do_request_sense is called in
+umax_do_calibration. This can hang the system
+(but has been enabled until this version)
+.TP
+scsi\-buffer\-size\-min, scsi\-buffer\-size\-max:
+values: 4096-1048576
+.br
+default min = 32768, max = 131072
+.br
+Especially the minimum value is very important.
+If this value is set too small the backend is not
+able to send gamma tables to the scanner or to
+do a correct color calibration. This may result in
+strange color effects. If the minimum value is set
+too large then the backend is not able to allocate
+the requested scsi buffer size and aborts with
+out of memory error. The default is 32KB, for
+some scanners it should be increased to 64KB.
+.TP
+scan\-lines, preview\-lines:
+values: 1-65535
+.br
+default: scan\-lines = 40, preview\-lines = 10
+.br
+define the maximum number of lines that are scanned
+into one buffer
+.TP
+force\-preview\-bit\-rgb:
+values:
+0 = disabled,
+1 = enabled
+.br
+default = 0
+.br
+set preview bit in rgb real scan
+.TP
+slow\-speed, care\-about\-smearing:
+values:
+\-1 = auto,
+0 = disabled,
+1 = enabled
+.br
+default = \-1
+.br
+dangerous options, needed for some scanners
+do not changed these options until you really know
+what you do, you may destroy your scanner when you
+define wrong values for this options
+.TP
+calibration\-full\-ccd:
+values:
+\-1 = auto,
+0 = disabled,
+1 = enabled
+.br
+default = \-1
+.br
+do calibration for each pixel of ccd instead of
+selected image
+.TP
+calibration\-width\-offset:
+values: \-99999 = auto, > \-99999 set value
+.br
+add an offset width to the calculated with for
+image/ccd
+.TP
+calibration\-bytes\-pixel:
+values:
+\-1 = disabled,
+0 = not set,
+1 = 1 byte/pixel,
+2 = 2 bytes/pixel
+.br
+use # bytes per pixel for calibration
+.TP
+exposure\-time\-rgb\-bind:
+values:
+\-1 = automatically set by driver \- if known,
+0 = disabled (own selection for red, green and blue),
+1 = enabled (same values for red, green and blue)
+.TP
+invert\-shading\-data:
+values:
+\-1 = automatically set by driver \- if known,
+0 = disabled,
+1 = enabled
+.br
+default = \-1
+.br
+invert shading data before sending it back to the scanner
+.TP
+lamp\-control\-available:
+values:
+0 = automatically set by driver \- if known,
+1 = available
+.br
+default = 0
+.TP
+gamma\-lsb\-padded:
+values:
+\-1 = automatically set by driver \- if known,
+0 = gamma data is msb padded,
+1 = gamma data is lsb padded
+.br
+default = \-1
+.TP
+handle\-bad\-sense\-error:
+values:
+0 = handle as device busy,
+1 = handle as ok,
+2 = handle as i/o error,
+3 = ignore bad error code \- continue sense handler
+.br
+default = 0
+.TP
+scsi\-maxqueue:
+values:
+1..# (maximum defined at compile time)
+.br
+default = 2
+.br
+most scsi drivers allow internal command queueing with a depth
+of 2 commands. In most cases it does not mprove anything when you
+increase this value. When your scsi driver does not support any
+command queueing you can try to set this value to 1.
+
+.PP
+The special device name must be a generic SCSI device or a symlink to such a device.
+To find out to which device your scanner is assigned and how you have to set the
+permissions of that device, have a look at sane\-scsi. 
+
+.SH SCSI ADAPTER TIPS
+
+The ISA-SCSI-adapters that are shipped with some Umax-scanners are not supported very
+well by Linux (I suggest not to use it), the PCI-SCSI-adapters that come with some
+Umax-scanners are not supported at all (as far as I know). On other platforms these
+SCSI-adapters are not supported. So you typically need to purchase another SCSI-adapter
+that is supported by your platform. See the relevant hardware FAQs and HOWTOs for your
+platform for more information. 
+
+The UMAX-scanners do block the scsi-bus for a few seconds while scanning. It is not
+necessary to connect the scanner to its own SCSI-adapter. But if you need short
+response time for your SCSI-harddisk (e.g. if your computer is a file-server) or
+other scsi devices, I suggest you use an own SCSI-adapter for your UMAX-scanner.
+
+If you have any problems with your Umax scanner, check your scsi chain
+(cable length, termination, ...).
+
+See also: sane\-scsi(5)
+
+.SH FILES
+
+.TP
+The backend configuration file:
+.I /Users/mike/Documents/wine/usr/etc/sane.d/umax.conf
+.TP
+The static library implementing this backend:
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-umax.a
+.TP
+The shared library implementing this backend:
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-umax.so
+(present on systems that support dynamic loading)
+
+.SH ENVIRONMENT
+
+.TP
+.B SANE_DEBUG_UMAX
+If the library was compiled with debug support enabled, this environment
+variable controls the debug level for this backend. E.g., a value of 128
+requests all debug output to be printed. Smaller levels reduce verbosity:
+SANE_DEBUG_UMAX values
+
+.ft CR
+.nf
+Number  Remark
+\ 
+ 0       print important errors (printed each time)
+ 1       print errors
+ 2       print sense
+ 3       print warnings
+ 4       print scanner-inquiry
+ 5       print information
+ 6       print less important information
+ 7       print called procedures
+ 8       print reader_process messages
+ 10      print called sane\-init-routines
+ 11      print called sane\-procedures
+ 12      print sane infos
+ 13      print sane option-control messages
+.fi
+.ft R
+
+.TP
+Example:
+export SANE_DEBUG_UMAX=8
+
+.SH BUGS
+
+X-resolutions greater than 600 dpi sometimes make problems
+
+.SH SEE ALSO
+sane(7)
+
+.SH AUTHOR
+
+Oliver Rauch
+
+.SH EMAIL-CONTACT
+Oliver.Rauch@Rauch-Domain.DE

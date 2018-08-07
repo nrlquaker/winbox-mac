@@ -1,0 +1,95 @@
+.TH sane\-sm3840 5 "11 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-sm3840
+.SH NAME
+sane\-sm3840 \- SANE backend for Microtek scanners with SCAN08 USB chip
+.SH DESCRIPTION
+The
+.B sane\-sm3840
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to some Microtek scanners with the SCAN08
+USB chip.
+.PP 
+There exist backends for Microtek scanners with SCSI command set.
+Refer to sane\-microtek(5) and sane\-microtek2(5) for details.
+.PP
+There also exists a Microtek 3600 series driver, see sane\-sm3600(5) for
+details.
+.PP
+At present, the following
+scanners are known positively to work with this backend:
+.PP
+.RS
+.ft CR
+.nf
+Vendor     Product ID:     Remark:
+--------   --------------  -----------
+Microtek   ScanMaker 3840  All modes OK
+Microtek   ScanMaker 4800  All modes OK
+.fi
+.ft R
+.RE
+.PP
+If you own a Microtek scanner with the SCAN08 chip other than the ones
+listed above, it may or may not work with SANE.  Feel free to contact the
+backend author (earle@ziplabel.com) to report results with scanners not
+on the list.
+
+
+.SH "FRONTEND OPTIONS"
+.PP
+The following options are supported by the sm3840-driver:
+.PP
+.B \-\-mode color|gray|lineart|halftone
+.br
+Color or grayscale mode.
+
+.B \-\-resolution 150|300|600|1200
+.br
+Pixels per inch for scans.
+
+.B \-\-depth 8|16
+.br
+Note that the least significant bits of 16bpp mode may be noise.
+
+.B \-\-brightness 1..4096
+.br
+Higher numbers increase brightness of returned image.
+
+.B \-\-contrast 0.1..9.9
+.br
+Larger numbers decrease contrast of returned image.
+
+.B \-\-lamp\-timeout 1..15
+.br
+Time in minutes until the lamp is turned off after a scan.
+
+.SH CONFIGURATION
+This backend does not support a configuration file right now.
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-sm3840.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-sm3840.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+
+
+.SH ENVIRONMENT
+.TP
+.B SANE_DEBUG_SM3840
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  E.g.,
+a value of 128 requests all debug output to be printed.  Smaller
+levels reduce verbosity. To see error messages on stderr set
+SANE_DEBUG_SM3840 to 1.
+
+.SH "SEE ALSO"
+sane\-microtek2(5), sane\-sm3600(5), http://www.ziplabel.com/sm3840
+
+.SH AUTHOR
+.br
+Earle F. Philhower III (earle@ziplabel.com)
+.br
+

@@ -1,0 +1,114 @@
+.TH sane\-cardscan 5 "10 Feb 2010" "" "SANE Scanner Access Now Easy"
+.IX sane\-cardscan
+
+.SH NAME
+sane\-cardscan \- SANE backend for Corex CardScan usb scanners
+
+.SH DESCRIPTION
+The 
+.B sane\-cardscan
+library implements a SANE (Scanner Access Now Easy) backend which
+provides access to the Corex CardScan 800c & 600c small-format scanners.
+
+The backend supports only grayscale and color modes and media of 
+(theoretically) infinite length.
+
+This backend may support other scanners. The best
+way to determine level of support is to get a trace of the windows 
+driver in action, and send it to the author.
+
+.SH OPTIONS
+The cardscan backend supports the following options:
+.PP
+mode m
+.RS
+Selects the mode for the scan. Options are "Gray" and "Color".
+.RE
+.PP
+.SH CONFIGURATION FILE
+The configuration file "cardscan.conf" is used to tell the backend how to look
+for scanners, and provide options controlling the operation of the backend.
+This file is read each time the frontend asks the backend for a list 
+of scanners, generally only when the frontend starts. If the configuration
+file is missing, the backend will use a set of compiled defaults, which
+are identical to the default configuration file shipped with SANE.
+.PP
+Scanners can be specified in the configuration file in 2 ways:
+.PP
+"usb 0x04c5 0x1042" (or other vendor/product ids)
+.RS
+Requests backend to search all usb busses in the system for a device 
+which uses that vendor and product id. The device will then be queried
+to determine if it is a cardscan scanner.
+.RE
+.PP
+"usb /dev/usb/scanner0" (or other device file)
+.RS
+Some systems use a kernel driver to access usb scanners. This method is untested.
+.RE
+
+Additionally, there are two configuration options that control the protocol
+used by the backend:
+
+.PP
+"lines_per_block 16" (or other number from 1 to 32)
+.RS
+Controls the number of lines of image data which will be acquired in each pass.
+Older scanners will require this number set lower, often 1.
+.RE
+.PP
+"has_cal_buffer 1" (1 or 0)
+.RS
+Causes the backend to get calibration data from scanner during initialization.
+Older scanners do not support this request, and must be set to 0.
+.RE
+
+.SH ENVIRONMENT
+The backend uses a single environment variable, SANE_DEBUG_CARDSCAN, which
+enables debugging output to stderr. Valid values are:
+.PP
+.RS
+5  Errors
+.br
+10 Function trace
+.br
+15 Function detail
+.br
+20 Option commands
+.br
+25 SCSI/USB trace
+.br
+30 SCSI/USB detail
+.br
+35 Useless noise
+.RE
+
+.SH KNOWN ISSUES
+.PP
+.RS
+The scanner does not seem to have much control possible, so the backend
+cannot set x/y coordinate values, resolutions, etc. These things could
+be simulated in the backend, but there are plenty of command line tools.
+.br
+.br
+The backend also does not send all the commands that the windows driver 
+does, so it may not function the same.
+.br
+.br
+The backend does not have the calibration or ejection options of the 
+windows driver.
+.br
+.br
+.RE
+
+.SH CREDITS
+The hardware to build this driver was provided to the author by:
+  Jeff Kowalczyk <jtk a t yahoo d o t com>
+
+.SH "SEE ALSO"
+sane(7),
+sane\-usb(5)
+
+.SH AUTHOR
+m. allan noah: <kitno455 a t gmail d o t com>
+

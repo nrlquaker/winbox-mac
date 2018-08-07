@@ -1,0 +1,297 @@
+History of the reverse engineering of the ax203 compression
+-----------------------------------------------------------
+
+There are 4 (known) different compression algorithms:
+
+YUV	       This algorithm uses a simple YUV format, with the UV members
+	       subsampled at a 2x2 resolution. It uses 5 bits for the Y
+	       values and 6 bits for the U and V values, cramming 4 pixels
+	       into 4 bytes. This is used with firmware v3.3.x (usb-id
+	       1908:1315) and v3.4.x frames (usb-id 1908:1320)
+
+YUV-DELTA      This version uses a less simple YUV format, it still
+	       subsamples UV at a 2x2 resolution. It then further uses a
+	       delta compression to store 4 values into 2 bytes. Data is
+	       stored in to 4x4 pixels block, Using 6 x 2 bytes, 4 x 4 Y
+	       pixels + 4 U and 4 V pixels. This is used with firmware v3.3.x
+	       (usb-id 1908:1315) and v3.4.x frames (usb-id 1908:1320)
+
+JPEG (ax3003)  Regular JPEG
+
+JPEG (ax206)   Uses a JPEG derived format reverse engineering this one
+	       was a challenge, see below for the full story. This is used with
+	       ax206 based firmware v3.5.x frames (usb-id 1908:0102)
+
+After some failed attempts by me (Hans de Goede), I asked help
+from Bertrik Sikken with reverse engineering the JPEG compression.
+He went the route of disassembling the windows binaries for uploading
+pictures, and wrote an algorithm description of the decompression on
+the picframe wiki:
+http://picframe.spritesserver.nl/wiki/index.php/ImageEncodingAx206
+
+A copy of this page is included below.
+
+I used this description to write decompression code. For the decompression
+code I started with tinyjpeg, which with I'm familiar from my libv4l
+work. The ax203 camlib contains a modified tinyjpeg copy which was
+modified to work with ax203's JPEG flavor. Tinyjpeg is:
+
+/*
+ * Small jpeg decoder library
+ *
+ * Copyright (c) 2006, Luc Saillard <luc@saillard.org>
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice,
+ *  this list of conditions and the following disclaimer.
+ *
+ * - Redistributions in binary form must reproduce the above copyright notice,
+ *  this list of conditions and the following disclaimer in the documentation
+ *  and/or other materials provided with the distribution.
+ *
+ * - Neither the name of the author nor the names of its contributors may be
+ *  used to endorse or promote products derived from this software without
+ *  specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+Note that tinyjpeg includes jidctflt.c from libjpeg, see below for
+libjpeg's copyright info.
+
+Once I had working decompression code I needed to write compression code,
+as tinyjpeg does not do compression I turned to libjpeg. I did not want
+to include a modified libjpeg and luckily with some tricks it was not needed
+to include libjpeg code other then jpeg_memsrcdest.c, which is not part of
+the standard libjpeg distribution. This code is:
+
+/*
+ * jpeg_memsrcdest.c and jidctflt.c
+ *
+ * Copyright (C) 1994-1998, Thomas G. Lane.
+ * This file is part of the Independent JPEG Group's software.
+ *
+ * The authors make NO WARRANTY or representation, either express or implied,
+ * with respect to this software, its quality, accuracy, merchantability, or
+ * fitness for a particular purpose.  This software is provided "AS IS", and you,
+ * its user, assume the entire risk as to its quality and accuracy.
+ *
+ * This software is copyright (C) 1991-1998, Thomas G. Lane.
+ * All Rights Reserved except as specified below.
+ *
+ * Permission is hereby granted to use, copy, modify, and distribute this
+ * software (or portions thereof) for any purpose, without fee, subject to these
+ * conditions:
+ * (1) If any part of the source code for this software is distributed, then this
+ * README file must be included, with this copyright and no-warranty notice
+ * unaltered; and any additions, deletions, or changes to the original files
+ * must be clearly indicated in accompanying documentation.
+ * (2) If only executable code is distributed, then the accompanying
+ * documentation must state that "this software is based in part on the work of
+ * the Independent JPEG Group".
+ * (3) Permission for use of this software is granted only if the user accepts
+ * full responsibility for any undesirable consequences; the authors accept
+ * NO LIABILITY for damages of any kind.
+ *
+ * These conditions apply to any software derived from or based on the IJG code,
+ * not just to the unmodified library.  If you use our work, you ought to
+ * acknowledge us.
+ *
+ * Permission is NOT granted for the use of any IJG author's name or company name
+ * in advertising or publicity relating to this software or products derived from
+ * it.  This software may be referred to only as "the Independent JPEG Group's
+ * software".
+ *
+ * We specifically permit and encourage the use of this software as the basis of
+ * commercial products, provided that all warranty or liability claims are
+ * assumed by the product vendor.
+ */
+
+Getting the JPEG compression working was not the end of the story, after this
+I could create .dpf files which the windows software would read. But the files
+had a "mystery" block in them between the 16 byte header and the quantisation
+tables, and the picframe does not grok the files without the mystery block
+containing the proper data. It turns out this mystery block contains an 8 byte
+info block per MCU which makes it possible to start decoding with a random
+MCU, rather then needing to do the decode linearly. This way the picture frame
+can do transition effects. The info in each MCU info block consists of
+last DC vals for the 3 components and the offset in the huffman bitstream
+where the data for this block starts. For more info so the dump of the wiki
+page below.
+
+
+Below is a dump of:
+http://picframe.spritesserver.nl/wiki/index.php/ImageEncodingAx206
+Made on 30 March 2010.
+
+Contents
+
+  • 1 Compressed image format
+      □ 1.1 Introduction
+      □ 1.2 Image format
+          ☆ 1.2.1 Header
+          ☆ 1.2.2 MCU info block
+          ☆ 1.2.3 DQT table
+          ☆ 1.2.4 DHT table
+          ☆ 1.2.5 Entropy coded data
+
+Compressed image format
+
+This page describes the currently known information about the compression of
+image files used in pictureframes using the ax206 chip.
+
+Introduction
+
+The ax206 chip stores images in a JPEG-like format, but with several
+modifications and/or parts missing. Images also contain some kind of thumbnail
+image.
+
+To understand the information on this page, it is recommended to have a basic
+understanding of JPEG compression.
+
+Image format
+
+The image file seems to contain the following parts:
+
+  • a 16-byte header
+  • a small, low-res version of the image in a kind of raw format (color space
+    is unknown, but likely YCbCr)
+  • a JPEG DQT table (but without the DQT marker) containing two JPEG
+    quantisation tables, one for luma and one for chroma
+  • a JPEG DHT table (but without the DHT marker) containing four huffman
+    tables (combinations of luma/chroma, DC/AC)
+  • the entropy coded JPEG data
+
+Although the encoding is very much like JPEG, there are no JPEG chunk markers
+at all.
+
+Header
+
+The image header is contained in the first 16 bytes.
+
+Some of the fields in the header can be related to values from the JPEG
+specification.
+
+The table below shows all known fields:
+
+┌───────┬─────────┬───────────────────────────────────────────────────────────┐
+│       │ Related │                                                           │
+│ Byte  │  JPEG   │                          Meaning                          │
+│       │  field  │                                                           │
+├───────┼─────────┼───────────────────────────────────────────────────────────┤
+│0x00/  │SOF: X   │Image width, encoded as big-endian                         │
+│0x01   │         │                                                           │
+├───────┼─────────┼───────────────────────────────────────────────────────────┤
+│0x02/  │SOF: Y   │Image height, encoded as big-endian                        │
+│0x03   │         │                                                           │
+├───────┼─────────┼───────────────────────────────────────────────────────────┤
+│       │SOF: Hi/ │"Resolution" byte, 0 for images without sub-sampling of the│
+│0x04   │Vi       │color components, 3 for images that use sub-sampling of the│
+│       │         │color components                                           │
+├───────┼─────────┼───────────────────────────────────────────────────────────┤
+│0x05/  │         │Three numbers, each indicating which quantisation table (0 │
+│0x06/  │DQT: Tq  │or 1) should be used for which component (Y, Cb, Cr)       │
+│0x07   │         │                                                           │
+├───────┼─────────┼───────────────────────────────────────────────────────────┤
+│0x08/  │         │Three numbers, each indicating which DC huffman table (0 or│
+│0x09/  │SOS: Tdj │1) should be used for which component (Y, Cb, Cr)          │
+│0x0A   │         │                                                           │
+├───────┼─────────┼───────────────────────────────────────────────────────────┤
+│0x08/  │         │Three numbers, each indicating which AC huffman table (0 or│
+│0x09/  │SOS: Taj │1) should be used for which component (Y, Cb, Cr)          │
+│0x0A   │         │                                                           │
+├───────┼─────────┼───────────────────────────────────────────────────────────┤
+│0x0E/  │Unknown  │Unknown                                                    │
+│0x0F   │         │                                                           │
+└───────┴─────────┴───────────────────────────────────────────────────────────┘
+
+MCU info block
+
+Immediately after the header there is an MCU info block, this block contains 8
+bytes per MCU which makes it possible to start decoding with a random MCU,
+rather then needing to do the decode linearly. This way the picture frame can
+do transition effects. The size of this block depends on the number of MCU's
+and thus on the "resolution" byte 0x04 from the header. For a resolution value
+of 0x00, the size (in bytes) is width * height / 8. For a resolution value of
+0x03, the size is width * height / 32.
+
+The info in each MCU info block consists of last DC vals for the 3 components
+and the location in the huffman bitstream where the data for this block starts.
+The way the location in the huffman bitstream is coded is, erm, rather
+interesting. The contents of this field of the per MCU info is an offset to add
+to the start of the MCU info block. An example to make things more clear. Lets
+say the huffman compressed data for the 4th MCU starts at location 3066
+(decimal), the information block for the 4th MCU starts at offset 16 + 3 * 8 =
+40 (decimal). So the contents of the field coding were the huffman compressed
+data for the 4th MCU starts is 3066 - 40 = 3026. So say that the 5th MCU starts
+5 bytes later (the 4th one compressed well), then the field coding were the
+huffman compressed data starts would contain 3071 - 48 = 3023. Yes this is a
+bit weird, but it is how it is.
+
+┌─────────┬───────────────────────────────────────────────────────────────────┐
+│ Offset  │                              Meaning                              │
+├─────────┼───────────────────────────────────────────────────────────────────┤
+│0x00-0x01│Litte Endian 16 bit word storing last DC val for the Y channel     │
+├─────────┼───────────────────────────────────────────────────────────────────┤
+│0x02-0x03│Litte Endian 16 bit word storing last DC val for the Cb channel    │
+├─────────┼───────────────────────────────────────────────────────────────────┤
+│0x04-0x05│Litte Endian 16 bit word storing last DC val for the Cr channel    │
+├─────────┼───────────────────────────────────────────────────────────────────┤
+│         │Litte Endian 16 bit word storing the offset into the image, from   │
+│0x06-0x07│the start of this info block! Where the huffman data for this MCU  │
+│         │starts                                                             │
+└─────────┴───────────────────────────────────────────────────────────────────┘
+
+DQT table
+
+This table is basically a standard JPEG DQT table, but it seems to be missing
+its 0xFFDB marker at the start.
+
+DHT table
+
+This table is basically a standard JPEG DHT table, but it seems to be missing
+its 0xFFC4 marker at the start.
+
+Entropy coded data
+
+This seems to be standard huffman encoded coefficient data, with the following
+exceptions:
+
+  • there are no stuffing bytes after 0xFF bytes
+  • after each JPEG MCU (minimum coded unit), the next MCU seems to start at
+    the next byte-aligned position in the stream
+  • there is no end-of-image JPEG marker
+
+The order of components (Y, Cb, Cr) coded in the stream depends on the
+resolution byte from the header.
+
+  • For resolution value 0x00, they seem to be interleaved in the following
+    order: chroma1, chroma2, luma.
+  • For resolution value 0x03, they seem to be interleaved in the following
+    order: chroma1, chroma2, luma, luma, luma, luma. The two chroma blocks are
+    sub-sampled by a factor 2 in this case (and therefore encode for a 16x16
+    pixel area), the luma blocks are not sub-sampled (so that's why there are 4
+    blocks of 8x8 pixels to cover the same 16x16 pixel area).
+
+Retrieved from "http://picframe.spritesserver.nl/wiki/index.php/
+ImageEncodingAx206"
+
+Powered by MediaWiki
+GNU Free Documentation License 1.2
+
+  • This page was last modified 14:09, 30 March 2010.
+  • This page has been accessed 29 times.
+  • Content is available under GNU Free Documentation License 1.2.

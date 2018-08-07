@@ -1,0 +1,261 @@
+2002-01-03
+
+Look at http://home.tiscalinet.de/fbakan/sane-os2.htm for information about
+compiling SANE on OS/2 (from Franz Bakan).
+
+
+The following text was for 1.0.3, but it may help nevertheless.
+
+
+   SANE 1.03 for OS/2 - build 1
+   ----------------------------
+   09 Jul 2000, Yuri Dario <mc6530@mclink.it>
+
+
+WARNING:
+--------
+This release of has been compiled with EMX 0.9D, so it doesn't work with
+the previous runtime. You must upgrade to the latest runtime before running
+SANE (actually EMX 0.9D fix 03).
+
+
+SANE (Scanner Access Now Easy)
+------------------------------
+For more info about the SANE Project, please visit 
+
+	http://www.sane-project.org/
+
+You should also check the main site for an updated list of supported scanners.
+
+Note that I can't say you if your scanner is supported; check SANE homepage 
+instead.
+
+
+SUPPORT
+-------
+I'm sorry to tell you that it is hard for me to help you: if your scanner 
+doesn't work or your problem can't be reproduced on my pc, there are high
+choices that I can't fix the bug. Most problems are specific to same PC/scanner
+combinations, and can't be solved without having a full developement enviroment
+and programming experience.
+
+I have setup a mailing list for users, where I hope most people can find an
+answer to their questions. You will find that I answer only sometimes, because
+I'm too busy.
+To subscribe please visit
+
+	http://www.egroups.com
+
+and look for sane-os2, or fill the form available on my site.
+
+
+DOCUMENTATION
+-------------
+To read docs with correct format, you should type
+
+	more < doc\sane-epson.txt
+
+If someone has more ideas on how to get a correct .txt starting from a .man
+file, he is welcome (actually I'm using groff).
+
+
+INSTALLATION
+------------
+If you already didn't it, install the correct driver for your scsi adapter. 
+The drivers has usually a .ADD extension and looks like
+
+	BASEDEV=AHA154X.ADD
+
+Then you need the ASPI driver: this driver is already in your OS2\BOOT
+directory, so you have only to add
+
+	BASEDEV=OS2ASPI.DMD /ALL
+
+The /ALL switch is required only if you need to use other devices with 
+aspirout.sys, e.g. if you have a CD-RW and CDRecord/2 installed.
+
+Last, add aspirout.sys to your config.sys
+
+	DEVICE=D:\OS2\BOOT\ASPIROUT.SYS
+
+N.B. you can change the path to other directories.
+Now reboot.
+
+To run scanimage.exe you need also to download the latest EMX runtime,
+available on Hobbes or Leo as emxrt.zip.
+
+find-scanner.exe can be used to recognize a scanner on the scsi bus. Then
+you should edit your xxx.conf file and add the scanner address, a string like
+b0t4l0. This can be simplified using autodetection: with autodetection you can 
+use a string like
+
+	scsi EPSON
+
+in your xxx.conf file; the autodection will enable the backend that recognize
+'EPSON' in the scanner id.
+
+To test scanimage, run
+
+	scanimage --help
+
+you should see your scanner following the list of internal devices:
+
+	List of available devices:
+	    pnm:0 pnm:1
+
+If it is not present, check your scsi driver, the aspi driver OS2ASPI.DMD and
+aspirout.sys; on Warp4 you can use the Hardware Manager to check scanner 
+presence. Then look at your xxx.conf, maybe there is something wrong in the
+text.
+
+
+USAGE:
+------
+Once configured your system, create a proper .conf file (edit one of the
+supplied templates) and run
+
+	scanimage -L
+	
+The output should be like
+
+	device `umax:b0t3l0' is a UMAX     Vista-S8         flatbed scanner
+	device `pnm:0' is a Noname PNM file reader virtual device
+	device `pnm:1' is a Noname PNM file reader virtual device
+
+The pnm devices are always available, while on the first line you should
+read the id of your scanner.
+
+A simple scan
+
+	scanimage -d umax > test.pnm
+
+will do a scan with default parameters. Run
+
+	scanimage -d umax --help 
+	
+to get a full list of available switches.
+
+
+SANED:
+------
+In this release the SANE network daemon can be used (with a limit).
+First edit your \mptn\etc\services and add
+
+sane            6566/tcp   # SANE network scanner daemon
+
+(maybe a reboot is required to apply that change).
+Create a saned.conf in the same directory of saned.exe and add a list of valid
+client addresses; the clients are allowed to access the local scanner.
+Now run the server in debug mode
+
+	saned -d
+
+On the client side, you need to create a net.conf file in the same directory
+of scanimage.exe: here you have to add a list of valid saned servers.
+Run
+
+	scanimage -L
+	
+The output is like this
+
+device `umax:b0t3l0' is a UMAX     Vista-S8         flatbed scanner
+device `pnm:0' is a Noname PNM file reader virtual device
+device `pnm:1' is a Noname PNM file reader virtual device
+device `net:pippo.intranet:umax:b0t3l0' is a UMAX     Vista-S8      flatbed scanner
+device `net:pippo.intranet:pnm:0' is a Noname PNM file reader virtual device
+device `net:pippo.intranet:pnm:1' is a Noname PNM file reader virtual device
+
+Then saned will quit. To run it forever, you have to configure the INETD
+daemon: create a \mptn\etc\inetd.lst with the following line
+
+	sane   tcp /rd/sane/sane-1.0.1/frontend/saned.exe
+
+Be aware that this configuration shouldn't work: I have been unable to get it
+working on my PC without running saned under the debugger PMGDB.
+The correct syntax for running scanimage over the net is
+
+	scanimage -d net:HOSTNAME:umax:b0t3l0 > test.pnm 
+
+where HOSTNAME is a valid DNS host name.
+You can log server access using syslogd: if syslogd is running, saned will
+send to it all messages.
+
+
+HOW TO COMPILE:
+---------------
+To compile SANE with emx, you need
+
+- EMX 0.9D
+- GNU Make 3.75 (rename to make.exe)
+- GNU Patch 2.5
+- KSH 5.2.13 (rename to sh.exe)
+- GNU Bison
+- GNU File utilities
+- GNU SED (stream editor)
+- Autoconf 2.13
+
+Steps:
+- untar the original Unix distribution;
+- unzip this file somewhere;
+- copy src\* into sane-1.0.1;
+- enter sane-1.0.1 directory;
+- apply patches to original distribution: 
+    [...\sane-1.0.1]gnupatch -p 0 < patch.os2
+- run autoconf to rebuild the configure script
+- edit configure and change autoconf default optimization flags; 
+  search for -O2 -m486 and change to your preferred settings;
+- add the following line after :${LDFLAGS="...."}
+  : ${LIBS="-lsocket"}
+- run configure.os2 to build all installation files;
+- add -Zexe to LDFLAGS in frontend\Makefile and tools\Makefile;
+- run make (compiler warnings are ok);
+- wait to complete all makes;
+
+Remember to install a Unix like shell in your path; I use ksh.exe 
+renamed to sh.exe, and saved in d:\bin 
+(that's because most unix scripts uses SHELL=/bin/sh)
+
+You need also a compatible dl.a and syslog.a library; look in .\contrib
+for a couple of simple sources.
+
+Flags needed under EMX:
+-Zsysv-signals	enables signal management as in SystemV, otherwise emx 
+                convention is used (and it is different from sysv).
+-Zcrtdll	link dynamically with EMXLIBCM.DLL;
+
+
+PARALLEL PORT
+-------------
+This release has support for parallel port enabled: actually only the Epson
+backend makes uses of such support; the Epson GT-300 can be recognized, but
+scanning can't be completed.
+
+Also HP-5100C parallel scanner can be run under OS/2: you need to download
+the EPST driver from Shuttle Tech. homepage (www.shuttletech.com); follow the
+instruction for installation. Then the scanner is seen as a scsi HP, so the
+HP backend can work with it.
+
+The Quickcam backend is also included with lpt support, but I can't say how it
+is working.
+
+History:
+--------
+09 Jul 2000 release 1.03
+
+20 Jun 1999 release 1.01
+	- changed runtime to EMX 0.9D
+	- fixed: find-scanner should now work correctly.
+	- added: how to compile instructions.
+
+07 Mar 1999 release 1.01 pre-test3
+	no OS/2 specific fixes
+
+20 Oct 1998 release 0.74
+	fixed fork()ing backends with new sanei_thread api.
+	fixed scsi autodetection
+	added parallel port support
+
+===============================================================================
+Yuri Dario <mc6530@mclink.it>
+http://www.quasarbbs.com/yuri
+

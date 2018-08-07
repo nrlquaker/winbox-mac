@@ -1,0 +1,457 @@
+Plustek-USB.txt (2005-08-08) Gerhard Jäger <gerhard@gjaeger.de>
+===============================================================
+
+NOTE:
+-----
+
+ALL YOU NEED TO RUN YOUR USB SCANNER IS ALREADY INCLUDED. THERE'S
+NO NEED TO INSTALL THE KERNEL MODULE pt_drv. THIS ONE IS ONLY NEEDED
+FOR THE PLUSTEK PARALLELPORT SCANNER.
+
+
+List of all currently implemented devices
+-----------------------------------------
+
+Quite a lot of them are not tested or even identified. Please send me the ids
+of your device...
+
+
+PLUSTEK
+=======
+Vendor ID: 0x07B3
+
+Product ID       Device-description and status	
+0x0005           not identified yet
+0x0007           not identified yet
+0x000F           not identified yet
+0x0010           U12 - working
+0x0011           U24 (LM9831) - working
+0x0012           not identified yet
+0x0013           UT12 (LM9831) - working
+0x0014           not identified yet
+0x0015           U24 (LM9832) - working
+0x0016           not identified yet
+0x0017           UT12 - working, UT16 - working, UT24 - working
+	
+MUSTEK
+======
+BearPaw vendor ID: 0x0400 (They use the NationalSemiconductors ID!!!)
+
+Product ID       Device-description and status	
+0x1000           BearPaw 1200 (LM9831) - working
+0x1001           BearPaw 1200 (LM9832) - not tested
+0x1001           BearPaw 2400 (LM9832) - mostly working
+    	
+KYE (Genius)
+============
+Vendor ID: 0x0458
+	
+Product ID       Device-description and status	
+0x2007           ColorPage-HR6 V2 - working
+0x2008           ColorPage-HR6 V2 - not tested
+0x2009           ColorPage-HR6A   - not tested
+0x2013           ColorPage-HR7    - working
+0x2015           ColorPage-HR7LE  - not tested
+0x2016           ColorPage-HR6X   - not tested
+
+Hewlett Packard
+===============
+Vendor ID: 0x03F0
+
+Product ID       Device-description and status	
+0x0505           HP Scanjet 2100c - working
+0x0605           HP Scanjet 2200c - working
+
+EPSON
+=====
+Vendor ID: 0x04b8
+
+Product ID       Device-description and status	
+0x010F           EPSON Perfection 1250/Photo - working
+0x011D           EPSON Perfection 1260/Photo - working
+
+UMAX
+====
+Vendor ID: 0x1606
+
+Product ID       Device-description and status	
+0x0050           UMAX 3400 - working 
+0x0060           UMAX 3400/3450 - working 
+0x0160           UMAX 5400 - working
+
+COMPAQ
+======
+Vendor ID: 0x049F
+
+Product ID       Device-description and status
+0x001A           S4-100 - working, identical with UMAX 3400
+
+CANON
+=====
+Vendor ID: 0x04A9
+
+Product ID       Device-description and status	
+0x????           FB620U        - not integrated
+0x2206           N650U         - working
+0x2207           N1220U        - working
+0x2208           D660U         - working
+0x220D           N670U/LiDE20  - working
+0x2220           LiDE25        - working
+0x220E           N1240U/LiDE30 - working
+
+
+How to use and configure the Plustek USB backend
+------------------------------------------------
+
+Please note, that the following is only needed, if you need to upgrade
+a SANE version...
+
+
+Preparations
+------------
+
+What do we need ?
+
+a SANE backends archive (i.e. sane-backends-1.0.9.tar.gz)
+a driver archive (i.e. plustek-sane-0.45-1.tar.gz)
+
+The latest SANE archive can be obtained at:
+http://www.sane-project.org
+and the latest backend at:
+http://www.gjaeger.de/scanner/plustek.html
+
+Assumptions
+-----------
+
+Our starting point is your home-directory:
+
+:~>
+
+The packages (here sane-backends-1.0.9.tar.gz und plustek-sane-0.45-1.tar.gz)
+are in the /tmp directory.
+
+Let's go:
+---------
+
+Change to your home directory and create a sane directory
+cd ~
+mkdir sane
+
+unpack your sane tar-ball (here "sane-backends-1.0.9.tar.gz")
+to this "sane" directory
+
+cd sane
+tar xvzf /tmp/sane-backends-1.0.9.tar.gz
+
+Now unpack your plustek-sane tarball (here "plustek-sane-0.45-1.tar.gz")
+to the backends directory:
+
+cd sane-backends-1.0.9
+tar xvzf /tmp/plustek-sane-0.45-1.tar.gz
+
+Now do the ./configure step...
+Especially for SuSE with a preinstalled SANE-RPM:
+./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --infodir=/usr/share/info
+
+Then do the make step and after that as root user perform the make install
+step.
+
+That's all!
+
+Before using, make sure that the USB scanner device driver is loaded:
+modprobe scanner
+or
+modprobe scanner vendor=0x7b3 product=0x17
+
+You might need to add the following line to /etc/modules.conf, if the scanner is not
+supported directly - vendor and product must match your device!
+options scanner vendor=0x7b3 product=0x17
+
+If you're not sure about the vendor and product id of your device, simply load
+the USB subsystem and plug in your scanner. Then do a
+cat /proc/bus/usb/devices
+and look for the scanner
+
+Now you have to configure the backend. Edit the file /etc/sane.d/plustek.conf
+and fill in the appropriate vendor and product id (see there for examples)
+
+This is it...
+
+
+Autoloading scanner.o
+---------------------
+
+To perform an automatic load of the scanner module, you might add the modprobe
+line to your boot.local file.
+i.e. on SuSE system > 7.x
+/etc/init.d/boot.local
+An alternative way is to use the hotplug utilities.
+
+
+Using hotplug utilities and libusb
+----------------------------------
+
+When using libusb with SANE, then you should also use the hotplug utilities to
+automatically setup your device nodes (at least the permissions) and prevent
+scanner.o from loading.
+
+Assuming, that these utilites are properly installed on your box, you have
+to tweak and add some files.
+
+In directory (where of course the config files reside):
+/etc/hotplug
+
+Append the line
+scanner
+to file
+blacklist
+
+This prevents the scanner module from the usb-subsystem to be loaded.
+
+Next thing is to add a new line in
+usb.usermap:
+
+usbscanner 0x0003 0x1606 0x0160 0x0000 0x0000 0x00 0x00 0x00 0x00 0x00 0x00 0x00 000000
+
+The example line shows the vendor ID of UMAX 0x1606 and the product ID of the 5400
+0x0160 - these values must match the ones of your scanner.
+
+Last step is adding a script in 
+/etc/hotplug/usb/
+It is called "usbscanner" (don't forget the executable rights)
+
+-------------------------------------------------
+# !/bin/bash
+
+if [ "${ACTION}" = add ] && [ -f "${DEVICE}" ]
+then
+        chgrp users "${DEVICE}"
+        chmod ug+rw "${DEVICE}"
+fi
+-------------------------------------------------
+
+This script will correct the access right to your scanner device when the device
+is plugged in.
+              
+
+Debugging your USB scanner (written by Kev Green)
+-------------------------------------------------
+
+Firstly, are you running the latest version of SANE, and the Plustek USB driver?
+
+Double check at http://www.gjaeger.de/scanner/plustek.html
+(Plustek USB driver) and http://www.sane-project.org (SANE Suite) to
+make sure you are.
+
+Now, in order to test and utilise your scanner with the Scanner Access Now Easy
+(SANE) system, there are basically two programs that you will need to use from
+the sane-frontends (versions post 1.0.3) or sane (versions pre 1.0.3) packages.
+
+Firstly, the sane-find-scanner program will allow you to locate your scanner,
+and help you work out if sane knows where it is. This is not definite however,
+as (you'll see this too when using sane-find-scanner) it will find all the
+scanners on your USB and SCSI bus, whereas sane will only work when you have
+the relevant sane backend installed and configured correctly for the relevant
+scanner.
+
+So, if sane-find-scanner can find your scanner, but scanimage doesn't work,
+then you need to check, double check, and even triple-check your SANE
+configuration file for plustek scanners (plustek.conf, usually in
+/etc/sane.d
+or maybe in /usr/local/sane/ or somewhere, a "find" will be able to tell you
+where. It may take a while though!).
+
+If sane-find-scanner doesn't find your scanner, then you should check to see if
+the kernel recognises it at all, which you can do with the following command,
+as mentioned above:
+
+cat /proc/bus/usb/devices
+
+If your scanner doesn't appear in there, then the kernel has not recognised it.
+There may however be a crypic-looking entry in there which doesn't name itself
+as plustek, in which case it is recognised as being there by the kernel, but is
+not know to the kernel's USB device database, in which case this should be
+mentioned on the plustek list (<plustek@linuxhacker.org>), from where
+the "powers that be" will deal with it.
+
+If that file does not exist in the /proc filesystem, then you don't have the
+"Preliminary USB filesystem" option set in your kernel, and you will need to
+recompile your kernel to allow you to do this step in debugging. If it
+exists, but is empty, you will have to make sure (use the kernel configure
+help information and the details of your motherboard to ascertain this!)
+you have the right one of UHCI or OHCI USB modules installed or compiled into
+your kernel.
+
+Once you've established that the kernel has recognised your scanner, you can
+start pointing the finger at SANE, or simply the "scanner" module. You will
+need to have selected the "USB Scanner" option in your kernel compilation as
+a module, or compiled into the kernel. If you have done neither, then SANE will
+simply not be able to recognise your scanner.  Rectify that, if you are missing
+it.
+
+If you have carried out all of the above steps, then sane-find-scanner should
+be able to recognise your scanner correctly.
+
+sane-find-scanner probes all of the devices on the SCSI and USB busses, and
+so you may find that it outputs "unable to get minor data" errors or similar
+to your terminal, or to your error logs, you can safely ignore these as long
+as it does that, and has recognised your scanner.
+
+Once you have found your scanner okay using sane-find-scanner, then you are
+ready to start messing around with the actual scanimage program to attempt
+to scan an image in.
+
+Obviously (although this may turn out to be premature) you should now have
+something in your scanner ready to scan for verification.
+
+At this stage, you should begin to be warey, because while the USB stuff for
+Plustek scanners is in development it may (like any kernel/module related software)
+crash your system with a kernel panic, or simply just segfault, so for your own sake,
+close down all the applications you are running and ONLY use text console, rather
+than X-Windows at this point, as you will certainly want to avoid any
+potential filesystem corruption.
+
+At this point it's probably also good to ensure that you have selected the
+"Magic SysRq Key" option in the kernel hacking section of the kernel config,
+and done:
+
+echo 1 > /proc/sys/kernel/sysrq
+
+And of course read the readme for that in /usr/src/linux/Documentation, as that
+should allow you to avoid filesystem corruption during any crashes that might
+happen.
+
+Now, before running scanimage, you should enable the maximum levels of
+debugging possible in both the SANE core and in the Plustek scanner
+backend.
+
+To do this you should do:
+
+export SANE_DEBUG_PLUSTEK=12
+export SANE_DEBUG_DLL=12
+
+Now, if you run scanimage, you should be able to see the maximum debugging
+messages.
+
+If those messages don't tell you what is wrong, then take note of your scanner
+type, the contents of /proc/bus/usb/devices, and the contents of your error
+log, as well as (where possible) the output of the scanimage command (if
+you can't capture it directly, an as-accurate-as-possible description is
+MUCH better than nothing!), and try and get all of the activity that
+your scanner did as well (light
+came on? didnt? motors came on? etc?) and email that to the plustek list
+(<plustek@linuxhacker.org>).
+
+For the particularly adventurous only...
+
+You might want to try running the scanimage program through strace or
+gdb to see if you can go some or all of the way to debugging the problem
+yourself, and post the relevant (ie. last!) parts of those utilities
+output to the plustek-help list. If you don't know what strace or gdb
+are, then you should probably not try that.
+
+It's probably safe to run your scanner in a normal operating environment
+under Linux once you have got it working once in a text console.
+
+
+How to add a new LM9831/2 based device description
+--------------------------------------------------
+
+If you have a LM9831 or LM9832 based scanner and your vendor and product id did
+not appear in the list above and you're willing to do some experiments, then
+simply add your device to the file plustek-devs.c at the end of the list.
+See the list at the end of the file how this works...
+
+
+Thanx guys for helping:
+-----------------------
+
+Henning Meier-Geinitz  henning@meier-geinitz.de  for Mustek Bearpaw testing, ideas and patches
+Stefan Nilsen          stefan.nilsen@telia.com   for HP2200c testing and patches
+Kev Green              kyrian@ore.org            for Documentation, UT12 testing and RPMS.
+Holger Bischof         bischof@cs.tu-berlin.de   for OpticPro U12 testing
+Abhijit Sovakar        a.sovakar@gmx.de          for OpticPro UT24 testing
+Peter Koellner         peter@mezzo.net           for OpticPro U24 testing
+Gene Heskett           gene_heskett@iolinc.net   for EPSON 1250 testing and patches
+Tasnim Ahmed           tasnim_ahmed@yahoo.com    for KYE Colorpage HR6 testing
+Reinhard Max           max@suse.de               for EPSON 1250 testing and patches
+Allan N. Hessenflow    allan@kallisti.com        for UMAX 3400 testing and patches
+Craig Smoothey         craig@smoothey.org        for HP2100c testing and patches
+Till Kamppeter         till.kamppeter@gmx.net    for EPSON1260 testing
+Christopher Montgomery monty@xiph.org            for CanoScan calibration works
+Olaf Leidinger         leidola@newcon.de         for CanoScan LiDE25 testing
+
+and a lot of other guys not named here...
+
+
+Some equations which are used to calculate some stuff
+-----------------------------------------------------
+
+The stuff is used in plustek_usbscan.c to get the correct register settings
+out of the hardware descriptions:
+
+Crystalfrequency is 48MHz
+
+
+Pixel Period (seconds/pixel)
+----------------------------
+
+              MCLK_DIV x 8 x CM
+PixelPeriod = -----------------
+                   48MHz
+
+
+Integration Time (seconds)
+--------------------------
+
+Tint = PixelPeriod X LineLength
+
+       MCLK_DIV x 8 x CM X LineLength
+Tint = ------------------------------
+                  48MHz
+
+
+Ideal MCLK Divider
+------------------
+                        48MHz            (DataPixelsEnd - DataPixelStart)
+MCLK_DIV = --------------------------- x --------------------------------
+           HostIORate x 8 x LineLength          HDPI_ADJ x PP
+
+                        48MHz                (DataPixelsEnd - DataPixelStart)    CM
+         = ------------------------------- x -------------------------------- x ----
+           BytesPerSecond x 8 x LineLength            HDPI_ADJ x PP              CM
+
+                        48MHz                      1
+         = --------------------------- x Tint x	---------
+                     8 x LineLength                CM
+
+                        48MHz             (Tint * 1000)
+         = ----------------------- x --------------------
+            1000 x 8 x LineLength             CM
+
+
+Ideal Scan Speed (inches/second)
+
+                 1            1         1
+ScanSpeed = ----------- x -------- x --------
+            PixelPeriod   FSPI x 4   StepSize
+
+                   48MHz            1         1
+ScanSpeed = ----------------- x -------- x --------
+            MCLK_DIV x 8 x CM   FSPI x 4   StepSize
+
+
+                             48MHz
+MCLK_DIV = ------------------------------------------
+            ScanSpeed x 8 x CM x FSPI x 4 x StepSize
+
+
+
+----------------
+Symbols:
+
+CM - Color Mode (unitless), 3 for channel pixel rate color, else 1
+
+
+-------------------------
+

@@ -1,0 +1,165 @@
+Information about USB scanners:
+================================
+
+With Linux 2.4.* you could either use the kernel scanner module or libusb to
+access USB scanners.  In Linux 2.6.4 the kernel scanner module was removed.
+Therefore with this and later kernels libusb must be used.
+
+Permissions:
+------------
+While SANE automatically uses libusb when the library and its header file were
+present during the build of sane-backends, setting permissions will require some
+attention. So if scanimage -L lists your scanner as root but not as normal user
+read on this text.
+
+Most distributions support setting permissions without much manual
+configuration. Usually you must just add the users that are allowed to access
+the scanner to group "scanner". To make that change active, the user must login
+again. For more details, see your distribution's documentation e.g. for Debian:
+README.debian.gz. If this doesn't work you you want to know more, read on.
+
+The device files used by libusb are located in /proc/bus/usb/
+(e.g. /proc/bus/usb/001/003) or in /dev/bus/usb/ (e.g. /dev/bus/usb/001/003), if
+you use udev.  The exact file name can be found out by running sane-find-scanner
+which would print "libusb:001:003" in this case.  While setting permissions with
+e.g. "chmod a+rw /proc/bus/usb/001/003" works, this change is not permanent.
+The permissions will be reset when the scanner is replugged or Linux is
+rebooted.
+
+One solution to set permissions on-the-fly is Linux udev which comes with
+current distributions. SANE comes with a udev rules file in the tools/udev
+directory which may be used by distributions or can be copied to
+/etc/udev/rules.d manually. The file format is explained on top of the file
+itself. Either you need libusb 0.1.12 or newer or USB_DEVFS_PATH=/dev/bus/usb
+must be exported as a system-wide environment variable.
+
+Older distributions may use the Linux hot-plug tools (or hotplug-ng). Your
+distribution should have set up the scripts to automatically change permissions
+correctly. Look for "libsane.usermap" and "libusbscanner" in /etc/hotplug/usb.
+If you build SANE from source you can use the hotplug script that comes with
+SANE. See the tools/hotplug/ directory in the source distribution. Please refer
+to the README in that directory for the details.
+
+Gentoo information:
+-------------------
+Gentoo users: If your USB scanner is not detected at all check that USE=usb is
+set when emerging.
+
+Information about SCSI scanners:
+================================
+
+Under Linux, your kernel must have generic SCSI support (sg) as well as a
+driver for your SCSI adapter. You may want to increase the SCSI buffer size
+to increase scan speed. Details on all of the above can be found in
+sane-scsi(5).
+
+If your SCSI and sg driver are build as moduls you will need to load them
+with modprobe:
+
+# modprobe your-driver-name
+# modprobe sg
+
+You may find error messages in /var/log/messages. Look at the documentation
+for your SCSI driver. Maybe you need to add options like the io port.
+
+Now the SCSI adapter and your scanner should be visible at /proc/scsi/scsi.
+Example:
+
+# cat /proc/scsi/scsi
+Host: scsi0 Channel: 00 Id: 06 Lun: 00
+  Vendor: SCANNER  Model:                  Rev: 2.02
+  Type:   Scanner                          ANSI SCSI revision: 01 CCS 
+
+In this case the real vendor and scanner name are not shown (Mustek
+Scannexpress 12000SP) but SANE will detect it nevertheless.
+
+If your scanner is supported by SANE, scanimage -L will list it now:
+
+# scanimage -L
+device mustek:/dev/scanner' is a Mustek ScanExpress 12000SP flatbed scanner 
+
+If this doesn't work you may have to add the right SCSI generic device name
+to the configuration file. This should be documented in the man page for
+your backend. To find out about the right SCSI device use sane-find-scanner:
+
+# sane-find-scanner
+found SCSI scanner "SCANNER  2.02" at /dev/scanner
+found SCSI scanner "SCANNER  2.02" at /dev/sg0
+found SCSI scanner "SCANNER  2.02" at /dev/sga 
+
+It may help to set a symbolic link /dev/scanner to the respective device if
+automatic detection does not work.
+
+If you need more information on the Linux SCSI subsystem, look at
+http://www.torque.net/scsi/linux_scsi_24/index.html. Although this
+documentation is about the 2.4 kernels, large parts are also valid for
+older kernels. One important exception is the section on "Device Names
+in devfs".
+
+Adaptec 1542 SCSI adapter:
+  Using buffer sizes of more than 32768 bytes with the aha1542 driver can
+  lead to kernel panic with older kernels. To avoid this, run configure with 
+  the option --enable-scsibuffersize or set the environment variable
+  SANE_SG_BUFFERSIZE to 32768 before running scanimage or another frontend, 
+  or download and install the SG driver 2.1.37 or newer from 
+  http://www.torque.net/sg.
+
+idescsi:
+  The Linux kernel "Emulation of a SCSI host adapter for IDE ATAPI
+  devices" (idescsi) is reported to cause problems in connection with
+  SANE. If your scanner isn't found or you encounter segmentation faults
+  try to disable idescsi.
+
+SCSI Direct IO: Recent versions of the Linux SG driver for the 2.4 kernels 
+  support direct IO, i.e., the SCSI adapter's DMA chip copies data directly 
+  to/from user memory. Direct IO reduces memory usage, but it can lead to 
+  access conflicts, if a backend uses shared memory. SANE does not use 
+  direct IO by default. If you want to use it, run
+
+	configure --enable-scsi-directio=yes
+
+Very old Linux distributions are missing the /usr/include/scsi directory.  In
+such a case, it is necessary to copy the relevant files from the kernel
+distribution.  Normally, the command:
+
+  cp -a /usr/src/linux/include/scsi /usr/include
+
+should fix this problem. Don't do this if you don't get compilation errors
+about missing SCSI headers.
+
+
+Other Information
+=================
+
+ld.so.conf configuration:
+  "/usr/local/lib/sane" or "/usr/lib/sane" MUST NOT be listed in
+  /etc/ld.so.conf. If your scanner is not detected or only Video for Linux
+  devices are found, check for one of the above lines in ld.so.conf.
+  A line "/usr/local/lib" or "/usr/lib" in ld.so.conf is ok, however.
+
+Excessive warnings "pointer of type `void *' used in arithmetic":
+  Some older versions of glibc generate these warnings not related to SANE
+  source code. To suppress these warnings do
+
+  export CFLAGS="-g -O2 -D__NO_STRING_INLINES"
+
+  and rerun configure.
+
+If you use DEC cc on Linux Alpha, you may need to set LDFLAGS="-N" to
+  be able to build sane-backends.
+
+The Intel C++ Compiler for IA32 and IA64 isn't supported yet. If you want
+  to try nevertheless, you will experience undefined references to inb
+  and outb functions. To avoid those replace #include <sys/io.h> with
+
+  #if defined(__ICC) && __ICC >= 700
+  # define __GNUC__ 2
+  #endif
+  #include <sys/io.h>
+  #if defined(__ICC) && __ICC >= 700
+  # undef __GNUC__
+  #elif defined(__ICC) && defined(HAVE_ASM_IO_H)
+  # include <asm/io.h>
+  #endif
+
+Have a lot of fun with the latest SANE backend.

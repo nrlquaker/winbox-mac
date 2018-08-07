@@ -1,0 +1,7 @@
+; File generated automatically from ./dlls/dplay/dplay.spec; do not edit!
+
+LIBRARY dplay.dll
+
+EXPORTS
+  DirectPlayCreate@12=dplayx.DirectPlayCreate @1
+  DirectPlayEnumerate@8=dplayx.DirectPlayEnumerate @2

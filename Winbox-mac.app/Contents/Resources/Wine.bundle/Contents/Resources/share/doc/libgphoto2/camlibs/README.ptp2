@@ -1,0 +1,196 @@
+libptp2 (c)2001-2003 Mariusz Woloszyn <emsi@ipartners.pl>
+
+libgphoto2 ptp2 camlib driver also 
+Copyright 2003 - 2012 Marcus Meissner <marcus@jet.franken.de>
+Copyright        2005 Hubert Figuire.
+
+========================
+*Upstream documentation*
+========================
+- For the PTP command set there is no freely available reference. However
+  you can buy the ISO standard ISO 15740 from http://www.iso.org/
+
+- For PTP via USB Documentation check:
+	http://www.usb.org/developers/devclass_docs/usb_still_img10.pdf
+
+- For PTP via PTPIP check:
+	ftp://www.fotonation.com//download/IEEE_PTPIP_paper.pdf
+
+- For MTP additions check:
+	http://www.usb.org/developers/devclass_docs/MTP_1.0.zip
+
+
+=====================
+*About this software*
+=====================
+
+This folder contains following code:
+generic:
+ptp.c		- the main libptp2 code; this library is used to communicate
+		  with PTP devices. This is not libgphoto2 specific, but used
+		  in libmtp too.
+ptp.h		- header file for the above.
+ptp-pack.c	- this file is included into ptp.c (internal structure
+		  pack/unpack code)
+
+libgphoto2 specific:
+config.c	- Contains the device and driver configuration management code.
+usb.c		- The USB Imaging Class interface code.
+ptpip.c		- The PTP/IP interfacing code (for wireless devices).
+library.c	- gphoto2 PTP2 driver (used by gphoto2 to communicate with
+		  PTP devices)
+
+===================
+*Supported Cameras*
+===================
+
+NOTE, that if your camera is not on the list, it DOES NOT mean that it is not
+supported! Most of USB cameras designed after 2002 are PTP or USB Mass
+Storage. In both cases the camera is supported under Linux!
+
+Below the list of cameras explicitly supported by gphoto2 ptp driver:
+
+=============================================+
+Model			|Vendor ID|Product ID|
+========================|=========|==========|
+Kodak DC240 (PTP)	| 0x040a  |  0x0121  |
+Kodak DC4800		| 0x040a  |  0x0160  |
+Kodak DX3215		| 0x040a  |  0x0525  |
+Kodak DX3500		| 0x040a  |  0x0500  |
+Kodak DX3600		| 0x040a  |  0x0510  |
+Kodak DX3700		| 0x040a  |  0x0530  |
+Kodak DX3900		| 0x040a  |  0x0170  |
+Kodak DX4330		| 0x040a  |  0x0555  |
+Kodak DX4900		| 0x040a  |  0x0550  |
+Kodak MC3		| 0x040a  |  0x0400  |
+Kodak LS420		| 0x040a  |  0x0540  |
+Kodak LS443		| 0x040a  |  0x0568  |
+Kodak CX4200		| 0x040a  |  0x0560  |
+Kodak CX4210		| 0x040a  |  0x0560  |
+Kodak CX4230		| 0x040a  |  0x0535  |
+Kodak CX4300		| 0x040a  |  0x0566  |
+Kodak Easyshare *any*	| 0x040a  |  any     |
+------------------------+---------+----------+
+HP PhotoSmart 120	| 0x03f0  |  0x6502  |
+HP PhotoSmart 318	| 0x03f0  |  0x6302  |
+HP PhotoSmart 320	| 0x03f0  |  0x6602  |
+HP PhotoSmart 612	| 0x03f0  |  0x6302  |
+HP PhotoSmart 620	| 0x03f0  |  0x6802  |
+HP PhotoSmart 715	| 0x03f0  |  0x6402  |
+HP PhotoSmart 720	| 0x03f0  |  0x6702  |
+HP PhotoSmart 735	| 0x03f0  |  0x6a02  |
+HP PhotoSmart 812	| 0x03f0  |  0x4202  |
+HP PhotoSmart 850	| 0x03f0  |  0x4302  |
+------------------------+---------+----------+
+Sony DSC-CD300		| 0x054c  |  0x004e  |
+Sony DSC-F505		| 0x054c  |  0x004e  |
+Sony DSC-F505V		| 0x054c  |  0x004e  |
+Sony DSC-F707		| 0x054c  |  0x004e  |
+Sony DSC-F707V		| 0x054c  |  0x004e  |
+Sony DSC-P5		| 0x054c  |  0x004e  |
+Sony DSC-P30		| 0x054c  |  0x004e  |
+Sony DSC-P50		| 0x054c  |  0x004e  |
+Sony DSC-P71		| 0x054c  |  0x004e  |
+Sony DSC-S75		| 0x054c  |  0x004e  |
+Sony DSC-S85		| 0x054c  |  0x004e  |
+Sony MVC-CD300		| 0x054c  |  0x004e  |
+------------------------+---------+----------+
+Nikon DSC D100		| 0x04b0  |  0x0402  |
+Nikon Coolpix 2000	| 0x04b0  |  0x0302  |
+Nikon Coolpix SQ	| 0x04b0  |  0x0202  |
+Nikon Coolpix 2500	| 0x04b0  |  0x0109  |
+Nikon Coolpix 4500	| 0x04b0  |  0x010b  |
+Nikon Coolpix 5700	| 0x04b0  |  0x010d  |
+Nikon Coolpix 4300	| 0x04b0  |  0x010f  |
+Nikon Coolpix 3500	| 0x04b0  |  0x0111  |
+Nikon Coolpix 885	| 0x04b0  |  0x0112  |
+Nikon Coolpix 5000	| 0x04b0  |  0x0113  |
+Nikon Coolpix 3100	| 0x04b0  |  0x0115  |
+Nikon Coolpix 2100	| 0x04b0  |  0x0117  |
+Nikon Coolpix 5400	| 0x04b0  |  0x0119  |
+Nikon Coolpix 5600	| 0x04b0  |  0x012e  |
+Nikon Coolpix 5200	| 0x04b0  |  0x0206  |
+------------------------+---------+----------+
+Canon PowerShot S45	| 0x04a9  |  0x306d  |
+Canon PowerShot G3	| 0x04a9  |  0x306f  |
+Canon PowerShot S230	| 0x04a9  |  0x3071  |
+Canon Digital IXUS v3	| 0x04a9  |  0x3071  |
+Canon PowerShot A60	| 0x04a9  |  0x3074  |
+Canon PowerShot A70	| 0x04a9  |  0x3073  |
+Canon PowerShot A80	| 0x04a9  |  0x309A  |
+==============================================
+
+ABOVE LIST IS OUTDATED!
+
+Note that for some HP, Nikon, Canon and Sony cameras you have to switch
+them to PTP mode, as in most cases the camera is dual mode:
+PTP and USB Mass Storage.
+For some cameras it even changes the Product ID number, so don't panic if
+it does not match the one listed above, just switch the mode.
+Don't ask me how to do it. Refer to camera documentation.
+
+If you know that your camera might be a PTP one, you may test it
+against this code even if it's not on the list above. If it's really
+a PTP device, the USB interface class should be set to 6 (it's called "still").
+You may check this by reading /proc/bus/usb/devices, for example:
+
+cat /proc/bus/usb/devices | grep "Cls=06"
+
+If you find something like this:
+
+I:  If#= 0 Alt= 0 #EPs= 3 Cls=06(still) Sub=01 Prot=01 Driver=(none)
+                          ^^^^^^^^^^^^^
+that means that your camera is a PTP one.
+The ptp driver should detect that camera by interface class as "USB PTP
+Class Camera" and allow downloading the pictures and do other stuff exactly
+the same way as if it would be detected by product and vendor ID.
+
+If you're not Linux user fetch libptp2 from:
+http://sourceforge.net/projects/libptp
+and try to compile and install it.
+The ptpcam tool attached to thil library is able to find and identify PTP
+devices. Type:
+
+ptpcam --list-devices
+
+and ptpcam will search and display the names of all found PTP devices.
+
+
+================================
+*Solving and reporting problems*
+================================
+
+To solve the problem stick to gphoto2 CLI, forget about the GUI now.
+Use gphoto2 -L to see if it detects the camera.
+
+If you see something like this:
+
+~> gphoto2 -L
+Unable to get descriptor (-1)                                                   
+(... lot of other errors ...)
+
+it may mean that you're working as user while the usb access is restricted.
+See gphoto2-manual, section "Setting up your system for use with libgphoto2
+and gphoto2", subsection "Setting up permissions for USB ports"
+(http://gphoto.sourceforge.net/doc/manual/permissions-usb.html).
+
+If the gphoto2 detects the camera but then fails with some error messages
+please report the bug sending the mail to gphoto-devel@lists.sourceforge.net or
+directly to me at: emsi@emsi.it.pl.
+The mail should contain the full output of gphoto2 -L --debug with locale
+language set to _ENGLISH_.
+For example in bash do:
+env LANG=C gphoto2 --debug -L
+tcsh/csh:
+setenv LANG C; gphoto2 --debug -L
+
+WARGING!!! Before sending any mail make sure you read the notes in
+"Supported Cameras" above.
+
+Enjoy!
+
+=============
+Documentation
+
+While ptp transactions usage seems to be quite obvious the ptp events
+handling code should be documented.

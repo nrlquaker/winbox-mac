@@ -1,0 +1,49 @@
+SANE and Darwin (Mac OS X)
+--------------------------
+
+Building:
+---------
+You may get the message: "gcc: Internal compiler error: program cc1obj got
+fatal signal 11". That's not a bug in SANE. Probably a compiler or hardware
+problem.  The error usually occurs in canon.c because that's the most complex
+backend (at least concerning compilation). If you can't update your compiler,
+try to reduce optimization (e.g. CFLAGS="-O1" ./configure). Another
+work-around: Disable the canon backend in backend/Makefile.in (look at
+PRELOADABLE_BACKENDS) and rerun configure.
+
+General:
+--------
+If scanimage -L (or any other frontend) stops with a segmentation fault in the
+sm3600 backend, disable sm3600 in dll.conf if you don't need it.
+
+Backends that use the function "fork" may not work at least with USB scanners.
+That's a limitation of MacOS X (doesn't use file descriptors for USB access).
+Most backends have been modified to use threads on MacOS X and should
+work. Others don't use fork at all. Both types of backends should work with
+MacOS X. Changing the backends to use threads is an ongoing effort.
+
+SCSI-scanners and Firewire scanners:
+------------------------------------
+There is support for SCSI and Firewire scanners but hasn't had much
+testing. Please send failure and success reports to the sane-devel mailing
+list. At least the Epson Perfection 1640SU and the CANON IX-06015C (CanoScan
+600) are reported to work.
+
+USB-scanners:
+-------------
+Work with libusb. Try "sane-find-scanner -v -v" and report success or
+failure to the SANE mailing list. At least the following scanners are
+known to work: UMAX Astra 1220U and 2000U, Epson Perfection 1640SU and
+2450 Photo.
+
+Use libusb version 0.1.11 or later (or a cvs checkout from 2005-09-01
+or later). If you use earlier versions the libusb code needs to be
+patched.
+
+Parport-scanners:
+-----------------
+I don't have any information about these. Please contact me or the SANE mailing
+list if you succeeded in using one of these.
+
+2003-12-26 Henning Meier-Geinitz <henning@meier-geinitz.de>
+2005-05-07 Mattias Ellert <mattias.ellert@tsl.uu.se>

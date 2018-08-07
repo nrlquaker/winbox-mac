@@ -1,0 +1,125 @@
+/* README for libgphoto2/camlibs/sonix camera library
+ *
+ * Copyright (C) 2005 Theodore Kilgore <kilgota@auburn.edu>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, 
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details. 
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA  02110-1301  USA
+ */
+
+This library supports fully the still-camera functions of several cameras 
+which use the sn9c2028 chip from Sonix (Vendor ID 0x0c45). 
+
+
+Differences in the functions and features of the known cameras can be 
+distinguished through the USB Product number, and also by a four-digit 
+hexadecimal string passed by the camera during initialization -- apparently a 
+firmware version number and/or an identification number for the video sensor. 
+If you have a Sonix sn9c2028 camera which returns a number not listed in 
+sonix.c, then your camera may or may not work with this code. How would I know? 
+Please inform if you get a different ID number!
+
+Here we give a brief description both of currently-supported cameras and of the 
+supported gphoto2 functions for each.
+
+
+Vivicam 3350b:
+
+Uses an OV7630 sensor. Produces a maximum resolution of 640x480 and an option 
+to use 320x240. The photos are all compressed. The compression scheme is 
+lossy. The decompression algorithm originates, I understand, in the work of 
+Bertrik Sikkens for the sn9c102 cameras. In the macam project for MacOS-X 
+camera support(webcam-osx project on Sourceforge), the decompression algorithm 
+for the sn9c2028 cameras was developed by Mattias Krauss and adapted for use 
+with the Vivitar Vivicam 3350B in particular by Harald Ruda 
+<hrx at users.sourceforge.net>. Harald brought to my attention the work already 
+done in the macam project, pointed out that it is GPL code, and invited me to 
+have a look. Thanks, Harald. The decompression algorithm used here is similar 
+to what is used in the macam driver, but is considerably streamlined and 
+improved. It seems to work perfectly. Brightness and/or gamma do sometimes 
+need to be adjusted with a photo editor such as Gimp, ImageMagick, or xv, 
+especially for photos taken in dim light. 
+
+Features of the camera include the ability to delete all photos. The "delete 
+last" function and the "capture-image" function, which will work for some
+other Sonix sn9c2028 cameras and are thus supported in this library, do not 
+seem to work with the my Vivicam 3350B and are therefore disabled for this 
+camera. These cameras can all shoot "movie clips" which are saved as AVI files.
+Webcam functionality uses isochronous transfer; thus it lies outside the scope 
+of libgphoto2 and is therefore not supported here. 
+
+
+DC31VC:
+
+Yet another camera which the macam driver also supports has been listed here 
+as a supported camera. It apparently uses 352x288 and 176x144 resolution 
+settings. I know of it only second hand, have not personally tested it, and 
+would appreciate any reports about it (I suspect it is similar to the Sakar
+Digital Keychain camera). 
+
+
+Sakar Digital Keychain #11199:
+
+This camera does not use data compression. It will hold 18 photos at 
+352x288 resolution, and 70 photos (or a clip containing at most 70 frames) 
+at 176x144 resolution, or any combination of these which does not fill up the 
+camera. Clips are processed as AVI files.
+
+This camera also supports gphoto2 --capture-image, which will cause a photo
+to be taken and stored among the photos on the camera for later download (the
+capture dimensions are always 352x288). 
+
+The photo which one has just shot can of course be downloaded immediately 
+using gphoto2 -p (its number, which will be the last taken) and, if desired, 
+can be deleted immediately afterwards using gphoto2 -d (its number) which 
+this camera also permits (unlike the Vivicam 3350b).
+
+Mini-Shotz ms350:
+
+This camera has 640x480 and 320x240 resolution settings. Its features are 
+otherwise quite similar to those of the Sakar Digital Keychain #11199, except 
+that it exclusively uses the compressed mode. 
+
+Genius Smart 300:
+
+This camera has 640x480 and 320x240 resolution settings. Its features are 
+otherwise quite similar to those of the Sakar Digital Keychain #11199 and the 
+Mini-Shotz ms350, except that it uses compressed mode for multiframe shooting, 
+but offers both compressed and uncompressed modes as options for still photos. 
+It does not support gphoto2 --capture-image. It does support deletion of 
+the last entry on the camera. 
+
+GUI frontends:
+
+Libgphoto2 , of course, permits the use of a GUI frontend as well as the 
+gphoto2 command-line utility. I have tested my two cameras with gtkam and with 
+flphoto. Both of them work, with the following provisos:
+
+-- There is an unresolved problem with gtkam, when the Sakar Digital Keychain 
+camera is hooked up and gtkam is started. The LED display starts to move 
+immediately and keeps on. The LED activity does not stop when gtkam is exited,
+but only on camera disconnect from the computer. This phenomenon may be quite
+harmless, but who knows? It obviously means that some kind of background 
+activity is taking place inside the camera. This LED activity does not occur 
+if the gphoto2 command line or the gphoto2 shell or flphoto are used. 
+(UPDATE: A workaround patch has been applied, which seems to fix this, as of
+08/17/06)
+
+
+-- flphoto will give a message when asked to save an AVI file, that it cannot
+put the AVI file into an "album." Well, perhaps not. But not to worry. 
+It will save the AVI file anyway, even while protesting. 
+
+
+(Most recent revision of this file is on  12/18/2007)

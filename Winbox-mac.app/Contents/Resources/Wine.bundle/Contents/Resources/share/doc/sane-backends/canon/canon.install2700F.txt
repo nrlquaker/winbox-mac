@@ -1,0 +1,135 @@
+
+-----------------------------------------------------------------------
+How to install a CanoScan 2700F on a Linux box ? 
+by Stephan Hegel <ea273@fen.baynet.de>.
+Date:   Fri Jan 15 16:13:15 MEZ 1999
+-----------------------------------------------------------------------
+
+Here is a short description on how to install the CanoScan 2700F film and
+slide scanner on a Linux box. Actually it was just written as a reminder
+for myself but I think it is a good idea to add it to Manuel Panea's
+Canon backend package. Please remember that there is NO GUARANTEE that
+this step by step instruction works also for you.
+Corrections and suggestions are welcome, of course. Thank you.
+
+
+1. How to install an Adaptec AVA-1502AP ?
+-----------------------------------------
+
+   The AVA-1502AP is is a small ISA Adaptec SCSI controller which is
+   shipped with the CanoScan slide scanner. Per default is has the 
+   address 0x140, the IRQ 10 and the SCSI host id 7. Check first for
+   conflicts with your already existing hardware.
+
+   Install the controller into the computer.
+
+   After starting the BIOS should detect the board as a PNP board. 
+   Boot the computer with the "SCSISelect" disk which is shipped with
+   the scanner to check that the controller is detected. Don't change
+   any settings except address, IRQ or SCSI id if necessary.
+
+   Configure a new Linux kernel (version 2.0.30 or newer) with:
+      SCSI Support (yes)
+      SCSI Generic support (yes)
+      Low level driver for aha152x (yes)
+   Note: here you can try to compile the SCSI support as modules as 
+         long as you don't boot the computer from a SCSI disk. But this
+         is not tested.
+
+   Compile and install the new Linux kernel.
+
+   Add "aha152x=0x140,10,7" to the "append" line to the already existing 
+   kernel parameters in lilo.conf, e.g:
+   -------------------
+   # Linux bootable partition config begins
+   image = /vmlinuz
+   root = /dev/hdc1
+   label = linux
+   append = "sbpcd=0x230,SoundBlaster aha152x=0x140,10,7"
+   # Linux bootable partition config ends 
+   -------------------
+
+   Invoke lilo to activate the changes.
+
+   Reboot the computer and watch the boot messages. The SCSI host
+   adapter should be there now.
+
+
+2. How to connect the scanner ?
+------------------------------
+
+   Shutdown and turn off the computer, connect the scanner with the SCSI
+   cable to the SCSI adapter. Set the SCSI Id with the turn-switch at
+   the back of the scanner body. I'm using SCSI Id 1 with "termination
+   on" since the scanner is the one and only device connected to my host
+   adapter.
+
+   Turn on the scanner first and wait for a few second. The scanner 
+   performs a short self test.
+
+   Turn on the computer.
+
+   Watch the boot messages, there should be a message indicating that 
+   the SCSI host adapter and the scanner are there.
+
+   Now you can check again that the scanner device is there:
+      cat /proc/scsi/scsi
+   Should print something like that:
+      Host: scsi0 Channel: 00 Id: 01 Lun: 00
+        Vendor: CANON    Model: IX-27015C        Rev: 1.17
+        Type:   Scanner                          ANSI SCSI revision: 02
+
+
+3. How to install SANE for the Canon 2700 film scanner ?
+--------------------------------------------------------
+
+   Fetch the latest SANE distribution from the SANE homepage at:
+       http://www.sane-project.org/
+   
+   Unpack and configure it.
+   
+   Get the latest canon backend from Manuel's homepage:
+      http://www.rzg.mpg.de/~mpd/sane
+
+   Put the files in the sane/backend directory as described in the
+   README of the package. This overwrites the existing canon.* files
+   with the latest version of these files.
+   
+   Compile and install SANE.
+   
+   Add the "canon" scanner to the /usr/local/etc/sane.d/dll.conf file:
+      -------- cut here ------------
+      # enable the next line if you want to allow access through the network:
+      #net
+      pnm
+      #mustek
+      #hp
+      #qcam
+      #umax
+      canon
+      -------- cut here ------------
+   
+   Add a "canon.conf" file to the /usr/local/etc/sane.d directory:
+      -------- cut here ------------
+      scsi CANON 
+      -------- cut here ------------
+   
+   Check the available scanners:
+      scanimage -L
+   This should give something like this:
+      device `canon:/dev/sg0' is a CANON IX-27015C        film scanner
+      device `pnm:0' is a Noname PNM file reader virtual device
+      device `pnm:1' is a Noname PNM file reader virtual device
+
+   Invoke the frontend:
+      xscanimage & 
+   NOTE: The "xscanimage" frontend is in the SANE distribution. There 
+   is also another SANE frontend available which is called "xsane" by 
+   Oliver Rauch. It is still under heavy development and can be grabbed 
+   from:
+      http://www.wolfsburg.de/~rauch
+
+   A dialog box appears, select the canon scanner and here we go ... 
+   Happy scanning !!!
+   
+-----------------------------------------------------------------------

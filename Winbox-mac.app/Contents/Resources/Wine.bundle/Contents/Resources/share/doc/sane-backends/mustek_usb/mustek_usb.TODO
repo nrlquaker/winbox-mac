@@ -1,0 +1,10 @@
+2004-03-02
+
+* Support more scanners
+  - 1200 USB
+  - 600 USB
+  These are both CCD scanners. Several people tried to add support until
+  now but I have never heard from the again ...
+* Remove/replace _word variables from usb_low
+* Check if low resolutions can be made faster.
+* Check fixmes.

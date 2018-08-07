@@ -1,0 +1,72 @@
+.TH sane\-mustek_usb2 5 "13 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-mustek_usb2
+.SH NAME
+sane\-mustek_usb2 \- SANE backend for SQ113 based USB flatbed scanners
+.SH DESCRIPTION
+The
+.B sane\-mustek_usb2
+library implements a SANE (Scanner Access Now Easy) backend that provides
+access to USB flatbed scanners based on the Service & Quality SQ113 chipset. At
+the moment, only the Mustek BearPaw 2448 TA Pro is supported. It's planned to add
+support for other scanners that are based on the SQ113 and maybe SQ11 chip. For
+more details, see the mustek_usb2 backend homepage: 
+.IR http://www.meier\-geinitz.de/sane/mustek_usb2\-backend/ .
+.PP
+This is BETA software. Especially if you test new or untested scanners, keep
+your hand at the scanner's plug and unplug it, if the head bumps at the end of
+the scan area.
+.PP
+If you own a scanner other than the ones listed on the mustek_usb2 homepage that works with this
+backend, please let me know this by sending the scanner's exact model name and
+the USB vendor and device ids (e.g. from
+.I sane\-find\-scanner
+or syslog) to me. Even if the scanner's name is only slightly different from
+the models already listed as supported, please let me know.
+.PP
+.SH LIBUSB ISSUES
+Please use libusb-0.1.8 or later. Without libusb or with older libusb versions
+all kinds of trouble can be expected. The scanner should be found by
+sane\-find\-scanner without further actions. For setting permissions and general
+USB information looks at
+.BR sane\-usb (5).
+.PP
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-mustek_usb2.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-mustek_usb2.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_DEBUG_MUSTEK_USB2
+If the library was compiled with debug support enabled, this environment
+variable controls the debug level for this backend.  Higher debug levels
+increase the verbosity of the output. 
+
+Example: 
+export SANE_DEBUG_MUSTEK_USB2=4
+
+.SH "SEE ALSO"
+.BR sane (7),
+.BR sane\-usb (5),
+.BR sane\-plustek (5),
+.BR sane\-ma1509 (5),
+.BR sane\-mustek_usb (5),
+.BR sane\-mustek (5),
+.BR sane\-mustek_pp (5)
+.br
+.I /Users/mike/Documents/wine/usr/share/doc/sane-backends/mustek_usb2/mustek_usb2.CHANGES
+.br
+.I http://www.meier\-geinitz.de/sane/mustek_usb2\-backend/
+
+.SH AUTHOR
+The driver has been written Roy Zhou, Jack Xu, and Vinci Cen from
+Mustek. Adjustments to SANE by Henning Meier-Geinitz.
+
+.SH BUGS
+Please contact me if you find a bug or missing feature:
+<henning@meier\-geinitz.de>. Please send a debug log if your scanner isn't
+detected correctly (see SANE_DEBUG_MUSTEK_USB2 above).

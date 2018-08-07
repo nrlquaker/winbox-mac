@@ -1,0 +1,246 @@
+MARS MR97310 STILLCAM DRIVER
+Copyright Theodore Kilgore <kilgota@auburn.edu> April, 2004. Latest revision
+of this README March 15, 2008.
+
+(Everything in libgphoto2/camlibs/mars is LGPL-licensed, including this README; 
+see any of the source files for a more complete statement of the license.)
+
+INTRODUCTION
+
+This driver is for cameras which use the Mars MR97310 chip, frequently found in 
+budget cameras. 
+
+FEATURES OF THE CAMERAS
+
+The first MR97310 camera which I encountered was the Aiptek PenCam VGA+,
+a "budget" camera with resolution settings of 640x480 and 320x240.  
+This camera and the other MR97310 cameras can also be used as webcams (not 
+supportable by gphoto2; would require a kernel module) or to make a "video 
+clip." Some of the other cameras automatically will run in compressed mode 
+when shooting clips, but on the Aiptek it is optional to compress clips.  
+Clips download nicely on all these cameras as a succession of PPM files. 
+The compression method (optional for the Aiptek camera) is proprietary and 
+not obvious. With recent progress, it ought to be usable. However, the 
+adventurous and persistent are hereby encouraged to play with it some more. 
+
+09/12/05: Decompression sort of works, now. Thanks to Bertrik Sikkens 
+for the basic algorithm, and to Michel Xhaard for testing my additional tweaks. 
+With some of the cameras it is possible now to get decent photos in compressed 
+mode, at least some of the time. For this, the camera seems to function best 
+at outdoor use. 
+
+Update 08/28/06: Decompression algorithm much improved, after much trial 
+and error. I would say it is somewhere between 90% to 100% good now. Seems to
+work almost perfectly outdoors and in strong light. Works even better at low 
+resolution settings, that is, 352x288 or lower. 
+
+Update 08/21/07: Decompression issues essentially resolved, for the "0x50"
+compression algorithm. However, another, different compression algorithm is 
+also used in some of the cameras. 
+
+The camera uses a configuration "block," as do the sq905 cameras. However, 
+here the information can be used to run options such as gphoto2 -p 3 and 
+gphoto2 -p 3-5. The OEM software provided with the various cameras does not 
+take advantage even of the mentioned abilities. With the OEM driver, one has 
+the choice either to download all photos, or none. If all are downloaded, then 
+thumbnails are created from temporry image files in C:\TEMP. Thereby, the user 
+can decide what to "save" in some more permanent place. 
+
+
+STATUS NOTES ON SUPPORTED CAMERAS (7 Feb. 2006, revised 28 Aug. 2006)
+
+First, a special note: On many of these cameras, the LED will read "PC" when 
+the camera is hooked to a live USB connector. It seems locked in this position.
+But all of the cameras which do this, which I have tested, will permit this 
+lock to be cleared if one runs any gphoto2 option (for example, gphoto2 -n or
+gphoto2 --summary will clear the "PC" lock very nicely), and after this 
+everything on the camera can be made to work, just as if the camera were not 
+tethered. Consequently, one can use the camera thus tethered, without any 
+battery in it, to shoot and download photos. The photos will die soon if the 
+camera is unhooked without a good battery in it, though, because 
+the camera uses volatile memory for its data storage. 
+
+The only problem with using any of these cameras is the compression codec. 
+Bertrik's decompression algorithm seems basically correct, but it has a problem 
+with leaving diagonal color artifacts, a problem which can be severe in bad 
+lighting conditions, especially if there are lots of dark colors in the photo. 
+Those cameras with 352x288 max resolution instead of 640x480 do better, and the 
+Argus DC-1620 does better in poor light than does the Aiptek Pencam VGA+.
+I have recently been able to alleviate these problems to a great extent, but 
+not completely. Also, not all of the cameras seem to perform equally well 
+in compressed mode when used to shoot similar photos under similar lighting 
+conditions. After the tweaks I have added as of August 2006, though, the
+situation with compression mode is improved quite a bit.
+
+Here is a report on the cameras which I own. I can not say anything 
+about the others unless their performance is reported to me. This especially 
+applies in case that the camera uses compressed mode, since there are two 
+compression algorithms in use and we can handle only one of them to any extent
+at all. 
+
+Aiptek Pencam VGA+: Compressed mode is very sensitive to bad lighting, 
+especially when there are dark colors in the image (08/27/06: better now). 
+The camera also will refuse to shoot both in compressed and in uncompressed 
+mode if the light is very bad (indoors, in the evening) and that is probably 
+all for the best. 
+
+Argus DC-1620: Compressed mode only. No uncompressed photos. The compressed 
+mode works pretty well, though. Outdoor photos are pretty good, and if you are
+willing to put up with a cheap, compressed-mode-only camera it might even be 
+worth your money. The camera does have some problems in bad light, but not so
+severe as with the Aiptek Pencam VGA+. Camera does have a flash-light which can
+be turned on in bad light. The camera will then decide if it wants to use it. 
+
+Sakar Digital #77379: Also compressed mode only. Seems to work pretty well. Has 
+a very high cutoff threshold and will not take photos in the evening, even if 
+one points it at a bright monitor screen. Color mapping is cruddy, though, even 
+running in uncompressed mode. 640x480 and 320x240 resolution.
+
+Philips Keychain, INNOVAGE Mini Digital Vivitar Mini Digital: These seem to be 
+clones, even having very similar cases. They will do max resolution 352x488. 
+But for what they are they work very well. It seems that these shoot clips in 
+compressed mode (no matter if you otherwise turned compression on, or not), but 
+at the resolution settings these cameras use the decompression works nicely, 
+too. Probably the CD302N and the Pixart Gemini are the same, too, but I do not 
+have direct experience. Trust SpyC@m 100: Reported as working, seems from 
+manufacturer's description to be another camera similar to the Philips KeyChain. 
+Furthermore, www.trust.com (the manufacturer) says that the Trust SpyC@m 100s 
+is the same camera inside, too, so it is also presumed to work. 
+
+
+Sakar Digital 56379 "Spy Shot": Another keychain camera, but also contains a 
+microphone and will capture sound. There is a toggle switch on the camera, 
+which is labelled "photo" on one side and "voice" on the other. If the 
+"voice" toggle is chosen, then actual recording is turned on and off with a 
+press of the shutter button. The output is kept in the camera. This feature 
+is supported as of 04/07/07; the audio output may be downloaded as a WAVE file 
+with the usual options gphoto2 -P or gphoto2 -p (number). Note: the option
+--capture-sound and the various "audio" options are _not_ supported. In any 
+event, the usual options do make sound files accessible in a GUI environment.
+
+ION digital camera: Compression optional. High cutoff threshold for what the 
+camera considers bad light; will not take photos indoors, sometimes, even on a 
+bright day. Color mapping is unspectacular. Camera case looks like there is a 
+microphone on it, but there isn't.
+
+Sakar no. 1638x CyberPix: Usable in uncompressed mode. Compression algorithm 
+appears to be the same as that for the Argus QuickClix (see next listing) and 
+is unknown. WARNING! When turned on the camera comes up in compressed mode !!!
+The user can change this by hand by choosing "nP" in the camera's LCD. Do this
+before you shoot photos, else the photos will be useless !!! 
+
+Argus QuickClix: Compressed mode only. The compression algorithm is different 
+from the compression algorithm in the other known Mars cameras, too. I have 
+no idea how the compression algorithm works, either. Thus, this camera is a 
+paperweight unless someone figures out how to decompress the data. Don't buy 
+one unless you are adventurous, patient, and want to help out. That's why it 
+is listed as DEPRECATED. 
+
+SPECIFIC WARNING REGARDING ARGUS QUICKCLIX
+
+For the Mars cameras, all data for raw photos begins with a signature. The 
+uncompressed photos begin with FF FF 00 FF 96 64 00, and raw photos using the 
+compression which is solved begin with FF FF 00 FF 96 64 50. If you get a 
+camera in which the raw data begins with the signature FF FF 00 FF 96 64 20 
+then your camera uses the same compression algorithm as the Argus QuickClix. 
+That compression method is as yet unknown; a camera using it is a paperweight. 
+
+Finally, one can not distinguish an Argus QuickClix from an Argus DC-1620 by 
+appearance. From the outside they are identical. Also they and several other 
+cameras use the same USB Vendor:Product number and do not give any 
+identification string after they are connected, either. So, unless the new 
+compression algorithm is unlocked, there is a real problem here. 
+
+The Sakar CyberPix also uses this unknown compression, which is turned on by 
+default. The user must turn it off in order to get usable photos. See notes
+about this camera, above. 
+
+USABILITY OF DRIVER WITH GUI FRONTENDS
+
+The camera library presented here seems to work with gtkam as a frontend. To 
+use gtkam for the first time with any camera, you must choose the camera. 
+For this purpose, after starting gtkam click on "Camera." Then choose 
+"Add Camera." Then "Detect." Click on the name of the camera to get photos. 
+Gtkam creates its own thumbnails for cameras which do not offer them. These 
+cameras do not offer thumbnails. Sound files are "seen" by name, with no 
+thumbnail, and can otherwise be selected, deleted, or saved, just like image 
+files. The default option in gtkam is to save to $PWD. I like that. You can
+change that behavior if you want, I understand. 
+
+Digikam as a frontend works, too. But for some reason digikam seems unable to 
+display thumbnails from this camera. Anyone who knows what the problem is 
+here, please let me know. 
+
+Flphoto works well, too, with no obvious glitches. Flphoto is also willing to 
+create thumbnails and does so without any tweaking. Sound files are handled 
+pretty much as in gtkam. You will get a whine on saving, that the file cannot 
+be put into the "album" but it will be saved to the chosen directory 
+nevertheless. Flphoto will not automatically save in $PWD but instead will 
+open the directory it used last time. I hate that. Someone out there must love 
+that behavior, though. Or it wouldn't be set up that way. Otherwise, flphoto
+is really slick. 
+
+
+SAVING RAW PHOTO FILES AND USING THEM LATER (09-23-06)
+
+All raw photos downloaded from the camera come with a signature and a header 
+which is 12 bytes in length. This header has always been retained if the
+photo is saved in raw format. The last few of the bytes in this header seem to 
+pertain to things like brightness and color balance (not usable information, 
+at this time, but may be in the future). The first bytes are always
+
+FF FF 00 FF 96 64
+
+and the next byte (as received from the camera) is either 00 (if the image is 
+uncompressed) or is 50 if the image has been subjected to the "standard" 
+MR97310 compression or is 20 if the image has been subjected to the totally
+unknown Argus QuickClix compression. 
+
+Thus the header of any given image as it comes from the camera tells us in 
+byte 6 of the header whether the image is compressed or if compressed then
+which algorithm has been used. That information uses the most significant nibble 
+of the "compression" byte. But if we do not do something, the pixel dimension of 
+the photo to be obtained from the raw file is not recorded. As the camera also 
+codes this information in one nibble, we place that nibble here, thus:
+
+Original raw signature 		pixel dim. 	Saved as 		Comp.
+FF FF 00 FF 96 64 00		176x144		FF FF 00 FF 96 64 00	no
+				352x288		FF FF 00 FF 96 64 02	no
+				320x240		FF FF 00 FF 96 64 06	no
+				640x480		FF FF 00 FF 96 64 08    no
+FF FF 00 FF 96 64 50		176x144		FF FF 00 FF 96 64 50	yes
+				352x288		FF FF 00 FF 96 64 52	yes
+				320x240		FF FF 00 FF 96 64 56	yes
+				640x480		FF FF 00 FF 96 64 58	yes
+
+(similar will happen if compression code is the bad 0x20, as well)
+
+With this small change, the raw file now contains all information within 
+itself that is needed for processing it. 
+				
+				
+FURTHER DETAILS
+
+Further details are given in "protocol.txt". These details have been obtained 
+through trial and error and are intended solely to meet the problems of 
+compatibility in other than a Microsoft Windows (trademark) environment. If 
+you would like to see this file and it is not included for some reason in a 
+"released" version of libgphoto2, then it can be found in the SVN source 
+repository.
+
+THE mars_white_balance() FUNCTION
+
+This function first of all does what its name implies. It also re-computes a 
+better gamma factor for the individual image, based upon internal 
+characteristics detected in the image, and does color enhancement. If you do 
+not like what it is doing, then you can turn it off by commenting out the line
+in library.c where it is called, but I expect that the user will not want to 
+do that, because it seems to me that the image quality is much, much better.
+
+
+WARRANTY?
+
+Absolutely none. Remember, I did not sell you this software. I have written 
+this driver for my own edification and in the sincere hope that it might help 
+you to use of your camera. Please see also the warranty clauses in the LGPL 
+license, which do not appear to me to conflict with my own statement here. 

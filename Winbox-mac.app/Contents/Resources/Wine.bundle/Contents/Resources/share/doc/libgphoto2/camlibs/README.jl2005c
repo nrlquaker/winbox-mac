@@ -1,0 +1,140 @@
+JEILIN STILLCAM DRIVER
+
+Copyright Theodore Kilgore <kilgota@auburn.edu> September 4, 2007. Most recent
+update is April 28, 2010.
+
+(Everything in libgphoto2/camlibs/jeilin is LGPL-licensed, including this
+README. See any of the source files for a more complete statement of the
+license.)
+
+INTRODUCTION
+
+This driver is intended to support the cameras with the USB Vendor:Product
+number 0x0979:0x0227. These cameras all have a controller chip from Jeilin
+Technologies, either the JL2005B or the JL2005C or the JL2005D. Both the
+control interface and the compressed data format of these cameras are
+proprietary, and these cameras are supported commercially only in Windows.
+In spite of some features in common, these cameras also show a very large
+variation. Some of them are very rudimentary, with a maximum resolution
+of 352x288, and there are also more expensive models with a maximum resolution
+of 1280x1024. Some of them have viewing screens on the rear and some
+do not. Some of the cameras also produce separate thumbnails, which, when
+present, are downloaded as part of the raw data for the image. Accommodation
+of this very wide range of features has been a special challenge in writing
+this support library, especially when it seems that not all of the OEM
+software available for a given supported camera will work for all the others.
+
+Jeilin Technologies also manufactures chips which go into mass storage cameras. Those cameras, not to be confused
+with these, can be accessed directly using mass storage support. The company
+also makes another camera controller chip with proprietary interface, the
+JL2005A. Cameras with that chip are supported in libgphoto2/camlibs/jl2005a.
+If you want to read about one of those JL2005A cameras, please look in
+camlibs/jl2005a, not here.
+
+The JL2005C camera library has been included in the release versions of
+libgphoto2 ever since libgphoto2-2.4.4, but it was so configured as not
+to compile by default. The reason for that was that the cameras use a nasty
+data compression algorithm which was very difficult to figure out. So long
+as the data coming out of the camera could not be decompressed, it was not
+of any use to support these cameras except for experimental purposes. This
+situation has recently changed. A task force was set up to deal with the
+problem, and success has been achieved. As of April 2010, it seems to be
+possible reliably to get the photos out of these cameras in usable form.
+For details concerning the solution of the decompression problem, please
+see the file README.jl2005bcd-compression which is supposed to be included
+with the documentation for libgphoto2/camlibs/jl2005c. If for any reason
+you do not have this file, it can be found at <gphoto.svn.sourceforge.net>
+in the directory trunk/libgphoto2/camlibs/jl2005c. My thanks to the other
+members of the team who worked together to solve the longstanding problem.
+Thanks to Adam Rubin and Bertrik Sikken for doing the research needed to 
+gather the information found at
+
+<http://sourceforge.net/apps/mediawiki/gphoto/index.php?title=ImageEncoding
+Jeilin2005CD>
+
+And thanks to Hans de Goede for writing the decompression algorithm.
+
+WHAT DOES THIS CAMERA LIBRARY CURRENTLY DO?
+
+This library appears to support the basic functionality of all the various
+cameras which are available for testing. It seems to perform reliably at the
+tasks of initializing the camera and providing a graceful exit, downloading
+the raw data, and also conversion of raw data into decompressed output files.
+Cameras which support or do not support thumbnails seem to be reliably
+detected, and the raw data appears to be reliably decompressed. If present,
+thumbnails can also be processed into a finished form. Deletion of all photos
+also is supported, by the option gphoto2 -D. In short, things appear basically
+to work.
+
+HARDWARE CONSTRAINTS:
+
+These cameras use an extremely primitive command structure. The only thing
+that the camera really does know how to do is to prepare to download all data
+on it, then to download all data on it, and then to reset prior to being
+disconnected. Judging by what it does, the OEM software is almost certainly
+built on the assumption that the camera will be initialized, have its data 
+dumped exactly once, and then disconnected. Everything else is done on the
+computer with the big blob of data which has been downloaded. Therefore,
+any other functionality has to be based on software fakery which fools the
+hardware into emulating said functionality. Suppose, for example, that there
+are ten photos in the camera. Then what the camera will do is:
+	-- report the number of photos (ten)
+	-- tell how much data needs to be downloaded in all (depends on how 
+	much room was taken up by the raw data for all the photos)
+	-- provide a table with one line for each photo, giving its size, start
+	location, output height and width, and some kind of code for the 
+	compression method used on it.
+In the next step, one must request all the image data for all the ten photos
+to be downloaded. This happens in increments of 64000 bytes, with only the last
+increment permitted to be "short." This does not need to be done all at once;
+it is possible to download some initial block of the data and operate on
+whatever photos are already obtained, keeping anything left over until the next
+block is downloaded. However, ALL of the data must downloaded before the driver
+ program exits. One consequence of this is that the only way commands such as
+
+gphoto2 --get-raw-data 3 or gphoto2 -p 3
+
+can work is to download photos number 1 and 2 and throw away the data before
+downloading the desired number 3 which is to be kept, then downloading any
+data in the camera which comes after photo number 3, as part of the exit
+routine. The sequence of downloading number 10, say, followed by number 1 is
+even more complicated. The actual steps required are:
+	-- initialize the camera
+	-- download enough data to get photo number 10, throwing away all data 
+	which is not part of photo number 10 but precedes it
+	-- download the data required for photo number 10
+	-- download the rest of the data, if any
+	-- send a reset sequence to the camera
+	-- close and reopen the camera's port
+	-- repeat the initialization sequence
+	-- download enough data to process photo number 1
+	-- download all the rest of the data and throw it away.
+	-- send the reset sequence again, and, finally, disconnect
+
+In addition to the awkwardness caused by this kind of primitive behavior, it
+puts certain requirements on any program used to handle the camera. Most
+particularly, any program which uses libgphoto2 must be willing to call and
+actually to use the camera_exit() function which is contained in this library.
+Otherwise, given the above constraints, it is obvious that the camera would
+not work properly with that frontend program. 
+
+TO DO
+
+There are some parts of the camera command structure which are not completely
+known. For example, some kind of capture function could conceivably be made
+to work.
+
+One known functionality of the camera is not completely supported, though. The
+cameras all support a "continuous shooting" mode, in which the camera shoots
+frames until it it is stopped by a button press or runs out of memory. The OEM
+driver software saves the result as an AVI file. Here, the individual frames
+are merely downloaded and saved as individual photos. The intention is to
+support this feature completely, in the future.
+
+WARRANTY?
+
+Absolutely none. Remember, I did not sell you this software. I have written
+this driver for my own edification and in the sincere hope that it might help
+you to use of your camera. Please see also the warranty clauses
+in the LGPL license.
+

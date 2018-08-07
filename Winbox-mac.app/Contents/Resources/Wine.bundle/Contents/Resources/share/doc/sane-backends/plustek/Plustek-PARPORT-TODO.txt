@@ -1,0 +1,38 @@
+Plustek-PARPORT-TODO.txt (2003-29-10) Gerhard Jäger <gerhard@gjaeger.de>
+========================================================================
+
+TODO (in general):
+    - more documentation/comments on the different functions
+    - remove/check the CHECK marks
+    - add additional button handler
+    - adding adjustment of the scan area
+    - checking timeout conditions (MiscCheckTimer !) and handle them correctly
+    - let the 96001/3 based models work with the highest available
+      phys. resolution
+    - Create the modes out of the capability list of each device
+
+(USER-MODE):
+    - line by line feedback to the backend
+
+
+KNOWN BUGS/Limitations:
+
+Model                    Description                           Workaround
+------------------------------------------------------------------------------
+
+OpticPro P9636           detected as OP12000                   none
+Genius VividPro II Film  Halftone/Gray > 450 dpi didn't work   none
+OpticPro P4830           binary scanning does not work         none
+OpticPro A3I             bad picture quality                   none
+Genius HR6               negative scanning not okay            none
+
+********************************* DONE ***************************************
+
+- PS/2 bidi does not work (libieee1284)                          
+- Update the IOCTL interface and remove some old structs (CmdBlk)
+
+******************************** SKIPPED *************************************
+
+better dither maps                             nobody needs halftone scanning
+make the backtrace work for ASIC 96001/3       not possible due to ASIC limits
+based models

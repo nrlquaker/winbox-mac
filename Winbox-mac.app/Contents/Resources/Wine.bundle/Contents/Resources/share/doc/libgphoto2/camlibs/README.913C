@@ -1,0 +1,85 @@
+/* This is a supplemental README file for libgphoto2/camlibs/sq905, dealing
+ * specifically with support for sq913 cameras. This file is an 
+ * integral part of the libgphoto2/camlibs/sq905 library source and is 
+ * distributed with that source under the LGPL license. a copy of which 
+ * license may be seen in any of the source files in libgphoto2/camlibs/sq905, 
+ * or in the head directory of libgphoto2.
+ */ 
+
+
+INTRODUCTION
+
+The Argus DC-1730 apparently uses the sq913 chip and has Vendor:Product
+number 0x2770:0x913c. It provides 640x480 or 320x240 resolution, optional
+compression setting, and capture mode. The camera also has an LED thumbnail
+display and a flash, which the user can turn off to save power. Even with
+these new features, the camera still retails for under $50 (US). This new
+camera (presumably along with any other 0x2770:0x913c cameras which may
+exist) uses the same command set as the existing sq905 cameras, and thus it
+is supported simply by adding its ID to the models list in sq905/library.c.
+It also has the new chip or model ID 09 13 06 67, but it seems to be
+supported well enough under the options used for SQ_MODEL_DEFAULT.
+
+DIFFERENCES BETWEEN SQ913 AND  SQ905 CAMERAS
+
+As already mentioned, these new cameras have an LED display on the rear and
+also have a flash. Two other differences are not so readily visible. 
+
+First, the sq905 cameras have a "video clip" feature. If this feature is
+set, the camera will shoot frames repeatedly, until its memory is full. The
+Argus DC-1730 does not have this feature; on similar button setting it will
+shoot three frames only, and then stop. 
+
+This functional difference also is reflected in a slightly different format
+for the configuration data presented by the camera. 
+
+The most major consequence of this change in the configuration data is
+that sq_postprocess ( ) must be completely rewritten before it can be used
+with these cameras; the meaning of entries 7 through 15 in each line of
+config data is now wrong. For this reason, sq_postprocess ( ) is turned off
+in CVS for now. 
+
+Repeating myself: If you are running an existing version of camlibs/sq905
+and want to just add the new ID number 0x2770:0x913c instead of upgrading,
+then be sure to comment out the call to sq_postprocess ( ) in the download
+routine, or rewrite it. Otherwise you will get very funny-looking photos
+from your Argus DC-1730. 
+
+
+HARDWARE COMPATIBILITY ISSUES AND PROBLEMS WITH THE ARGUS DC-1730
+
+The addition of support for 0x2770:0x913c cameras has been delayed somewhat
+by some rather strange hardware problems which seem to be related to the USB
+controller chipset on the computer and/or to the length of the cable used to
+connect the camera. Here, then, are my experiences.
+
+The first computer on which I tested my new Argus DC-1730 is an old Dell,
+which has in it a Pentium III (Coppermine) 1Ghz and a board with Intel
+USB controller. I had no problems at all. Everything was quite routine, and
+I was about to commit the code to CVS.
+
+Then, I checked my work on machines and got mixed results:
+
+On an Athlon 1Ghz on an FIC AZ-11 board, with VIA KT166 chipset, the camera
+misbehaved. It dropped data blocks while downloading and got jammed,
+requiring battery removal to clear the jam. However, removal of an extension
+cable seemed to clear up the problem.
+
+An old Micron "barebones" system, again with a VIA chipset, seems completely
+unusable with this camera.
+
+I have also tested the camera with a Dell Inspiron 7500 laptop. No problems,
+even with the extension cable. 
+
+Finally, the camera was tested again on the first machine. the Dell Pentium
+III, using the extension cable which had caused problems previously. Again
+no problems.
+
+Gphoto2-libgphoto2 is installed on all of these computers. No such problems
+have ever been noticed with any other camera on any of the machines. If you
+are similarly unlucky with an 0x2770:0x913c camera, it would seem that the
+only possible cure might be to install another USB controller on an addon
+card, to use an external USB hub, to take extra precautions about cabling,
+or in the most extreme circumstances to buy a new computer. You may have no
+problems. It could be that I just got one bad camera or one bad USB cable to
+go with it. But in case you do, you are hereby warned.

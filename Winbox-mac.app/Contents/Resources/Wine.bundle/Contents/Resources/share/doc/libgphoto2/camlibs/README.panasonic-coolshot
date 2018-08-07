@@ -1,0 +1,21 @@
+Panasonic KXL-600A and KXL-601A a.k.a. "Coolshot"
+
+This driver is based upon protocol reverse-engineered
+using ComLite32 under Windows 95.
+
+For questions/comments, email the library author:
+
+	Chris Pinkham
+	cpinkham@infi.net
+
+
+TODO List
+---------
+- file upload capability
+- better error checking ("fixme"s) & recovery
+- modify coolshot_file_count to return GP_ code and take *count as argument
+	Comment by Lutz <lutz@users.sf.net>: Why? Throughout libgphoto2,
+	we say that negative return values are errors. That is, we do
+	CHECK_RESULT (pic_num = count_pictures (camera)); everywhere and let
+	CHECK_RESULT test for a return value < 0.
+

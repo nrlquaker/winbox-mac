@@ -1,0 +1,273 @@
+.TH sane\-hp 5 "13 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-hp
+.SH NAME
+sane\-hp \- SANE backend for HP ScanJet scanners
+.SH DESCRIPTION
+The
+.B sane\-hp
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to HP ScanJet scanners which support SCL (Scanner
+Control Language by HP).  The following
+scanners are known positively to work with this backend:
+.PP
+.RS
+.ft CR
+.nf
+Model:         Product id:     Interface:
+----------     -----------     ----------
+ScanJet Plus   C9195A          HP Parallel Interface Card
+ScanJet IIc    C1750A 3226     SCSI
+ScanJet IIcx   C2500A 3332     SCSI
+ScanJet IIp    C1790A          SCSI
+ScanJet 3C     C2520A 3503     SCSI
+ScanJet 3P     C2570A 3406     SCSI
+ScanJet 4C     C2520A          SCSI
+ScanJet 4P     C1130A 3540     SCSI
+ScanJet 4100C  C6290A          USB
+ScanJet 5P     C5110A          SCSI
+ScanJet 5100C  C5190A          parallel port
+ScanJet 5200C  C7190A 3846     parallel port/USB
+ScanJet 6100C  C2520A 3644     SCSI
+ScanJet 6200C  C6270A 3828     SCSI/USB
+ScanJet 6250C  C6270A 3828     SCSI/USB
+ScanJet 6300C  C7670A          SCSI/USB
+ScanJet 6350C  C7670A          SCSI/USB
+ScanJet 6390C  C7670A          SCSI/USB
+PhotoSmart     C5100A R029,R030,R032    SCSI
+.fi
+.ft R
+.RE
+.PP
+Support for models 5100C/5200C connected to the parallel port requires
+the ppSCSI driver available at 
+.I http://cyberelk.net/tim/parport/ppscsi.html
+and
+.IR http://penguin-breeder.org/kernel/download/ .
+
+.PP
+Support for models 5200C/62X0C/63X0C connected to the USB require
+the kernel scanner driver or libusb. See
+.BR sane\-usb (5)
+for more details.
+.PP
+The "hp" backend no longer supports OfficeJet multi-function peripherals.
+For these devices use the external "hpoj" backend in version 0.90 and later of
+the "HP OfficeJet Linux driver", available at 
+.br
+.IR http://hpoj.sourceforge.net
+.
+.PP
+Because Hewlett-Packard does no longer produce scanners that support
+SCL (beside the OfficeJets), the above list of supported scanners is
+complete.
+Other HP scanners are not supported by the "hp" backend, but might be supported
+by another one. See
+.IR http://www.sane\-project.org/ .
+You can also watch the sane\-devel mailing list at
+.IR http://www.sane\-project.org/mailing\-lists.html .
+.PP
+More details about the hp backend can be found on its homepage 
+.IR http://www.kirchgessner.net/sane.html .
+.PP
+.SH "DEVICE NAMES"
+This backend expects device names of the form:
+.PP
+.RS
+.I special
+.RE
+.PP
+Where
+.I special
+is the UNIX path-name for the special device that corresponds to the
+scanner.  For SCSI scanners the special device name must be a generic SCSI
+device or a symlink to such a device.  Under Linux, such a device name could be
+.I /dev/sga
+or
+.IR /dev/sg2 ,
+for example. If the special device name contains "usb", "uscanner" or "ugen",
+it is assumed that the scanner is connected by USB.
+For the HP ScanJet Plus the special device name must be the device
+that corresponds to the parallel interface card that was shipped with the
+scanner. That is
+.IR /dev/hpscan .
+A special driver is required for this card.
+See ftp://rvs.ctrl\-c.liu.se/pub/wingel/hpscan for details. If the link
+does not work, try ftp://sunsite.unc.edu/pub/Linux/kernel/patches/scanners.
+.SH CONFIGURATION
+The contents of the
+.I hp.conf
+file is a list of options and device names that correspond to HP ScanJet
+scanners.  Empty lines and lines starting with a hash mark
+(#) are ignored. See
+.BR sane\-scsi (5)
+and
+.BR sane\-usb (5)
+on details of what constitutes a valid device name.
+.PP
+Options specified in front of the first line that contains a device name 
+are defaults for all devices. Options specified below a line that
+contains a device name apply just to the most recently mentioned device.
+.PP
+Supported options are
+.BR connect\-scsi ,
+.BR connect\-device ,
+.BR enable\-image\-buffering ,
+and
+.BR dumb\-read .
+
+Option
+.B connect\-scsi
+specifies that the scanner is connected to the system by SCSI.
+Input/output is performed using SCSI-commands. This is the default.
+But if your SCSI device name contains "usb", "uscanner" or "ugen",
+option connect\-scsi must be specified. Otherwise it is assumed that
+the scanner is connected by USB.
+
+Option
+.B connect\-device
+specifies that the scanner is connected to the system by a special
+device. Input/output is performed by read()/write()-operations
+on the device. This option must be used for HP ScanJet Plus
+or scanners connected to USB which are accessed through a named device
+(e.g. /dev/usb/scanner0).
+For device names that contain "usb", "uscanner" or "ugen", it is not
+necessary to specify option connect\-device.
+
+Option
+.B enable\-image\-buffering
+stores the scanned image in memory before passing it to the frontend. Could be
+used in case of forward/backward moving scanner lamp.
+
+Option
+.B dumb\-read
+can be used to work around problems with "Error during device I/O". These
+problems may occur with certain SCSI-to-USB converters or Buslogic SCSI cards.
+The option should not be used for SCSI devices which are working correctly.
+Otherwise startup of frontends and changing parameters might be slower.
+.PP
+A sample configuration file is shown below:
+.PP
+.RS
+.ft CR
+.nf
+/dev/scanner
+# this is a comment
+/dev/hpscan
+  option connect\-device
+.fi
+.ft R
+.RE
+.PP
+/dev/scanner is typically a symlink to the actual SCSI scanner device.
+.RE
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/hp.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-hp.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-hp.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.TP
+.I $HOME/.sane/calib-hp:<device>.dat
+Calibration data for HP PhotoSmart PhotoScanner that is retrieved from the
+scanner after calibration. The data is uploaded to the scanner at start
+of the backend if it is in media mode 'print media' or if the media mode is
+changed to 'print media'.
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /Users/mike/Documents/wine/usr/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/Users/mike/Documents/wine/usr/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_HP
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  E.g.,
+a value of 128 requests all debug output to be printed.  Smaller
+levels reduce verbosity.
+.TP
+.B SANE_HOME_HP
+Only used for OS/2 and along with use of HP PhotoSmart PhotoScanner.
+Must be set to the directory where the directory .sane is located. 
+Is used to save and read the calibration file.
+.TP
+.B SANE_HP_KEEPOPEN_SCSI
+.TP
+.B SANE_HP_KEEPOPEN_USB
+.TP
+.B SANE_HP_KEEPOPEN_DEVICE
+For each type of connection (connect\-scsi, connect\-usb, connect\-device)
+it can be specified if the connection to the device should be kept open ("1")
+or not ("0").
+Usually the connections are closed after an operation is performed.
+Keeping connection open to SCSI-devices can result in errors during device IO
+when the scanner has not been used for some time. By default, USB-connections
+are kept open. Other connections are closed.
+.TP
+.B SANE_HP_RDREDO
+Specifies number of retries for read operation before returning an EOF error.
+Only supported for non-SCSI devices. Default: 1 retry. Time between retries
+is 0.1 seconds.
+
+.SH BUGS
+.TP
+.B HP PhotoSmart PhotoScanner
+In media mode 'slide' and 'negative', scan resolutions are rounded to
+multiple of 300 dpi. The scanner does not scale the data correctly
+on other resolutions. Some newer models (firmware code R030 and later)
+do not support adjustment of contrast/intensity level and tone map.
+The backend will simulate this by software, but only for gray
+and 24 bit color.
+.TP
+.B Automatic Document Feeder (ADF)
+For use of the ADF with xscanimage(1), first place paper in the ADF and
+then change option scan source to 'ADF'. Press 'change document'
+to load a sheet. Then press 'scan' to start a scan. 
+Maybe it is sufficient to press 'scan' without 'change document'
+for repeated scans. The use of the preview window is not recommended
+when working with the ADF.
+Setting a window to scan from ADF is not supported with xscanimage(1).
+Try xsane(1).
+.TP
+.B Immediate actions
+Some actions in xscanimage(1) (i.e. unload, select media, calibrate)
+have an immediate effect on the scanner without starting a scan.
+These options can not be used with scanimage.
+
+.SH TODO
+.TP
+.B HP PhotoSmart PhotoScanner
+PhotoScanners with firmware release R030 and up have
+no firmware support for contrast/brightness/gamma table. In the current
+backend this is simulated by software on 24 bits data.
+Simulation on 30 bits should give better results.
+.TP
+.B Data widths greater than 8 bits
+Custom gamma table does not work.
+.TP
+.B Parallel scanner support
+Beside the ScanJet Plus which came with its own parallel interface card,
+currently only the HP ScanJet 5100C/5200C are supported.
+These scanners are using an internal parallel-to-SCSI converter which
+is supported by the ppSCSI-driver (see above).
+
+.SH "SEE ALSO"
+sane(7), sane\-scsi(5), sane\-usb(5)
+.SH AUTHOR
+The sane\-hp backend was written by Geoffrey T. Dairiki. HP PhotoSmart
+PhotoScanner support by Peter Kirchgessner.

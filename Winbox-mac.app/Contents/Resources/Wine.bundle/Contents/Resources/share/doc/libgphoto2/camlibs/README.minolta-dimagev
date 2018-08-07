@@ -1,0 +1,57 @@
+This is a fresh driver for the Minolta Dimage V camera, which has since been
+discontinued by Minolta. This driver contains no code form my earlier efforts.
+
+The assistance of Minolta was very helpful in writing this driver; I was given
+a copy of the specification and told that I could "share it with the Linux
+community". I am interpreting this "sharing" as the GNU GPL. Minolta takes no
+responsibility for the information they provided me, which is perfectly fair.
+Please see the file COPYING for more information.
+
+Copies of the Dimage V transfer specification are available under the
+aforementioned "share" clause; I will mail them globally, and fax them
+anywhere in the US or Canada. A lot of the information is in the code
+itself, but sometimes the real spec is nice so readers can find my bugs.
+Minolta has made it clear that they do not wish to release further protocols,
+and recommend that users of unsupported systems purchase SmartMedia readers
+to transfer images.
+
+This library is far from complete. There are plenty of places where better
+sanity checking could be done. I will continue to work on it until I buy a
+newer camera ;>
+
+Notes on specific functions:
+    The capture function takes a picture, downloads it, and then deletes it.
+    This image is always named dv00000.jpg, since that holds with the naming
+    convention for the rest of the pictures, and simultaneously cannot be a
+    valid name for an image retrieved from the camera. Sometimes the deletion
+	of an image will fail after it has been retrieved; since reporting this
+	error would mean the entire capture process failed, I merely print a
+	message indicating which image needs to be deleted. This is, in my
+	opinion, preferable to losing the picture entirely.
+
+	The camera_init() function attempts to set the camera clock to the current
+	system time. If it fails, the init function can still succeed; I do not
+	believe that failing to set the clock should mean failure to initialize.
+	The same is true of the camera_exit() function.
+
+	At long last, the preview thumbnails finally work! The strange distortions
+	that were occurring previously have been eliminated, and I have been able
+	to retrieve accurate thumbnails reliably for the last several hundred
+	images. This puts this driver as the first that I know of that handles
+	the Dimage V thumbnail format; there were other programs to connect, but
+	all (including my earlier attempts) just gave up on the retrieved data.
+	More information on the file format can be obtained in the code itself.
+
+	Deleting all images is now implemented correctly. This beats iterating
+	accross all of them, hands down.
+
+	Here are the pinouts for the serial cable:
+         _____________     /-----\
+         \ 5 4 3 2 1 /    / X X X \
+          \ 9 8 7 6 /     | 2 5 3 |
+           ---------      -| 8 7 |-
+                            -----
+
+
+
+--Gus Hartmann, <gphoto-dimagev@gus-the-cat.org>

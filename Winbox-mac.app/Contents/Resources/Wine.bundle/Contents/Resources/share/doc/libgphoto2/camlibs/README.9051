@@ -1,0 +1,101 @@
+/* This is one of the README files for libgphoto2/camlibs/digigr8. This is an 
+ * integral part of the libgphoto2/camlibs/digigr8 library source code and is 
+ * distributed with that source code under the LGPL license. a copy of which 
+ * license may be seen in the head directory of libgphoto2, in the file 
+ * COPYING.
+ * This file copyright Theodore Kilgore, 12/17/2010.
+ */ 
+
+CONCERNING 0x2770:0x9051 CAMERAS:
+
+First, a general remark. The reader is strongly encouraged to read.
+README.905C as well as this file. That file in fact pertains to all of the.
+cameras which are supported by libgphoto2/camlibs/digigr8. All of what it says
+pertains to the 0x2770:0x9051 cameras, too, unless something to the contrary is
+stated below.
+
+As of 12/17/2010, the only known camera with USB ID string 0x2770:0x9051 is the 
+"Lego Bionicle," apparently produced by Digital Blue for Lego. Its 
+functionality is very basic. On the package it says the camera is able to take 
+40 photos, but in fact the number of photos is variable. For, they are all 
+compressed. 
+
+On 01/12/2012 the Digital Blue Barbie Camera, has been discovered, too. Except
+for the name and the camera case, it seems identical to the Lego Bionicle.
+
+Since the compression algorithm is the same as that in the 0x905C cameras, this  
+camera is quite usable, for what it is. Resolution for this camera in still 
+mode appears to be nonadjustable and fixed at 640x480. 
+
+The camera has two buttons on it. one on the top and one on the rear. The 
+button on top is the shutter button, of course. The button on the rear is 
+often called the "mode" button on other cameras, and it will do such things
+as to switch the resolution mode, the compression mode, the continuous shooting
+mode, and such. But that is on other cameras. Here, that button is a "delete"
+button and will perform no other function -- well, none except to turn the
+camera on if it is in power-off mode and the user is adventurous.
+
+To start the camera in stillcam mode, first look at the indicator window on the
+back. If it is blank, the camera is off. Press the shutter button. It can also 
+work to press the "Delete" button quickly and let go. But holding the "Delete"
+button down will start the deletion of photos.
+
+To delete the last photo, press the "Delete" button and watch the LCD indicator
+window on the rear of the camera. The number of photos shown there will 
+decrease by one. To delete all, hold the button down longer. The photos will be
+deleted then, one by one, starting with the last one. The LCD window will show 
+the decreasing number of photos while the button is being held.
+
+To the best of my ability to determine, the camera has no clip option, 
+no delayed-shooting option, and no multi-frame clips intended for AVI images.
+As a still camera it will do still photos only, and those will be of dimensions
+640x480. 
+
+This camera also supports the option "gphoto2 --capture-preview" which 
+means that the camera shoots an image which is immediately downloaded, not
+being stored on the camera at all. If gphoto2 --capture-preview is done, then
+the resulting frame comes out of the camera at 320x240 resolution. This 
+resolution setting is in fact adjustable. Those who are curious may consult
+
+/linux(recent version)/drivers/media/video/gspca/sq905c.c
+
+where resolution-choosing is completely supported. That file supports the
+"webcam" functionality of all the cameras which are supported in still mode in 
+libgphoto2/camlibs/digigr8. That is, these cameras work as webcams, too.
+The resolution settings which are supported in webcam mode are 
+640x480, and 320x240.
+
+
+WARNING: The --capture-preview option *will* delete all photos on the camera.
+
+
+The option gphoto2 -D is therefore supported, too. However, the user should
+note that the USB command to delete is the same as the USB command to shoot a
+frame (gphoto2 option is --capture-preview). Again. If you shoot a frame with
+the Lego Bionicle, it will delete whatever photos are on the camera !!!
+
+
+WARNING: Use of the camera as a webcam will delete all photos on the camera, 
+too !!!
+
+
+WARRANTY? 
+
+	Absolutely not. No warranty. Never. Not responsible for any actual
+	or potential damage or consequences to anyone or to the equipment of
+	anyone for using this program, whether the alleged damage or alleged
+	consequences are claimed to be real, imaginary, direct, collateral,
+	for pain and suffering, or are claimed to be inflicted upon any
+	"third party" who is not the user or installer of the program. The
+	program has been written for my pleasure and to broaden and deepen
+	my knowledge of computer hardware and software. The program has not
+	been written with the immediate expectation of financial gain or
+	profit on my part, nor has it been commissioned for pay. It is
+	presumed that any end-user of this program will have access to the
+	source code of the program and can judge for himself or herself
+	whether he/she wishes to use it or not, or can consult someone with
+	appropriate expertise to make such a judgment. 
+
+
+Theodore Kilgore
+12/17/2010, revised 01/12/2012.

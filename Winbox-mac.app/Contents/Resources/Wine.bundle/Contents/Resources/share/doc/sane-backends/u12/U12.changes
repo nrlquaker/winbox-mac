@@ -1,0 +1,36 @@
+U12.changes - Gerhard Jäger <gerhard@gjaeger.de>
+================================================
+
+V 0.01-1 (2004-09-01)
+---------------------
+- initial version
+
+V 0.02-1 (2004-10-01)
+---------------------
+- fixed autodetection problem
+- enabled additional scan-modes
+- enabled TPA scanning
+- fixed corrupted picture problem
+
+V 0.02-4 (2004-19-01)
+---------------------
+- activated cancel function
+- added lamp off timer function
+
+V 0.02-6 (2004-21-01)
+---------------------
+- compilation fixes
+- changes to some structures
+
+V 0.02-9 (2004-06-10)
+---------------------
+- using now SANE definitions for scanmodes
+
+V 0.02-10 (2006-14-02)
+----------------------
+- SoftwareReset is now disabled in cancelSequence when the device
+  is a Genius (reported by Jose Alberto Reguero <jareguero@telefonica.net>)
+
+V 0.02-11 (2006-09-08)
+----------------------
+- Changed sane.type to "flatbed scanner" only

@@ -1,0 +1,33 @@
+Smal Ultrapocket 
+(fuji @xia slimshot)
+___________________________________________________________________
+
+This driver is based on packet sniffs of protocol observed under
+Windows 2000, and is known to be incomplete.  Minimal functionality
+is implemented as of the Experimental version.
+
+RAW images as retrieved from the camera require a not insignificant
+amount of post processing.  Enabling #DO_GAMMA in ultrapocket.h
+helps, but more work is required.
+___________________________________________________________________
+
+The author takes no responsibility for damage to your camera from
+using this driver.  Use at your own risk.
+___________________________________________________________________
+
+TODO:
+
+- Battery status
+- Firmware information
+- Current resolution information
+- Determine what (if anything) the camera passes as image 
+modification parameters (Gamma, etc).
+- At the moment, the Logitech driver stores images as .VGA and .XGA
+not .PPM
+___________________________________________________________________
+
+Author: Lee Benfield (lee@benf.org)
+Thanks: Vasileios Zografos, Dave Scott, Matthias Scherrer
+
+This code borrows heavily from the sipix web2 driver available with
+gphoto.  Thanks, guys ;)

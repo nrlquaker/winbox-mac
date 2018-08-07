@@ -1,0 +1,107 @@
+.TH sane\-dc210 5 "11 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-dc210
+.SH NAME
+sane\-dc210 \- SANE backend for Kodak DC210 Digital Camera
+.SH DESCRIPTION
+The
+.B sane\-dc210
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to the Kodak DC210 camera. THIS IS EXTREMELY ALPHA
+CODE!  USE AT YOUR OWN RISK!!
+.SH "DEVICE NAMES"
+The current version of the backend only allows one camera to be
+connected.  The device name is always "0".
+.SH CONFIGURATION
+The contents of the
+.I dc210.conf
+specify the serial port and baud rate to use.  The baud rate 
+specifies the maximum rate to use while downloading pictures.  (The
+camera is always initialized using 9600 baud, then switches to the
+higher rate).  On my 90MHz Pentium, I usually have no problems downloading
+at 115200 baud as long as the system is not excessively busy and 
+the "interrupt-unmask flag" is set in the IDE driver (hdparm \-u1).
+Supported baud rates are: 9600, 19200, 38400, 57600, and 115200.
+.PP
+The dumpinquiry line causes some information about the camera to 
+be printed.
+.PP
+cmdrespause specifies how many usec (1,000,000ths of a) between
+writing the command and reading the result should be used. 125000
+seems to be the lowest I could go reliably.
+.PP
+breakpause is the time in 1,000,000ths of a usec between sending the
+"back to default" break sending commands.      
+.PP
+Empty lines and lines starting with a hash mark (#) are
+ignored.  A sample configuration file is shown below:
+.PP
+.RS
+port=/dev/ttyS0
+.br
+# this is a comment
+.br
+baud=115200
+.br
+dumpinquiry
+.br
+cmdrespause=125000
+.br
+breakpause=1000000
+.RE
+.PP
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/dc210.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-dc210.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-dc210.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /Users/mike/Documents/wine/usr/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/Users/mike/Documents/wine/usr/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_DC210
+If the library was compiled with debugging support enabled, this
+environment variable controls the debug level for this backend. 
+A value of 128 requests maximally copious debug output; smaller
+levels reduce verbosity.
+
+.SH "SEE ALSO"
+sane(7)
+
+.SH AUTHOR
+Brian J. Murrell
+.PP
+This backend is based somewhat on the dc25 backend included in this
+package by Peter Fales.
+.PP
+The manpage was copied from the dc25 backend and somewhat edited by
+Henning Meier-Geinitz.
+
+.SH BUGS
+Known bugs/limitations are: ?
+.PP
+More general comments, suggestions, and inquiries about frontends
+or SANE should go to the SANE Developers mailing list 
+(see http://www.sane\-project.org/mailing\-lists.html for details). 
+You must be subscribed to the list, otherwise your mail won't be
+sent to the subscribers.

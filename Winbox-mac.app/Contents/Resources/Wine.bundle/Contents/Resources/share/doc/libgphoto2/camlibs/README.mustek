@@ -1,0 +1,35 @@
+Driver for Mustek MDC 800 cameras by Henning Zabel <henning@uni-paderborn.de>
+
+The driver supports the rs232 and the USB interface of the
+Mustek MDC800 Digital Camera. It implements all function
+to download pictures, view their thumbnails or delete them.
+It is also possible to take photos with the library.
+In the GUI of this driver you can select some preferences 
+for this.
+
+On rs232 it is possible to use every supported Baudrate. The
+Baudrate is selectable in the GUI.
+
+History :
+
+10.01.2000 The Library was ported to the ne iolib. It uses also
+           the USB Interfave from Johannes Erdfeld. This makes it
+			  unneccessary to have a special Kernelmodul for the 
+			  Mustek.
+			  In camera.h there is added a new entry, so you can select
+			  wether you want to use USB or rs232. This is needed
+			  because the iolib does not support autodetection for this.
+
+19.11.1999 Autoprobe of the Baudrate when starting (opening) this
+           driver was added. This makes it possible to reopen the
+			  camera after an error, when the camera has been set
+			  to another baudrate than 57k.
+			  Automatic command retry has moved from rs232 to io, now
+			  it also touches usb.
+
+17.11.1999 Rewrite of the GUI: Some useless Function where deleted.
+           The GUI now uses ComboBoxes.
+			  Added support to select Baudrate of the camera in the GUI.
+
+07.11.1999 This lib was posted to gphoto, after adapting the GUI
+           from the earlier driver.

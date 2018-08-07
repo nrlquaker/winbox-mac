@@ -1,0 +1,251 @@
+# Makefile for the plustek scanner driver (kernel-module)
+#
+###############################################################################
+#
+# define the directories
+#
+HOME_DIR := .
+SRC_DIR  := $(HOME_DIR)
+INC_DIR  := $(SRC_DIR)
+OBJ_DIR  := $(HOME_DIR)/obj
+DOC_DIR  := $(HOME_DIR)/doc
+BACKEND  := $(SRC_DIR)
+
+#
+# define the used tools
+#
+MD  = mkdir -p
+CC  = gcc
+TAR = tar
+REF = cxref
+
+#
+# Comment/uncomment the following line to disable/enable debugging
+# can also be set by commandline parameter: make all DEBUG=y
+#
+#DEBUG = y
+
+#
+# common compiler options
+#
+OPT = -fomit-frame-pointer -D_PTDRV_VERSTR=\"$(VERSIONSTR)\"
+
+#
+# cxref options
+#
+REFOPT = -xref-all -index-all -html32
+
+#
+# Comment out if you are not running SMP. Someone take this out of here
+# when the SMP stuff gets moved out of the kernel Makefile.
+# SMP = 1
+# SMP_PROF = 1
+
+#
+# add the following to get assembly listing
+# -Wa,-alh,-L -g 
+
+#
+# get some version numbers
+#
+ifeq ($(LINUXVERSION),)
+ LINUXVERSION = $(shell uname -r)
+endif
+
+VERSIONSTR = $(shell grep "define BACKEND_VERSION" $(SRC_DIR)/plustek_pp.c | cut -b25-50 )
+
+# Change it here or specify it on the "make" commandline
+ifeq ($(HEADER_PATH),)
+MACHTYPE = $(shell env | grep debian-linux | wc -l | sed 's/ //g')
+ifeq ($(MACHTYPE),1)
+#  debian
+  HEADER_PATH = /usr/src/kernel-headers-$(LINUXVERSION)/include
+else
+#  redhat, slackware
+  HEADER_PATH = /usr/src/linux/include
+endif
+#   HEADER_PATH = /usr/include
+endif
+
+ifeq ($(DEBUG),y)
+  DEBFLAGS = -O -g -DDEBUG # "-O" is needed to expand inlines
+else
+  DEBFLAGS = -O2
+endif
+
+#
+# the new style reference
+#
+K24_HEADER_PATH = /lib/modules/$(LINUXVERSION)/build/include
+
+#
+# try to autodetect if we can use the new style header include references
+#
+KERNEL_HEADERS = $(shell if test -d $(K24_HEADER_PATH); then \
+							echo $(K24_HEADER_PATH); 		 \
+				 	     else 								 \
+							echo $(HEADER_PATH); 			 \
+					     fi; )
+
+#
+# seems to be necessary for kernels 2.4.x
+#
+MODVERFILE = $(shell if [ -e $(KERNEL_HEADERS)/linux/modversions.h ]; then \
+						echo $(KERNEL_HEADERS)/linux/modversions.h ;	   \
+					 else											       \
+						echo $(KERNEL_HEADERS)/linux/modsetver.h ;		   \
+					 fi )
+
+MODFLAGS = -DMODULE
+
+#
+# set MODVERSIONS if the kernel uses it
+#
+VERSUSED = $(shell grep 'define CONFIG_MODVERSIONS' \
+                   $(KERNEL_HEADERS)/linux/autoconf.h | wc -l | sed 's/ //g')
+ifeq ($(VERSUSED),1)
+  MODFLAGS += -DMODVERSIONS -include $(MODVERFILE)
+endif
+
+
+WARNFLAGS = -Wall -Wstrict-prototypes
+CFLAGS    = $(WARNFLAGS) $(OPT) -D__KERNEL__ -I$(KERNEL_HEADERS) -I$(INC_DIR) -I$(BACKEND) $(DEBFLAGS) $(MODFLAGS)
+MODLIB    = /lib/modules/$(LINUXVERSION)
+
+ifdef SMP
+CFLAGS += -D__SMP__
+
+ifdef SMP_PROF
+CFLAGS += -D__SMP_PROF__
+endif
+endif
+
+TARGET = pt_drv
+
+OBJ  = $(TARGET).o
+NAMES := dac detect genericio image map misc models io procfs
+NAMES := $(NAMES) motor p9636 ptdrv scale tpa p48xx p12 p12ccd
+NAMES := $(addprefix plustek-pp_, $(NAMES))
+SRCS  := $(addprefix $(SRC_DIR)/, $(NAMES))
+SRCS  := $(addsuffix .c, $(SRCS))
+OBJS  := $(addprefix $(OBJ_DIR)/, $(NAMES))
+OBJS  := $(addsuffix .o, $(OBJS))
+INCS  := scan dbg types scandata procs hwdefs sysdep
+INCS  := $(addsuffix .h, $(INCS))
+HDRS  = $(addprefix $(INC_DIR)/plustek-pp_, $(INCS))
+
+#
+# the header files we need from the backend
+#
+BACKINCS := plustek-pp.h
+BACKINCS := $(addprefix $(BACKEND)/, $(BACKINCS))
+
+group = "root"
+mode  = "644"
+INST_DIR = /lib/modules/$(LINUXVERSION)/kernel/drivers/char
+
+info:
+	@clear
+	@echo "Makefile to create the Plustek-Scanner kernel-module:"
+	@echo "all          ... builds the module"
+	@echo "all DEBUG=y  ... builds the module with debug-messages enabled"
+	@echo "clean        ... cleans up the show"
+	@echo "install      ... installs the module to the library path"
+	@echo "uninstall    ... removes the module from the library path"
+	@echo "load         ... tries to load the module and creates device nodes"
+	@echo "unload       ... unloads the module"
+
+
+all: .depend chkdir $(OBJ)
+
+#
+# create object directory
+#
+.PHONY : chkdir
+chkdir:
+	@-$(MD) $(OBJ_DIR)
+	@-$(MD) $(DOC_DIR)
+
+$(OBJ): $(OBJS)
+	$(LD) -r $^ -o $@
+
+$(OBJS): Makefile $(HDRS) $(BACKINCS)
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/$(OBJ): VERSION1 VERSION0
+
+#
+# copy the driver to the modules directory
+#
+install:
+	mkdir -p $(INST_DIR)
+	install -c -m $(mode) $(OBJ) $(INST_DIR)
+	/sbin/depmod -a
+
+#
+# remove it
+#
+uninstall:
+	rm -f $(INST_DIR)/$(OBJ)
+
+#
+# use modprobe to load the driver, remember to set the
+# parameter in /etc/modules.conf (see sane-plustek_pp.man for more details)
+#
+load:   $(INST_DIR)/$(OBJ)
+# invoke modprobe with all arguments we got
+	/sbin/modprobe $(TARGET) || exit 1
+
+# Remove stale nodes and replace them, then give gid and perms
+	rm -f /dev/$(TARGET)*
+
+# when using the devfs support, we check the /dev/scanner entries
+# and only create links to the devfs nodes
+# at least we create one link
+	@if [ -e /dev/scanner/$(TARGET)* ]; then 				\
+		ln -s /dev/scanner/$(TARGET)0 /dev/$(TARGET);		\
+		for name in `ls /dev/scanner | grep $(TARGET)`; do	\
+			ln -s /dev/scanner/$$name /dev/$$name ;     	\
+		done												\
+	else                      								\
+		mknod /dev/$(TARGET) c `cat /proc/devices | sed -ne "s/\([0-9]*\) pt_drv/\1/p"` 0;  \
+		mknod /dev/$(TARGET)0 c `cat /proc/devices | sed -ne "s/\([0-9]*\) pt_drv/\1/p"` 0;	\
+		mknod /dev/$(TARGET)1 c `cat /proc/devices | sed -ne "s/\([0-9]*\) pt_drv/\1/p"` 1;	\
+		mknod /dev/$(TARGET)2 c `cat /proc/devices | sed -ne "s/\([0-9]*\) pt_drv/\1/p"` 2; \
+		mknod /dev/$(TARGET)3 c `cat /proc/devices | sed -ne "s/\([0-9]*\) pt_drv/\1/p"` 3;	\
+																							\
+		chgrp $(group) /dev/$(TARGET)*;	\
+		chmod $(mode)  /dev/$(TARGET)*;	\
+	fi
+
+#
+# unload the driver
+#
+unload:
+	/sbin/modprobe -r $(TARGET) || exit 1
+
+# Remove stale nodes
+	rm -f /dev/$(TARGET)*
+
+#
+# create reference docu
+#
+doc: chkdir
+	$(REF) $(REFOPT) $(INC_DIR)/*.h $(SRC_DIR)/*.c $(BACKEND)/plustek-share.h \
+    -D__KERNEL__ -I$(KERNEL_HEADERS) -I$(INC_DIR) -I$(BACKEND) $(MODFLAGS) \
+    -D_PTDRV_V1=$(VERSION1) -D_PTDRV_V0=$(VERSION0) -D_PTDRV_BUILD=$(BUILD) -O$(DOC_DIR)
+
+clean:
+	@-rm -f $(OBJ_DIR)/*.o .depend depend dep $(REF).* *.html $(TARGET).o
+	@-rm -rf $(OBJ_DIR)
+	@-rm -rf $(DOC_DIR)
+
+depend .depend dep:
+	$(CC) $(CFLAGS) -M $(SRCS) > $@
+
+ifeq (.depend,$(wildcard .depend))
+#include .depend
+endif
+

@@ -1,0 +1,44 @@
+SANE and FreeBSD
+----------------
+
+Building:
+---------
+Don't forget to use GNU make (gmake). E.g. "MAKE=gmake ./configure". 
+SANE should compile and install out-of-the-box.
+
+If you've installed some of the optional libraries that sane-backends
+can make use of (see README for list) using Ports then you will need to 
+let configure know about their locations:
+
+MAKE=gmake CPPFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib ./configure
+
+SCSI-scanners:
+--------------
+If the SCSI host adapter is supported, there are no known problems.
+
+USB-scanners:
+-------------
+USB-Scanners are supported by FreeBSD. The USB scanner driver "uscanner" and
+access over libusb can be used.
+
+For some backends (e.g. gt68xx) you MUST use libusb. The uscanner driver won't
+work because it doesn't support control messages or interrupt endpoints.
+
+If you want to use libusb, your scanner should *not* be claimed by the uscanner
+driver. Make sure, that /dev/ugen* and /dev/usb* devices are available. Use
+/dev/MAKEDEV to create them, if necessary. Make sure that the user has write
+access to the appropriate device files.
+
+To get your scanner detected by the uscanner driver, it may be necessary to add
+its vendor and device ids to the kernel and recompile. Use MAKEDEV to generate
+the /dev/uscanner* files if they are not already there. Use sane-find-scanner to
+find your scanner. scanimage -L should find it automatically. Make sure that the
+user has read access to /dev/usb* and read and write access to /dev/uscanner*.
+
+Parport-scanners:
+-----------------
+I don't have much information about these. The Mustek 600 II N scanner seems to
+work, others may or may not work. Please contact me or the SANE mailing list if
+you succeeded in using a parport scanner.
+
+2005-11-01 Henning Meier-Geinitz <henning@meier-geinitz.de>

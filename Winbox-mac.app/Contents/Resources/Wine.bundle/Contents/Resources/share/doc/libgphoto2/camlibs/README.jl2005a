@@ -1,0 +1,113 @@
+JEILIN JL2005A STILLCAM DRIVER
+Copyright Theodore Kilgore <kilgota@auburn.edu> September 16, 2007. 
+
+(Everything in libgphoto2/camlibs/jl2005a is LGPL-licensed, including this 
+README. See any of the source files for a more complete statement of the 
+license.)
+
+INTRODUCTION
+
+This driver is intended to support cameras containing the JL2005A chip from 
+Jeilin Technologies. The interface is proprietary, and these cameras are 
+supported commercially only in Windows. Jeilin Technologies also manufactures
+chips which go into mass storage cameras. Those cameras can be accessed 
+directly using mass storage support. The company also manufactures some other
+chips with proprietary interface, but with very different protocols. Some of
+the cameras may be supported in the future in libgphoto2. The USB Vendor and 
+Product number for the JL2005A cameras is 0x0979:0x0224. At least, I do not 
+know at this time about any other USB id for these cameras, and I also am not 
+aware of any other JL2005A cameras which have different functionality from 
+what is done here. 
+
+RECOMMENDATIONS FOR REPORTING CAMERAS
+
+Right now, I only own one of these for testing. It is the so-called American
+Idol keychain camera, which I found at a local KB Toys. I am aware that several
+others exist. If people will be so kind as to send me the needed details I
+would be happy to add them explicitly to the list in library.c. Please 
+understand that I need to have whatever information you can find, so please do
+not throw away the manual, the driver CD, or the plastic package the camera 
+was sold in until we get this information! It happens quite often that the 
+camera itself has no name at all, or just some embossed letters on the plastic 
+which say "DIGITAL CAMERA" -- hardly a unique identifier. 
+
+Quite often, the only way to identify uniquely an entry-level consumer digital 
+camera is by something appearing in fine print on the packing materials, which,
+alas, the purchaser can easily overlook and may have simply thrown in the 
+trash. The computer, of course, uses the Vendor:Product ID, but that is of 
+course never printed on the outside of packages. The point is, others should 
+be able to find the camera in the store by the name and description which is 
+given to it in libgphoto2, and moreover it is quite inappropriate if we add 
+support for some dozens of distinct devices, each of which has the name string 
+calling it "DIGITAL CAMERA". 
+
+
+WHAT DOES THIS CAMERA LIBRARY CURRENTLY DO?
+
+There is support for all of the basic gphoto2 still camera operations which 
+my JL2005A  camera is known to support through hardware. This includes support 
+for downloading photos in each of the two available resolution sizes 352*288 
+and 176*144. The data in neither case is compressed, though the raw data for 
+176*144 size is obfuscated and thus not in a completely standard format. Both 
+of these formats are supported in the driver. 
+
+Support for the option gphoto2 -p (for downloading selected photos or frames) 
+seems to work "out of the box" unlike what happens with some other low-priced
+cameras. Thus, it ought not to be a problem to use one of these cameras with 
+any of the GUI frontends which are based upon libgphoto2. 
+
+The camera will not shoot snapshots, neither for immediate download (gphoto2 
+--capture-preview option nor to be stored on the camera for later downloading
+(--capture-image option). These operations can be done but are implemented  
+through the pccam or webcam interface, which uses isochronous data transmission 
+and is therefore outside the boundaries of the stillcam operations which 
+libgphoto2 supports. 
+
+The camera also does not support the deletion of individual photos, even with
+a button press, but only the deletion of all. It does seem that to put the 
+camera into pccam mode will delete all photos, but it is not clear at which 
+stage in that process the photos get deleted. Pccam mode involves a different
+altsetting, which would involve a reset, and then the isochronous inep must
+be accessed. As my impression by watching the camera being put into pccam mode
+while photos are already in it is that said photos do not get deleted until 
+the camera actually starts sending data, I have made no attempt at this time 
+to try to use the pccam function to delete all photos. 
+
+The camera will shoot clips in "continuous" mode, meaning it will shoot frames
+until the camera is full. The resolution setting for these frames is whatever 
+was the resolution setting before one started to shoot frames. Moreover, this 
+function will not delete any previous photos already in the camera. The 
+resulting frames are downloaded and treated as ordinary photos. If you want to 
+use this function, then, and get an animation, that can easily be done using 
+the "animate" function from the ImageMagick toolkit, or with a similar tool 
+from a similar image processing suite. 
+
+ANOTHER JL2005A CAMERA, WHICH IN ADDITION TO THE ABOVE, USES COMPRESSION
+
+has been discovered by Jeronimo Barraco <jerobarraco@yahoo.com.ar>. That 
+camera is the TDC-15, sold by NogaNet in Argentina. The compressed mode is 
+optional on this camera; one is not forced to use it. On closer investigation, 
+the compression is not actual compression at all, but data truncation. What has
+been done is that every four lines of data have been "compressed" to two lines. 
+by the simple expedient of suppressing two of them. The same photo still comes
+out if nothing at all is done to it, but the vertical dimension is divided by 
+two. As an inevitable result, the "decompression" is necessarily some kind of
+interpolation of the missing lines of data. I have used simple linear 
+interpolation. If someone comes up with a better way which gives nicer-looking 
+images from these cameras, then please let me know. Actually, from the samples 
+which I have on hand the results do not look too bad most of the time. However, 
+the user is advised that occasional raggedness is inevitable from data which 
+has been thus truncated. 
+
+Another camera which seems to be functionally similar to the TDC-15 is the 
+Cobra DC-125, reported by Tim Johnson <tim@johnsons-web.com>. 
+
+
+WARRANTY?
+
+Absolutely none. Remember, I did not sell you this software. I have written 
+this driver for my own edification and in the sincere hope that it might help 
+you to use of your camera. Please see also the warranty clauses 
+in the LGPL license. 
+
+Updated 12/02/2007, 02/21/2009

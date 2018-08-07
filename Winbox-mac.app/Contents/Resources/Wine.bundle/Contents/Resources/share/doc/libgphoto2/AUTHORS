@@ -1,0 +1,169 @@
+Scott Fritzinger <scottf@scs.unr.edu>
+Design, core implementation, Sierra Imaging library,
+Directory Browse library, Mattel library, command-line
+interface, gpio design
+
+Mariusz Zynel <mariusz@mizar.org>
+Panasonic DC1000/DC1580 library, command-line interface,
+Solaris patches, bug fixing
+
+Johannes Erdfelt <johannes@erdfelt.com>
+Digita library, gpio USB support, bug fixes
+
+Werner Almesberger <almesber@lrc.di.epfl.ch>
+Canon A50 library
+
+Ole W. Saastad <o.w.saastad@kjemi.uio.no>
+Additions for Canon PowerShot A5 support
+
+Veros Kaplan <xkaplan@informatics.muni.cz>
+Sierra library bug fixes & folder support
+
+Wolfgang Reissnegger
+Canon A50 library
+
+Philippe Marzouk <philm@users.sourceforge.net>
+Canon thumbnail and deletion support
+
+Edouard Lafargue <lafargue@oslo.geco-prakla.slb.com>
+Canon camera detection, fixes, configuration dialog
+
+Ole Aamot <ole@gnu.org>
+GNOME configuration support
+
+Bart van Leeuwen <bart@netage.nl>
+OS/2 Port, Sony DSC-F1 updates
+
+M. Adam Kendall <joker@penguinpub.com>
+Sony DSC-F1 library
+
+Mark Davies <mdavies@dial.pipex.com>
+Sony DSC-F55E library
+
+Beat Christen <spiff@longstreet.ch>
+gpio serial code
+
+Gus Hartmann <hartmann@madison-expat.net>
+Minolta Dimage V library
+
+Raymond Penners <raymond@dotsphinx.com>
+gPhoto2 port of the Sony DSC-F55 library
+
+Marcus Meissner <marcus@jet.franken.de>
+Jenoptik JD11 and SiPix Web2 library,
+cleanups in the stv680 and other libraries,
+PTP 2 driver maintainer.
+
+Lutz Müller <lutz@users.sourceforge.net>
+Konica driver, various clean-up all over the place
+
+Fredrik <fredrik@krixor.xy.org>
+Canon driver, all but serial specific things.
+
+Hans Ulrich Niedermann <gp@n-dimensional.de>
+Canon driver, package building, hotplug, and various other things
+
+Christophe Barbé <christophe.barbe@ufies.org>
+Release building and small fixes.
+
+Dennis Noordsij <dennis.noordsij@wiral.com>, Philipp Poeml <poml@poeml.de>
+Agfa CL20 driver.
+
+Theodore Kilgore <kilgota@auburn.edu>
+aox, clicksmart310, digigr8, iclick, mars, sq905, sonix libraries.
+
+Stephen Pollei<stephen_pollei@comcast.net>
+iclick library.
+
+Paul Walmsley <paul@booyaka.com>
+Canon 5D (class 6) capture support. Thanks to the Internet 
+Archive, <http://www.archive.org/>, for funding the development 
+of this code.  This code is used in the Internet Archive's book 
+scanner.
+
+Hans de Goede <hdegoede@redhat.com>
+ST2205 Picture Frame support (and usbdiskdirect port driver).
+
+=========================================================================
+git migration authors
+
+ap2c=Aurelien Croc (AP262C) <programming@ap2c.com>
+asl=Arnaud Launay <asl@launay.org>
+barbe=Christophe Barbe <christophe@ufies.org>
+bellet=Fabrice Bellet <fabrice@gnu.org>
+berrange=Daniel P. Berrange <dan@berrange.com>
+cmarqu=Colin Marquardt <colin@marquardt-home.de>
+cpinkham=Chris Pinkham <cpinkham@infi.net>
+cweinholz=Carsten Weinholz <c.weinholz@netcologne.de>
+deater=Vince Weaver <vince@deater.net>
+dfandrich=Dan Fandrich <dan@coneharvesters.com>
+donn=Donn Morrison <dmorriso@gulf.uvic.ca>
+dotsphinx=Raymond Penners <raymond@dotsphinx.com>
+ggrandou=Gilles Grandou <gilles@grandou.net>
+gus_hartmann=Gus Hartmann <gphoto@gus-the-cat.org>
+hfiguiere=Hubert Figuiere <hub@figuiere.net>
+hun=Hans Ulrich Niedermann <gp@n-dimensional.de>
+ikonst=Ilya Konstantinov <future@shiny.co.il>
+ingram=Greg Ingram <ingram@symsys.com>
+jerdfelt=Johannes Erdfelt <johannes@erdfelt.com>
+jgangemi=Jae Gangemi <jgangemi@users.sourceforge.net>
+jwrdegoede=Hans de Goede <hdegoede@redhat.com>
+kil3r=Mariusz Woloszyn <emsi@ipartners.pl>
+kilgota=Theodore Kilgore <kilgota@auburn.edu> 
+kinimod=Dominik Kuhlen <kinimod@users.sourceforge.net>
+koltan=Michael Koltan <koltan@gmx.de>
+leibnitz27=Lee Benfield <lee@benf.org>
+lodewyck=Jerome Lodewyck <lodewyck@clipper.ens.fr>
+lutz=Lutz Mueller <lutz@users.sourceforge.net> 
+marcusmeissner=Marcus Meissner <marcus@jet.franken.de>
+mariusz=Mariusz Zynel <mariusz@mizar.org>
+mattmartin=Matt Martin <matt.martin@ieee.org>
+mrensing=Michael Rensing <mrensing@users.sourceforge.net>
+nathanstenzel=Nathan Stenzel <nathanstenzel@users.sourceforge.net>
+ofauchon=Olivier Fauchon <olivier@aixmarseille.com>
+patmans=Patrick Mansfield <patman@aracnet.com>
+pbk2513=Peter Kajberg <pbk@odense.kollegienet.dk>
+philm=Philippe Marzouk <philm@users.sourceforge.net>
+polesworth=Miah Gregory <mace@darksilence.net>
+scottf=Scott Fritzinger <scottf@unr.edu>
+sean_bruno=Sean Bruno <sean.bruno@dsl-only.net>
+steph-c=Stephane Castejon <scastejo@club-internet.fr>
+swestin=Stephen H. Westin <swestin@earthlink.net>
+tillsan=Till Adam <till@adam-lilienthal.de>
+trawny99=Michael Trawny <trawny99@users.sourceforge.net>
+twaugh=Tim Waugh <twaugh@redhat.com>
+womprat=David Hogue <david@jawa.gotdns.org>
+ole=Ole Aamot <ole@gnu.org>
+phillh= PhillH <phillh@users.sourceforge.net>
+(no author)=No author known <nobody@gphoto.org>
+pauljenn=Paul Jenner <psj@mustec.eu.org>
+gdr=Gary Ross <gdr@hooked.net>
+bpaauwe=Bob Paauwe <bpaauwe@bobsplace.com>
+mmartin=Matt Martin <matt.martin@ieee.org>
+scottr=Randy D. Scott <scottr@wwa.com>
+hartmann=Gus Hartmann <hartmann@cs.wisc.edu>
+elegowsk=Ed Legowski <edlegowski@pobox.com>
+kmaraas=Kjartan Maraas <kmaraas@online.no>
+pablo=Pablo Saratxaga <pablo@madnrakesoft.com>
+ahyden=Andreas Hyden <a.hyden@cyberpoint.se>
+frob=Valek Filippov <frob@df.ru>
+simpson2=bvl <simpson2@users.sourceforge.net>
+bratislav=Benedikt Roth <Benedikt.Roth@gmx.net>
+rasta=Yuri Syrota <rasta@renome.rovno.ua>
+minmax=Andraz Tori <andraz.tori1@guest.arnes.si>
+ke=Karl Eichwalder <ke@suse.de>
+cgabriel=Christopher R. Gabriel  <cgabriel@softwarelibero.org>
+bansz=Unknown <bansz@users.sourceforge.net>
+root=Root <root@users.sourceforge.net>
+kail=Kai Lahmann <kailahmann@01019freenet.de>
+uid31719=uid31719 <uid31719@users.sourceforge.net>
+uid31868=uid31868 <uid31868@users.sourceforge.net>
+uid36478=uid36478 <uid36478@users.sourceforge.net>
+fredrikt=Fredrik <fredrik@krixor.xy.org>
+uid34756=uid34756 <uid34756@users.sourceforge.net>
+troncon=Remko Troncon <spike@kotnet.org>
+uid64678=uid64678 <uid64678@users.sourceforge.net>
+adburton=Andrew Burton <adb@iinet.net.au> 
+trickymctrick=Patrick van Staveren <trick@vanstaveren.us>
+Mutant_Fruit=Alan McGovern <alan.mcgovern@gmail.com>
+dpv=David PHAM-VAN <david@ab2r.com>

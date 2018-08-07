@@ -1,0 +1,22 @@
+Last update: 2006-01-05
+
+- Avoiding damage on flatbed scanners
+
+  Most flatbed scanners have no protection against exceeding the physical scan
+  area height.  That is, if a scan is attempted with a height that exceeds the
+  height of the scan surface, the scanner begins making loud noises and the
+  scan mechanism may be damaged.  Thus, if you hear such a noise, IMMEDIATELY
+  turn off the scanner.
+
+  Normally, the backend will ensure that the maximum scan height is not
+  exceeded.  However, if your scanner model has not been tested yet this
+  safety-guard may not work. Please report errors like this to the author of
+  the backend or the sane-devel mailing list.
+
+- Security problems with saned (SANE network scanning daemon)
+
+  saned is not intended to be exposed to the internet or other non-trusted
+  networks.  Make sure that access is limited by tcpwrappers and/or a firewall
+  setup. Don't depend only on saned's own authentification.  Don't run saned
+  as root if it's not necessary. And do not install saned as setuid root.
+  Read man saned(8) for details.

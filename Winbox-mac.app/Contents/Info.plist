@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>WineProgramPath</key>
+    <string>C:/winebottler/winbox.exe</string>
+    <key>WineProgramArguments</key>
+    <string></string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>English</string>
+    <key>CFBundleExecutable</key>
+    <string>startwine</string>
+	<key>NSHumanReadableCopyright</key>
+	<string></string>
+    <key>CFBundleIdentifier</key>
+    <string>com.mikrotik.winbox_153056750320104</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>Winbox-mac</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleVersion</key>
+    <string>3.16</string>
+    <key>CFBundleShortVersionString</key>
+    <string>3.16</string>
+	<key>CFBundleIconFile</key>
+	<string>Icon.icns</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+    <key>CFBundleDocumentTypes</key>
+	<array>
+        <dict>
+            <key>CFBundleTypeExtensions</key>
+            <array>
+                <string>*</string>
+            </array>
+            <key>CFBundleTypeName</key>
+            <string>All</string>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>LSTypeIsPackage</key>
+            <false/>
+            <key>NSPersistentStoreTypeKey</key>
+            <string>Binary</string>
+        </dict>
+    </array>
+</dict>
+</plist>

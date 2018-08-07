@@ -1,0 +1,53 @@
+Plustek-USB-TODO.txt (2007-12-13) Gerhard Jaeger <gerhard@gjaeger.de>
+=====================================================================
+
+TODO (in general):
+- more documentation/comments for the different functions
+- replace mclk_fast stuff and use instead values from 75DPI grayscale
+
+
+KNOWN BUGS/Limitations:
+
+Model             Description                           Workaround
+------------------------------------------------------------------------------
+
+HP 2100c          Straight Line Bug                     none
+Bearpaw1200       works only once                       restart backend each time
+All with TPA      Negative Scanning quality bad         none
+CIS devices       Skip calibration does not work        none
+
+********************************* DONE ***************************************
+
+all               add plustek.conf presettings to               done
+                  interface for frontends
+
+all               Auto-warmup                                   done
+all               Sensor movement speedup ffw/rev               done
+
+Canon             fine calibration does not work                fixed
+Canon  650        color modes >=600 dpi too dark                fixed
+Canon  660        add support                                   done
+Canon 1220        image quality not very good                   fixed
+Canon 1240        gray mode too bright                          fixed
+
+HP 2100c          hits against scan-bed                         fixed
+Genius            Devices not recognized                        fixed
+EPSON Photo       Permanently warmup on TPA scanning            fixed
+EPSON Photo       Transparency mode does not work               fixed
+                  correctly
+all               binary mode does not work correctly           done
+Canon             16bit gray mode does not work                 done
+EPSON 1250/60     Motor control settings are wrong              fixed
+CanoScan 1240                                                   added
+EPSON + HP        vertical line bug                             fixed
+HP                blooming on 42bit >=400dpi                    fixed
+UMAX5400          bad picture quality                           fixed
+UMAX3400          Straight Line Bug                             fixed
+all               problems on ARM and XScale                    fixed
+
+Make the color modes > 8bit work correctly                      done
+make mono/gray modes work on Canon scanners                     done
+copy picture line by line to backend                            done
+cancel function does not work correctly in large resolutions    fixed
+Move documents to its correct SANE place                        done
+

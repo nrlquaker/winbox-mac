@@ -1,0 +1,142 @@
+.TH sane\-kodak 5 "10 Feb 2010" "" "SANE Scanner Access Now Easy"
+.IX sane\-kodak
+
+.SH NAME
+sane\-kodak \- SANE backend for big Kodak flatbed and ADF scanners
+
+.SH DESCRIPTION
+The 
+.B sane\-kodak
+library implements a SANE (Scanner Access Now Easy) backend which
+provides access to large Kodak flatbed and ADF scanners.
+
+This document describes backend version 7, which shipped with SANE 1.0.21.
+
+.SH SUPPORTED HARDWARE
+This version should support models which speak the Kodak SCSI and Firewire 
+protocols. The i1860 was used to develop the backend, but other models may 
+work with only minimal modifications. Please see the list at 
+http://www.sane\-project.org/sane\-supported\-devices.html for an updated list.
+
+If you have a machine not on that list, or reported as 'untested': the best way 
+to determine level of support is to test the scanner directly, or to collect a 
+trace of the windows driver in action.  Please contact the author for help or 
+with test results.
+
+.SH UNSUPPORTED HARDWARE
+Most of the recent Kodak consumer or workgroup level machines are based on 
+other chipsets and are not supported by this backend. Some of these scanners 
+may be supported by another backend.
+
+.SH OPTIONS
+Effort has been made to expose the basic hardware options, including:
+.PP
+source s 
+.RS
+Selects the source for the scan. Options
+may include "Flatbed", "ADF Front", "ADF Back", "ADF Duplex".
+.RE
+.PP
+mode m 
+.RS
+Selects the mode for the scan. Options
+may include "Lineart", "Halftone", "Gray", and "Color".
+.RE
+.PP
+resolution 
+.RS
+Controls scan resolution. Available choices may be limited by mode.
+.RE
+.PP
+tl\-x, tl\-y, br\-x, br\-y
+.RS
+Sets scan area upper left and lower right coordinates. These are renamed 
+t, l, x, y by some frontends.
+.RE
+.PP
+page\-width, page\-height
+.RS
+Sets paper size. Used by scanner to determine centering of scan
+coordinates when using ADF and to detect double feed errors.
+.RE
+.PP
+Other options will be available based on the capabilities of the scanner.
+Use 'scanimage \-\-help' to get a list, but be aware that some options may 
+be settable only when another option has been set, and that advanced options 
+may be hidden by some frontend programs.
+.PP
+.SH CONFIGURATION FILE
+The configuration file "kodak.conf" is used to tell the backend how to look
+for scanners, and provide options controlling the operation of the backend.
+This file is read each time the frontend asks the backend for a list 
+of scanners, generally only when the frontend starts. If the configuration
+file is missing, the backend will use a set of compiled defaults, which
+are identical to the default configuration file shipped with SANE.
+.PP
+Scanners can be specified in the configuration file in 2 ways:
+.PP
+"scsi KODAK"
+.RS
+Requests backend to search all scsi busses in the system for a device 
+which reports itself to be a scanner made by 'KODAK'. 
+.RE
+.PP
+"scsi /dev/sg0" (or other scsi device file)
+.RS
+Requests backend to open the named scsi device. Only useful if you have
+multiple compatible scanners connected to your system, and need to
+specify one. Probably should not be used with the other "scsi" line above.
+.RE
+.PP
+The only configuration option supported is "buffer\-size=xxx", allowing you
+to set the number of bytes in the data buffer to something other than the 
+compiled\-in default, 32768 (32K). Some users report that their scanner will
+"hang" mid\-page, or fail to transmit the image if the buffer is not large
+enough.
+.PP
+Note: This option may appear multiple times in the configuration file. It only
+applies to scanners discovered by 'scsi/usb' lines that follow this option.
+.PP
+Note: The backend does not place an upper bound on this value, as some users
+required it to be quite large. Values above the default are not recommended,
+and may crash your OS or lockup your scsi card driver. You have been
+warned.
+.PP
+
+.SH ENVIRONMENT
+The backend uses a single environment variable, SANE_DEBUG_KODAK, which
+enables debugging output to stderr. Valid values are:
+.PP
+.RS
+5  Errors
+.br
+10 Function trace
+.br
+15 Function detail
+.br
+20 Option commands
+.br
+25 SCSI trace
+.br
+30 SCSI detail
+.br
+35 Useless noise
+.RE
+
+.SH KNOWN ISSUES
+Most hardware options are either not supported or not exposed for control by 
+the user, including: multifeed detection, image compression, autocropping,
+endorser, iThresholding, multi\-stream, etc.
+.PP
+
+.SH CREDITS
+The various authors of the sane\-fujitsu backend provided useful code.
+.br
+Kodak provided access to hardware, documentation and personnel.
+  
+.SH "SEE ALSO"
+sane(7),
+sane\-scsi(5)
+
+.SH AUTHOR
+m. allan noah: <kitno455 a t gmail d o t com>

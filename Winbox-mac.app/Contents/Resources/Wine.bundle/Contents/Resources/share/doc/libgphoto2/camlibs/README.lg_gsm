@@ -1,0 +1,22 @@
+This driver will download pictures from the LG T5100.
+This GSM/camera has Vendor:Product number 0x1004:0x6005.
+Other LG phones may have a similar behaviour (?).
+
+Here are only addressed camera features.
+For mp3 or videos, you may have a look at http://sf.net/projects/t5100-utils
+
+Some things which work for me, with various gphoto2 options:
+(TODO: check assumptions made here !!!)
+gphoto2 --summary : will report the total number of pictures. 
+gphoto2 -P : is functional.
+gphoto2 -p x-y : is functional, too, assuming there are at least y pictures in the camera and x <= y.
+gphoto2 --get-all-raw-data ???
+
+License:
+LGPL (see the head of the libgphoto2 source tree; this camera library is a 
+part of the libgphoto2 project).
+
+Warranty:
+None.
+
+Copyright by Guillaume Bedot, 2005.

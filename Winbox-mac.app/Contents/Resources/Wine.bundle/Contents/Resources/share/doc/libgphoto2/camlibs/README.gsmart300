@@ -1,0 +1,37 @@
+GSMART 300 DRIVER FOR GPHOTO2
+=============================
+
+Note :	this camera is also know as "Casio LV-10",
+	under the same vendor and product IDs
+	(Model actually tested)
+
+This is a very basic camera which enables to take pictures,
+delete last picture or delete all pictures.
+
+Pictures (JPEG format) can be stored in two sizes : 640x480 or 320x240.
+In fact, this is not exactly true. The pictures are all 640x480,
+but the "smaller" ones are just poor quality, so that it becomes
+decent only after resizing to 320x240.
+Thumbnails are downloadable from the camera in YYUV format
+for "big" pictures ONLY.
+
+To perform these operations, the Windows driver uses an
+interpolation software which acts as this :
+
+For lower quality, 640x480 pictures are downloaded, and
+converted to 320x240. In the same way, 80x60 thumbnails
+are generated.
+
+For higher quality, 80x60 thumbnails are downloaded in YYUV
+and converted to bitmap. Strangely enough, 640x480
+picture are also converted into pictures of the same size
+by the interpolation software, resulting in a disk-size
+about 2 times greater ! (but no visible loss of quality)
+
+The gsmart300 driver for gphoto just outputs the higher quality
+pictures as they are stored in the camera, as well as bitmap
+thumbnails.
+Lower quality pictures are left 640x480, and no thumbnail
+is provided.
+
+		Jérôme Lodewyck

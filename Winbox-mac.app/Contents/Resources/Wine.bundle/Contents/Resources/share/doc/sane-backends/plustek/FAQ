@@ -1,0 +1,385 @@
+Plustek-Driver TROUBLESHOOTING/FAQ - 19.04.2001
+-----------------------------------------------
+
+The driver exists now since March 2000, this is the first trial to setup
+a FAQ. This leads into the following:
+First we have a part, which is more a troubleshooting section and the second
+one is the FAQ.
+To search through this text, search for "SYMPTOM" or "Q:".
+
+If you have some more FAQ entries, let me know <gerhard@gjaeger.de>
+
+THANKS to Jochen <jochen@puchalla-online.de>, who roamed through the
+mailing-list and gathered the different questions.
+
+
+*******************************************************************************
+*                           TROUBLE-SHOOTING                                  *
+*                                                                             *
+*                             DRIVER TOPICS                                   *
+*******************************************************************************
+
+
+SYMPTOM: "kernel-module version mismatch"
+--------
+"When I try to "make load" I get an error"
+
+/sbin/modprobe pt_drv || exit 1
+/lib/modules/2.2.14-6.0.6/misc/pt_drv.o: kernel-module version mismatch
+/lib/modules/2.2.14-6.0.1/misc/pt_drv.o was compiled
+for kernel version 2.2.14-5.0
+while this kernel is version 2.2.14-6.0.1.
+
+PROBLEM:
+--------
+You're using the wrong Kernel-header files.
+
+The path
+/usr/include/linux is a link to
+/usr/src/linux/include/linux and
+/usr/src/linux is normally a link to your current
+kernel, i.e:
+/usr/src/linux-2.2.14
+
+If you now upgrade your kernel and you have
+forgotten to correct the link /usr/src/linux, then
+every kernel-module you build outside the
+kernelsource structure will include the wrong
+version information.
+
+SOLUTION:
+---------
+Set the link /usr/src/linux
+to your current kernel-source tree before recompiling
+kernel-modules like pt_drv, then your version mismatch 
+problem should be solved.
+
+
+
+SYMPTOM: "Device or resource busy"
+--------
+Any attempt to "modprobe" or "make load" the driver leads
+to this message.
+
+PROBLEM:
+--------
+The driver refuses to load. During startup, the driver performs
+some tests according to the parallel port and the connected
+scanners.
+If the parallel port is not supported or the scanner cannot be
+found, the driver returns an error and the system will report
+"device or resource busy"
+
+SOLUTION:
+---------
+There's no way to provide a general solution. First of all
+you should check your connections and the parallel port.
+Also check power for your scanner.
+If the problem still exists, enable the debug-messages of the
+pt_drv module (see INSTALL).
+Then check the messages after loading or send the output to
+the mailing list.
+Most of these problems are related to HW-problems. Before
+giving up, check the scanner under Windows (not really a
+good advice I know, but it helps to find HW-damage).
+There was also one case were the internal plugs of the parport
+connection were wrong...
+
+
+
+SYMPTOM: "Unresolved symbols"
+--------
+"make load" or "modprobe pt_drv" produces this message:
+
+/sbin/modprobe pt_drv || exit 1
+/lib/modules/2.2.14-5.0/misc/pt_drv.o: unresolved symbol parport_unregister_device
+/lib/modules/2.2.14-5.0/misc/pt_drv.o: unresolved symbol parport_enumerate
+/lib/modules/2.2.14-5.0/misc/pt_drv.o: unresolved symbol parport_register_device
+/lib/modules/2.2.14-5.0/misc/pt_drv.o: unresolved symbol parport_claim
+/lib/modules/2.2.14-5.0/misc/pt_drv.o: unresolved symbol parport_release
+/lib/modules/2.2.14-5.0/misc/pt_drv.o: insmod
+/lib/modules/2.2.14-5.0/misc/pt_drv.o failed
+
+
+PROBLEM:
+--------
+The driver needs at least the parport_pc and the parport modules
+to work. They MUST be loaded prior to pt_drv. If these modules
+are not loaded you get this message.
+
+SOLUTION:
+---------
+Simply load the parport module. You can add this dependency to
+your /etc/modules.conf (or /etc/conf.modules) file (see INSTALL).
+Then everytime you load pt_drv with modprobe, parport will be loaded
+automatically. After modifying this file, call
+depmod -va
+
+
+
+SYMPTOM: Scanner makes awful noise
+--------
+
+PROBLEM:
+--------
+This can have two major causes:
+- You have an ASIC96001/3 based scanner, then the sensor hits the
+  scanbed: !!! TURN OFF SCANNER POWER !!!
+
+- You have an ASIC98001 based scanner, then the motor control does
+  not work correctly --> hit the cancel button
+
+SOLUTION:
+---------
+For the first case (ASIC 96001/3), there's no solution available. This
+happens, when the driver can't keep track of the stepper motor. The image
+you get is normally unusable.
+The second case is often reported when the printer driver lp.o is
+already loaded. So remove lp.o before loading pt_drv.
+
+
+
+SYMPTOM: Printer starts to print while scanning
+--------
+
+PROBLEM:
+--------
+It has been reported, that some printers (esp. HP printers) start to
+print, even during startup of the driver. This is a problem to printers
+which use a bidirectional protocol for talking with the system.
+
+
+SOLUTION:
+---------
+There is no possibility to handle this problem inside the driver.
+One possibility is to switch off the bidirectional communication of the
+printer. The other one is to connect the printer to another parallel port.
+
+
+*******************************************************************************
+*                                 SANE-topics                                 *
+*******************************************************************************
+
+Here you will not find how to setup xscanimage to work with GIMP or
+how to compile sane to obtain xscanimage, for such questions, please
+refer to the mailing lists at SANE (http://www.sane-project.org)
+
+
+SYMPTOM: error in loading shared libraries: libsane.so.1: cannot open
+-------- shared object file: No such file or directory
+
+PROBLEM:
+--------
+The shared libraries for SANE have been installed to a
+directory which is not in your "library path"
+
+SOLUTION:
+---------
+SANE installs its shared libraries to PREFIX/lib/sane.
+PREFIX is in general /usr or /usr/local. You should
+either add the path to your /etc/ld.so.conf file or
+set links to the libraries from a wellknown lib-path.
+(i.e. ln -s /usr/lib/sane/libsane.so.1 /usr/lib/libsane.so.1)
+In any case you should run "ldconfig -v"
+
+
+
+SYMPTOM: "no SANE devices found"
+--------
+While testing with "scanimage -L" nothing happens. And when starting scanimage
+this message is displayed.
+
+PROBLEM:
+--------
+The frontend cannot find any sane-device, this might have several causes:
+- the driver is not loaded
+- you have no access to the driver
+- the backend is not enabled
+- the driver is not specified
+- version conflict between the loaded driver and the backend
+
+SOLUTION:
+---------
+Driver not loaded: check "cat /proc/pt_drv" if this does not exist, load
+the driver (see INSTALL)
+
+No access to the driver: check "ls -l /dev/pt_drv*" and you should get
+
+crw-rw-r--   1 root     root      40,   0 Aug 29 15:18 /dev/pt_drv
+crw-rw-r--   1 root     root      40,   0 Aug 29 15:18 /dev/pt_drv0
+crw-rw-r--   1 root     root      40,   1 Aug 29 15:18 /dev/pt_drv1
+crw-rw-r--   1 root     root      40,   2 Aug 29 15:18 /dev/pt_drv2
+crw-rw-r--   1 root     root      40,   3 Aug 29 15:18 /dev/pt_drv3
+
+If not, call "make load" in the driver source directory. This call sometimes
+fails, so you might create the entries by using mknod:
+mknod -m 0664 /dev/pt_drv c 40 0
+mknod -m 0664 /dev/pt_drv0 c 40 0
+mknod -m 0664 /dev/pt_drv1 c 40 1
+mknod -m 0664 /dev/pt_drv2 c 40 2
+mknod -m 0664 /dev/pt_drv3 c 40 3
+
+The backend is not enabled: Check the SANE configuration in /etc/sane.d,
+/usr/etc/sane.d or /usr/local/etc/sane.d (depending on your installation).
+Your dll.conf MUST include an enabled "plustek" entry (no "#" in front of
+that line)
+
+The driver is not specified: Check the sane configuration (see above)
+for the file plustek.conf and make sure that it contains at least
+/dev/pt_drv as entry.
+
+Version conflict: After enabling the SANE debug messages you will
+get something like upon starting scanimage:
+ioctl PT_DRV_OPEN_DEVICE failed(-9019)
+Version problem, please recompile driver!
+In this case, you MUST recompile the backend AND the driver and reinstall
+both. This feature makes sure, that both always will use the same ioctl
+interface.
+
+
+PROBLEM:
+--------
+I have SANE-1.0.4 and there's no backend-directory after unpacking, so
+what to do?
+
+SOLUTION:
+---------
+You're wrong there is a backend directory!!!
+Since SANE-1.0.4, there are two packages:
+sane-backends
+sane-frontends
+For the installation, you need the backend tarball. This should give
+you something like:
+sane-1.0.4/sane-backends
+and there below sane-backends is the backend directory. So you have
+to unpack the plustek-sane...tgz in sane-backends.
+
+
+
+*******************************************************************************
+*                                   F A Q                                     *
+*******************************************************************************
+
+Q:  What does "Turbo" mean ?
+
+A:  Turbo does not mean, that the scanner is faster ;-)
+    There are currently three OpticPro9636P Scanners.
+    OP9636P
+    OP9636P+
+    OP9636PTurbo
+    The + and the Turbo models are quite the same and the difference between
+    the Turbo and the non-Turbo	is the scan-sensor. The Turbo uses the same
+    like the newer OP9636T/12000T and the non-Turbo uses the older ones
+    from the OP9630....
+
+
+Q:  Is it possible to use the front-button of my Plustek 9630P ?
+
+A:  It is possible since version 0.37. After loading the driver,
+    use the proc filesystem to get the button value:
+    cat /proc/pt_drv/device0/button0
+
+
+Q:  Is it possible to use the scanner in gimp ?
+
+A:  You should be able to use xscanimage with gimp:
+    1. Login as root
+    2. Go into the gimp plug-in directory
+       (on SuSE it is: /usr/lib/gimp/1.1/plug-ins/ )
+    3. Find xscanimage : which xscanimage
+    4. Create a symbolic link to xscanimage :
+       ln -s "/path/to/"xscanimage  xscanimage
+    5. logout as root
+    Now call gimp, in the xtns menu you should find
+    now the Acquire Image menu entry. That's all.
+    If not, start gimp from an xterm and have a look at the output.
+
+
+Q:  Is there any way to load the plustek_driver at bootup-time?
+
+A:  Normally, there is no need to do so, because once you
+    altered your /etc/conf.modules file (or /etc/modules.conf)
+    and added the suggested stuff (see INSTALL file), you won't
+    have to worry about loading the driver. It happens automagically. ;-)
+    The driver will be loaded when needed (and eventually
+    removed after a specific time of not using it).
+	
+    Nevertheless, another possibility is to do a modprobe pt_drv in the
+    /etc/rc.d/boot.local (using SuSE) or
+    /etc/rc.d/rc.local (using RedHat or Mandrake) file
+    So the driver will be loaded at bootup-time...
+    !!! YOUR SCANNER MUST BE ONLINE during power-up then !!!
+
+
+Q:  I wonder if Mandrake 7.1's sane rpm file has this support already built in.
+    My scanner light is coming on yet Xscanimage seems to report that there
+    is no scanner present.
+
+A:  The backend code will be included in Version 1.0.3 of sane and
+    AFAIK Mandrake 7.1 only includes 1.0.2.
+    Anyway go to the plustek-driver download page at
+    http://home.t-online.de/home/g-jaeger/plustek.html
+    download and install the driver.
+
+
+Q:  Mandrake installs sane by default at install-time.
+    Is there a way to install the driver with the preinstalled sane
+    or should the preinstalled sane be removed first?
+    If so, how do I remove the preinstalled sane?
+
+A:  I recommend to uninstall the previous one.
+    I think Mandrake uses RPM for managing the packages. To remove sane
+    do the following (as root)
+
+    Ask for all installed packages and filter sane:
+    rpm -qa | grep sane
+    you should get something like this:
+    sane-1.0.1-94
+    Now remove this package:
+
+    rpm -e sane-1.0.1-94
+
+    After theses steps, sane should be removed.
+    I'm not sure,  but you might have to remove the /etc/sane.d manually...
+    Now got to your sane-1.0.3 stuff and reinstall this
+    as described. Before using, you might have a look
+    at the dll.conf and enable only the plustek backend.
+
+
+Q:  Now that there's a sane 1.0.3, how do i uninstall sane 1.0.2?
+    Or can i install it over?
+
+A:  In general you can install it over. BUT this has caused
+    quite a lot of trouble, so I recommend to remove the 1.0.2
+    completely and install 1.0.3...
+
+    try the rpm-tool:
+    Get a list of the installed packages and filter out sane:
+
+    rpm -qa | grep sane
+
+    You should get something like:
+
+    sane-1.0.2-48
+
+    Then use rpm to remove sane:
+
+    rpm -e sane-1.0.2-48
+
+    The other way is:
+
+    rm -rf /etc/sane.d
+    rm -rf /usr/lib/sane
+    rm -rf /usr/lib/libsane*
+    rm -rf /usr/include/sane
+    rm -rf /usr/etc/sane.d
+    rm -rf /usr/share/sane*
+    rm -rf /usr/local/lib/sane
+    rm -rf /usr/local/lib/libsane*
+    rm -rf /usr/local/include/sane
+    rm -rf /usr/local/etc/sane.d
+    rm -rf /usr/local/share/sane*
+
+    This should cover all the directories where maybe some
+    sane files are installed...
+

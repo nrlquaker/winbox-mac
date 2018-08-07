@@ -1,0 +1,41 @@
+This directory contains drivers for camerase that use the
+Sound Vision Inc (http://www.soundvisioninc.com)
+"Clarity 2" Chipset.
+
+The Agfa ePhoto CL18 type cameras are an earlier design known
+as the "1307" which support 640x480 and USB only.
+
+The Tiger FastFlicks type design is the "V1 Low-Cost Dual Mode VGA 
+Digital Camera" which can do many resolutions, short MOV movies,
+and complact-flash of a sort.
+
+Sound Vision licences the design to many companys, hence
+the wide variety of brands supported by this driver.
+
+Sound Vision refuses to release documentation, so this driver is based
+entirely on reverse-engineering USB transactions.
+
+List of Cameras known to work with this driver:
+
+   Agfa ePhoto CL18
+   Mustek gSmart 350
+   
+   RCA CDS1005
+   Ixla DualCam 640
+
+   Argus:DC-2200
+   CoolCam CP086
+   FujiFilm @xia iX-100   (or "Axia ix-100")
+   Media-Tech mt-406
+   Oregon Scientific DShot II
+   Oregon Scientific DShot III
+   Scott APX 30
+   StarCam CP086
+   Tiger Fast Flicks
+
+Cameras that might work with the proper USB ID's or are unverified to work:
+
+   Digital Dreams l'elite
+   Eye Q3X Digital
+   Polaroid MP3
+   Pretec DC530

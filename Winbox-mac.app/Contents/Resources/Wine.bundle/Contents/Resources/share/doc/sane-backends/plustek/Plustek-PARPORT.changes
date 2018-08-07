@@ -1,0 +1,180 @@
+Version  0.1  10/20/98
+    1.0 Initial release
+Version  0.2  10/26/98
+    1.0 Fix Red/Green swap, optimize ppm output for black and white.
+Version  0.3  10/28/98
+    1.0 Merge code with SANE
+    2.0 Put GPL/SANE license info in all files
+Version  0.4  10/31/98
+    1.0 Have driver report ASIC ID up to backend.
+    2.0 Put NT stuff back in so that driver may be built under NT, try to
+        test build under NT but run out of memory in link.
+Version  0.5  10/31/98
+    1.0 Fix parameters not getting reflected from crop.
+Version  0.6  11/1/98
+    1.0 Take out unused stuff from ioctl_pt_drv.h.
+    2.0 Put in VERSION info in Makefile and archiver.
+Version  0.7  11/4/98
+    1.0 Fix model string when -L option is given.  Add in driver version
+        string to model.
+    2.0 Change Makefile so it builds without MODVERSIONS on distributions
+        that don't have it (Slackware).
+Version  0.8  11/5/98
+    1.0 Change output when -L option is given to add status byte to try
+        to determine any differences between the 4830 and the 9630.
+Version  0.9  11/6/98
+    1.0 Fix 4800 problem of inverse image when not in Binary mode.
+    2.0 Put more debug stuff in, print out all read
+	    reg's.
+Version  0.10  11/6/98
+    1.0 Get halftone working.
+    2.0 Put in hooks for kernel 2.1
+Version  0.11  11/17/98
+    1.0 Put in sysdep-2.1.h to Makefile distrib
+Version  0.20  3/7/99
+    1.0 Lots of changes to support 9630/12000.
+-------------------------------------------------------------------------------
+Version  0.3  02/29/2000
+    1.0 Completely rewritten, does now support Plustek OpticPro 9636T scanner
+
+Version 0.31  03/20/2000
+    1.0 Fix a bug in the autodetection routine
+    2.0 Enhanced backend, to reflect the different modes the OpticPro 9636T
+        supports
+
+Version 0.32 - never released
+    1.0 Corrected warmup-behaviour
+    2.0 Fixed "first picture corrupted"-bug for transparency mode
+    3.0 Fixed a bug that causes seg-faults when using cat /dev/pt_drv
+    4.0 Added SCALE.C
+    5.0 Made 4830P work
+
+Version 0.33 - never released
+    1.0 Now using parport-module info for par-mode detection
+    2.0 Made 9630P work
+
+Version 0.34 05/10/2000
+    1.0 Data-recovery code for heavy load systems
+
+Version 0.35 05/19/2000
+    1.0 Made 12000P/96000P work
+    2.0 Merged parallel port code from Kevin Sisson
+    3.0 Added new parameter "legal"
+
+Version 0.36 07/22/2000
+    1.0 Improved data-recovery mechanism for ASIC96001/3 based models
+    2.0 Added code for OP4800 shading
+    3.0 Improved backend code to allow canceling the scan process
+    4.0 OP600 and Primax 4800 Direct are working now
+    5.0 Added new parameter "mov" (Model OVerride)
+    6.0 Removed parameter "legal", use now "mov"
+    7.0 Moved common headers for backend and driver to backend directory
+        and prepared the backend for SANE distribution
+    8.0 OP6000 is working
+    9.0 added man-page
+   10.0 added multi-device support
+   11.0 added support for 12-bit scans (SANE-1.0.3 and scanimage!!)
+
+Version 0.37 11/09/2000
+    1.0 Added file io.c for parallel port I/O
+    2.0 Added file procfs.c for proc-filesystem support
+    3.0 Code cleanup
+    4.0 Added A3I support
+    5.0 Added Michaels backend patches
+
+Version 0.38 11/30/2000
+    1.0 Started integration of ASIC98003 specific stuff
+    2.0 renamed file transform.c tpa.c
+    3.0 removed portmode stuff (I decided to support SPP/BPP and EPP, that's all)
+    4.0 again code-cleanup
+    5.0 PT12 is working
+    6.0 Removed gray-mode scanning for TPA modes
+    7.0 some minor changes according to kernel 2.4.x
+
+Version 0.39 08/11/2001
+    1.0 Added slowIO switch
+    2.0 Fixed some minor bugs
+    3.0 Added forceMode switch
+    4.0 Fixed a problem in the PT12 code that causes I/O timeouts
+    5.0 Added Genius Colorpage Vivivd III V2 stuff
+    6.0 Added A3I stuff aquired from Plustek
+    7.0 Fixed a bug, that causes some seg-faults
+
+Version 0.40 12/17/2001
+    1.0 The USB stuff has been included
+    2.0 Fixed some minor problems
+    3.0 Added Kernel 2.4.17 specific stuff
+    4.0 Disabled A3I stuff as this refuses ASIC96003 based devices to work
+
+Version 0.41 01/10/2002
+    1.0 Changed IOCTL interface to the kernel module to allow adjustment of some
+        driver internal variables
+    2.0 Changed plustek.conf configuration fileformat to reflect the enhanced
+        capabilites
+
+Version 0.42 02/12/2002
+    1.0 Added custom gamma table support
+    2.0 Added configuration-file options to preset some stuff
+    3.0 Changed all eMail entries to gerhard@gjaeger.de
+
+Version 0.42-11 09/17/2003
+    1.0 Some Kernel 2.6.x additions
+    2.0 Added Primax 4800Direct 30Bit override switch
+
+Somewhere on the way to 0.43 I decided to split parport & usb
+backends, so the parport backend now is also able to run complete
+in userspace by using either direct port I/O or libieee1248
+
+Version 0.43-2 04/15/2004
+    1.0 Fixed some kernel 2.6 issues
+
+Version 0.43-3 07/14/2004
+    1.0 User-space code has now the same version as the module code
+
+Version 0.43-4 07/15/2004
+    1.0 DevFS support for kernel 2.6
+    2.0 Removed floating point operations (Thanx to Rafal Rzepecki)
+    3.0 More cleanup work
+    4.0 bumped up build number
+
+Version 0.43-5 10/06/2004
+    1.0 Change some scanmode definitions to match the SANE predefined
+        ones
+
+Version 0.43-6 04/25/2005
+    1.0 Removed inline stuff from kernel module code, as GCC3.4 will
+        make some trouble
+
+Version 0.43-7 05/11/2005
+    1.0 Fixed timer issues in user-space (Thanx to Rod Roark)
+
+Version 0.43-8 08/10/2005
+    1.0 Fixed problem on ASIC96003/1 based devices, when scanning 
+        lineart at 200 and 300 dpi
+
+Version 0.43-9 11/14/2005
+    1.0 Fixed sizeof(long) issue for 64bit platforms, see 
+        bug #302195
+
+Version 0.43-10 02/16/2006
+    1.0 Fixed bug, that prevents backend from working, when the
+        device is connected to parport1 or higher, parport0 works.
+        Bug spotted by Christoph Steinbruchel.
+
+Version 0.43-11 08/09/2006
+    1.0 Changed sane.type to "flatbed scanner" only
+
+Version 0.43-12 08/29/2006
+    1.0 Fixed "not homing" problem, the sensor did not
+        return when the driver gets the _IOCTL_STOP command
+    2.0 Fixed compilation issue for kernels > 2.6.15
+    3.0 Fixed compiler warning conditions
+
+Version 0.43-13 06/18/2007
+    1.0 Removed DEVFS stuff for Kernels > 2.6.15
+    2.0 Added class stuff
+
+Version 0.44-1 02/13/2013
+    1.0 Fixed issues for Kernels > 2.6.35
+    2.0 Define ULong and friends to uint32_t to make the driver
+        work in a 64 bit environment

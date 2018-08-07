@@ -1,0 +1,6 @@
+This software is based upon usbsniffing, and therefore is
+marked EXPERIMENTAL.
+The format of the WAV file is IMA ADPCM (code=0x11) also called DVI ADPCM,
+and can be converted with sox -i inputfile outputfile.	
+The format of the RAW files is unknown so if anyone finds/knows a way 
+to decode it please contact me.

@@ -1,0 +1,176 @@
+.TH sane\-stv680 5 "11 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-stv680
+.SH NAME
+sane\-stv680 \- SANE backend for STV680 camera's
+.SH DESCRIPTION
+The
+.B sane\-stv680
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to some STV680 cameras. This backend
+should be considered
+.B beta-quality
+software! STV680 cameras are sold under
+various brands like Aiptek.
+This backend may or may not support yours.
+.PP
+The cameras that should work with this backend are:
+.PP
+.ft CR
+.nf
+Vendor Model              USB vendor id  USB product id  status
+------------------------  -------------  --------------  --------
+AIPTEK stv680                0x0553         0x0202       basic
+Konica e-mini                0x04c8         0x0722       untested
+DigitalDream l'espion XS     0x1183         0x0001       untested
+Creative WebCam Go mini      0x041e         0x4007       untested
+.fi
+.ft R
+
+For all these cameras, see the backend home page (under AUTHOR)
+for the exact status of each camera.
+
+For startup of this backend check that if present the stv680 kernel module is
+removed or disabled.
+.br
+Also before using, enable the backend by editing the /etc/sane.d/dll.conf file, 
+change #stv680 to stv680.
+
+For problems with the untested cameras, you
+should contact the author for that.
+
+The options the backend supports can either be selected through
+command line options to programs like scanimage or through GUI
+elements in xcam. For both programs use the \-B option needed for size buffer.
+
+Some frontends examples:
+.br
+xcam
+.RS
+xcam \-B
+.RE
+
+scanimage: for writing in batch mode to a file or to a new file each time.
+.RS
+scanimage \-B \-d stv680:libusb:001:002 \-\-batch=out.ppm \-\-batch-count 5 \-\-mode "Color RGB"
+.RE
+.RS
+scanimage \-B \-d stv680:libusb:001:002 \-\-batch=out%d.ppm \-\-batch-count 5 \-\-mode "Color RGB"
+.RE
+
+.br
+If you have any success with a camera not listed here, or if you have
+any strange behavior, please report to the backend maintainer or to
+the SANE mailing list.
+
+Valid command line options and their syntax can be listed by using 
+.RS
+scanimage \-\-help \-d stv680
+.RE
+
+
+.TP
+.B Scan Mode
+
+.TP
+.B \-\-mode
+selects the basic mode of operation of the webcams valid choices.
+
+The read resolution mode is 8 bits, output resolution is 24 bits. 
+Selects the resolution for a scan.
+The camera can do only the resolutions listed.
+.TP
+.B \-\-Raw
+In this mode raw data is displayed
+.TP
+.B \-\-Color
+In this mode the bayer unshuffle is done but no color correction
+.TP
+.B \-\-Color_RGB
+Bayer unshuffle, color correction
+.TP
+.B \-\-Color_RGB_TXT
+Bayer unshuffle, color correction, textline with date and time is added
+
+
+.TP
+.B Enhancement options
+
+.TP
+.B \-\-white\-level\-r
+Selects what red radiance level should be
+considered "white", when scanning some sheets by changing the calibration 
+value loaded into the scanner. Scale \-32 .. 0 .. +32 in steps of 1.
+
+.TP
+.B \-\-white\-level\-g
+Selects what green radiance level should be
+considered "white", when scanning some sheets by changing the calibration i
+value loaded into the scanner. Scale \-32 .. 0 .. +32 in steps of 1.
+
+.TP
+.B \-\-white\-level\-b
+Selects what blue radiance level should be
+considered "white", when scanning some sheets by changing the calibration
+value loaded into the scanner. Scale \-32 .. 0 .. +32 in steps of 1.
+
+.SH CONFIGURATION FILE
+The configuration file /Users/mike/Documents/wine/usr/etc/sane.d/stv680.conf supports only one
+information: the device name to use (eg usb 0x.... 0x....).
+
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-stv680.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-stv680.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+
+
+.SH ENVIRONMENT
+.TP
+.B SANE_DEBUG_STV680
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend. E.g.,
+a value of 128 requests all debug output to be printed. Smaller levels
+reduce verbosity.
+
+.SH LIMITATIONS
+The windows TWAIN driver has many more options than this SANE
+backend. However they are only software adjustments. This backend only
+implements what the webcam can support.
+
+
+.SH BUGS
+
+.TP
+Plenty. Parts of this backend are still under development.
+1. Some untested cameras.
+.br
+2. Video streaming slow and stops sometimes (scanimage).
+.br
+3. Sometimes 1/3 of image is NOK (xcam).
+
+
+.SH "SEE ALSO"
+
+sane\-usb(5), scanimage(1), xcam(1), sane(7)
+
+
+.SH AUTHORS
+
+Gerard Klaver http://gkall.hobby.nl/stv680-aiptek.html
+
+
+
+.SH CREDITS
+
+.TP
+Thanks to developers of the other stv680 programs:
+STV680 kernel module
+.br
+pencam2 program
+.br
+libghoto2 program (camlib stv0680)
+

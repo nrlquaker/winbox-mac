@@ -1,0 +1,193 @@
+
+          BACKEND TECO1
+
+
+
+Relisys RELI 2412 (no ADF, no transparency adapter)
+single pass scanner - 300*1200 dpi - 8.5*14
+Inquiry:
+   000: 06 00 02 02 30 00 00 10 52 45 4c 49 53 59 53 20    ....0...RELISYS 
+   016: 56 4d 33 35 33 30 2b 20 20 20 20 20 20 20 20 20    VM3530+         
+   032: 31 2e 30 38 31 2e 30 38 02 00 54 45 43 4f 20 56    1.081.08..TECO V
+   048: 4d 33 35 33 41                                     M353A
+Inquiry page 0x82
+   000: 06 82 00 12 11 54 45 43 4f 20 56 4d 33 35 33 41    .....TECO VM353A
+   016: 20 56 31 2e 30 36                                   V1.06
+
+AVEC Colour 2412
+three pass scanner - 300*600 dpi - 8.5*14
+    000: 06 00 02 02 30 00 00 10 20 20 20 20 20 20 20 20    ....0...        
+    016: 49 6d 61 67 65 20 53 63 61 6e 6e 65 72 20 20 20    Image Scanner   
+    032: 31 2e 30 38 31 2e 30 38 02 00 54 45 43 4f 20 56    1.081.08..TECO V
+    048: 4d 33 35 32 41                                     M352A
+
+Avec Color Office 2400 (no ADF, no transparency adapter)
+three pass scanner - 300*600 dpi - 8.5*14
+Inquiry:
+   000: 06 00 02 02 30 00 00 10 20 20 20 20 20 20 20 20    ....0...        
+   016: 49 6d 61 67 65 20 53 63 61 6e 6e 65 72 20 20 20    Image Scanner   
+   032: 32 2e 30 34 32 2e 30 34 02 00 54 45 43 4f 20 56    2.042.04..TECO V
+   048: 4d 33 35 32 30                                     M3520
+Inquiry page 0x82
+   000: 06 82 00 12 11 54 45 43 4f 20 56 4d 33 35 32 30    .....TECO VM3520
+   016: 20 56 32 2e 30 34                                   V2.04
+
+RELI 4830 (no ADF, with transparency adapter)
+   000: 06 00 02 02 30 00 00 10 52 45 4c 49 53 59 53 20    ....0...RELISYS 
+   016: 52 45 4c 49 20 34 38 33 30 20 20 20 20 20 20 20    RELI 4830       
+   032: 31 2e 30 33 31 2e 30 33 02 00 54 45 43 4f 20 56    1.031.03..TECO V
+   048: 4d 34 35 34 32                                     M4542
+Inquiry page 0x82
+   000: 06 82 00 12 11 54 45 43 4f 20 56 4d 34 35 34 32    .....TECO VM4542
+   016: 20 56 31 2e 30 33                                  V1.03
+
+Dextra DF-600P - VM3510
+   000: 06 00 02 02 24 00 00 10 44 46 2D 36 30 30 4D 20    ....$...DF-600M 
+   016: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20                     
+   032: 31 2E 31 37 31 2E 31 37 02                         1.171.17.       
+
+
+/*--------------------------------------------------------------------------*/
+
+SCSI commands supported by the RELISYS VM3530+:
+
+TEST UNIT READY
+00 00 00 00 00 00
+
+REQ SENSE  
+03 00 00 00 12 00
+
+VENDOR-09
+09 00 00 78 00 00
+  3-4 = length of data to receive. Always 30720 bytes. 
+        Probably 12 lines of calibration at 300dpi. 
+        8.5*300*12=30600
+
+VENDOR-0E (?)
+0E 00 00 00 00 00
+  Always follows VENDOR-09 command
+
+INQUIRY:
+12 00 00 00 35 00
+12 01 82 00 21 00
+  standard inquiry
+    52 bytes - appears to never change
+    32-39: firmware version
+    42-52: real scanner name
+
+  page 0x82 (vendor specific) - real scanner name with version
+     0-3 = page header
+       4 = string length 
+    5-21 = real scanner name with version
+
+MODE SELECT
+15 10 00 00 18 00
+  always sends:
+    00 00 00 00 00 00 00 08 00 00 00 00 00 00 00 01 
+	03 06 02 00 00 01 00 00 
+
+
+SCAN
+1B 00 00 00 00 00
+
+SET WINDOW
+24 00 00 00 00 00 00 00 63 00 
+Total length is 99
+  07 = length (99-8 = 91)
+  10-11 = X Resolution
+  12-13 = Y resolution
+  14-17 = X top left corner
+  18-21 = Y top left corner
+  22-25 = width  (size in inches * 300)
+  26-29 = length (size in inches * 300)
+  31 = 0x80 ?
+  33 = scan mode
+        0x00 = black & white
+        0x02 = grayscale
+		0x05 = color
+  34 = bit depth? - invariants, always 8
+  36 = dither pattern - only for B&W
+     0x00 = line art
+	 0x01 = 2 X 2
+	 0x02 = 3 X 3
+	 0x03 = 4 X 4 Bayer
+	 0x04 = 4 X 4 Smooth
+	 0x05 = 8 X 8 Bayer
+	 0x06 = 8 X 8 Smooth
+	 0x07 = 8 X 8 Horizontal
+	 0x08 = 8 X 8 Vertical
+  37 = 
+     0x80 = RIF (VM353A only?)
+  63 = calibration?
+        0x00 yes
+        0x02 no
+  81 = ??? transparency adapter
+        0x00 no
+        0x01 yes
+  93 =
+     0x80 = ? (seems to activate a contrast value on VM353A)
+
+  37, 55, 57, 59, 61, 65, 67, 69, 71, 73, 75, 77, 79 = 0x80 
+  85, 89, 93, 97 = 0xff
+  
+READ
+28 00 00 00 00 00 00 00 3E 00
+  6-8 = length
+
+SEND
+2A 00 03 00 00 02 00 04 00 00
+  2 = data type code
+       0x03 = gamma - 4*256 bytes
+
+GET DATA BUFFER STATUS
+34 01 00 00 00 00 00 00 12 00
+  1 = bit 1 is wait
+  7-8 allocation length
+
+  returned buffer is 0x10 bytes long.
+    0-2 = additional length (0x10-3 = 0x0D)
+      3 = reserved(?)
+      8 = ? 
+   9-11 = filled data buffer
+  12-13 = number of lines (constant during a scan)
+  14-15 = bytes per line (constant during a scan)  
+
+
+/*--------------------------------------------------------------------------*/
+
+Command sequence
+(simplified, since the TWAIN driver seems to be quite stupid)
+
+Get some info:
+  INQUIRY
+  INQUIRY page 0x82
+
+Setup the scan:
+  TUR
+  MODE SELECT
+  SET WINDOWS
+  GET BUFFER STATUS
+  VENDOR-09
+  VENDOR-0E
+  SEND(10)
+  SET WINDOWS (same as the first one)
+  SCAN
+
+loop until all data read:
+  GET BUFFER STATUS
+  READ(10) if any data available
+
+park the CCD:
+  SET WINDOWS
+  SCAN
+
+/*--------------------------------------------------------------------------*/
+
+The vendor specific command 0x09 and 0x0e are issued by the windows driver to the AVEC 2400, but the scanner rejects them.
+
+/*--------------------------------------------------------------------------*/
+
+The Dextra DF600-P is a VM3510. It's older than the other scanner and
+is a little more primitive. The driver recognizes its scsi id and fake
+a more evolved one. The scan sequence is also simplified. The rest is
+identical.

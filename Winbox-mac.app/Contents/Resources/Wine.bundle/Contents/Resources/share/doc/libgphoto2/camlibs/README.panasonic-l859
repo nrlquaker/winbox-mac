@@ -1,0 +1,23 @@
+Panasonic PV-L859-K/PV-L779-K Palmcorder
+
+Panasonic introduced image capturing technology
+called PHOTOSHOT for the first time to this series
+of Palmcorders.  Images are stored in JPEG format on
+an internal flashcard and can be transferred to a
+computer through the built-in serial port.  Images
+are saved in one of two resolutions; NORMAL is
+320x240 and FINE is 640x480.  The CCD device which
+captures the images from the lens is only 300K and
+thus produces only low quality pictures.
+
+Panasonic provided no specifications for the creation
+of this driver (although a request was made).  The
+protocol was reverse engineered using ComLite32 under
+windows while using the bundled Digital PhotoShot
+application.  I hope to include with this driver, in
+the future, a document that outlines the protocol.
+
+If you have any questions regarding this driver, you
+can contact me at aselkirk@mailandnew.com
+
+Andrew...

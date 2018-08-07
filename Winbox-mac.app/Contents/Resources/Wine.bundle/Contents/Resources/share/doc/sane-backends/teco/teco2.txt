@@ -1,0 +1,267 @@
+
+          BACKEND TECO2
+
+INQUIRY
+
+TECO VM3564 (1)
+000: 06 00 02 02 43 00 00 10 52 45 4c 49 53 59 53 20    ....C...RELISYS 
+016: 41 56 45 43 20 49 49 20 53 33 20 20 20 20 20 20    AVEC II S3      
+032: 31 2e 30 37 31 2e 30 37 00 01 54 45 43 4f 20 56    1.071.07..TECO V
+048: 4d 33 35 36 34 20 00 01 01 2c 00 01 02 58 09 f6    M3564 ...,...X..
+064: 0d af 01 2c 00 08 01 00                            ...,....
+
+TECO VM3564 (2)
+000: 06 00 02 02 43 00 00 10 52 45 4c 49 53 59 53 20    ....C...RELISYS 
+016: 41 56 45 43 20 49 49 20 53 33 20 20 20 20 20 20    AVEC II S3      
+032: 31 2e 30 39 31 2e 30 39 00 01 54 45 43 4f 20 56    1.091.09..TECO V
+048: 4d 33 35 36 34 20 00 01 01 2c 00 01 02 58 09 f6    M3564 ...,...X..
+064: 0d af 01 2c 00 08 01 00                            ...,....
+
+TECO VM356A (1)
+000: 06 00 02 02 43 00 00 00 52 45 4c 49 53 59 53 20    ....C...RELISYS
+016: 41 50 4f 4c 4c 4f 20 45 78 70 72 65 73 73 20 33    APOLLO Express 3
+032: 31 2e 30 33 31 2e 30 33 00 01 54 45 43 4f 20 56    1.031.03..TECO V
+048: 4d 33 35 36 41 20 00 01 01 2c 00 01 02 58 09 f6    M356A ...,...X..
+064: 0d af 01 2c 00 08 01 00                            ...,....
+
+TECO VM356A (2)
+000: 06 00 02 02 43 00 00 10 50 72 69 6d 61 78 20 20    ....C...Primax  
+016: 4a 65 77 65 6c 20 20 20 20 20 20 20 20 20 20 20    Jewel           
+032: 31 2e 30 31 31 2e 30 31 00 01 54 45 43 4f 20 56    1.011.01..TECO V
+048: 4d 33 35 36 41 20 00 01 01 2c 00 01 02 58 09 f6    M356A ...,...X..
+064: 0d af 01 2c 00 08 01 00                            ...,....
+
+TECO VM3575
+000: 06 00 02 02 43 00 00 00 20 20 20 20 20 20 20 20    ....C...        
+016: 46 6c 61 74 62 65 64 20 53 63 61 6e 6e 65 72 20    Flatbed Scanner 
+032: 31 2e 30 33 31 2e 30 33 00 01 54 45 43 4f 20 56    1.031.03..TECO V
+048: 4d 33 35 37 35 20 00 01 01 2c 00 01 02 58 09 f6    M3575 ...,...X..
+064: 0d af 01 2c 00 08 01 00                            ...,....
+
+TECO VM656A
+000: 06 00 02 02 43 00 00 00 52 45 4c 49 53 59 53 20    ....C...RELISYS 
+016: 41 50 4f 4c 4c 4f 20 45 78 70 72 65 73 73 20 36    APOLLO Express 6
+032: 31 2e 30 33 31 2e 30 33 00 01 54 45 43 4f 20 56    1.031.03..TECO V
+048: 4d 36 35 36 41 00 01 01 2c 00 01 02 58 09 f6 0d    M656A...,...X...
+064: af 01 2c 00 08 01 00 00                            ..,.....
+
+TECO VM6575
+000: 06 00 02 02 43 00 00 10 52 45 4c 49 53 59 53 20    ....C...RELISYS
+016: 53 43 4f 52 50 49 4f 20 50 72 6f 20 20 20 20 20    SCORPIO Pro
+032: 31 2e 30 31 31 2e 30 31 00 01 54 45 43 4f 20 56    1.011.01..TECO V
+048: 4d 36 35 37 35 20 00 01 01 2c 00 01 02 58 09 f6    M6575 ...,...X..
+064: 0d af 01 2c 00 08 01 00                            ...,....
+
+TECO VM6586
+000: 06 00 02 02 43 00 00 00 20 20 20 20 20 20 20 20    ....C...        
+016: 46 6c 61 74 62 65 64 20 53 63 61 6e 6e 65 72 20    Flatbed Scanner 
+032: 33 2e 30 31 33 2e 30 31 00 01 54 45 43 4f 20 56    3.013.01..TECO V
+048: 4d 36 35 38 36 20 00 01 01 2c 00 01 02 58 09 f6    M6586 ...,...X..
+064: 0d af 01 2c 00 08 01 00                            ...,....
+
+/*--------------------------------------------------------------------------*/
+
+
+
+SCSI Commands supported by the TECO VM3575:
+
+
+
+REQUEST SENSE
+03 00 00 00 12 00
+
+
+VENDOR-06
+???
+Receives 4 bytes of data
+
+
+VENDOR-9
+Get calibration lines - 12 lines
+  2 = ?
+     0x00 color scan
+     0x01 grayscal scan
+     0x02 b&w scan
+  Returns 6 bytes per pixel, probably 2 bytes per color in little endian order.    (2550 * 6 = 15300)
+
+VENDOR-0C
+??? Unsupported?
+
+
+VENDOR-0E
+Set calibration. Apparently the line is computed from the calibration lines. It is not an average though.
+
+
+INQUIRY
+12 00 00 00 48 00 
+  standard inquiry
+    72 bytes
+    32-39: firmware version
+    42-52: real scanner name
+	54-55: min X resolution
+    56-57: max X resolution
+    58-59: min Y resolution
+    60-61: max Y resolution
+    62-63: scan area length
+    64-65: scan area width
+    66-67: unit for scan area (eg 300th of inch)
+
+    eg if 62-63 = 2550 and 66-67 = 300, the length is 2550/300=8.5 inches.
+
+
+SCAN
+1B 00 00 00 00 00
+
+
+VENDOR-1C
+1c 00 00 00 00 00
+(Same opcode as RECEIVE DIAGNOSTIC RESULTS)
+  sends 4 bytes of data.
+
+
+SET WINDOW
+24 00 00 00 00 00 00 00 35 00 (VM3575)
+24 00 00 00 00 00 00 00 38 00 (VM6586)
+
+Total length is 
+  07 = length 
+       VM3575 53-8 = 45
+	   VM6586 56-8 = 48
+	   VM3552 69-8 = 61
+  10-11 = X Resolution
+  12-13 = Y resolution
+  14-17 = X top left corner
+  18-21 = Y top left corner
+  22-25 = width  (size in inches * 300)
+  26-29 = length (size in inches * 300)
+  31 = 0x80 ?
+  33 = scan mode
+        0x00 = black & white
+        0x02 = grayscale
+		0x05 = color
+  34 = bit depth? - invariant, always 8
+  36 = (vm6586 only ?) halftone pattern ?
+         1 = type 1 dithering
+  37 = 
+     0x80 = RIF?
+  48 = color channel to use
+     if scan mode is 0 or 2:
+       0x00 = red 
+       0x01 = green
+       0x02 = blue
+     if scan mode is 05 -> ignored
+       TWAIN leaves 0x02
+  50 = ?
+
+  VM6585 only:
+    52-53 = size of a line expected?
+    54-55 = number of lines expected?
+
+
+READ
+28 00 00 00 00 19 00 1f 0e 00
+  5 = number of lines to read
+  7-8 = buffer size. 
+       Always number of lines to read * size of a line.
+       0x2000 appears to be the upper limit
+  
+
+SEND
+2A 00 03 00 00 04 00 0C 00 00
+  2 = data type code
+       0x03 = gamma
+  4-5 = data type qualifier (?)
+  6-8 = length (0xc00 = 3276 = 3*2^10)
+  or:
+  5-6: length of each gamma
+  7-8: length of all gamma
+
+
+OBJECT POSITION
+31 00 00 00 00 00 00 00 00 00
+Park the CCD.
+
+
+GET DATA BUFFER STATUS
+34 01 00 00 00 00 00 00 12 00
+
+  1   = bit 1 is wait
+  7-8 = allocation length
+
+  returned buffer is 0x12 bytes long.
+  00 00 0f 00 00 00 00 14 00 00 00 80 1b 6c 09 f6 05 05
+    0-2 = additional length (0x12-3 = 0x0F)
+      7 = ? always 0x14
+     11 = bit 7 - (maybe) scanner is ready to send data
+  12-13 = number of lines (constant during a scan)
+  14-15 = bytes per line (constant during a scan)  
+  16-17 = garbage (the command only returns 0x10 bytes)
+
+
+/*--------------------------------------------------------------------------*/
+
+Scan sequence
+
+Get some info:
+  INQUIRY
+
+Setup the scan:
+  REQUEST SENSE
+  TUR
+  SET WINDOWS
+  GET BUFFER STATUS
+  VENDOR-0C
+  VENDOR-09 (read calibration)
+  VENDOR-0E (send new calibration)
+  REQUEST SENSE
+  SEND(10)
+  SET WINDOWS (same as the first one)
+  COMMAND 06
+  RECEIVE DIAGNOSTIC RESULTS
+  SCAN
+  GET BUFFER STATUS
+
+loop until all data read:
+  READ(10)
+
+park the CCD:
+  OBJECT POSITION
+
+/*--------------------------------------------------------------------------*/
+
+calibration
+
+TECO VM3575 reads 12 lines of calibration
+TECO VM656A reads 8 lines of calibration
+TECO VM6586 ??
+
+Algorithms used (text from Alex Wulms):
+The old algorithm was based on the assumption that the calibration value needs 
+to be an offset, to go from the value obtained during input to the average 
+value (0x800).
+
+E.g., if the input value is 0x800, the calibration value must be 0x800 (0x1000 
+- 0x800).
+Likewise, if the input value is 0x700, the calibration value must be 0x900 
+(0x1000 - 0x700)
+And if the input value is 0x600, the calibration value must be 0xA00
+
+The new algorithm is based on the assumption that the calibration needs to be 
+a multiplication factor, to compensate for the too strong or too weak pixel 
+in the sensor. Again, we want to obtain the average value (approximately 
+0x800) for every pixel read during calibration.
+
+E.g., if the input value is 0x800, the calibration value must be 0x800 
+(0x800*0x800 / 0x800).
+Likewise, if the input value is 0x700, the calibration value must be 0x924 
+(0x800*0x800 / 0x700).
+And if the input value is 0x600, the calibration value must 0xAAA (0x800*0x800 
+/ 0x600)
+
+Though, carefull comparison with scans done under windows has shown that the 
+factor is slightly different from 0x800*0x800(=0x400000) but in stead it 
+seems to be approximately 0x40302f (which would mean that the average value 
+is approximately 0x803 in stead of 0x800).
+
+Hope this is clarifies the new algorithm.
+

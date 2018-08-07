@@ -1,0 +1,159 @@
+.TH "sane\-rts8891" "5" "8 Dec 2008" "" "SANE Scanner Access Now Easy"
+.SH "NAME"
+sane\-rts8891 \- SANE backend for rts8891 based scanners
+.SH "DESCRIPTION"
+The
+.B sane\-rts8891
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to scanners based on the rts8891 ASIC.
+.PP 
+The scanners that work with this backend are:
+.PP 
+.RS
+.ft CR
+.nf 
+   Vendor Model           status
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-  \-\-\-\-\-\-\-\-\-\-\-
+  Umax Astra 4400       untested
+  Umax Astra 4450       untested
+  HP scanjet 4000c      good
+  HP scanjet 4470c      good
+.fi 
+.ft R
+.RE
+
+The options the backend supports can either be selected through
+command line options to programs like scanimage or through GUI
+elements in xscanimage or xsane.
+
+.br 
+If you have any strange behavior, please report to the backend
+maintainer or to the SANE mailing list.
+
+Valid command line options and their syntax can be listed by using 
+.RS
+scanimage \-\-help \-d rts8891
+.RE
+
+.TP 
+.B Scan Mode Options
+
+.TP 
+.B \-\-mode
+selects the basic mode of operation of the scanner valid choices are 
+.I R Color ,
+.I Gray
+and
+.I Lineart
+The default mode is Color. The Lineart mode is black and white only (1 bit). 
+Grayscale will produce 256 levels of gray (8 bits). Color mode allows for over
+16 million different colors produced from 24 bits of color information.
+
+.TP 
+.B \-\-resolution
+selects the resolution for a scan. The horizontal and vertical resolutions are set 
+by the value of this option. The scanner is capable of the following resolutions for the specified option value:
+.PP 
+.RS
+.ft CR
+.nf 
+  Value   Hor. Resolution  Vert. Resolution 
+  \-\-\-\-\-   \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-  \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+  75      75dpi            75dpi
+  150     150dpi           150dpi 
+  300     300dpi           300dpi 
+  600     600dpi           600dpi 
+  1200    1200dpi          1200dpi
+.fi 
+.ft R
+.RE
+
+.TP 
+.B \-\-preview
+requests a preview scan. The resolution used for that scan is 75 dpi
+and the scan area and the scan mode are as specified through their options, 
+or the default if not specified. The default value for preview mode is "no".
+
+.TP 
+.B \-\-threshold
+selects the  minimum\-brightness to get a white point. The threshold is only used with Lineart mode scans.
+It is specified as a percentage in the range 0..100% (in steps of 1).  
+The default value of the threshold option is 50.
+
+
+.SH "CONFIGURATION FILE"
+The configuration file
+.B /Users/mike/Documents/wine/usr/etc/sane.d/rts8891.conf
+contains the usb device ids of supported scanners (eg usb 0x043d 0x007c) and scanner configuration options.
+Empty lines and lines starting with a hash mark (#) are
+ignored.
+.PP 
+The options supported are
+.B allowsharing
+,
+.B modelnumber 
+.
+
+Option
+.PP
+.B allowsharing
+enables or not the sharing of the scanner between multiple frontends at the same time.
+.PP
+.B modelnumber
+is used to force the reported model by the backend and is only useful in the case of a scanner which NVRAM has been erased.
+.RS
+.ft CR
+.nf 
+0 to report a HP4470c.
+1 to report a HP4400c.
+2 to report an Astra 4400.
+.fi 
+.ft R
+.RE
+
+.PP 
+.SH "FILES"
+.TP 
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-rts8891.a
+The static library implementing this backend.
+.TP 
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-rts8891.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+
+
+.SH "ENVIRONMENT"
+.TP 
+.B SANE_DEBUG_RTS8891 SANE_DEBUG_RTS8891_LOW SANE_DEBUG_RTS88XX_LIB
+If the library was compiled with debug support enabled, these
+environment variables controls the debug level for this backend. E.g.,
+a value of 255 requests all debug output to be printed. Smaller levels
+reduce verbosity.
+
+
+.SH "LIMITATIONS"
+Scanners of the same model exist with different sensors, due to lack of data
+(ie USB logs) some sensors are better supported than others. At least 75 dpi
+mode is working for any model. Sharing the scanner between several frontends
+at the same time (allowsharing option) may not work on some USB controllers.
+.PP
+XPA is no (yet) supported.
+.SH "BUGS"
+.br 
+No bugs currently known.
+
+
+.SH "SEE ALSO"
+sane\-scsi(5), scanimage(1), xscanimage(1), xsane(1), sane(7)
+
+
+.SH "AUTHOR"
+.TP 
+This backend has been developed by St\['e]phane Voltz.
+.I http://stef.dev.free.fr/sane/rts8891
+.SH "CREDITS"
+.TP 
+Many thanks go to:
+Laurent Fournier who donated me a HP4470c.
+Vladimir Sysoev and "TheUnruly Squash" for the time they spent recording
+USB activity and testing the experimental version on HP4400 models.

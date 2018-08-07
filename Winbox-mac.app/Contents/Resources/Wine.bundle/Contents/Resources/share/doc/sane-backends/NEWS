@@ -1,0 +1,1156 @@
+-*-Mode: outline-*-
+New with 1.0.27 (see Note 1), released 2017-05-22:
+
+* Significant enhancements to canon_dr, epjitsu, epsonds, fujitsu,
+  genesys, hp3500, pixma and xerox-mfp backends.
+* Minor updates, bugfixes or scanners added in several backends.
+* 30+ new scanner models supported.
+* Made libusb-1.0 the default for USB support (see Note 2).
+* Switched code from C90 to C99 (Thanks to Volker Diels-Grabsch).
+* Updated Linux USB3 workaround (see Note 3). 
+* Documentation and translation updates.
+* Bugfixes (Avahi, threading, USB, ICC/PNG/JPEG, etc).
+* Reduced compiler warnings, improved code (see Note 4).
+
+Note 1: There is no 1.0.26 release of sane-backends. That number was
+skipped so that our development version numbers would more clearly be
+an extension of the prior release. This should make packaging a little
+easier for our downstream users.
+
+Note 2: On all systems, the --enable-libusb* flags are now ignored. 
+Instead, the --with-usb and --without-usb flags now control support.
+When neither is given, USB support will be enabled if possible and
+disabled otherwise.  If --with-usb is requested but not possible,
+./configure will fail.  There is no support to prefer libusb-0.1 over
+libusb-1.0.  When libusb-1.0 is not found, libusb-0.1 will be tried.
+
+Note 3: The Linux USB3 workaround which was added in version 1.0.25 is
+now disabled by default. If you have difficulty using a scanner which
+previously worked, or intermittent scanner availability, try setting
+the new environment variable SANE_USB_WORKAROUND=1 before starting
+your frontend.
+
+Note 4: A special thanks goes to Olaf Meeuwissen for picking up the
+janitorial duties in sane-backends. He has found and fixed a large
+number of long-standing bugs, curated our bug tracker, improved our
+build scripts and docs, and provided user support. Thank you Olaf!
+
+
+New with 1.0.25, released 2015-10-03:
+
+* New backends: epsonds (Epson DS, PX and WF series),
+  pieusb (PIE and Reflecta film/slide scanners).
+* Support for JPG and PNG output format in scanimage.
+* Significant enhancements to avision, canon_dr, epjitsu, fujitsu, genesys,
+  kodakaio and pixma backends.
+* Minor updates, bugfixes or scanners added in several backends.
+* 300 new scanner models supported.
+* Workaround for USB3 problems in Linux kernel.
+* Added code for IR functionality.
+* Documentation and translation updates.
+* Bugfixes (threading, networking, udev rules).
+
+
+New with 1.0.24, released 2013-09-30:
+
+* Significant enhancements to pixma, genesys, kodakaio, fujitsu, canon_dr.
+* Minor updates, bugfixes or scanners added in several backends.
+* Added new testsuite
+* 51 new scanner models supported.
+* USB support improvements.
+* Improved build system (mingw64, bug fixes, default pthread on Linux).
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.23, released 2012-08-19:
+
+* New backends: kvs40xx (Panasonic KV-S40xx),
+  kodakaio (Kodak AiO ESP and Hero)
+* Significant enhancements to several backends.
+* 30 new scanner models supported.
+* V4L support improvements.
+* Improvements for builds on multiple platforms.
+* Improved udev rules.
+* Updated software deskew algorithm.
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.22, released 2011-02-13:
+
+* New backends: kvs20xx (Panasonic KV-S20xx),
+  magicolor (Konica-Minolta )
+* Significant enhancements to several backends.
+* More than 80 new scanner models supported.
+* Support many more networked scanners.
+* Added -A option to scanimage
+* Improved build system.
+* Improved USB support.
+* Improved udev rules.
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.21, released 2010-04-25:
+
+* New backends: kodak (Kodak i18xx), kvs1025 (Panasonic KV-S10xx),
+  p5 (Primax PagePartner)
+* 224 more scanner models supported.
+* Many backends updated.
+* Improved compilation on uncommon platforms.
+* More consistent option naming.
+* Scanimage no longer writes image to tty.
+* Modern translation infrastructure.
+* Improved saned network daemon.
+* Internal SCSI, USB, threading, TCP & UDP code updates.
+* Updated HAL and udev support.
+* New sanei_magic image processing library.
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.20, released 2009-05-03:
+
+* New backends: canon_dr (Canon DR-series), coolscan3 (Nikon LS & Coolscan),
+  rts8891 (Umax & HP 44xx), xerox_mfp (Samsung/Xerox/Dell MFPs) 
+* Many backends updated.
+* 75 more scanner models supported.
+* New build system (thanks Chris and Olaf).
+* Avahi support (thanks Julien).
+* More network scanners supported
+* Epson backend deprecated, use epson2
+* Coolscan2 backend deprecated, use coolscan3
+* Internal SCSI, USB, threading, TCP & UDP code updates.
+* Updated HAL and udev support.
+* Improved saned configuration.
+* Scanimage updates.
+* Updated translations.
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.19, released 2008-02-10:
+
+* New backends: cardscan (Corex Cardscan 800c), epjitsu (Epson-based Fujitsu), 
+  epson2 (various Epson scanners), hp3900 (HP ScanJet 3970 and more),
+  hp5590 (HP ScanJet 5590 and more), hpljm1005 (HP LaserJet M1005 and more),
+  hs2p (Ricoh IS400 series)
+* Updated backends: abaton, agfafocus, apple, artec, artec_eplus48u, as6e,
+  avision, canon, coolscan, coolscan2, dc25, dell1600n_net, dll, epson,
+  fujitsu, genesys, gt68xx, hp3500, ibm, lexmark, microtek, microtek2, mustek,
+  nec, net, pie, pint, pixma, plustek, plustek_pp, ricoh, s9036, sm3600,
+  sm3840, snapscan, sp15c, st400, tamarack, teco2, test, u12, umax, umax1220u,
+  umax_pp
+* Scanimage detects more chipsets.
+* Internal scsi, usb, tcp and udp code updates.
+* Basic HAL .fdi creation support
+* Build system updates.
+* Updated translations.
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.18, released 2006-07-02:
+
+* New backends: dell1600n_net (Dell 1600n), hp3500 (HP ScanJet 3500 series),
+  pixma (Canon Pixma series), stv680 (Aiptek Pencam and similar).
+* Updated backends: avision, canon, dll, epson, fujitsu, genesys, gt68xx,
+  microtek2, mustek_pp, niash, plustek, snapscan, sp15c, test, u12, umax1220u.
+* Scanimage batch mode fixes.
+* Scanner lists contain USB vendor/product ids and some statistics now.
+* Udev/hotplug lists are generated autmatically from the .desc files now.
+* Portability fixes (especially for DragonFlyBSD and HP/UX).
+* Build system updates.
+* Updated translations.
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.17, released 2005-12-18:
+
+* New backends: hp4200 (HP ScanJet 4200), lexmark (Lexmark X1100 series),
+  mustek_usb2 (Mustek BearPaw 2448 TA Pro)
+* Updated backends: artec_eplus48u, avision, canon, epson, fujitsu, genesys,
+  gt68xx, microtek2, mustek_pp, plustek, plustek_pp, sm3600, snapscan, umax_pp.
+* Hotplug/udev updates.
+* scanimage fixes.
+* sane-find-scanner finds more chipsets.
+* Build system fixes/updates. make now calls makedepend.
+* Several fixes in SANE internal functions (sanei).
+* Portability fixes (especially for MacOSX, FreeBSD, OpenBSD, OS/2).
+* Updated translations.
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.16, released 2005-08-07:
+
+* New backends: genesys, sm3840
+* Updated backends: avision, canon, coolscan, epson, gphoto2, gt68xx, mustek,
+  mustek_pp, niash, plustek, plustek_pp, qcam, sm3600, snapscan, teco2,
+  umax_pp, v4l.
+* More functionality/fixes for sanei_usb and sanei_pp. 
+* Added sanei_access to allow locking of SANE devices.
+* Hotplug updates.
+* scanimage updates.
+* Portability fixes (especially for OS/2, 64bit platforms, BeOS+ZETA).
+* Added Polish translation. Updated other translations. Fixed format strings.
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.15, released 2004-11-07:
+
+* New backends: niash.
+* Updated backends: agfafocus, artec_eplus48u.c, avision, canon, canon_pp,
+  coolscan, dll, epson, fujitsu, gt68xx, hp, hp5400, leo, microtek2, mustek,
+  mustek_pp, net, pie, plustek, plustek_pp, snapscan, sp15c, tamarack, teco2,
+  umax, umax_pp, u12, v4l.
+* Portability fixes (especially for MacOS X, NetBSD, OS/2, 64 bit platforms).
+* sane-find-scanner detects more chipsets now.
+* Added Finnish translation. Updated other translations.
+* Several saned fixes.
+* Build system updates.
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.14, released 2004-05-01:
+
+* New backends: u12
+* Updated backends: artec, artec_eplus48u, as6e, avision, canon630u,
+  canon_pp, epson, fujitsu, gphoto2, gt68xx, hp, matsushita, mustek,
+  mustek_pp, mustek_usb, plustek, plustek_pp, sm3600, snapscan, teco1, teco2,
+  u12, umax, umax_pp, v4l.
+* Added scripts for USB hotplugging (Linux)
+* Added Danish translation. Updated other translations.
+* sane-find-scanner knows about more chipsets now.
+* Portability fixes (especially for MacOS X, NetBSD, OpenBSD, and OS/2).
+* Build system fixes.
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.13, released 2003-11-22:
+
+* New backends: mustek_pp_ccd (for Mustek parport CCD scanners),
+  plustek_pp (for Plustek parport scanners, splitted from the plustek backend).
+* Updated backends: avision, canon630u, coolscan, epson, fujitsu, gphoto2,
+  gt68xx, hp, hp5400, mustek, mustek_pp, pie, plustek, snapscan, teco2, test,
+  umax, umax_pp.
+* New internal interface for parport scanners.
+* Networking (IPv6 + subnet support) fixes + updates.
+* sane-find-scanner can detect some USB scanner chipsets now.
+* Better support for threading.
+* Port to MS Windows (Cygwin).
+* Portability fixes (especially for FreeBSD, MacOS X, OS/2).
+* Build system improvements.
+* Added new (Bulgarian, Czech and Italian) and updated existing translations.
+* The level of support for scanners is now: unsupported, minimal, basic, good,
+  complete or untested (instead of alpha, beta, stable).
+* Documentation updates.
+* Bugfixes.
+
+
+New with 1.0.12, released 2003-05-25:
+
+* New backends: hp5400 (Hewlett Packard 54XX series), ibm (IBM 2456, Ricoh
+  IS-410, IS-420, and IS-430), and ma1509 (Mustek BearPaw 1200F).
+* Updated backends: apple, artec_eplus48u, as6e, avision, canon (FB1200S),
+  canon630u, dc210, dc240, dll, epson, fujitsu (fi4220), gphoto2, gt68xx,
+  hp, mustek, mustek_pp, mustek_usb, net, pie, plustek, snapscan (Agfa Arcus
+  1200, Epson Perfection 660), teco2 (Relisys AVEC II S3, Relisys APOLLO
+  Express 3 and Primax Jewel 4800), test, umax, umax_pp.
+* Added IPv6 support for saned and net backend.
+* Added SCSI support for MacOS X.
+* Build system improvements.
+* USB access improvements.
+* Portability fixes (especially for Irix, MacOS X, OS/2 and Linux/m68k).
+* Added new (nl, no) and updated existing translations.
+* Documentation updates.
+* Bugfixes.
+
+New with 1.0.11, released 2003-02-09:
+
+* Security fixes for saned.
+
+
+New with 1.0.10, released 2003-02-01:
+
+* New backends: artec_eplus48u (Artec E+ 48U, Tevion/Medion MD 9693, Medion
+  MD 9705, Trust Easy Webscan 19200), gt68xx (Artec Ultima 2000, some Mustek
+  BearPaws and other GT6801/GT6816 based scanners).
+* Updated backends: avision, canon, coolscan2, canon_pp, dc210, dc240, dc25,
+  dll, epson, gphoto2, hp, hpsj5s, microtek2, mustek, mustek_pp, plustek,
+  sharp, snapscan, test, umax, umax_pp.
+* Improved SCSI and USB handling.
+* Portability fixes (especially for Linux/sparc64, MacOS X, OS/2, Tru64).
+* New translation system. All backends have translations for the standard
+  options now. Added translations for Portuguese, Russian and Swedish.
+* Build system updates.
+* Various documentation updates.
+* Bugfixes.
+
+New with 1.0.9, released 2002-10-24:
+
+* New backends: hpsj5s (Hewlett-Packard ScanJet 5S parport scanner), 
+  teco2 (some Relisys/Primax SCSI flatbed scanners, models VM3575, VM6565,
+  VM6586 and VM6575), teco3 (some Relisys/Piotech/Trust/Plustek SCSI
+  flatbed scanners, model VM3552).
+* Updated backends: avision, canon_pp, coolscan2, dc240, dc25, epson, fujitsu,
+  hp, leo, microtek, mustek, mustek_usb, pie, plustek, snapscan, teco1, test,
+  umax, umax_pp, v4l.
+* sane-find-scanner finds more scanners and has more verbosity options now.
+* New tool to create gamma tables (gamma4scanimage).
+* Support for ICC profiles for scanimage.
+* USB scanner should work on all systems supported by libusb now.
+* Portability fixes (especially for big-endian sytems, Irix, OpenStep, OS/2,
+  Solaris).
+* New and updated translations for various backends.
+* New system for generating lists of manufacturers/backends.
+* Various documentation updates.
+* Bugfixes.
+
+New with 1.0.8, released 2002-05-27:
+
+* New backends: canon_pp (Canon parport scanners), canon630u (CanoScan 630u 
+  + 636u), coolscan2 (Nikon Coolscan LS-30, LS-40 ED, LS-4000 ED, and
+  LS-8000 ED), fujitsu (M3091, M3093, M3096 and similar scanners), 
+  leo (Leo/Across FS-1130 scanner), matsushita (Panasonic KV-SS scanners),
+  sceptre (Sceptre VividScan S1200), teco1 (some Teco/Relisys flatbed
+  scanners), test (test frontends and SANE installation).
+* Updated backends: avision, canon, dc240, dll, epson, gphoto2, mustek,
+  mustek_pp, mustek_usb, nec, net, plustek, pnm, sharp, sm3600, snapscan, umax,
+  umax_pp, v4l.
+* New translations for several backends (de, es, fr).
+* Networking supports hosts without working DNS now.
+* SCSI system ignores USB files and doesn't block (Linux).
+* New test frontend and backend for testing SANE.
+* Several build system improvements (e.g., new libtool, better make distclean,
+  build only shared libs by default).
+* Portability fixes (especially for AIX, Linux (2.2, hppa, sparc), HP-UX,
+  NetBSD, OPENSTEP, OS/2).
+* Better documentation of internal functions (sanei).
+* Various Documentation updates.
+* Bugfixes.
+
+New with 1.0.7, released 2002-02-04:
+
+* New backend: umax1220u (for UMAX Astra 1220U and 2000U scanners).
+* Updated backends: avision (v 1.0.15), dc240 (v 0.0), dc25 (v 1.2),
+  dll (v 1.0.5), epson (v 1.0.219), gphoto2 (v 0.0), microtek2 (v 0.95),
+  mustek (1.0.118), mustek_usb (v 1.0.10), plustek (v 0.41), pnm (v 1.0.4),
+  sharp (v 0.32), snapscan (v 1.4.7), st400 (v 1.6), umax (v 1.0-32), 
+  umax_pp (v 1.0.6).
+* Added support for translating backend options.
+* Added support for USB control messages and lm983x and pv6830 chipsets.
+* Better documentation of internal functions (sanei).
+* Fixed several security issues with temporary files.
+* Fixed several issues in the networking code.
+* Portability fixes (especially for OS/2, FreeBSD, and OpenBSD).
+* Scanimage fixes concerning TIFF output and signal handling.
+* Documentation updates.
+* Bugfixes.
+
+New with 1.0.6, released 2001-11-05:
+
+* New backends: gphoto2 (backend for gphoto2 supported cameras), mustek_usb
+  (for Mustek USB scanners 600CU, 1200CU(+), 1200UB).
+* Updated backends: dc240 (v 0.0), epson (v 0.2.12), hp (0.95), 
+  m3096g (v 1.11), microtek2 (v 0.95), mustek (v1.0-113), net (v 1.0.5),
+  pie (1.0-7), pnm (1.0-2), snapscan (v 1.4.0), umax (1.0-31), umax_pp (1).
+* Added generic support for USB devices.
+* Added USB support to sane-find-scanner.
+* Code and documentation updates for HP UX compatibility.
+* Documentation updates.
+* Bugfixes.
+
+New with 1.0.5, released 2001-07-01:
+
+* New backends: bh (Bell+Howell Copiscan II series), dc240 (Kodak DC240
+  Digital Camera), sm3600 (Microtek ScanMaker 3600), umax_pp (Umax paralell
+  port scanners).
+* Updated backends: artec (v0.5.16), dc25 (v1.2), dll (v1.0.3),
+  epson (v0.2.08), hp (v0.94), microtek (v0.12.3), microtek2(v0.9),
+  mustek (v1.0-107), nec (v0.12), net (v1.0.3), plustek (v0.39), pnm (v1.0.1),
+  snapscan (v1.2), tamarack (v0.5), umax (v1.0-28).
+* Fixed security bug in saned.c that allowed access to scanner without
+  password.
+* pnm isn't installed by default anymore due to security risks
+* Linux-part of sanei_scsi.c was updated concerning buffersizes, devfs, and
+  kernel 2.4. More debug output.
+* sanei_scsi_find_devices works on FreeBSD now.
+* Added support for Solaris sgen SCSI driver.
+* find-scanner was renamed to sane-find-scanner and is installed now. Further
+  more it has a man page now.
+* There is a testsuite for sane, but only one test is implemented yet.
+* Better output about versions of backends and frontends.
+* There is a man page for SANE now (sane(7)).
+* Install all available documentation.
+* Bugfixes.
+
+
+New with 1.0.4, released 2000-12-21:
+
+* New backends: as6e, nec, pie.
+* Updated backends: artec (v0.5.15), avision (v0.2.1), epson (v0.1.39),
+  hp (v0.93), mustek (v1.0-102), mustek_pp (v0.9-devel), plustek (v0.38),
+  sharp (v0.32), umax (v1.0-21).
+* Moved frontends xscanimage and xcam to a new package (sane-frontends).
+* Added authentification with encrypted passwords.
+* Installation of shared libraries on AIX is supported now.
+* Fixed compilation bugs on Irix and FreeBSD.
+* Better debug output on platforms not supporting vararg macros.
+* Better documentation about SANE devicenames.
+* Bugfixes.
+
+New with 1.0.3, released 2000-08-12:
+
+* New backends: mustek_pp, plustek, st400, v4l.
+* Updated backends: Artec (v0.5.14), Coolscan (v0.4.3), Epson (v0.1.33),
+  HP (v0.88), Mustek (v1.0-96), Sharp (v0.31), UMAX (v1.0-21).
+* Removed backend info sagitta.desc due to lack of interest.
+* Installing no longer depends on 'rev'.
+* Added and structured documentation.
+* Every backend has a man page now.
+* Debug messages are now sent to syslog if stderr is a socket.
+* New 16 bit support to scanimage.
+* Bugfixes.
+
+New with 1.0.2, released 2000-03-06:
+* Aliased and hidden backend support.
+* Port to UnixWare 2.x and UnixWare 7.
+* New script 'sane-config' to help frontend developers.
+* Added Ricoh IS50 support.
+* Updated backends: Artec (v0.5.13), CANON (v991108), DC-25 (1.2), HP
+  (v0.86), Microtek (0.12.0), Microtek2 (v0.8), UMAX (v1.0-build-18),
+  Epson (v0.1.15), Sharp (v0.30), sp15c (1.12) and m3096g (1.11).
+* Automatic document feeder support for scanimage.
+* New backend for Avision AV 630 CS.
+* New Linux SCSI Generic driver.
+* Upgraded to libtool 1.3.4
+* GIMP compatibility patch.
+* OS/2 patches.
+* Bugfixes.
+
+New with 1.01:
+
+* Miscellaneous
+   o configure --disable-shared works again
+   o scanimage -T testing option added (by Nick Lamb)
+   o in dll.conf, the pnm, dc25, and dc210 backends are now disabled
+     (commented out) by default.  The net backend is now enabled by
+     default.  The pnm backend has been disabled as it often proved
+     confusing to novice users.  The dc25 and dc210 backends were
+     disabled because they initialize very slowly if no camera is
+     attached.
+   o Downgraded PNM backend to the version shipped with SANE 0.74.
+     The scan area options as implemented in SANE 1.00 were
+     incorrectly implemented which made the backend unreliable.
+
+* New tool to turn off Mustek 600 II N scanner (by Andreas Czechanowski)
+   o the new binary tools/mustk600iin-off allows to turn off a
+     Mustek 600 II N scanner (note: you'll need to install this tool
+     manually if you want it)
+
+* New backend for Sharp scanners (by FUKUDA Kazuya & Abel Deuring)
+   o supports the Sharp JX-610, JX-250, and JX-330 SCSI scanner
+   o preview/lineart/haftone/threshold are untested
+
+* Updated Kodak DC25 backend (by Peter Fales).
+
+* Updated HP backend (by Peter Kirchgessner)
+   o New features:
+	- Option 'unload after scan' for PhotoScanner
+	- Manual page sane-hp updated
+	- hp.desc updated
+
+   o Bugfixes:
+	- Adjustable scan size for scan from ADF
+	- No blanks in command line options
+	- Segmentation fault for starting scanimage -d hp:/dev/sg0
+	  without /dev/sgo in hp.conf
+
+  Scanning from the ADF therefore should work now.
+
+* Updated Microtek backend (by Matto Marjanovic)
+   o Fixed off-by-1 error in revision-number parsing. 
+   o dump_inquiry() now prints the "Vendor Specific String". 
+   o Added model code/vendor name for the other 600ZS. 
+   o Made get_scan_status() retry delay increase with each try (will
+     this help the poor 600ZS?). 
+   o Corrected base resolution for Agfa StudioScan II/IIsi (400dpi). 
+   o Disabled backend's clever aspect-ratio correction code for
+     expanded-mode scans with StudioScan II/IIsi (scanner handles it
+     internally - smart scanner.) 
+   o Fixed gamma LUT code parsing stupidity: now correctly
+     determines maximum allowed LUT size, and uses it. (Especially
+     necessary for StudioScan II/IIsi.) 
+   o The E6 claims to only support 256-byte LUT's, but the backend
+     now ignores that misinformation (and uses 1024). 
+   o Now ignores denial of expanded-mode by older E6's (model code
+     0x63), in addition to newer E6's. 
+
+* Updated Microtek2 backend (by Bernd Schroeder)
+   o Added support for non-blocking I/O.
+   o Preliminary support for a strip and a slide mode.
+   o For people, who are annoyed, if the the scanhead moves back and fourth
+     during a scan (backtracking): There is a new option 'disable
+     backtracking'. At present this option must be activated by
+     uncommenting the respective entry in the included microtek2.conf
+     file. This is an advanced option.
+   o The X6EL should no longer produce pixel junk after one successful scan.
+
+* Updated Mustek backend (by Andreas Bolsch)
+   o larger buffer acquired (speeds up scanning slightly)
+   o for SE models minimal resolution increased from 60 dpi to 75 dpi
+   o for SE models 75 dpi in color mode is no longer used as the newer
+     firware version seems to be even more buggy
+   o bug in calculation of gamma table corrected (applies only to SE models,
+     NOT related to the overflow problem which was corrected via CLIP( ) )
+   o default resolution is now set according to the minimal resolution
+     (firmware dependent)
+   o for SE models all unsupported options (speed, ... ) explicitly  disabled
+
+* Updated Nikon Coolscan backend (by Didier Carlier)
+   o Reverse the pixel order for the LS-1000.
+
+* Updated snapscan backend to v0.6 (by Kevin Charter and Petter Reinholdtsen)
+   o Fixes the versioning problem.
+   o Add support for SnapScan 1236s (should also work for SnapScan 600).
+
+* Updated UMAX backend (by Oliver Rauch)
+   o Added support for Linotype Hell Saphir 2
+   o Changed bug in gray gamma data conversion
+   o Added support for Nikon AX-210
+   o Added "Vista S-6E" as supported
+   o Added PowerLook-II (PL-II) as supported
+   o Added Astra 600S as supported
+
+New with 1.00:
+
+* Upgraded to libtool-1.2.
+    This reportedly gets SANE to build on Solaris versions with a
+    broken printf.
+
+* saned
+    Matching of hostnames is no longer case-sensitive.
+
+* New Abaton backend (by David Huggins-Daines)
+    Supports "Scan 300/GS" and may work with "Scan 300/S" but the
+    latter is untested.
+
+* New Agfa Focus backend (by Karl Anders Øygard)
+    Supports:
+     o AGFA Focus GS               (6 bit gray scale)     (untested)
+     o AGFA Focus Lineart          (lineart)              (untested)
+     o AGFA Focus II               (8 bit gray scale)     (untested)
+     o Siemens S9036               (8 bit gray scale)     (untested)
+     o AGFA Focus Color            (24 bit color 3-pass)
+     o AGFA Focus Color Plus       (24 bit color 3-pass)
+
+* New Kodak DC210 still camera backend (by Brian J. Murrell)
+
+* New Ricoh backend (by Feico Dillema).
+
+* New HP backend.
+  The backend formerly known as "xhp" is now the default HP backend.
+  This backend should support HP scanners much better and was
+  contributed by Geoffrey Dairiki and Peter Kirchgessner.
+
+  - Added support for HP 6200C
+  - Suppress halftone mode on photosmart (it is not supported)
+  - Show calibrate button on photoscanner only for print media
+  - Add media selection for photoscanner
+  - Cleanup hp_scsi_s structure
+
+* Updated apple backend (by Milon Firikis).
+  Now you should be able to scan from ColorOneScanners (in non color
+  modes) and maybe from OneScanners (untested).
+
+* Updated Artec backend (by Chris Pinkham).
+
+* Updated Kodak DC25 backend (by Peter Fales).
+
+* Updated Microtek backend (by Matto Marjanovic).
+  - Fix segfault on exit due to unnecessary free() in sane_close().
+  - Fix to red channel shift bug (which crept in during rewrite of
+    color-handling code). 
+  - Addition of "patch level" to version codes. 
+
+* Updated Microtek2 backend
+  - Added support for ScanMaker 330, ScanMaker 636, ScanMaker E3plus,
+    ScanMaker X6 and Phantom 636.
+  - Other improvements (this includes support for automatic document feeders
+    and transparency adapters, missing option descriptions were added).
+  - Updated the manual page.
+
+* Updated Mustek backend (patches by Andreas Bolsch and Heiko Schroeder)
+
+  - Heiko's patch should make resolutions >300dpi work for MFS-6000CX.
+
+  Andreas's patches:
+
+  - Should work with ScanExpress 6000SP, 12000SP as well as older models
+  - Bug with MFS-12000SP corrected (poined out by Daniel Deckers)
+  - Bug which caused xscanimage to crash after color preview corrected
+  - Improvement(?) in high resolution
+
+  Important Notes for ScanExpress models:
+
+  - Resolutions below 60 dpi don't work (firmware problem).
+  - Resolutions >300 dpi (6000 SP) or >600 dpi (12000 SP) result in
+    different x/y-resolution as 6000 SP and 12000 SP have in fact only
+      300 dpi and 600 dpi CCD sensors, respectively.
+  - Resolutions >300dpi in color mode sometimes result in corrupted images
+    (parts duplicated/shifted *HORIZONTALLY*) depending on hardware
+    configuration. Killing all other applications and disabling swap
+    (if sufficient physical memory available) may help. 
+    I added some code which writes to every page of the buffer prior 
+    to scanning to fool the memory management and scanned a full page
+    color scan with 600dpi * 1200dpi. Very slow but image seemed ok
+    after pnmscale.  
+  - Max. scan area:  0-216mm (hor.), 2.5-294.5mm (ver.)
+    The scanners can't scan the first 2.5mm (ver.), so you *MUST*
+    specify the scan area according to this restriction!
+  - The scanners support only lineart (1 bpp), gray (8 bpp), color (24 bpp).
+    Although the scanners have 10 bit (6000 SP) or 12 bit (12000 SP) 
+    A/D-converters, they can send only 8 bit values to the host.
+    The higher resolution may only be used via gamma table.
+  - For compatibility only 256 entry gamma tables may be specified, the
+    actual gamma table sent to the scanner is linearly interpolated from it.
+  - In lineart mode only brightness may be adjusted. 
+  - Cover open/closed reported only via debug output and ignored otherwise.
+  - Use of SCSI card supplied with scanner is *NOT* recommended. (Don't
+    forget termination!)
+  
+* Updated UMAX backend (by Oliver Rauch)
+  - added output of umax-backend-version in sane_init
+  - added Linotype Hell Jade2 (Vobis ScanBoostar Premium)
+    SCSI-ID "LinoHell","Office2" as supported scanner
+  - changed base of calculation of scanwidth and scanlegth from
+    pixel to resolutionbase (1/300, 1/600 or 1/1200 inch)
+  - changed calculation for width in pixels for lineart mode
+  - changed selection for calibration mode
+  - added inquiry for UMUX UC1200SE
+  - corrected 12/36-bit-mode in send_gamma_data and array in umax.h
+
+* Updated SnapScan backend to v0.5 (by Kevin Charter)
+  - bug fixes (Wolfgang, David)
+  - addition of threshold control for lineart mode (Mikko)
+  - Vuego 310S support (Wolfgang)
+  - default scan area now maximal (Kevin)
+
+New with 0.74:
+
+* GIMP auto-detection should work again.
+
+* Service name for remote scanning changed from "saned" to "sane".
+  Be sure to update your /etc/services and /etc/inetd.conf if you
+  use remote scanning!  We generally try to avoid such incompatible
+  changes, but the name "saned" was definitely wrong, so it seemed
+  better to change it now.
+
+* Thanks to Matto Marjanovic work, each backend now comes with a
+  .desc file that describes exactly what devices it supports.  These
+  description files can be automatically translated into various
+  other formats, such as HTML.  See:
+
+	http://www.mostang.com/sane/sane-backends.html
+
+  for an example as to what this can do for you.
+
+* New backend for Kodak DC25 digital cameras (by Peter Fales).
+
+* Updated Artec backend (by Chris Pinkham).
+
+* Updated Microtek backend (by Matthew Marjanovic)
+
+ o Complete rewrite of bit-shuffling, buffering, and color-handling code.
+ o Improved rescaling algorithm for expanded resolution scans.
+ o Support for 600GS (and maybe ZS, too) (thanks to Oliver Neukum).
+ o Support for document autofeeder and IIG (thanks to Ross Crawford).
+ o Fixed sane_cancel.
+ o sane_get_parameters size estimates are now accurate to the last bit.
+ o get_scan_status timeout increased (for 600GS), status code fixed.
+ o Fixed parsing of 3-pass bit in INQUIRY data.
+ o Stopped sending gamma tables to scanners that don't want them.
+ o Made precalibration a bit more robust (always attempt at least one
+   scan line now).
+ o Much, much code clean-up.
+ o Tested & working with saned.  (Atrocious hack so sane_read
+   handles buffers smaller than one scanline.)
+ o Auto-expand pre/post hold buffers as necessary (fixes some problems
+   with single-pass color scans).
+ o Added configuration file option to disable precalibration logic.
+ o Fixed document size calculations.
+ o Added more informative scsi-II note.
+ o Remove misnomer "Highscan" from manpage.
+ o Updated man-page.
+
+* Updated Microtek2 backend (by Bernd Schroeder)
+
+ o changed the code for gamma calculation and added a custom gamma table
+   to the options. In some cases this requires an additional memcpy(),
+   but the code is now leaner and cleaner.
+ o fixed the bugs that the backend didn't compile with non gcc compilers.
+ o added an option to control exposure times.
+ o rewrote the code that processes the data that is received from the 
+   scanner and transfers it into the frontend buffer. The smallest unit of
+   data that can be copied into the frontend buffer is now a pixel, no
+   longer a complete line.
+ o added (a yet) undocumented option "strip-height" that allows to control
+   the number of lines that is read from the scanner with one "read image".
+ o fixed a bug that caused scanimage to sigsegv when calling sane_exit() 
+   without having written all data into the output file.
+ o added code to support scanners with more than 8 bit output per color.
+   Due to the lack of such a scanner this functionality is COMPLETELY UNTESTED
+   and there are some potential sources of bugs, but at least one could give
+   it try.
+ o added sanei_config_attach_matching_devices()
+ o improved the code for the check if it really is Microtek SCSI-II scanner
+ o fixed the "lineart inverted" bug
+ o The threshold option in lineart mode is now in the enhancement group
+ o changed the default for the resolution
+ o The values for the SANE_Params struct are calculated more precisely
+ o dito the number of scan lines that fit into the frontend buffer
+ o changed some return stati ( replaced SANE_STATUS_INVAL with
+   SANE_STATUS_IO_ERROR where the first one is not allowed)
+ o completely rewrote the end of scan and cancel scan handling
+ o fixed another bug that caused xscanimage to crash with sigsegv
+   under some circumstances (check of the inquiry result was wrong)
+ o added model code for a Vobis Highscan
+ o support for new format of configuration file (including
+   "option <opt> <val>")
+
+* Updated Nikon Coolscan backend (by Didier Carlier).
+
+* Updated UMAX backend (by Oliver Rauch):
+  o Cancelling a scan now works, cancelling a preview still makes problems! 
+  o Preview fix is activated for Astra 600S, Astra 610S and Vista S6E
+    scanners. (calibration by driver still does not work for these scanners). 
+     - removed button for preview patch 
+  o Quality calibration / calibration by driver now works for same scanners. 
+     - added selection for type of shading data calculation 
+  o Solved problem with black area at top of the image 
+    (happend only with some SCSI-adapters). 
+  o Added gamma download format type 0 and type 1 for older scanners. 
+  o Added Astra 1220S as supported scanner: 
+     - added 36 gamma input bits support for Astra 1220S 
+     - added 36 output bits support, but there is no frontend that can
+       handle it! 
+  o Added inquiry for Escom Image Scanner 256 (UMAX UG80). 
+
+* OS/2 (by Yuri Dario):
+  o Updated SCSI support so sanei_scsi_find_devices is supported now.
+  o Epson parallel support added (by Rocco Caputo <troc@netrus.net>)
+
+New with 0.73:
+
+* In xscanimage, the selection box now gets updated again when changing
+  the geometry option sliders---really!
+
+* On Linux, it is now possible to specify SCSI device names by entering
+  their SCSI ids.  For example, instead of "/dev/scanner", one can now
+  specify "scsi MUSTEK" to get all scanners manufactured by Mustek.  This
+  feature is currently supported by the all SCSI backends except
+  microtek2.  This feature is courtesy of Oliver Rauch.
+
+* Backend libraries are now installed in $(libdir)/sane (/usr/local/lib/sane/,
+  by default).
+
+* Updated Microtek backend (Matto Marjanovic):
+	- ScanMaker 600ZS, Agfa Arcus II, StudioScan, and StudioScan II
+	  now supported (or recognized, at least ;-).
+	- Fixed 3-pass scanning.
+	- Various bug-fixes (see ChangeLog for details).
+
+* New Microtek2 backend (Bernd Schroeder)
+  This backend supports the ScanMaker 630 and possibly other newer scanners
+  that are not supported by the "old" Microtek backend.
+
+  Additional info by Bernd:
+
+  This is the very first release of this backend, so consider this
+  software to be in alpha state. The backend was developed on a Pentium
+  (60 Mhz) with Linux 2.0.29 and a ScanMaker 630 attached to the
+  Adaptec AHA1505E that shipped with the scanner.  As frontend
+  xscanimage was used.  It is intended to work with other models, too,
+  but there are no experiences yet.
+
+  The following options are supported:
+
+       - 8-bit color, 8-bit grayscale, halftone and lineart scans.
+       - brightness, contrast, shadow, midtone and highlight control
+       - scalar gamma correction.
+
+  Options that are not yet supported include:
+   
+       - 3-pass scanners
+       - more than 8 bit per color output data. Provisions are made here
+         and there in the code, to support more than 8 bit, but that's
+         uncomplete.
+
+* configure --disable-static should now work as expected.
+
+New with 0.72:
+
+* New backend for Artec scanners.
+   This backend is known to work with Artec AT3, but others may work
+   too (A6000C should work).
+
+* Updated DMC and Microtek backend.
+
+* Updated UMAX backend:
+** added exposure time adjustment (for high-end scanners)
+** added lamp density control (for high-end scanners)
+** UMAX Astra 6X0S works in color-mode now, you have to enable
+   preview_patch!
+** added support for UMAX UC1200S and UC1260, but it will not work fine!
+** enabled x-resolution greater than 600 dpi if supported by scanner
+   (e.g. UMAX S12) but it sometimes still does not work right!
+
+* Updated SnapScan backend:
+
+There is now support for the SnapScan 310 and 600 scanner models.
+
+* OS/2 and FreeBSD support should be working again.
+
+* New backend writer's guide to SANE
+   File backend/GUIDE outlines a few rules that should help in writing
+   a new backend.
+
+New with 0.71:
+
+* Polaroid Digital Microscope Camera (DMC) backend
+  Written by David Skoll <dskoll@chipworks.com>.
+
+* Apple scanner backend
+  Written by Milon Firikis <milonf@isosun.ariadne-t.gr>.  This backend
+  supports AppleScanner and has preliminary support for OneScanner and
+  ColorOneScanner.
+
+* Nikon CoolScan backend
+  Written by Didier Carlier <didier@sema.be>.
+
+* Apollo Domain/OS support
+  Contributed by Paul Walker <paul@uugw.hifn.com>.
+
+New with 0.70:
+
+* Preliminary version of AGFA SnapScan backend is now included.
+  This backend is know to work with AGFA SnapScan scanners but
+  is unlikely to work with any other AGFA
+  See scanner.http://www.cs.ualberta.ca/~charter/snapscan.html
+  for details.
+
+* Various minor bug fixes that prevented SANE from building on
+  non-Linux platforms.
+
+* xscanimage now honors WM_DELETE message.
+
+* Updated UMAX backend.
+
+
+New between 0.6 and 0.69:
+
+* Mustek backend now supports the Transparency Adapter on the Paragon 1200SP
+  (MFS-12000SP).
+
+* New backend for Canon scanners.
+  This backend was written by Helmut Koeberle <helmut.koeberle@bytec.de>.
+  It is known to work with the CanonScan 600 though not all features
+  are supported yet.
+
+* Solaris SCSI support now exists.
+  Thanks to Martin Huber <hu@garfield.m.isar.de>, the SCSI backends are
+  now usable under Solaris, too.  See README.solaris for details.
+
+* AIX SCSI support now exists.
+  Thanks to Fred Hucht & Michael Staats, the SCSI backends are now usable
+  under AIX, too.
+
+* New backend for Tamarack and ESCOM scanners.
+  This backend was written by Roger Wolff <R.E.Wolff@BitWizard.nl> of
+  BitWizard.
+
+* New backend for Siemens S9036 scanner.
+  This backend was written by Ingo Schneider
+  <schneidi@informatik.tu-muenchen.de>.
+
+* find-scanner (by Oliver Rauch)
+  SANE now comes with a program called find-scanner (in the tools
+  subdirectory) that can be used to find the device name of attaches
+  SCSI scanners.
+
+  Note that this program is not normally installed as part of the
+  normal SANE installation as this program is not something an
+  end-user should ever have to use.
+
+* The Mustek backend has preliminary support for the Paragon 600 II N
+  scanner.  This scanner attaches directly to a Mustek-supplied
+  ISA card which implements a funky parallel port.  For details, see
+  the section entitled PARALLEL PORT SCANNERS in sane-mustek(5).
+  Use at your own risk!
+
+* The location of the configuration files can now be overridden with
+  environment variable SANE_CONFIG_DIR (see also man-pages for the
+  backends and programs).
+
+* When preloading backends into dll, they now appear in the same order
+  as if they had been loaded dynamically (i.e., in reverse order in
+  which they're listed in dll.conf).
+
+* Java frontend (by Jeff Freedman)
+  SANE now includes a Java frontend for SANE.  However, the Java files
+  are not built by default.  See japi/README.JAVA for details.
+
+* There is a Java API for SANE now.  See japi/README.JAVA for details.
+  This code is courtesy of Jeff Freedman <jsf@hevanet.com>.
+
+* UMAX updates (by Oliver Rauch):
+
+   - the umax backend is now fully runtime configuable---there are no
+     longer any build-time configuration options.
+
+   - Umax T630, Astra 610S, and Linotype Hell Office scanners are now
+     supported
+
+   - gamma-data now works on Astra 1200 S with 30 bits/pixel
+
+     Note: None of the SANE frontends presently support 30 bits/pixel.
+	   If you're interested in fixing this, send mail to
+	   sane-devel@mostang.com.
+
+* The Mustek backend is now fully runtime configurable---there are no
+longer any build-time configuration options.  To this end, the
+mustek.conf configuration file now supports options linedistance-fix,
+lineart-fix, and strip-height (see sane-mustek(5) for details).
+
+* New backend for Epson scanners
+
+An alpha-quality backend for Epson scanners is now included with SANE
+thanks to the efforts of Kazuhiro Sasayama <kaz@hypercore.co.jp>.
+
+* OS/2 Support
+
+Thanks to Jeff Freedman <jsf@hevanet.com> SANE now supports OS/2.
+
+* New backend for Microtek scanners
+
+Thanks to the excellent work of Matthew Marjanovic <maddog@mir.com>,
+the Microtek is now taking shape.
+
+* Irix SCSI support
+
+Thanks to the work of Michael Sweet <mike@easysw.com>, there is now
+SCSI support for Irix!
+
+* Improvements to the UMAX backend (by Oliver Rauch):
+** workaround for preview-bit-problem in RGB-mode (UMAX S6E ...)
+** unsupported options are disabled
+** now three_pass_scan should work
+** new supported scanners:
+*** UC840
+*** Astra 1200S
+
+* The Mustek configuration file (mustek.conf) now supports a configuration
+  option to limit the height of the strip that is scanned with a single
+  SCSI read command.  The syntax is:
+
+	option strip-height HEIGHT
+
+  where HEIGHT is a floating point number that gives the maximum strip height
+  in inches.  This option should be set to a small value (e.g., 1
+  inch) when the scanner is connected to a SCSI bus shared with other devices
+  or when using a broken SCSI driver whose timeouts expire prematurely.  For
+  best scan performance, the strip-height should be set to a large value or
+  the option should be removed completely.  See the sane-scsi(5) man-page for
+  details on how drivers with premature timeouts can be fixed (the Linux
+  ncr810 driver is the only known driver with this problem at this point).
+
+* The preview window now properly draws the initial window-selection.
+
+* Mustek backend now uses a SCSI command queue to avoid performance
+  problems with three pass scanners.  This can reduce scantimes from
+  15 minutes down to 3 minutes!
+
+* Mustek backend will now wait for up to 1 minute for a scanner to
+  become ready if the scanner name is specified explicitly.  E.g.,
+  "scanimage -d mustek" will timeout almost right away (since the
+  Mustek device name is not specified explicitly) whereas
+  "scanimage -d mustek:/dev/scanner" will wait for up to a minute.
+
+* HP backend now uses pixel-unit commands to accommodate ScanJet 5P.
+
+* Platform-specific SCSI setup info is now in sanei-scsi(5).
+
+* xscanimage(1) now has a section on how to run it under GIMP.
+
+* B&W qcam support should now work (reports on how well it works are
+  welcome).
+
+* Exiting xscanimage with preview window open should no longer cause
+  an error.
+
+* Support for OpenStep/NeXTStep added (xscanimage and xcam require an
+  X server and the GTK+ libraries, though).  User-level SCSI is
+  supported.
+
+* SCSI support for NetBSD and FreeBSD should work now.  Thanks to
+  NOGAYA Shigeki <nogaya@mbox.kyoto-inet.or.jp> and
+  Amancio Hasty <hasty@rah.star-gate.com> for relevant patches.
+
+* New man-page sane-scsi(5) with platform-specific SCSI tips and tricks.
+
+* SANE now builds on HP-UX (SCSI support untested) and IRIX (no SCSI
+  support), too.
+
+New in 0.6:
+
+* UMAX scanners are now supported!  Kudos to Oliver Rauch
+  <orauch@physik.uni-osnabrueck.de> and Michael K. Johnson
+  <johnsonm@redhat.com>.
+
+* scan got renamed to scanimage to avoid a nameclash with an MH program
+  by the same name.  For consistency, xscan also got renamed to
+  xscanimage.
+
+* Man-pages!  There finally are at least a few man-pages.  At present,
+  the following is covered:
+	saned.1 scanimage.1 xscanimage.1
+	sane-dll.5 sane-hp.5 sane-mustek.5 sane-net.5 sane-pint.5
+	sane-pnm.5 sane-qcam.5 sane-umax.5
+
+* SANE no longer insists on using GCC.  GCC works best, but other ANSI C
+  compilers will now also produce usable executables.
+
+* xscanimage now supports vector options (such as gamma-tables which
+  are also known as intensity or tonemaps).
+
+* The gamma-table (intensity/tone-map) handling changed in the Mustek
+  backend.  As a result, when using scanimage it is now necessary to
+  specify option --custom-gamma before gamma-tables can be specified.
+  Also, the handling of the intensity table is now handled better in
+  color mode (it no longer overrides the color tables; instead
+  the composition of the intensity and the color channel table is
+  used).
+
+* The SANE header files are now isolated in the include/sane directory
+  and those files get now installed as part of "make install".  Thanks
+  to Michael K. Johnson <johnsonm@redhat.com> for this patch!
+
+* xscanimage now displays the options' documentation strings as
+  tooltips (can be disabled via the "Preferences" menu).
+
+* scanimage now supports three-pass scanning and scanning of images whose
+  height is not known a priori (e.g., hand-held scanners).
+
+* The Mustek backend now supports an option to force preview scans to be
+  monochrome (good to save time on three-pass scanners).
+
+* configure can now be run from any directory, as it's supposed to (makes
+  it easier to build SANE for multiple platforms from the same source
+  tree).
+
+* xcam and xscanimage should now build on Solaris, too (thanks to
+  Tristan Tarrant).
+
+* copyright info in various files have been adjusted.  See LICENSE for
+  the general idea behind SANE licensing.
+
+* Many, many bugfixes.
+
+New in 0.5:
+
+* The same xscan binary can now function as a standalone frontend or
+  as a gimp extension.  If installed as a GIMP extension, xscan will
+  attach itself as Extensions->Acquire Image.
+
+* The pnm backend now has an option to simulate a three-pass scanner.
+  Good for testing.
+
+* xscan now supports previewing and (persistent) preferences.
+
+* The build process should be much more robust now.  It requires GNU make
+  and gcc but should be completely unproblematic otherwise.  A simple
+  "configure" should result in a working SANE environment even on systems
+  where dynamic loading is unavailable.  Various options are available
+  to tailor the SANE setup.  See README for details.
+
+* A first implementation of the HP backend now exists (for ScanJet
+  scanners).
+
+* A first implementation of the net backend and saned (network daemon)
+  now exists.  So it is now possible to scan across the network!  See
+  backend/net.README and frontend/saned.README for details.
+
+* xcam, a camera frontend is now included.  See frontend/xcam.README for
+  details.
+
+* Renamed metadl to dll.
+
+New in 0.4:
+
+* A first implementation of the Connectix quickcam backend now exists.
+  At present, only color cameras are known to work, though it shouldn't
+  be too hard to get the b&w versions to work as well.
+
+* Improvements for the command-line frontend scan:
+
+** Option settings are now applied _before_ the help info is printed.
+   This allows to see what the available options are with certain options
+   in effect.
+** It can now deal with SANE_INFO_RELOAD_OPTIONS.
+** It now prints the current option values in the help message (except for
+   vectors).
+
+
+New in 0.33:
+
+* sane_get_devices() now takes a second argument of boolean type.  If it's
+  SANE_TRUE, then the backend must return local (non-remote) devices only.
+
+* scan now uses the default-unit of `mm' (millimeters) again for lengths.
+  Using `cm' (centimeter) proved confusing since the help messages print
+  length values in millimeters.
+
+* Debugging can now be controlled on a per-backend basis.  The debug-level
+  of backend <be> is set by environment variable SANE_DEBUG_<be>.  For example,
+  to see all debug messages of the metadl backend, set SANE_DEBUG_METADL to
+  a large value (say 128).  The sanei.h file provides three macros
+  to assist in using this debug facility: DBG_DECL to declare the integer
+  variable that holds the debug level, DBG_INIT to initialize debugging,
+  and DBG to print a debug message.  See backend/sanei.h and
+  backend/metadl.c for details and examples.
+
+* scan now supports setting options to "auto" mode (e.g., --brightness=auto
+  would ask the backend to select brightness automatically if that option
+  supports automatic mode
+
+* scan now allows abbreviating the values of a string-lists.  Case is ignored
+  and the best matches is used (either longest unique match or exact match
+  when ignoring case)
+
+New in 0.32:
+
+* xscan improved much.  See frontend/xscan.README and frontend/xscan.BUGS
+  for details.
+
+New in 0.31:
+
+* xscan has improved much.  See frontend/xscan.CHANGES for details.
+
+
+New in 0.3:
+
+* The location of the SANE configuration files moved from /etc/saneconf
+  to ${prefix}/etc/sane.d.  This normally expands into /usr/local/etc/sane.d.
+
+* Real build environment.  It's GNU autoconf based so all you should have
+  to say is:
+
+	./configure
+	make
+	make install

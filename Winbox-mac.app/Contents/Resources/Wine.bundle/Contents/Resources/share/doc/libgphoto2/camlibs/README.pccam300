@@ -1,0 +1,27 @@
+What is it?
+-----------
+This is a camlib supporting the Intel PC Cam 300 camera and possibly others
+based on the same chip, namely the SunPlus spca500a. It was implemented using
+information obtained by sniffing the usb bus on Windows, disassembling the
+windows driver dll's and some guesswork. 
+
+It is losely based on the pccam600 camlib and contains some code from that.
+
+Features
+--------
+It currently supports downloading of images and deleting all files on the
+camera.
+
+TODO
+____
+- Figure out the avi and wav formats and support them. 
+- Thumbnails? Can the cam do them?
+
+Authors
+-------
+Till Adam <till@adam-lilienthal.de>
+Miah Gregory <mace@darksilence.net>
+
+Thanks
+------
+Pedro de Oliviera <falso@rdk.homeip.net> - Testing and feedback

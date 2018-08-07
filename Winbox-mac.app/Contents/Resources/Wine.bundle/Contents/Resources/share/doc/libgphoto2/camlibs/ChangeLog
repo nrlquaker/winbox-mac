@@ -1,0 +1,29 @@
+2009-12-24  Theodore Kilgore <kilgota@auburn.edu>
+	library.c: Some cameras can hold more than 100 photos. Numbering
+	field in filenames increased to 3 digits. Some code cleanup.
+	gp_bayer_decode() replaced by gp_ahd_decode()
+
+2009-02-21  Theodore Kilgore <kilgota@auburn.edu>
+	library,c: Cobra DC-125 added, reported by 
+	Tim Johnson <tim@johnsons-web.com>.
+
+2008-01-03  Theodore Kilgore <kilgota@auburn.edu>
+	jl2005a.c: Improvements in jl2005a_read_picture_data().
+
+2007-12-04  Theodore Kilgore <kilgota@auburn.edu>
+	README.jl2005a: Updated
+	jl2005a.c: A decompression function has been added, to accommodate
+		   the needs of the Noganet TDC-15, based upon raw files 
+		   sent by J. Barraco.
+	library.c: Decompression function hooked up.
+
+2007-10-15  Theodore Kilgore <kilgota@auburn.edu>
+	library.c: NogaNet TDC-15 added, reported by 
+		   Jeronimo Barraco <jerobarraco@yahoo.com.ar>
+	README.jl2005a: Updated
+	jl2005a.c: Size of 176x144 compressed photos was incorrectly reported.
+		   Patch applied. Will need testing by J. Barraco
+
+2007-09-16  Theodore Kilgore <kilgota@auburn.edu>
+
+	* *.[c,h]: First check-in. 

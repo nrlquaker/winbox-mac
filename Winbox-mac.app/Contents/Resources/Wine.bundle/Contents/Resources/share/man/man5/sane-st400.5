@@ -1,0 +1,146 @@
+.TH sane\-st400 5 "14 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-st400
+.SH NAME
+sane\-st400 \- SANE backend for Siemens ST/Highscan flatbed scanners
+.SH DESCRIPTION
+The
+.B sane\-st400
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to Siemens ST400 flatbed scanners and compatibles.
+At present, the following scanners are supported by this backend:
+.PP
+.RS
+Siemens ST400 (6 bit gray scale)
+.br
+Siemens ST800 (6 bit gray scale)
+.br
+.RE
+.PP
+The driver supports line art and gray scans up to 8bpp.
+.PP
+The Siemens ST/Highscan series includes several more models, e.g. the ST300
+and ST600.  If you own one of these scanners, or a scanner other than the
+ones listed above that works with this backend, please let us know by sending
+the scanner's model name, SCSI ID, and firmware revision to
+.IR sane\-devel@lists.alioth.debian.org .
+Have a look at http://www.sane\-project.org/mailing\-lists.html concerning subscription
+to sane\-devel.
+
+.SH "DEVICE NAMES"
+This backend expects device names of the form:
+.PP
+.RS
+.I special
+.RE
+.PP
+Where
+.I special
+is either the path-name for the special device that corresponds to a
+SCSI scanner. For SCSI scanners, the special device name must be a
+generic SCSI device or a symlink to such a device.  Under Linux, such
+a device name could be
+.I /dev/sga
+or
+.IR /dev/sge ,
+for example.  See sane\-scsi(5) for details.
+.SH CONFIGURATION
+The contents of the
+.I st400.conf
+file is a list of device names that correspond to Siemens
+scanners.  Empty lines and lines starting with a hash mark (#) are
+ignored.  A sample configuration file is shown below:
+.PP
+.RS
+/dev/scanner
+.br
+# this is a comment
+.br
+/dev/sge
+.RE
+.PP
+The default configuration file that is distributed with SANE looks like
+this:
+.PP
+.RS
+scsi SIEMENS "ST 400" Scanner * * 3 0
+.RE
+.PP
+In this configuration, the driver can only access the ST400 model
+at SCSI ID 3 LUN 0 (see section "BUGS" below for the reason).
+To use the driver with other scanner models, add an appropriate line to
+the configuration file.  For example, to use it with an ST800 at SCSI
+ID 3 LUN 0, add the line:
+.PP
+.RS
+scsi SIEMENS "ST 800" Scanner * * 3 0
+.RE
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/st400.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-st400.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-st400.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_ST400
+If the library was compiled with debug support enabled, this environment
+variable controls the debug level for this backend. E.g., a value of 128
+requests all debug output to be printed. Smaller levels reduce verbosity.
+
+.SH MISSING FUNCTIONALITY
+
+Everything but the most basic stuff.
+
+.SH BUGS
+Currently, the backend does not check if the attached device really is
+a ST400.  It will happily accept everything that matches the configuration
+entries.  This makes it easy to test the backend with other scanners:
+Just add an appropriate line to the configuration file.  The configuration
+file as distributed (see above) only works with the ST400.  Be careful:
+If there is no config file at all, the backend defaults to /dev/scanner.
+.PP
+The ST400 answers on all eight SCSI LUNs.  Normally this is not a problem,
+as LUN support is usually disabled in SCSI drivers, but if you are seeing
+multiple instances of the scanner in a device list, either disable LUNs in
+your SCSI setup or change the entry in the configuration file to match
+LUN 0 only.
+
+.SH DEBUG
+If you encounter a bug please set the environment variable
+SANE_DEBUG_ST400 to 128 and try to regenerate the problem. Then
+send me a report with the log attached.
+.PP
+If you encounter a SCSI bus error or trimmed and/or displaced images please
+also set the environment variable SANE_DEBUG_SANEI_SCSI to 128 before sending
+me the report.
+
+.SH "SEE ALSO"
+sane(7), sane\-scsi(5)
+.br
+http://www.informatik.uni-oldenburg.de/~ingo/sane/ 
+
+.SH AUTHOR
+
+Ingo Wilken <Ingo.Wilken@informatik.uni-oldenburg.de>

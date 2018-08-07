@@ -1,0 +1,14 @@
+prefix=/Users/mike/Documents/wine/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+ldflags= -arch i386 -L/Users/mike/Documents/wine/usr/lib  -L/Users/mike/Documents/wine/usr/lib
+libs= -framework CoreFoundation -framework IOKit -ldl  -lm -ltiff -ljpeg  -lgphoto2 -lgphoto2_port -lm      -L/Users/mike/Documents/wine/usr/lib -lusb-1.0    
+
+Name: SANE Backends
+Description: Backends for SANE, the universal scanner interface
+Version: 1.0.27
+Requires:
+Libs: -L${libdir} -lsane
+Libs.private: ${ldflags} ${libs}
+Cflags: -I${includedir}

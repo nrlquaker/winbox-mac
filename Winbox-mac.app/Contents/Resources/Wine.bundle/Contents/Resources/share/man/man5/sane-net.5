@@ -1,0 +1,155 @@
+.TH sane\-net 5 "14 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-net
+.SH NAME
+sane\-net \- SANE network backend
+.SH DESCRIPTION
+The
+.B sane\-net
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to image acquisition devices through a network
+connection.  This makes it possible to control devices attached to a
+remote host and also provides a means to grant users access to
+protected resources.
+
+.SH "DEVICE NAMES"
+This backend expects device names of the form:
+.PP
+.RS
+.IR host : device
+.RE
+.PP
+Where
+.I host
+is the name (or IP address) of the (remote) host and
+.I device
+is the name of the device on this host that should be addressed.
+If the device name does not contain a colon (:), then the entire string
+is treated as the
+.I device
+string for the default host.  The default host is the host listed last
+in the configuration file (see below).
+.PP
+An IPv6 address can be specified enclosed in square brackets:
+.PP
+.RS
+.IR [::1] : device
+.RE
+.SH CONFIGURATION
+The
+.IR net.conf
+file contains both backend options and a list of host names (or IP
+addresses) that should be contacted for scan requests. Anything that
+isn't one of the options listed below will be treated as an host name.
+.PP
+.TP
+.B connect_timeout = nsecs
+Timeout (in seconds) for the initial connection to the
+.I saned
+server. This will prevent the backend from blocking for several
+minutes trying to connect to an unresponsive
+.I saned
+host (network outage, host down, ...). The environment variable
+.B SANE_NET_TIMEOUT
+can also be used to specify the timeout at runtime.
+.PP
+Empty lines and lines starting with a hash mark (#) are
+ignored.  Note that IPv6 addresses in this file do not need to be enclosed
+in square brackets.  A sample configuration file is shown below:
+.PP
+.RS
+scan\-server.somedomain.firm
+.br
+192.168.0.1
+.br
+# this is a comment
+.br
+localhost
+.br
+::1
+.RE
+.PP
+The above list of hosts can be extended at run-time using environment
+variable
+.BR SANE_NET_HOSTS .
+This environment variable is a colon-separated list of hostnames or IP
+addresses that should be contacted in addition to the hosts mentioned in
+the configuration file.  For example, a user could set the environment
+variable to the string:
+.PP
+.RS
+new.scanner.com:[::1]:192.168.0.2:scanner.univ.edu
+.RE
+.PP
+To request that hosts
+.I new.scanner.com
+,
+.I [::1]
+,
+.I 192.168.0.2
+and
+.I scanner.univ.edu
+are contacted in addition to the hosts listed above.
+.PP
+For this backend to function properly, it is also necessary to define the
+.B sane\-port
+service in
+.IR /etc/services .
+The
+.B sane
+service should be defined using a line of the following form:
+.PP
+.RS
+sane\-port 6566/tcp # SANE network scanner daemon
+.RE
+.PP
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/net.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-net.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-net.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /Users/mike/Documents/wine/usr/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/Users/mike/Documents/wine/usr/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_NET_HOSTS
+A colon-separated list of host names or IP addresses to be contacted by this
+backend.
+.TP
+.B SANE_NET_TIMEOUT
+Number of seconds to wait for a response from the
+.I saned
+server for the initial connection request.
+.TP
+.B SANE_DEBUG_NET
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  E.g.,
+a value of 128 requests all debug output to be printed.  Smaller
+levels reduce verbosity.
+.SH BUGS
+If saned has timed out, the net backend may loop with authorization requests.
+.SH "SEE ALSO"
+sane(7), saned(8), sane\-dll(5), scanimage(1)
+
+.I http://www.penguin-breeder.org/?page=sane\-net
+.SH AUTHOR
+David Mosberger and Andreas Beck

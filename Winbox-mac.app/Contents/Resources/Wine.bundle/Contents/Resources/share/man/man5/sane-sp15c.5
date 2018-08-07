@@ -1,0 +1,77 @@
+.TH sane\-sp15c 5 "14 Jul 2008" "" "SANE Scanner Access Now Easy"
+
+.SH NAME
+sane\-sp15c \- SANE backend for Fujitsu ScanPartner 15C flatbed scanner
+
+.SH DESCRIPTION
+The
+.B sane\-sp15c
+library implements a SANE (Scanner Access Now Easy) backend which
+provides access to the Fujitsu flatbed scanners.
+At present, the following
+scanner is known to work with these backend:
+.PP
+.RS
+.ft CR
+.nf
+Vendor:  Model:           Rev:
+-------- ---------------- -----
+FCPA     ScanPartner 15C  1.01
+.fi
+.ft R
+.RE
+.P
+
+The ScanPartner 15C driver supports
+lineart (1-bit), halftone (1-bit),
+grayscale (4-bit and 8-bit),
+and color (3 x 8-bit) scanning.
+
+Other scanners in these families may work.
+The ScanPartner 15C seems to be a repackaging
+of the ScanPartner 600C.
+People are encouraged to try these driver with the other scanners
+and to contact the author with test results.
+
+.SH CONFIGURATION
+A modest effort has been made to expose the standard options to the API.
+This allows frontends such as xscanimage to set scanning region,
+resolution, bit-depth (and color), and enable the automatic document feeder.
+
+.SH "SEE ALSO"
+sane(7), sane\-scsi(5), sane\-fujitsu(5)
+.br
+Fujitsu ScanPartner 15C OEM Manual, Doc. No. 250-0081-0
+.br
+Fujitsu M3096G OEM Manual, part number 50FH5028E-05
+.br
+Fujitsu M3096GX/M3093GX/M3093DG OEM Manual, part number C150-E015...03
+
+.SH AUTHOR
+Randolph Bentson
+<bentson@holmsjoen.com>,
+with credit to the unnamed author of the coolscan driver
+
+.SH LIMITATIONS
+Testing limited to a Linux 2.2.5 kernel
+.br
+Can't quite get the scan page/minute performance in ADF modes.
+This may be due to limited system buffer size.
+
+.SH BUGS
+I'm sure there are plenty, and not too well hidden,
+but I haven't seen them yet.
+.br
+Both scanners claim to have separate control
+of resolution in X and Y directions.
+I confess I haven't tested this yet.
+I have found that xsane doesn't even display this capability.
+.br
+Threshold settings on the SP15C don't seem to
+affect the results of lineart mode scans.
+.br
+It might be possible to merge these two drivers without much effort
+since the SP15C driver was derived from the M3096G driver.
+They were split so as to keep the second driver development from breaking
+the working first driver.
+Watch this space for changes.

@@ -1,0 +1,80 @@
+.TH sane\-tamarack 5 "14 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-tamarack
+.SH NAME
+sane\-tamarack \- SANE backend for Tamarack flatbed scanners
+.SH DESCRIPTION
+The
+.B sane\-tamarack
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to the following Tamarack flatbed scanners:
+.PP
+.RS
+Artiscan 6000C
+.br
+Artiscan 8000C
+.br
+Artiscan 12000C
+.br
+.RE
+.PP
+.SH "DEVICE NAMES"
+This backend expects device names of the form:
+.PP
+.RS
+.I special
+.RE
+.PP
+Where
+.I special
+is the path-name for the special device that corresponds to a
+SCSI scanner. The special device name must be a generic SCSI device or a
+symlink to such a device.  The program 
+.IR sane\-find\-scanner 
+helps to find out the correct device. Under Linux, such a device name
+could be
+.I /dev/sga
+or
+.IR /dev/sge ,
+for example.  See sane\-scsi(5) for details.
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/tamarack.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-tamarack.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-tamarack.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /Users/mike/Documents/wine/usr/etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/Users/mike/Documents/wine/usr/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_TAMARACK
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  Higher
+debug levels increase the verbosity of the output. 
+
+Example: 
+export SANE_DEBUG_TAMARACK=4
+
+.SH "SEE ALSO"
+sane(7), sane\-scsi(5)
+.SH AUTHOR
+Roger Wolff

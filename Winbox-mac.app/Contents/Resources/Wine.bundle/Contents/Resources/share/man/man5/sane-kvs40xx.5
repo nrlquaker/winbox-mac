@@ -1,0 +1,31 @@
+.TH sane\-kvs40xx 5 "03 Jun 2011" "" "SANE Scanner Access Now Easy"
+.IX sane\-kvs40xx
+
+.SH NAME
+sane\-kvs40xx \- SANE backend for Panasonic KV-S40xxC USB/SCSI ADF scanners.
+
+.SH DESCRIPTION
+The 
+.B sane\-kvs40xx
+library implements a SANE (Scanner Access Now Easy) backend which
+provides access to the Panasonic KV-S40xxC and KV-S70xxC scanners.
+
+.SH KNOWN ISSUES
+This document was written by the SANE project, which has no information
+regarding the capabilities or reliability of the backend. All information
+contained here is suspect.
+
+The backend uses pthreads directly, and so requires pthreads to be enabled.
+
+.SH CREDITS
+The backend was written by Panasonic Russia Ltd.
+
+The backend was ported to sane-backends 1.0.23 and downgraded to C89
+by m. allan noah.
+
+.SH "SEE ALSO"
+sane(7), sane\-usb(5), sane\-scsi(5)
+
+.SH AUTHOR
+m. allan noah: <kitno455 a t gmail d o t com>
+

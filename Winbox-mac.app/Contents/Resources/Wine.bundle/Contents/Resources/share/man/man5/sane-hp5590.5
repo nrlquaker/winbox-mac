@@ -1,0 +1,69 @@
+.TH sane\-hp5590 5 "13 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-hp5590
+.SH NAME
+sane\-hp5590 \- SANE backend for
+Hewlett-Packard 4500C/4570C/5500C/5550C/5590/7650 Workgroup/Document scanners
+.SH DESCRIPTION
+The
+.B sane\-hp5590
+library implements a SANE (Scanner Access Now Easy) backend that provides
+access to the following Hewlett-Packard Workgroup/Document scanners:
+.PP
+.RS
+ScanJet 4500C
+.br
+ScanJet 4570C
+.br
+ScanJet 5500C
+.br
+ScanJet 5550C
+.br
+ScanJet 5590
+.br
+ScanJet 7650
+.RE
+.PP
+If you own a scanner other than the ones listed above that works with this
+backend, please let us know this by sending the scanner's exact model name and
+the USB vendor and device ids (e.g. from
+.IR /proc/bus/usb/devices ,
+.I sane\-find\-scanner
+or syslog) to us. Even if the scanner's name is only slightly different from
+the models mentioned above, please let us know.
+.SH CONFIGURATION
+None required.
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-hp5590.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-hp5590.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_DEBUG_HP5590
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  Higher
+debug levels increase the verbosity of the output. See used levels below.
+.P
+.RS
+Level 10 - generic processing
+.br
+Level 20 - verbose backend messages
+.br
+Level 40 - HP5590 high-level commands
+.br
+Level 50 - HP5590 low-level (USB-in-USB) commands
+
+.P
+Example: 
+
+export SANE_DEBUG_HP5590=50
+
+.SH "SEE ALSO"
+.BR sane (7),
+.BR sane\-usb (5),
+
+.SH AUTHOR
+Ilia Sotnikov <hostcc@gmail.com>

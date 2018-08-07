@@ -1,0 +1,48 @@
+Sat Apr 23 2005
+
+This files attempts to clarify the licensing situation for the SANE
+distribution.  In case of doubt, the copyright information contained
+in each file overrides what is said here.
+
+SANE consists of three parts each of which has its own licensing
+terms:
+
+  * The frontend programs.
+
+    These programs are generally protected by the GNU General Public
+    License.  (See file COPYING.)
+
+  * The backend libraries.
+
+    Most backend libraries are protected by the GNU General Public License
+    (see file COPYING), but as an exception, it is permissible to link against
+    such a library without affecting the licensing status of the program
+    that uses the libraries.  For details, see the copyright notice at the
+    head of the backend files (e.g., backend/dll.c).
+
+    Note that not all of the backends apply the exception and that some have
+    additional licensing constraints.  E.g., the DC210 backend uses JPG code
+    that is licensed as described in README.djpeg.
+
+  * The SANE API and network protocol as put forth in the standard document.
+
+    The standard is considered to be in the public domain.  Anyone is free
+    to implement SANE interface conforming applications or libraries in
+    any way he or she sees fit.
+
+Frequently Asked Questions about the SANE licensing:
+
+  * Why don't you use the GNU LPGL ?
+
+    The reason SANE isn't licensed under the GNU LGPL is very simple: the
+    GNU LGPL didn't exist at the time SANE was first released. So, the SANE
+    Exception was added to the GNU GPL.
+
+  * Why don't you relicense SANE, now that the GNU LGPL is available ?
+
+    To relicense the various pieces of code composing SANE, each and every
+    copyright holder needs to agree with the relicensing. Unfortunately, some
+    of the (original) backend authors cannot be contacted any longer, for
+    various reasons; not to mention each and every contributor who sent in a
+    patch. This effectively makes it impossible for the SANE Project to
+    relicense SANE.

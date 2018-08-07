@@ -1,0 +1,147 @@
+-------------------------------------------------------------------------------
+
+Q: I am using an Astra 2200 Scanner and can do a preview scan but the scanner
+   hangs or produces bad images when I start a final scan.
+
+A: Disable the option "quality calibration". This does not reduce the image
+   quality, the scanner reports it can do a quality calibration but that is
+   not true for the current firmware version.
+
+-------------------------------------------------------------------------------
+
+Q: What scsi controller shall I use for UMAX scsi scanners?
+
+A: The controller cards that come with UMAX scanners are very simple ones
+   and I suggest not to use this cards.
+
+   I like the ncr53c8xx (=symbios-loigc53c8xx = lsi53c8xx) controllers because
+   they are not too expensive and I had very good results with these cards.
+   Especially the ncr53c810 is very interesting for scanning because this
+   are fast scsi controllers which allow long scsi cables.
+
+   The Adaptec 2904 controllers seem to make problems with UMAX scanners on
+   linux.
+
+-------------------------------------------------------------------------------
+
+Q: I want to use the scsi-card that comes with my umax scanner.
+   What card is it and is it supported by my os?
+
+A: There are at least two kind of scsi controller cards that
+   come with UMAX scanners.
+
+ ISA-Card:
+   The ISA-cards that come with the umax scanners are very simple cards.
+   I suggest not to use these cards.
+
+   If you really want to try:
+   the UDS-IS11 ISA-card is a DTC3181E-card based on the NCR5380-chip.
+   On linux you may have the chance to get it work with the recent
+   g_NCR5380-driver. The card does not have IRQ/DMA.
+
+   Try the following option for kernel:  dtc3181e=0x280,255  
+   or use the following command:
+
+     insmod g_NCR5380 ncr_irq=255 ncr_addr=0x280 dtc3181e=1
+
+     - ncr_irq=255 : no IRQ, no DMA
+     - ncr_irq=254 : autoprobe IRQ
+     - ncr_addr    : can be: 0x220 0x240 0x280 0x2A0 0x2C0 0x300 0x320 0x340
+
+   (Thanks to Colin Brough and Hans Schaefer for that tip)
+
+
+ PCI-Card:
+   Some UMAX Scanners come with a PCI SCSI controller card DOMEX DMX3191E.
+   This card shall be compatible to the Advansys ABP940U (Chip: Advansys
+   ASC3030). The card shall work without problems with the Advansys SCSI
+   driver for linux.
+
+   (Thanks to Volker Ossenkopf for that tip)
+
+-------------------------------------------------------------------------------
+
+Q: I use linux with a NCR/Symbios logic SCSI-Controller, sane does not work
+   right.
+
+A: There are two differen drivers in the linux Kernel/modules.
+   Use the BSD-driver ncr53c8xx or sym53c8xx.
+
+-------------------------------------------------------------------------------
+
+Q: I am using an AM53C974 based scsi card with a umax scanner, the system
+   freezes when I start a scan, what can I do?
+
+A: Try the recent driver for the scsi card, take a look at:
+   http://www.garloff.de/kurt/linux/dc390/index.html
+
+-------------------------------------------------------------------------------
+
+Q: Will there be a support for the UMAX-parallel-port-scanners?
+
+A: Since sane-1.0.5 there is a separate sane-umax-pp backend that does
+   support (some) umax parallel port scanners.
+
+-------------------------------------------------------------------------------
+
+Q: Will there be a support for the UMAX-USB-scanners?
+
+A: UMAX published their SCSI-protocol for scanners. However they have not so far
+   published USB protocols. This seems to be because they are using an ASIC that
+   is produced by someone else and they had to subscribe an NDA.
+   Without the protocol documentation it really is hard to write a driver.
+   I will not work on a driver.
+
+   The Astra 2200W does work when connected via SCSI.
+   It could work with SCSI-via-USB-driver and connected via USB, but that
+   is not tested.
+
+-------------------------------------------------------------------------------
+
+Q: I get a black area at the top of the image. What's wrong?
+
+A: This is a problem of some scsi-drivers.
+   Update the driver for your scsi-adapter or update the operating system/kernel.
+
+   For advansys-scsi-cards update to a new kernel which includes at least
+   the driver version 3.1E of the advansys-scsi-driver. Take a look at:
+   http://www.advansys.com/linux.htm
+
+-------------------------------------------------------------------------------
+
+Q: Does SANE and the umax backend work on LinuxPPC / big endian machine ?
+
+A: There are people using the sane-umax on a LinuxPPC (big endian) machine.
+
+   Other people write that they can not scan on a LinuxPPC. It looks like this
+   is a problem with the driver of the scsi card.
+
+   The "MESH" SCSI card is reported to work. The NCR53C94 SCSI card
+   seems not to work.
+
+-------------------------------------------------------------------------------
+
+Q: SANE hangs or crashes when I start a frontend for sane, what can I do?
+
+A: Sometimes the backends that are not used make problems.
+   Edit /usr/(local)/etc/sane.d/dll.conf
+   and comment out everything but the backend you need.
+
+-------------------------------------------------------------------------------
+
+Q: compiling sane aborts with error "virtual memory exhausted"
+   on slackware linux with gcc. What goes wrong?
+
+A: The optimization set by "-O2" makes problems, try which one of the following
+   calls work:
+
+   make CFLAGS="-g -Wall -O1"
+   make CFLAGS="-g -Wall -O"
+   make CFLAGS="-g -Wall"
+
+-------------------------------------------------------------------------------
+
+You find a lot of tips and informations in the internet. E.g. take a look
+at http://www.scantips.com
+
+

@@ -1,0 +1,505 @@
+.TH sane\-sharp 5 "11 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-sharp
+.SH NAME
+sane\-sharp \- SANE backend for SHARP scanners
+.SH DESCRIPTION
+The
+.B sane\-sharp
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to Sharp SCSI scanners.  This backend should be
+considered
+.B beta-quality
+software!  In the current state it is known to work with JX-610 and JX-250 
+scanners. It is prepared for usage with the JX-330 series scanners,
+but we are not able to test it with these devices.
+.PP
+For other Sharp scanners, it may or may not work.
+.PP
+At present,
+the following scanners are known to work with this backend.
+.RS
+.PP
+.ft CR
+.nf
+Vendor  Product id:
+-----   -----------
+Sharp   JX-610
+Sharp   JX-250
+Sharp   JX-320
+Sharp   JX-330
+Sharp   JX-350
+.fi
+.ft R
+.RE
+.PP
+The following scanners are detected by the backend, but not tested:
+.PP
+.RS
+.ft CR
+.nf
+Vendor  Product id:
+-----   -----------
+Sharp   JX-325
+.fi
+.ft R
+.RE
+.SH DEVICE NAMES
+This backend expects device names of the form:
+.PP
+.RS
+.I special
+.RE
+.PP
+Where
+.I special
+is either the path-name for the special device that corresponds to a
+SCSI scanner. The special device name must be a generic SCSI device or a
+symlink to such a device.  Under Linux, such a device name could be
+.I /dev/sga
+or
+.IR /dev/sge ,
+for example.  See sane\-scsi(5) for details.
+
+.SH SCAN OPTIONS
+
+.B Scan Mode
+(parameter 
+.B \-\-mode
+for scanimage). Possible settings: 
+.RS
+.B Lineart
+(1 bit black & white scans), 
+.br
+.B Gray
+(8 bit gray scale scans),
+.br
+.B Lineart Color
+(bi-level color scans), 
+.br
+.B Color
+(8 bit RGB scans).
+.RE
+The default value is
+.B Color.
+
+.B Halftone Pattern
+(parameter
+.B \-\-halftone\-pattern
+for scanimage). Available only for the JX-330 series scanners.
+Possible settings:
+.RS
+.B none
+.br
+.B Dither Bayer
+.br 
+.B Dither Spiral
+.br
+.B Dither Dispersed
+.br 
+.B Error Diffusion
+.RE
+The default value is
+.B none.
+
+.B Paper Source
+(parameter
+.B \-\-source
+for scanimage). This option is only available, if an automatic document
+feeder or a transparency adapter is installed. Possible settings:
+.RS
+.B Flatbed
+.br
+.B Automatic Document Feeder
+.br
+.B Transparency Adapter
+.RE
+If an ADF or a transparency adapter is installed, using it is the
+default selection. 
+
+.B Custom Gamma
+(parameter 
+.B \-\-custom\-gamma
+for scanimage). This option determines whether a builtin or a custom 
+gamma-table is used. Possible settings:
+.RS
+.B yes
+enables custom gamma tables
+.br
+.B no
+enables a built gamma table
+.RE
+
+.B Gamma
+(parameter 
+.B \-\-Gamma
+for scanimage). This option is only available, if 
+.B Custom Gamma
+is set to 
+.B no.
+Possible values:
+.RS
+.B 1.0
+.br
+.B 2.2
+.RE
+The default value is 2.2. (The JX-250 and JX-350 have no built in gamma 
+correction; for these scanner, a gamma table is downloaded to the scanner 
+by the backend.)
+
+.B Gamma Table
+(parameter 
+.B \-\-gamma\-table
+for scanimage). Allowed values: 0..255; 256 numbers must be defined. 
+The default values are 0, 1, 2, .. 255 (i.e., gamma == 1). This table 
+is only used for gray scale scans.
+
+.B Red Gamma Table
+(parameter 
+.B \-\-red\-gamma\-table 
+for scanimage). Allowed values: 0..255; 256 numbers must be defined.
+The default values are 0, 1, 2, .. 255 (i.e., gamma == 1).
+
+.B Green Gamma Table
+(parameter 
+.B \-\-green\-gamma\-table 
+for scanimage). Allowed values: 0..255; 256 numbers must be defined.
+The default values are 0, 1, 2, .. 255 (i.e., gamma == 1).
+
+.B Blue Gamma Table
+(parameter 
+.B \-\-blue\-gamma\-table 
+for scanimage). Allowed values: 0..255; 256 numbers must be defined.
+The default values are 0, 1, 2, .. 255 (i.e., gamma == 1).
+
+.B Resolution
+in pixel per inch (parameter
+.B \-\-resolution
+for scanimage). Selects the resolution of the scanned image. Allowed values:
+.RS
+.B 30..600
+(JX-330, JX-350 and JX-610) resp. 
+.B 30..400
+(JX-250)
+.RE
+The default value is 150.
+
+.B Scan Window
+
+The possible settings depend on the scanner model and, for the
+JX-250 and the JX-350, also on the usage of the automatic document feeder resp. the
+transparency adapter. Please refer to the values allowed by xscanimage, or
+xsane. With scanimage, enter one of the following commands:
+
+.RS
+.I scanimage \-d sharp \-\-source """Automatic Document Feeder""" \-\-help
+
+.I scanimage \-d sharp \-\-source Flatbed \-\-help
+
+.I scanimage \-d sharp \-\-source """Transparency Adapter""" \-\-help
+.RE
+
+in order to see the allowed parameter values for the scan window.
+
+The scan window parameters are:
+
+.RS
+Top-left x position of scan area (parameter 
+.B \-l
+for scanimage);
+.br
+Top-left y position of scan area (parameter 
+.B \-t
+for scanimage);
+.br
+bottom right x position of scan area (parameter 
+.B \-x
+for scanimage);
+.br
+bottom right y position of scan area (parameter 
+.B \-y
+for scanimage);
+.RE
+
+.B Edge emphasis
+(parameter
+.B \-\-Edge emphasis
+for scanimage). This option is not available for the JX-250 and the JX-350. 
+Possible settings:
+.RS
+.B None
+.br
+.B Middle
+.br
+.B Strong
+.br
+.B Blur
+.RE
+The default value is 
+.B None.
+
+.B Threshold
+(parameter 
+.B \-\-threshold
+for scanimage). Sets the threshold for black and white pixels in lineart
+mode. Possible values:
+.RS
+.B 1..255
+.RE
+The default value is 
+.B 128.
+This option is only available in scan mode lineart.
+
+.B Threshold Red
+(parameter 
+.B \-\-threshold-red
+for scanimage). Sets the threshold for the red component of a pixel in
+in lineart color scan mode. Possible values:
+.RS
+.B 1..255
+.RE
+The default value is 
+.B 128.
+This option is only available in scan mode color lineart.
+
+.B Threshold Green
+(parameter 
+.B \-\-threshold-green
+for scanimage). Sets the threshold for the green component of a pixel in
+in lineart color scan mode. Possible values:
+.RS
+.B 1..255
+.RE
+The default value is 
+.B 128.
+This option is only available in scan mode color lineart.
+
+.B Threshold Blue
+(parameter 
+.B \-\-threshold-blue
+for scanimage). Sets the threshold for the blue component of a pixel in
+in lineart color scan mode. Possible values:
+.RS
+.B 1..255
+.RE
+The default value is 
+.B 128.
+This option is only available in scan mode color lineart.
+
+.B Light Color
+(parameter 
+.B \-\-LightColor
+for scanimage). Sets the color of the light source. Possible values:
+.RS
+.B white
+.br
+.B red
+.br
+.B green
+.br
+.B blue
+.RE
+The default value is 
+.B white.
+This option is only available in scan modes lineart color and color.
+
+.SH ADF USAGE
+If a paper jam occurred, the maintenance cover
+.I
+must
+be opened and closed, even if the jammed paper can be removed without opening
+the maintenance cover. Otherwise, the error condition cannot be cleared.
+
+.SH CONFIGURATION
+The contents of the 
+.I sharp.conf
+file is a list of options and device names that correspond to Sharp 
+scanners. Empty lines and lines beginning with a hash mark (#) are
+ignored. See sane\-scsi(5) for details about device names.
+.PP
+Lines setting an option start with the key word
+.B option,
+followed by the option's name and the option's value. At present, three
+options are defined: 
+.B buffers, buffersize, 
+and
+.B readqueue. 
+.PP
+Options defined at the start of 
+.I sharp.conf
+apply to all devices; options defined after a
+device name apply to this device.
+.PP
+The options 
+.B buffers
+and
+.B
+readqueue
+are only significant if the backend has been compiled
+so that for each scan a second process is forked (switch 
+.B USE_FORK
+in 
+.I sharp.c
+). This process reads the
+scan data from the scanner and writes this data into a block of shared memory.
+The parent process reads the data from this memory block and delivers it 
+to the frontend. The options control the size and usage of this shared 
+memory block.
+.PP
+.B option buffers
+defines the number of buffers used. The smallest number allowed is 2. 
+.PP
+.B option buffersize
+defines the size of one buffer. Since each buffer is filled with a 
+single read command sent to the scanner, its size is limited automatically
+to the size allowed by the operating system or by the Sane SCSI library
+for SCSI read commands. A buffer size of 128 kB or 256 kB is recommended
+for scan resolutions of 300 dpi and above.
+.PP
+.B option readqueue 
+defines how many read commands to be sent to the scanner
+are queued. At present, the Sane SCSI library supports queued read 
+commands only for for Linux. For other operating systems, 
+.B option readqueue
+should be set to 0. For Linux, 
+.B option readqueue
+should be set to 2. Larger values than 2 for
+.B option readqueue
+are not reasonable in most cases.
+.B option buffers
+should be greater than 
+.B option readqueue.
+
+.SH Performance Considerations
+This section focuses on the problem of stops of the scanner's carriage
+during a scan. Carriage stops happen mainly with the JX-250. This scanner 
+has obviously only a small internal buffer compared to its speed. That 
+means that the backend must read the data as fast as possible from the 
+scanner in order to avoid carriage stops. 
+.PP
+Even the JX-250 needs only less than 10 seconds for a 400 dpi A4 gray 
+scale scan, which results in a data transfer rate of more than 1.6 MB 
+per second. This means that the data produced by the scanner must be 
+processed fairly fast. Due to the small internal buffer of the JX-250,
+the backend must issue a read request for the next data block as soon
+as possible after reading a block of data in order to avoid carriage
+stops.
+.PP
+Stops of the carriage can be caused by the following reasons:
+.PP
+.RS
+\- too much "traffic" on the SCSI bus
+.br
+\- slow responses by the backend to the scanner,
+.br
+\- a program which processes the data acquired by the backend too slow.
+.PP
+.RE
+Too much "traffic" on the SCSI bus: This happens for example, if hard disks
+are connected to the same SCSI bus as the scanner, and when data transfer 
+from/to these hard disks requires a considerable part of the SCSI bandwidth
+during a scan. If this is the case, you should consider to connect the 
+scanner to a separate SCSI adapter.
+.PP
+Slow responses by the backend to the scanner: Unfortunately,
+Unix-like operating systems generally have no real time capabilities.
+Thus there is no guarantee that the backend is under any circumstances
+able to communicate with the scanner as fast as required. To minimize this
+problem, the backend should be compiled so that a separate reader process 
+is forked: Make sure that
+.B USE_FORK
+is defined when you compile 
+.I sharp.c.
+If slow responses of the backend remain to be problem, you could try to
+reduce the load of the system. Even while the backend and the reader 
+process need only a minor amount of processor time, other running 
+processes can cause an increase in the time delay between two time
+slices given to the reader process. On slower systems, such an 
+increased delay can be enough to cause a carriage stop with the JX-250.
+For Linux, the usage of the SG driver version 2.1.36 or above is
+recommended, because it supports, in combination with
+the SCSI library of Sane version 1.0.2, command queueing within the kernel.
+This queueing implementation, combined with a buffer size of at least
+128 kB, should avoid most carriage stops.
+.PP
+Slow processing of the scan data: An example for this situation is
+the access to the scanner via a 10 MBit Ethernet, which is definitely
+too slow to transfer the scan data as fast as they are produced by the
+scanner. If you have enough memory available, you can increase 
+.B option buffers,
+so that an entire image can be stored in these buffers. 
+.PP
+In order to see, if the backend is too slow or if the further processing
+of the data is too slow, set the environment variable
+.B SANE_DEBUG_SHARP
+to 1. When a scan is finished, the backend writes the line "buffer full
+conditions: 
+.I nn"
+to stderr. If
+.I nn
+is zero, carriage stops are caused by too slow responses of the backend
+or too much "traffic" on the SCSI bus. If 
+.I nn
+is greater than zero, the backend had to wait
+.I nn
+times until a buffer has been processed by the frontend. (Please note that
+.B option buffers
+must be greater than
+.B option readqueue
+in order to get useful output for "buffer full conditions".)
+
+.SH FILES
+.TP
+.I /Users/mike/Documents/wine/usr/etc/sane.d/sharp.conf
+The backend configuration file.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-sharp.a
+The static library implementing this backend.
+.TP
+.I /Users/mike/Documents/wine/usr/lib/sane/libsane\-sharp.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_DEBUG_SHARP
+If the library was compiled with debug support enabled, this
+environment variable controls the debug level for this backend.  E.g.,
+a value of 128 requests all debug output to be printed.  Smaller
+levels reduce verbosity.
+.SH KNOWN PROBLEMS
+1. ADF Mode
+.RS
+After several ADF scans, the scanner moves the carriage back to the idle
+position and back to ADF scan position, before a scan starts. We do not 
+know, if this is a problem of the scanner, or if this is a bug of the 
+backend. At present, the scanner must power off and on to stop this
+annoying behaviour.
+.RE
+
+2. Threshold level does not work (only JX-610)
+.PP
+3. The maximum resolution is limited to 600 dpi(JX-610 supported 
+to 1200 dpi) resp. 400 dpi (JX-250)
+.PP
+4. If the JX250 is used with an ADF, the following situation can occur: After
+several scans, the scanner moves, after loading a new sheet of paper, the
+carriage to the idle position, and then back to the position used for ADF
+scans. This happens for 
+.I
+every
+scan, in contrast to the calibration, which is done after 10 scans. (For the
+calibration, the carriage is also moved to the idle position.) We do not
+know, if this behavior is caused by the backend, or if it is a bug in the
+firmware of the scanner.
+.PP
+5. Usage of a transparency adapter (film scan unit) is supported, but not
+tested.
+
+.SH "SEE ALSO"
+sane(7), sane\-scsi(5)
+.SH AUTHORS
+Kazuya Fukuda, Abel Deuring
+.SH CREDITS
+The Sharp backend is based on the Canon backend written by Helmut Koeberle
+.PP
+Parts of this man page are a plain copy of sane\-mustek(5) by David
+Mosberger-Tang, Andreas Czechanowski and Andreas Bolsch

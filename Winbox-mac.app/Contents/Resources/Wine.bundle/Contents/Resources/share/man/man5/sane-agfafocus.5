@@ -1,0 +1,175 @@
+.TH sane\-agfafocus 5 "10 Jul 2008" "" "SANE Scanner Access Now Easy"
+.IX sane\-agfafocus
+.SH NAME
+sane\-agfafocus \- SANE backend for AGFA Focus flatbed scanners
+.SH DESCRIPTION
+The
+.B sane\-agfafocus
+library implements a SANE (Scanner Access Now Easy) backend that
+provides access to AGFA Focus flatbed scanners. At present, the following
+scanners are supported from this backend:
+.PP
+.RS
+AGFA Focus GS Scanner (6 bit gray scale) (untested)
+.br
+AGFA Focus Lineart Scanner (lineart) (untested)
+.br
+AGFA Focus II (8 bit gray scale) (untested)
+.br
+AGFA Focus Color (24 bit color 3-pass)
+.br
+AGFA Focus Color Plus (24 bit color 3-pass)
+.br
+.PP
+Siemens S9036 (8 bit gray scale) (untested)
+.br
+.RE
+.PP
+The driver supports line art, 6bpp and 8bpp gray, 18bpp and 24bpp
+color scans.
+.PP
+If you own a scanner other than the ones listed above that works with
+this backend, please let us know by sending the scanner's model name,
+SCSI id, and firmware revision to
+.IR sane\-devel@lists.alioth.debian.org .
+Have a look at http://www.sane\-project.org/mailing\-lists.html
+concerning subscription to sane\-devel.
+.PP
+All of these scanners are pre-SCSI-2, and do not even report properly
+to SCSI Inquiry.  This is typically evident in SCSI bus scans, where
+the scanner will come up with only garbage as vendor and models strings.
+
+.SH "DEVICE NAMES"
+This backend expects device names of the form:
+.PP
+.RS
+.I special
+.RE
+.PP
+Where
+.I special
+is either the path-name for the special device that corresponds to a
+SCSI scanner. For SCSI scanners, the special device name must be a
+generic SCSI device or a symlink to such a device.  Under Linux, such
+a device name could be
+.I /dev/sga
+or
+.IR /dev/sge ,
+for example.  See sane\-scsi(5) for details.
+.SH CONFIGURATION
+The contents of the
+.I agfafocus.conf
+file is a list of device names that correspond to AGFA Focus
+scanners.  Empty lines and lines starting with a hash mark (#) are
+ignored.  A sample configuration file is shown below:
+.PP
+.RS
+/dev/scanner
+.br
+# this is a comment
+.br
+/dev/sge
+.RE
+
+.PP
+.SH FILES
+.TP
+.I /etc/sane.d/agfafocus.conf
+The backend configuration file (see also description of
+.B SANE_CONFIG_DIR
+below).
+.TP
+.I /usr/lib/libsane\-agfafocus.a
+The static library implementing this backend.
+.TP
+.I /usr/lib/libsane\-agfafocus.so
+The shared library implementing this backend (present on systems that
+support dynamic loading).
+.SH ENVIRONMENT
+.TP
+.B SANE_CONFIG_DIR
+This environment variable specifies the list of directories that may
+contain the configuration file.  Under UNIX, the directories are
+separated by a colon (`:'), under OS/2, they are separated by a
+semi-colon (`;').  If this variable is not set, the configuration file
+is searched in two default directories: first, the current working
+directory (".") and then in /etc/sane.d.  If the value of the
+environment variable ends with the directory separator character, then
+the default directories are searched after the explicitly specified
+directories.  For example, setting
+.B SANE_CONFIG_DIR
+to "/tmp/config:" would result in directories "tmp/config", ".", and
+"/etc/sane.d" being searched (in this order).
+.TP
+.B SANE_DEBUG_AGFAFOCUS
+If the library was compiled with debug support enabled, this environment
+variable controls the debug level for this backend. E.g., a value of 128
+requests all debug output to be printed. Smaller levels reduce verbosity.
+SANE_DEBUG_AGFAFOCUS values:
+
+.sp 
+.ft CR
+.nf
+Number  Remark
+\ 
+ 0       print important errors (printed each time)
+ 1       print errors
+ 2       print sense
+ 3       print warnings
+ 4       print scanner-inquiry
+ 5       print information
+ 6       print less important information
+ 7       print called procedures
+ 8       print reader_process messages
+ 10      print called sane\-init-routines
+ 11      print called sane\-procedures
+ 12      print sane infos
+ 13      print sane option-control messages
+.fi
+.ft R
+
+.SH MISSING FUNCTIONALITY
+
+Uploading of dither matrices and tonecurves has been implemented, but
+so far has not proven to be useful for anything.  For this reason
+these options have been disabled.
+
+.SH BUGS
+The scanners that do not support disconnect have problems with SCSI
+timeouts if the SCSI bus gets loaded, eg. if you do a kernel build at
+the same time as scanning.  To see if your scanner supports
+disconnect, run "SANE_DEBUG_AGFAFOCUS=128 scanimage \-L" in sh and look
+for the "disconnect:" line)
+
+.SH DEBUG
+If you have problems with SANE not detecting your scanner, make sure the
+Artec backend is disabled.  Somehow, this backend causes at least my scanner
+not to respond correctly to SCSI inquiry commands.
+.PP
+If you encounter a bug please set the environment variable
+SANE_DEBUG_AGFAFOCUS to 128 and try to regenerate the problem. Then
+send me a report with the log attached.
+.PP
+If you encounter a SCSI bus error or trimmed and/or displaced images please
+also set the environment variable SANE_DEBUG_SANEI_SCSI to 128 before sending 
+me the report.
+
+.SH TODO
+.TP
+.B More scanners?
+
+The AGFA ACS and ARCUS scanners are similar to the FOCUS scanners.
+The driver could probably be extended to support these scanners
+without too many changes.  I do not have access to such scanners, and
+cannot add support for it.  However, if you are in possession of such
+a scanner, I could be helpful in adding support for these scanners.
+
+The AGFA HORIZON scanners are SCSI-2 scanners, and it would probably
+be easier to support these scanners in a SCSI-2 compliant backend.
+.SH SEE ALSO
+sane(7), sane\-scsi(5)
+
+.SH AUTHOR
+
+Ingo Schneider and Karl Anders \[/O]ygard.
+
