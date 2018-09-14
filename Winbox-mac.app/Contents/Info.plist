@@ -13,7 +13,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.mikrotik.winbox_153363696728211</string>
+    <string>com.mikrotik.winbox_153694799429058</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -23,9 +23,9 @@
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>3.17</string>
+    <string>3.18</string>
     <key>CFBundleShortVersionString</key>
-    <string>3.17</string>
+    <string>3.18</string>
 	<key>CFBundleIconFile</key>
 	<string>Icon.icns</string>
 	<key>LSApplicationCategoryType</key>

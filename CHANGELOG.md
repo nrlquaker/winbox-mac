@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.18
+
+- fixed problem where winbox could not login in RouterOS v6.43 router for some users.
+
 ## 3.17
 
 - fixed sudden disconnects from router (introduced in v3.15).
