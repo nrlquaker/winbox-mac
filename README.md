@@ -10,8 +10,7 @@ Icon is from [Winbox4Mac](http://joshaven.com/resources/tools/winbox-for-mac/) u
 Can be easily installed with [Homebrew Cask](https://caskroom.github.io):
 
 ```sh
-brew tap nrlquaker/personal
-brew cask install winbox-mac
+brew cask install nrlquaker-winbox
 ```
 
 ## Update
