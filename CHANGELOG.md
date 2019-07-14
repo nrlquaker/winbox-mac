@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.19
+
+- fixed problem where Winbox could not login into RouterOS v6.45 (or later) router;
+- fixed DHCP lease sorting by "last seen" column.
+
 ## 3.18
 
 - fixed problem where winbox could not login in RouterOS v6.43 router for some users.

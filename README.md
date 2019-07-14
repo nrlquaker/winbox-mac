@@ -23,7 +23,7 @@ Managed addresses are saved to `~/Library/Application Support/com.mikrotik.winbo
 
 ## Version
 
-Current version is based on [Winbox 3.18](https://download.mikrotik.com/routeros/winbox/3.18/winbox.exe)
+Current version is based on [Winbox 3.19](https://download.mikrotik.com/routeros/winbox/3.19/winbox.exe)
 
 ## Screenshot
 
