@@ -1,0 +1,11 @@
+; File generated automatically from dlls/sfc/sfc.spec; do not edit!
+
+LIBRARY sfc.dll
+
+EXPORTS
+  SRSetRestorePoint=sfc_os.SRSetRestorePointA @10
+  SRSetRestorePointA=sfc_os.SRSetRestorePointA @11
+  SRSetRestorePointW=sfc_os.SRSetRestorePointW @12
+  SfcGetNextProtectedFile=sfc_os.SfcGetNextProtectedFile @13
+  SfcIsFileProtected=sfc_os.SfcIsFileProtected @14
+  SfcIsKeyProtected=sfc_os.SfcIsKeyProtected @15

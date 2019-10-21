@@ -1,0 +1,28 @@
+; File generated automatically from dlls/d3drm/d3drm.spec; do not edit!
+
+LIBRARY d3drm.dll
+
+EXPORTS
+  D3DRMColorGetAlpha @1
+  D3DRMColorGetBlue @2
+  D3DRMColorGetGreen @3
+  D3DRMColorGetRed @4
+  D3DRMCreateColorRGB @5
+  D3DRMCreateColorRGBA @6
+  D3DRMMatrixFromQuaternion @7
+  D3DRMQuaternionFromRotation @8
+  D3DRMQuaternionMultiply @9
+  D3DRMQuaternionSlerp @10
+  D3DRMVectorAdd @11
+  D3DRMVectorCrossProduct @12
+  D3DRMVectorDotProduct @13
+  D3DRMVectorModulus @14
+  D3DRMVectorNormalize @15
+  D3DRMVectorRandom @16
+  D3DRMVectorReflect @17
+  D3DRMVectorRotate @18
+  D3DRMVectorScale @19
+  D3DRMVectorSubtract @20
+  Direct3DRMCreate @21
+  DllCanUnloadNow @22 PRIVATE
+  DllGetClassObject @23 PRIVATE

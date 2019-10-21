@@ -1,0 +1,21 @@
+; File generated automatically from dlls/winscard/winscard.spec; do not edit!
+
+LIBRARY winscard.dll
+
+EXPORTS
+  SCardAccessStartedEvent @5
+  SCardAddReaderToGroupA @6
+  SCardAddReaderToGroupW @7
+  SCardCancel @9
+  SCardEstablishContext @15
+  SCardIsValidContext @36
+  SCardListCardsA @37
+  SCardListReadersA @43
+  SCardListReadersW @44
+  SCardReleaseContext @50
+  SCardReleaseStartedEvent @51
+  SCardStatusA @58
+  SCardStatusW @59
+  g_rgSCardRawPci @61 DATA
+  g_rgSCardT0Pci @62 DATA
+  g_rgSCardT1Pci @63 DATA

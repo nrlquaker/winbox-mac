@@ -1,0 +1,8 @@
+; File generated automatically from dlls/windowscodecsext/windowscodecsext.spec; do not edit!
+
+LIBRARY windowscodecsext.dll
+
+EXPORTS
+  DllGetClassObject @1 PRIVATE
+  IWICColorTransform_Initialize_Proxy=IWICColorTransform_Initialize_Proxy_W @2
+  WICCreateColorTransform_Proxy @3

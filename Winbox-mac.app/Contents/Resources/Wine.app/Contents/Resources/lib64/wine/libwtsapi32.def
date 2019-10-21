@@ -1,0 +1,47 @@
+; File generated automatically from dlls/wtsapi32/wtsapi32.spec; do not edit!
+
+LIBRARY wtsapi32.dll
+
+EXPORTS
+  WTSCloseServer @1
+  WTSConnectSessionA @2
+  WTSConnectSessionW @3
+  WTSDisconnectSession @4
+  WTSEnableChildSessions @5
+  WTSEnumerateProcessesA @6
+  WTSEnumerateProcessesW @7
+  WTSEnumerateServersA @8
+  WTSEnumerateServersW @9
+  WTSEnumerateSessionsA @10
+  WTSEnumerateSessionsW @11
+  WTSFreeMemory @12
+  WTSLogoffSession @13
+  WTSOpenServerA @14
+  WTSOpenServerW @15
+  WTSQuerySessionInformationA @16
+  WTSQuerySessionInformationW @17
+  WTSQueryUserConfigA @18
+  WTSQueryUserConfigW @19
+  WTSQueryUserToken @20
+  WTSRegisterSessionNotification @21
+  WTSRegisterSessionNotificationEx @22
+  WTSSendMessageA @23
+  WTSSendMessageW @24
+  WTSSetUserConfigA @27
+  WTSSetUserConfigW @28
+  WTSShutdownSystem @29
+  WTSStartRemoteControlSessionA @30
+  WTSStartRemoteControlSessionW @31
+  WTSStopRemoteControlSession @32
+  WTSTerminateProcess @33
+  WTSUnRegisterSessionNotification @34
+  WTSUnRegisterSessionNotificationEx @35
+  WTSVirtualChannelClose @36
+  WTSVirtualChannelOpen @37
+  WTSVirtualChannelOpenEx @38
+  WTSVirtualChannelPurgeInput @39
+  WTSVirtualChannelPurgeOutput @40
+  WTSVirtualChannelQuery @41
+  WTSVirtualChannelRead @42
+  WTSVirtualChannelWrite @43
+  WTSWaitSystemEvent @44

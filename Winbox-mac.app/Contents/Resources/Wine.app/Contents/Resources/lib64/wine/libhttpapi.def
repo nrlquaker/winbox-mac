@@ -1,0 +1,13 @@
+; File generated automatically from dlls/httpapi/httpapi.spec; do not edit!
+
+LIBRARY httpapi.dll
+
+EXPORTS
+  HttpAddUrl @2
+  HttpCreateHttpHandle @8
+  HttpCreateServerSession @9
+  HttpDeleteServiceConfiguration @11
+  HttpInitialize @22
+  HttpQueryServiceConfiguration @31
+  HttpSetServiceConfiguration @48
+  HttpTerminate @51

@@ -1,0 +1,17 @@
+; File generated automatically from dlls/lz32/lz32.spec; do not edit!
+
+LIBRARY lz32.dll
+
+EXPORTS
+  CopyLZFile=kernel32.CopyLZFile @1
+  GetExpandedNameA=kernel32.GetExpandedNameA @2
+  GetExpandedNameW=kernel32.GetExpandedNameW @3
+  LZClose=kernel32.LZClose @4
+  LZCopy=kernel32.LZCopy @5
+  LZDone=kernel32.LZDone @6
+  LZInit=kernel32.LZInit @7
+  LZOpenFileA=kernel32.LZOpenFileA @8
+  LZOpenFileW=kernel32.LZOpenFileW @9
+  LZRead=kernel32.LZRead @10
+  LZSeek=kernel32.LZSeek @11
+  LZStart=kernel32.LZStart @12

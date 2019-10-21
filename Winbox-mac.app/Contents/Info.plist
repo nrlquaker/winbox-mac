@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>WineProgramPath</key>
-    <string>C:/winebottler/winbox.exe</string>
-    <key>WineProgramArguments</key>
-    <string></string>
     <key>CFBundleDevelopmentRegion</key>
     <string>English</string>
     <key>CFBundleExecutable</key>
@@ -13,7 +9,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.mikrotik.winbox_156313927421589</string>
+    <string>com.mikrotik.winbox_320</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -23,9 +19,9 @@
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>3.19</string>
+    <string>3.20</string>
     <key>CFBundleShortVersionString</key>
-    <string>3.19</string>
+    <string>3.20</string>
 	<key>CFBundleIconFile</key>
 	<string>Icon.icns</string>
 	<key>LSApplicationCategoryType</key>

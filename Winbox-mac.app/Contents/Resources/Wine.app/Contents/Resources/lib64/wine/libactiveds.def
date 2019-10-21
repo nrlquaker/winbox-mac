@@ -1,0 +1,21 @@
+; File generated automatically from dlls/activeds/activeds.spec; do not edit!
+
+LIBRARY activeds.dll
+
+EXPORTS
+  ADsGetObject @3
+  ADsBuildEnumerator @4
+  ADsFreeEnumerator @5
+  ADsEnumerateNext @6
+  ADsBuildVarArrayStr @7
+  ADsBuildVarArrayInt @8
+  ADsOpenObject @9
+  ADsSetLastError @12
+  ADsGetLastError @13
+  AllocADsMem @14
+  FreeADsMem @15
+  ReallocADsMem @16
+  AllocADsStr @17
+  FreeADsStr @18
+  ReallocADsStr @19
+  ADsEncodeBinaryData @20

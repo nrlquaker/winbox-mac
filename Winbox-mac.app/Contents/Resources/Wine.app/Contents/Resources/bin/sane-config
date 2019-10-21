@@ -1,0 +1,90 @@
+#!/bin/sh
+#
+# This script is part of SANE, <URL:http://www.sane-project.org/>
+#
+# Send bugreports and other requests to sane-devel@alioth-lists.debian.net
+
+PACKAGE="sane-backends"
+scriptname="sane-config"
+
+prefix="/Users/reb/winebottler/usr"
+exec_prefix="${prefix}"
+
+# using our installed *.pc only - neither default nor user paths
+export PKG_CONFIG_LIBDIR="${exec_prefix}/lib/pkgconfig"
+export PKG_CONFIG_PATH=""
+
+pkgconfig_package=sane-backends
+
+usage ()
+{
+  echo "Usage: "  1>&2
+  echo "$scriptname --version         - show installed script and SANE version"  1>&2
+  echo "$scriptname --ldflags         - linker flags required to link with SANE"  1>&2
+  echo "$scriptname --libs            - libraries required to link with SANE"  1>&2
+  echo "$scriptname --cflags          - compiler flags required to find SANE headers"  1>&2
+  echo "$scriptname --help            - show usage info (this message)          "  1>&2
+  echo "$scriptname --help SUBCOMMAND - show help for SUBCOMMAND                "  1>&2
+  echo "$scriptname --prefix          - prefix used during SANE compile"  1>&2
+  echo "$scriptname --exec-prefix     - exec-prefix used during SANE compile"  1>&2
+}
+
+if test $# -eq 0; then
+      usage
+      exit 1
+fi
+
+if test $# -gt 0; then
+  case $1 in
+    --version)
+      echo 1.0.28
+      ;;
+    --help)
+      if test $# -eq 1; then
+        usage
+      elif test $# -eq 2; then
+        case $2 in
+          --cflags)
+            echo "Usage: $0 --cflags"
+            echo "  Print C compiler flags for compiling code that uses SANE."
+            echo "  This includes any \`-I' flags needed to find Sane's header files."
+            ;;
+          --ldflags)
+            echo "Usage: $0 --ldflags"
+            echo "  Print linker flags for building the \`$PACKAGE' executable."
+            echo "  Print the linker command-line flags necessary to link against"
+            echo "  the SANE library.  The libraries are listed with --libs."
+            ;;
+          --libs)
+            echo "Usage: $0 --libs"
+            echo "  Print linker flags for building the \`$PACKAGE' executable."
+            echo "  Print the linker command-line flags necessary to link against"
+            echo "  the SANE library, and any other libraries it requires."
+            ;;
+        esac
+      else
+        usage
+      fi
+      exit 1
+      ;;
+    --ldflags)
+      pkg-config --libs-only-L "$pkgconfig_package"
+      ;;
+    --libs)
+      pkg-config --libs "$pkgconfig_package"
+      ;;
+    --cflags)
+      pkg-config --cflags "$pkgconfig_package"
+      ;;
+    --prefix)
+      echo "${prefix}"
+      ;;
+    --exec-prefix)
+      echo "${exec_prefix}"
+      ;;
+    *)
+      usage
+      exit 1
+      ;;
+  esac
+fi

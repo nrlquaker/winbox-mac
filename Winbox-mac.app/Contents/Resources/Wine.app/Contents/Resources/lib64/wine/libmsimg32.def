@@ -1,0 +1,10 @@
+; File generated automatically from dlls/msimg32/msimg32.spec; do not edit!
+
+LIBRARY msimg32.dll
+
+EXPORTS
+  vSetDdrawflag @1
+  AlphaBlend=gdi32.GdiAlphaBlend @2
+  DllInitialize=DllMain @3 PRIVATE
+  GradientFill=gdi32.GdiGradientFill @4
+  TransparentBlt=gdi32.GdiTransparentBlt @5

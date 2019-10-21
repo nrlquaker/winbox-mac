@@ -1,0 +1,12 @@
+; File generated automatically from dlls/sti/sti.spec; do not edit!
+
+LIBRARY sti.dll
+
+EXPORTS
+  DllCanUnloadNow @1 PRIVATE
+  DllGetClassObject @2 PRIVATE
+  DllRegisterServer @3 PRIVATE
+  DllUnregisterServer @4 PRIVATE
+  StiCreateInstance=StiCreateInstanceW @5
+  StiCreateInstanceA @6
+  StiCreateInstanceW @7

@@ -1,0 +1,12 @@
+; File generated automatically from dlls/ieframe/ieframe.spec; do not edit!
+
+LIBRARY ieframe.dll
+
+EXPORTS
+  IEWinMain @101 NONAME
+  DllCanUnloadNow @102 PRIVATE
+  DllGetClassObject @103 PRIVATE
+  DllRegisterServer @104 PRIVATE
+  DllUnregisterServer @105 PRIVATE
+  IEGetWriteableHKCU @106
+  OpenURL @107

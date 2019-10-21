@@ -1,0 +1,11 @@
+; File generated automatically from dlls/mswsock/mswsock.spec; do not edit!
+
+LIBRARY mswsock.dll
+
+EXPORTS
+  AcceptEx @1
+  EnumProtocolsA=ws2_32.WSAEnumProtocolsA @2
+  EnumProtocolsW=ws2_32.WSAEnumProtocolsW @3
+  GetAcceptExSockaddrs @4
+  TransmitFile @22
+  WSARecvEx @23

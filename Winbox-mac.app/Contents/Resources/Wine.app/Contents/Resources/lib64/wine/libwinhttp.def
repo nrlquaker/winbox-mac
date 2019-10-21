@@ -1,0 +1,36 @@
+; File generated automatically from dlls/winhttp/winhttp.spec; do not edit!
+
+LIBRARY winhttp.dll
+
+EXPORTS
+  DllCanUnloadNow @1 PRIVATE
+  DllGetClassObject @2 PRIVATE
+  DllRegisterServer @3 PRIVATE
+  DllUnregisterServer @4 PRIVATE
+  WinHttpAddRequestHeaders @5
+  WinHttpCheckPlatform @6
+  WinHttpCloseHandle @7
+  WinHttpConnect @8
+  WinHttpCrackUrl @9
+  WinHttpCreateUrl @10
+  WinHttpDetectAutoProxyConfigUrl @11
+  WinHttpGetDefaultProxyConfiguration @12
+  WinHttpGetIEProxyConfigForCurrentUser @13
+  WinHttpGetProxyForUrl @14
+  WinHttpOpen @15
+  WinHttpOpenRequest @16
+  WinHttpQueryAuthSchemes @17
+  WinHttpQueryDataAvailable @18
+  WinHttpQueryHeaders @19
+  WinHttpQueryOption @20
+  WinHttpReadData @21
+  WinHttpReceiveResponse @22
+  WinHttpSendRequest @23
+  WinHttpSetCredentials @24
+  WinHttpSetDefaultProxyConfiguration @25
+  WinHttpSetOption @26
+  WinHttpSetStatusCallback @27
+  WinHttpSetTimeouts @28
+  WinHttpTimeFromSystemTime @29
+  WinHttpTimeToSystemTime @30
+  WinHttpWriteData @31

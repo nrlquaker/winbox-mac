@@ -1,0 +1,50 @@
+; File generated automatically from dlls/msvfw32/msvfw32.spec; do not edit!
+
+LIBRARY msvfw32.dll
+
+EXPORTS
+  VideoForWindowsVersion @2
+  DrawDibBegin @3
+  DrawDibChangePalette @4
+  DrawDibClose @5
+  DrawDibDraw @6
+  DrawDibEnd @7
+  DrawDibGetBuffer @8
+  DrawDibGetPalette @9
+  DrawDibOpen @10
+  DrawDibProfileDisplay @11
+  DrawDibRealize @12
+  DrawDibSetPalette @13
+  DrawDibStart @14
+  DrawDibStop @15
+  DrawDibTime @16
+  GetOpenFileNamePreview=GetOpenFileNamePreviewA @17
+  GetOpenFileNamePreviewA @18
+  GetOpenFileNamePreviewW @19
+  GetSaveFileNamePreviewA @20
+  GetSaveFileNamePreviewW @21
+  ICClose @22
+  ICCompress @23
+  ICCompressorChoose @24
+  ICCompressorFree @25
+  ICDecompress @26
+  ICDraw @27
+  ICDrawBegin @28
+  ICGetDisplayFormat @29
+  ICGetInfo @30
+  ICImageCompress @31
+  ICImageDecompress @32
+  ICInfo @33
+  ICInstall @34
+  ICLocate @35
+  ICOpen @37
+  ICOpenFunction @38
+  ICRemove @39
+  ICSendMessage @40
+  ICSeqCompressFrame @41
+  ICSeqCompressFrameEnd @42
+  ICSeqCompressFrameStart @43
+  MCIWndCreate=MCIWndCreateA @44
+  MCIWndCreateA @45
+  MCIWndCreateW @46
+  MCIWndRegisterClass @47

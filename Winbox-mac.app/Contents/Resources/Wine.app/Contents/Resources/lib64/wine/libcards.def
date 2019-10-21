@@ -1,0 +1,10 @@
+; File generated automatically from dlls/cards/cards.spec; do not edit!
+
+LIBRARY cards.dll
+
+EXPORTS
+  cdtAnimate @1
+  cdtDraw @2
+  cdtDrawExt @3
+  cdtInit @4
+  cdtTerm @5

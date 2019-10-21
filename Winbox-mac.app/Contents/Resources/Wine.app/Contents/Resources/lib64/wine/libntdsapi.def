@@ -1,0 +1,15 @@
+; File generated automatically from dlls/ntdsapi/ntdsapi.spec; do not edit!
+
+LIBRARY ntdsapi.dll
+
+EXPORTS
+  DsBindA @3
+  DsBindW @4
+  DsClientMakeSpnForTargetServerW @10
+  DsCrackNamesA @11
+  DsCrackNamesW @12
+  DsGetSpnA @32
+  DsMakeSpnA @55
+  DsMakeSpnW @56
+  DsServerRegisterSpnA @83
+  DsServerRegisterSpnW @84

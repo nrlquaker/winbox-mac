@@ -1,0 +1,14 @@
+; File generated automatically from dlls/xinput1_3/xinput1_3.spec; do not edit!
+
+LIBRARY xinput1_3.dll
+
+EXPORTS
+  DllMain @1 PRIVATE
+  XInputGetState @2
+  XInputSetState @3
+  XInputGetCapabilities @4
+  XInputEnable @5
+  XInputGetDSoundAudioDeviceGuids @6
+  XInputGetBatteryInformation @7
+  XInputGetKeystroke @8
+  XInputGetStateEx @100

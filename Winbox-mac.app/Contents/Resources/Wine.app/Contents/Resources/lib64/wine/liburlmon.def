@@ -1,0 +1,72 @@
+; File generated automatically from dlls/urlmon/urlmon.spec; do not edit!
+
+LIBRARY urlmon.dll
+
+EXPORTS
+  AsyncInstallDistributionUnit @4
+  BindAsyncMoniker @5
+  CoGetClassObjectFromURL @6
+  CoInternetCombineUrl @8
+  CoInternetCombineUrlEx @9
+  CoInternetCompareUrl @10
+  CoInternetCombineIUri @11
+  CoInternetCreateSecurityManager @12
+  CoInternetCreateZoneManager @13
+  CoInternetGetSecurityUrl @15
+  CoInternetGetSecurityUrlEx @16
+  CoInternetGetSession @17
+  CoInternetIsFeatureEnabled @18
+  CoInternetIsFeatureEnabledForUrl @19
+  CoInternetIsFeatureZoneElevationEnabled @20
+  CoInternetParseUrl @21
+  CoInternetParseIUri @22
+  CoInternetQueryInfo @23
+  CoInternetSetFeatureEnabled @24
+  CompareSecurityIds @25
+  CopyBindInfo @26
+  CopyStgMedium @27
+  CreateAsyncBindCtx @28
+  CreateAsyncBindCtxEx @29
+  CreateFormatEnumerator @30
+  CreateIUriBuilder @31
+  CreateUri @32
+  CreateUriWithFragment @33
+  CreateURLMoniker @34
+  CreateURLMonikerEx @35
+  CreateURLMonikerEx2 @36
+  DllCanUnloadNow @37 PRIVATE
+  DllGetClassObject @38 PRIVATE
+  DllInstall @39 PRIVATE
+  DllRegisterServer @40 PRIVATE
+  DllRegisterServerEx @41 PRIVATE
+  DllUnregisterServer @42 PRIVATE
+  Extract @43
+  FaultInIEFeature @44
+  FindMimeFromData @47
+  GetClassFileOrMime @48
+  GetSoftwareUpdateInfo @52
+  HlinkNavigateString @56
+  HlinkSimpleNavigateToMoniker @57
+  HlinkSimpleNavigateToString @58
+  IsAsyncMoniker @60
+  IsLoggingEnabledA @61
+  IsLoggingEnabledW @62
+  IsValidURL @63
+  MkParseDisplayNameEx @64
+  ObtainUserAgentString @65
+  RegisterBindStatusCallback @67
+  RegisterFormatEnumerator @68
+  RegisterMediaTypes @70
+  ReleaseBindInfo @71
+  RevokeBindStatusCallback @72
+  RevokeFormatEnumerator @73
+  URLDownloadToCacheFileA @76
+  URLDownloadToCacheFileW @77
+  URLDownloadToFileA @78
+  URLDownloadToFileW @79
+  URLOpenBlockingStreamA @81
+  URLOpenBlockingStreamW @82
+  URLOpenStreamA @85
+  URLOpenStreamW @86
+  UrlMkGetSessionOption @88
+  UrlMkSetSessionOption @89

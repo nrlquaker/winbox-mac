@@ -1,0 +1,64 @@
+; File generated automatically from dlls/secur32/secur32.spec; do not edit!
+
+LIBRARY secur32.dll
+
+EXPORTS
+  AcceptSecurityContext @3
+  AcquireCredentialsHandleA @4
+  AcquireCredentialsHandleW @5
+  AddCredentialsA @6
+  AddCredentialsW @7
+  AddSecurityPackageA @8
+  AddSecurityPackageW @9
+  ApplyControlToken @10
+  CompleteAuthToken @11
+  DecryptMessage @12
+  DeleteSecurityContext @13
+  EncryptMessage @16
+  EnumerateSecurityPackagesA @17
+  EnumerateSecurityPackagesW @18
+  ExportSecurityContext @19
+  FreeContextBuffer @20
+  FreeCredentialsHandle @21
+  GetComputerObjectNameA @22
+  GetComputerObjectNameW @23
+  GetUserNameExA @25
+  GetUserNameExW @26
+  ImpersonateSecurityContext @27
+  ImportSecurityContextA @28
+  ImportSecurityContextW @29
+  InitSecurityInterfaceA @30
+  InitSecurityInterfaceW @31
+  InitializeSecurityContextA @32
+  InitializeSecurityContextW @33
+  LsaCallAuthenticationPackage @34
+  LsaConnectUntrusted @35
+  LsaDeregisterLogonProcess @36
+  LsaEnumerateLogonSessions @37
+  LsaFreeReturnBuffer @38
+  LsaGetLogonSessionData @39
+  LsaLogonUser @40
+  LsaLookupAuthenticationPackage @41
+  LsaRegisterLogonProcess @42
+  MakeSignature @45
+  QueryContextAttributesA @46
+  QueryContextAttributesW @47
+  QueryCredentialsAttributesA @48
+  QueryCredentialsAttributesW @49
+  QuerySecurityContextToken @50
+  QuerySecurityPackageInfoA @51
+  QuerySecurityPackageInfoW @52
+  RevertSecurityContext @53
+  SealMessage=EncryptMessage @63
+  SetContextAttributesA @69
+  SetContextAttributesW @70
+  SspiEncodeAuthIdentityAsStrings=sspicli.SspiEncodeAuthIdentityAsStrings @71
+  SspiEncodeStringsAsAuthIdentity=sspicli.SspiEncodeStringsAsAuthIdentity @72
+  SspiFreeAuthIdentity=sspicli.SspiFreeAuthIdentity @73
+  SspiLocalFree=sspicli.SspiLocalFree @74
+  SspiPrepareForCredWrite=sspicli.SspiPrepareForCredWrite @75
+  SspiZeroAuthIdentity=sspicli.SspiZeroAuthIdentity @76
+  TranslateNameA @77
+  TranslateNameW @78
+  UnsealMessage=DecryptMessage @79
+  VerifySignature @80

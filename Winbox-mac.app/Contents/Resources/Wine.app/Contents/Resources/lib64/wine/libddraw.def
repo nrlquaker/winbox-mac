@@ -1,0 +1,17 @@
+; File generated automatically from dlls/ddraw/ddraw.spec; do not edit!
+
+LIBRARY ddraw.dll
+
+EXPORTS
+  DirectDrawCreate @6
+  DirectDrawCreateClipper @7
+  DirectDrawCreateEx @8
+  DirectDrawEnumerateA @9
+  DirectDrawEnumerateExA @10
+  DirectDrawEnumerateExW @11
+  DirectDrawEnumerateW @12
+  DllCanUnloadNow @13 PRIVATE
+  DllGetClassObject @14 PRIVATE
+  DllRegisterServer @15 PRIVATE
+  DllUnregisterServer @16 PRIVATE
+  GetSurfaceFromDC @18

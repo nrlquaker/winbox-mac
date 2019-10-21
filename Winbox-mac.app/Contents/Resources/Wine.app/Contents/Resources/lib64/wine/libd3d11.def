@@ -1,0 +1,10 @@
+; File generated automatically from dlls/d3d11/d3d11.spec; do not edit!
+
+LIBRARY d3d11.dll
+
+EXPORTS
+  D3D11CoreCreateDevice @1
+  D3D11CoreRegisterLayers @4
+  D3D11CreateDevice @5
+  D3D11CreateDeviceAndSwapChain @6
+  D3D11On12CreateDevice @7

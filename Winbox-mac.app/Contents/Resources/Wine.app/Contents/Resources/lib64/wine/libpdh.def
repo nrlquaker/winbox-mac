@@ -1,0 +1,47 @@
+; File generated automatically from dlls/pdh/pdh.spec; do not edit!
+
+LIBRARY pdh.dll
+
+EXPORTS
+  PdhAddCounterA @4
+  PdhAddCounterW @5
+  PdhAddEnglishCounterA @6
+  PdhAddEnglishCounterW @7
+  PdhBindInputDataSourceA @8
+  PdhBindInputDataSourceW @9
+  PdhCalculateCounterFromRawValue @14
+  PdhCloseQuery @16
+  PdhCollectQueryData @17
+  PdhCollectQueryDataWithTime @18
+  PdhCollectQueryDataEx @19
+  PdhEnumObjectItemsA @31
+  PdhEnumObjectItemsW @34
+  PdhExpandCounterPathA @39
+  PdhExpandCounterPathW @40
+  PdhExpandWildCardPathA @41
+  PdhExpandWildCardPathW @44
+  PdhGetCounterInfoA @46
+  PdhGetCounterInfoW @47
+  PdhGetCounterTimeBase @48
+  PdhGetDllVersion @60
+  PdhGetFormattedCounterValue @63
+  PdhGetLogFileTypeA @65
+  PdhGetLogFileTypeW @66
+  PdhGetRawCounterValue @70
+  PdhLookupPerfIndexByNameA @78
+  PdhLookupPerfIndexByNameW @79
+  PdhLookupPerfNameByIndexA @80
+  PdhLookupPerfNameByIndexW @81
+  PdhMakeCounterPathA @82
+  PdhMakeCounterPathW @83
+  PdhOpenQuery=PdhOpenQueryW @86
+  PdhOpenQueryA @87
+  PdhOpenQueryW @89
+  PdhRemoveCounter @126
+  PdhSetCounterScaleFactor @129
+  PdhSetDefaultRealTimeDataSource @130
+  PdhValidatePathA @140
+  PdhValidatePathExA @141
+  PdhValidatePathExW @142
+  PdhValidatePathW @143
+  PdhVbAddCounter @144

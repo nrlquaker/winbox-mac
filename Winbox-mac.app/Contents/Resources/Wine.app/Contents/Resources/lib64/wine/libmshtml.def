@@ -1,0 +1,15 @@
+; File generated automatically from dlls/mshtml/mshtml.spec; do not edit!
+
+LIBRARY mshtml.dll
+
+EXPORTS
+  DllCanUnloadNow @2 PRIVATE
+  DllGetClassObject @4 PRIVATE
+  DllInstall @5 PRIVATE
+  DllRegisterServer @6 PRIVATE
+  DllUnregisterServer @7 PRIVATE
+  PrintHTML @9
+  RNIGetCompatibleVersion @10
+  RunHTMLApplication @11
+  ShowHTMLDialog @12
+  NP_GetEntryPoints @15

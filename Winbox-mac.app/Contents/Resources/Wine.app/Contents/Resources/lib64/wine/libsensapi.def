@@ -1,0 +1,8 @@
+; File generated automatically from dlls/sensapi/sensapi.spec; do not edit!
+
+LIBRARY sensapi.dll
+
+EXPORTS
+  IsDestinationReachableA @1
+  IsDestinationReachableW @2
+  IsNetworkAlive @3

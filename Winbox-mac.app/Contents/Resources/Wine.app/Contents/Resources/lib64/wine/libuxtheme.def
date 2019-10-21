@@ -1,0 +1,82 @@
+; File generated automatically from dlls/uxtheme/uxtheme.spec; do not edit!
+
+LIBRARY uxtheme.dll
+
+EXPORTS
+  QueryThemeServices @1 NONAME
+  OpenThemeFile @2 NONAME
+  CloseThemeFile @3 NONAME
+  ApplyTheme @4 NONAME
+  GetThemeDefaults @7 NONAME
+  EnumThemes @8 NONAME
+  EnumThemeColors @9 NONAME
+  EnumThemeSizes @10 NONAME
+  ParseThemeIniFile @11 NONAME
+  CheckThemeSignature @29 NONAME
+  OpenThemeDataEx @61
+  BeginBufferedAnimation @5
+  BeginBufferedPaint @6
+  BufferedPaintClear @12
+  BufferedPaintInit @37
+  BufferedPaintRenderAnimation @38
+  BufferedPaintSetAlpha @39
+  BufferedPaintStopAllAnimations @40
+  BufferedPaintUnInit @41
+  CloseThemeData @42
+  DrawThemeBackground @47
+  DrawThemeBackgroundEx @49
+  DrawThemeEdge @50
+  DrawThemeIcon @51
+  DrawThemeParentBackground @52
+  DrawThemeText @53
+  DrawThemeTextEx @54
+  EnableThemeDialogTexture @55
+  EnableTheming @56
+  EndBufferedAnimation @57
+  EndBufferedPaint @58
+  GetBufferedPaintBits @59
+  GetBufferedPaintDC @64
+  GetBufferedPaintTargetDC @65
+  GetBufferedPaintTargetRect @66
+  GetCurrentThemeName @67
+  GetThemeAppProperties @68
+  GetThemeBackgroundContentRect @69
+  GetThemeBackgroundExtent @70
+  GetThemeBackgroundRegion @71
+  GetThemeBool @72
+  GetThemeColor @73
+  GetThemeDocumentationProperty @74
+  GetThemeEnumValue @75
+  GetThemeFilename @76
+  GetThemeFont @77
+  GetThemeInt @78
+  GetThemeIntList @79
+  GetThemeMargins @80
+  GetThemeMetric @81
+  GetThemePartSize @82
+  GetThemePosition @83
+  GetThemePropertyOrigin @84
+  GetThemeRect @85
+  GetThemeString @86
+  GetThemeSysBool @87
+  GetThemeSysColor @88
+  GetThemeSysColorBrush @89
+  GetThemeSysFont @90
+  GetThemeSysInt @91
+  GetThemeSysSize @92
+  GetThemeSysString @93
+  GetThemeTextExtent @94
+  GetThemeTextMetrics @95
+  GetThemeTransitionDuration @96
+  GetWindowTheme @97
+  HitTestThemeBackground @98
+  IsAppThemed @99
+  IsCompositionActive @100
+  IsThemeActive @101
+  IsThemeBackgroundPartiallyTransparent @102
+  IsThemeDialogTextureEnabled @103
+  IsThemePartDefined @104
+  OpenThemeData @105
+  SetThemeAppProperties @106
+  SetWindowTheme @107
+  SetWindowThemeAttribute @108

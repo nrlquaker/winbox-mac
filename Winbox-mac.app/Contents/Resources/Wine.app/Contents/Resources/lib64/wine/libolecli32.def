@@ -1,0 +1,20 @@
+; File generated automatically from dlls/olecli32/olecli32.spec; do not edit!
+
+LIBRARY olecli32.dll
+
+EXPORTS
+  OleSaveToStream=ole32.OleSaveToStream @3
+  OleLoadFromStream=ole32.OleLoadFromStream @4
+  OleQueryLinkFromClip @9
+  OleQueryCreateFromClip @10
+  OleCreateLinkFromClip @11
+  OleCreateFromClip @12
+  OleQueryType @14
+  OleSetHostNames @15
+  OleCreate=ole32.OleCreate @34
+  OleCreateFromFile=ole32.OleCreateFromFile @38
+  OleRegisterClientDoc @41
+  OleRevokeClientDoc @42
+  OleRenameClientDoc @43
+  OleSavedClientDoc @45
+  OleIsDcMeta @60

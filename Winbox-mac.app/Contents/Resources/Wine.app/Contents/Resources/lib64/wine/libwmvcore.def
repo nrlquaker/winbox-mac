@@ -1,0 +1,15 @@
+; File generated automatically from dlls/wmvcore/wmvcore.spec; do not edit!
+
+LIBRARY wmvcore.dll
+
+EXPORTS
+  WMCheckURLExtension @1
+  WMCheckURLScheme @2
+  DllRegisterServer @7 PRIVATE
+  WMCreateEditor @9
+  WMCreateProfileManager @11
+  WMCreateReader @12
+  WMCreateReaderPriv @13
+  WMCreateSyncReader @14
+  WMCreateWriter @15
+  WMCreateWriterPriv @18

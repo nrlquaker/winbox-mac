@@ -1,0 +1,50 @@
+; File generated automatically from dlls/atl100/atl100.spec; do not edit!
+
+LIBRARY atl100.dll
+
+EXPORTS
+  AtlAdvise @10
+  AtlUnadvise @11
+  AtlFreeMarshalStream @12
+  AtlMarshalPtrInProc @13
+  AtlUnmarshalPtr @14
+  AtlComModuleGetClassObject @15
+  AtlComModuleRegisterClassObjects @17
+  AtlComModuleRevokeClassObjects @20
+  AtlComModuleUnregisterServer @22
+  AtlUpdateRegistryFromResourceD @23
+  AtlWaitWithMessageLoop @24
+  AtlCreateTargetDC @26
+  AtlHiMetricToPixel @27
+  AtlPixelToHiMetric @28
+  AtlComPtrAssign @30
+  AtlComQIPtrAssign @31
+  AtlInternalQueryInterface @32
+  AtlGetVersion @34
+  AtlAxDialogBoxW @35
+  AtlAxDialogBoxA @36
+  AtlAxCreateDialogW @37
+  AtlAxCreateDialogA @38
+  AtlAxCreateControl @39
+  AtlAxCreateControlEx @40
+  AtlAxAttachControl @41
+  AtlAxWinInit @42
+  AtlWinModuleAddCreateWndData @43
+  AtlWinModuleExtractCreateWndData @44
+  AtlAxGetControl @47
+  AtlAxGetHost @48
+  AtlRegisterClassCategoriesHelper @49
+  AtlIPersistStreamInit_Load @50
+  AtlIPersistStreamInit_Save @51
+  AtlIPersistPropertyBag_Load @52
+  AtlIPersistPropertyBag_Save @53
+  AtlGetObjectSourceInterface @54
+  AtlLoadTypeLib @56
+  AtlModuleAddTermFunc @58
+  AtlAxCreateControlLic @59
+  AtlAxCreateControlLicEx @60
+  AtlCreateRegistrar @61
+  AtlCallTermFunc @64
+  AtlWinModuleInit @65
+  AtlSetPerUserRegistration @67
+  AtlGetPerUserRegistration @68

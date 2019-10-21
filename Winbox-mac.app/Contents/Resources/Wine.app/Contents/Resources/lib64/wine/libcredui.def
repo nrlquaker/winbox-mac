@@ -1,0 +1,17 @@
+; File generated automatically from dlls/credui/credui.spec; do not edit!
+
+LIBRARY credui.dll
+
+EXPORTS
+  CredPackAuthenticationBufferW @1
+  CredUIConfirmCredentialsW @5
+  CredUIInitControls @6
+  CredUIParseUserNameW @8
+  CredUIPromptForCredentialsW @10
+  CredUIPromptForWindowsCredentialsW @11
+  CredUIReadSSOCredA @12
+  CredUIReadSSOCredW @13
+  CredUIStoreSSOCredA @14
+  CredUIStoreSSOCredW @15
+  CredUnPackAuthenticationBufferW @16
+  SspiPromptForCredentialsW @21

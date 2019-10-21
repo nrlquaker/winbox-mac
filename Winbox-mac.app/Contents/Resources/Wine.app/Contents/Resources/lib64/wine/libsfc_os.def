@@ -1,0 +1,11 @@
+; File generated automatically from dlls/sfc_os/sfc_os.spec; do not edit!
+
+LIBRARY sfc_os.dll
+
+EXPORTS
+  SRSetRestorePointA @4
+  SRSetRestorePointW @5
+  SfcConnectToServer @7
+  SfcGetNextProtectedFile @9
+  SfcIsFileProtected @13
+  SfcIsKeyProtected @14

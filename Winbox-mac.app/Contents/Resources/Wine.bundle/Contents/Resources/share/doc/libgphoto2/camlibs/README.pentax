@@ -1,6 +1,0 @@
-This driver is imported from the pkremote project.
-
-http://sf.net/projects/pkremote/
-
-It uses special SCSI commands tunneled over USB Mass 
-Storage to control the camera.

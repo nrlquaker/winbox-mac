@@ -1,0 +1,28 @@
+; File generated automatically from dlls/oledlg/oledlg.spec; do not edit!
+
+LIBRARY oledlg.dll
+
+EXPORTS
+  OleUIAddVerbMenuA @1
+  OleUICanConvertOrActivateAs @2
+  OleUIInsertObjectA @3
+  OleUIPasteSpecialA @4
+  OleUIEditLinksA @5
+  OleUIChangeIconA @6
+  OleUIConvertA @7
+  OleUIBusyA @8
+  OleUIUpdateLinksA @9
+  OleUIPromptUserA @10
+  OleUIObjectPropertiesA @11
+  OleUIChangeSourceA @12
+  OleUIPromptUserW @13
+  OleUIAddVerbMenuW @14
+  OleUIBusyW @15
+  OleUIChangeIconW @16
+  OleUIChangeSourceW @17
+  OleUIConvertW @18
+  OleUIEditLinksW @19
+  OleUIInsertObjectW @20
+  OleUIObjectPropertiesW @21
+  OleUIPasteSpecialW @22
+  OleUIUpdateLinksW @23

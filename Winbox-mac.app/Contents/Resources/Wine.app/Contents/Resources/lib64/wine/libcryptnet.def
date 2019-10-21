@@ -1,0 +1,11 @@
+; File generated automatically from dlls/cryptnet/cryptnet.spec; do not edit!
+
+LIBRARY cryptnet.dll
+
+EXPORTS
+  CertDllVerifyRevocation @2
+  CryptGetObjectUrl @7
+  CryptRetrieveObjectByUrlA @10
+  CryptRetrieveObjectByUrlW @11
+  DllRegisterServer @13 PRIVATE
+  DllUnregisterServer @14 PRIVATE

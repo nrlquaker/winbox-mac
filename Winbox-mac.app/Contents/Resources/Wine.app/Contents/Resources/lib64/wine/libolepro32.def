@@ -1,0 +1,16 @@
+; File generated automatically from dlls/olepro32/olepro32.spec; do not edit!
+
+LIBRARY olepro32.dll
+
+EXPORTS
+  OleIconToCursor=oleaut32.OleIconToCursor @248
+  OleCreatePropertyFrameIndirect=oleaut32.OleCreatePropertyFrameIndirect @249
+  OleCreatePropertyFrame=oleaut32.OleCreatePropertyFrame @250
+  OleLoadPicture=oleaut32.OleLoadPicture @251
+  OleCreatePictureIndirect=oleaut32.OleCreatePictureIndirect @252
+  OleCreateFontIndirect=oleaut32.OleCreateFontIndirect @253
+  OleTranslateColor=oleaut32.OleTranslateColor @254
+  DllCanUnloadNow @255 PRIVATE
+  DllGetClassObject @256 PRIVATE
+  DllRegisterServer @257 PRIVATE
+  DllUnregisterServer @258 PRIVATE

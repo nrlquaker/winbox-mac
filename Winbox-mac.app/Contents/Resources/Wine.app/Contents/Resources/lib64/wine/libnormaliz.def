@@ -1,0 +1,10 @@
+; File generated automatically from dlls/normaliz/normaliz.spec; do not edit!
+
+LIBRARY normaliz.dll
+
+EXPORTS
+  IdnToAscii=kernel32.IdnToAscii @1
+  IdnToNameprepUnicode=kernel32.IdnToNameprepUnicode @2
+  IdnToUnicode=kernel32.IdnToUnicode @3
+  IsNormalizedString=kernel32.IsNormalizedString @4
+  NormalizeString=kernel32.NormalizeString @5

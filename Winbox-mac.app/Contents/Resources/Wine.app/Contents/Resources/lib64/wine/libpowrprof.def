@@ -1,0 +1,31 @@
+; File generated automatically from dlls/powrprof/powrprof.spec; do not edit!
+
+LIBRARY powrprof.dll
+
+EXPORTS
+  CallNtPowerInformation @1
+  CanUserWritePwrScheme @2
+  DeletePwrScheme @3
+  EnumPwrSchemes @4
+  GetActivePwrScheme @5
+  GetCurrentPowerPolicies @6
+  GetPwrCapabilities @7
+  GetPwrDiskSpindownRange @8
+  IsAdminOverrideActive @9
+  IsPwrHibernateAllowed @10
+  IsPwrShutdownAllowed @11
+  IsPwrSuspendAllowed @12
+  PowerDeterminePlatformRole @13
+  PowerDeterminePlatformRoleEx @14
+  PowerEnumerate @15
+  PowerGetActiveScheme @16
+  PowerSetActiveScheme @17
+  PowerReadDCValue @18
+  ReadGlobalPwrPolicy @19
+  ReadProcessorPwrScheme @20
+  ReadPwrScheme @21
+  SetActivePwrScheme @22
+  SetSuspendState @23
+  WriteGlobalPwrPolicy @24
+  WriteProcessorPwrScheme @25
+  WritePwrScheme @26

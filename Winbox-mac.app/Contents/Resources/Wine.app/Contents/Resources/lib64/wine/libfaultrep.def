@@ -1,0 +1,8 @@
+; File generated automatically from dlls/faultrep/faultrep.spec; do not edit!
+
+LIBRARY faultrep.dll
+
+EXPORTS
+  AddERExcludedApplicationA @1
+  AddERExcludedApplicationW @2
+  ReportFault @7

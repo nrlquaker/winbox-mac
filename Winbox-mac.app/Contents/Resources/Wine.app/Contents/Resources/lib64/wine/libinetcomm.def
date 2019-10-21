@@ -1,0 +1,24 @@
+; File generated automatically from dlls/inetcomm/inetcomm.spec; do not edit!
+
+LIBRARY inetcomm.dll
+
+EXPORTS
+  CreateIMAPTransport @2
+  CreatePOP3Transport @4
+  CreateSMTPTransport @7
+  DllCanUnloadNow @8 PRIVATE
+  DllGetClassObject @9 PRIVATE
+  DllRegisterServer @10 PRIVATE
+  DllUnregisterServer @11 PRIVATE
+  MimeGetAddressFormatW @45
+  MimeOleCreateMessage @54
+  MimeOleCreateSecurity @57
+  MimeOleCreateVirtualStream @58
+  MimeOleFindCharset @62
+  MimeOleGetAllocator @66
+  MimeOleGetCharsetInfo @70
+  MimeOleGetDefaultCharset @74
+  MimeOleGetInternat @79
+  MimeOleGetPropertySchema @82
+  MimeOleObjectFromMoniker @85
+  MimeOleSetCompatMode @101

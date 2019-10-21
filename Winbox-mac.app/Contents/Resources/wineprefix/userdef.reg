@@ -1,40 +1,40 @@
 WINE REGISTRY Version 2
 ;; All keys relative to \\User\\.Default
 
-#arch=win32
+#arch=win64
 
-[Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders] 1530567507
-#time=1d4124d02f1bb34
-"Administrative Tools"="C:\\users\\winbox\\Start Menu\\Programs\\Administrative Tools"
-"AppData"="C:\\users\\winbox\\Application Data"
-"Cache"="C:\\users\\winbox\\Local Settings\\Temporary Internet Files"
-"Cookies"="C:\\users\\winbox\\Cookies"
-"Desktop"="C:\\users\\winbox\\Desktop"
-"Favorites"="C:\\users\\winbox\\Favorites"
+[Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders] 1571212090
+#time=1d583f60ea61c10
+"Administrative Tools"="C:\\users\\Winbox\\Start Menu\\Programs\\Administrative Tools"
+"AppData"="C:\\users\\Winbox\\Application Data"
+"Cache"="C:\\users\\Winbox\\Local Settings\\Temporary Internet Files"
+"Cookies"="C:\\users\\Winbox\\Cookies"
+"Desktop"="C:\\users\\Winbox\\Desktop"
+"Favorites"="C:\\users\\Winbox\\Favorites"
 "Fonts"="C:\\windows\\Fonts"
-"History"="C:\\users\\winbox\\Local Settings\\History"
-"Local AppData"="C:\\users\\winbox\\Local Settings\\Application Data"
-"My Music"="C:\\users\\winbox\\My Music"
-"My Pictures"="C:\\users\\winbox\\My Pictures"
-"My Videos"="C:\\users\\winbox\\My Videos"
-"NetHood"="C:\\users\\winbox\\NetHood"
-"Personal"="C:\\users\\winbox\\My Documents"
-"PrintHood"="C:\\users\\winbox\\PrintHood"
-"Programs"="C:\\users\\winbox\\Start Menu\\Programs"
-"Recent"="C:\\users\\winbox\\Recent"
-"SendTo"="C:\\users\\winbox\\SendTo"
-"Start Menu"="C:\\users\\winbox\\Start Menu"
-"StartUp"="C:\\users\\winbox\\Start Menu\\Programs\\StartUp"
-"Templates"="C:\\users\\winbox\\Templates"
-"{374DE290-123F-4565-9164-39C4925E467B}"="C:\\users\\winbox\\Downloads"
-"{4C5C32FF-BB9D-43B0-B5B4-2D72E54EAAA4}"="C:\\users\\winbox\\Saved Games"
-"{56784854-C6CB-462B-8169-88E350ACB882}"="C:\\users\\winbox\\Contacts"
-"{7D1D3A04-DEBB-4115-95CF-2F29DA2920DA}"="C:\\users\\winbox\\Searches"
-"{A520A1A4-1780-4FF6-BD18-167343C5AF16}"="C:\\users\\winbox\\AppData\\LocalLow"
-"{BFB9D5E0-C6A9-404C-B2B2-AE6DB6AF4968}"="C:\\users\\winbox\\Links"
+"History"="C:\\users\\Winbox\\Local Settings\\History"
+"Local AppData"="C:\\users\\Winbox\\Local Settings\\Application Data"
+"My Music"="C:\\users\\Winbox\\My Music"
+"My Pictures"="C:\\users\\Winbox\\My Pictures"
+"My Videos"="C:\\users\\Winbox\\My Videos"
+"NetHood"="C:\\users\\Winbox\\NetHood"
+"Personal"="C:\\users\\Winbox\\My Documents"
+"PrintHood"="C:\\users\\Winbox\\PrintHood"
+"Programs"="C:\\users\\Winbox\\Start Menu\\Programs"
+"Recent"="C:\\users\\Winbox\\Recent"
+"SendTo"="C:\\users\\Winbox\\SendTo"
+"Start Menu"="C:\\users\\Winbox\\Start Menu"
+"StartUp"="C:\\users\\Winbox\\Start Menu\\Programs\\StartUp"
+"Templates"="C:\\users\\Winbox\\Templates"
+"{374DE290-123F-4565-9164-39C4925E467B}"="C:\\users\\Winbox\\Downloads"
+"{4C5C32FF-BB9D-43B0-B5B4-2D72E54EAAA4}"="C:\\users\\Winbox\\Saved Games"
+"{56784854-C6CB-462B-8169-88E350ACB882}"="C:\\users\\Winbox\\Contacts"
+"{7D1D3A04-DEBB-4115-95CF-2F29DA2920DA}"="C:\\users\\Winbox\\Searches"
+"{A520A1A4-1780-4FF6-BD18-167343C5AF16}"="C:\\users\\Winbox\\AppData\\LocalLow"
+"{BFB9D5E0-C6A9-404C-B2B2-AE6DB6AF4968}"="C:\\users\\Winbox\\Links"
 
-[Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders] 1530567507
-#time=1d4124d02f1aa68
+[Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders] 1571212090
+#time=1d583f60ea6025c
 "Administrative Tools"=str(2):"%USERPROFILE%\\Start Menu\\Programs\\Administrative Tools"
 "AppData"=str(2):"%USERPROFILE%\\Application Data"
 "Cache"=str(2):"%USERPROFILE%\\Local Settings\\Temporary Internet Files"

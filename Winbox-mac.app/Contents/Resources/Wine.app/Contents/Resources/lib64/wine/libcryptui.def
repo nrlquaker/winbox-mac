@@ -1,0 +1,18 @@
+; File generated automatically from dlls/cryptui/cryptui.spec; do not edit!
+
+LIBRARY cryptui.dll
+
+EXPORTS
+  CryptUIDlgCertMgr @2
+  CryptUIDlgSelectCertificateA @5
+  CryptUIDlgSelectCertificateFromStore @6
+  CryptUIDlgSelectCertificateW @7
+  CryptUIDlgSelectStoreA @8
+  CryptUIDlgSelectStoreW @9
+  CryptUIDlgViewCertificateA @14
+  CryptUIDlgViewCertificateW @17
+  CryptUIDlgViewContext @18
+  CryptUIDlgViewSignerInfoA @19
+  CryptUIWizDigitalSign @33
+  CryptUIWizExport @34
+  CryptUIWizImport @37

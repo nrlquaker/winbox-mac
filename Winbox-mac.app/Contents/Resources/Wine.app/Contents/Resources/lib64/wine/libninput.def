@@ -1,0 +1,12 @@
+; File generated automatically from dlls/ninput/ninput.spec; do not edit!
+
+LIBRARY ninput.dll
+
+EXPORTS
+  CreateInteractionContext @4
+  DestroyInteractionContext @5
+  GetPropertyInteractionContext @10
+  ProcessInertiaInteractionContext @13
+  RegisterOutputCallbackInteractionContext @15
+  SetInteractionConfigurationInteractionContext @20
+  SetPropertyInteractionContext @23

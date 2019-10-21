@@ -1,0 +1,16 @@
+; File generated automatically from dlls/dplayx/dplayx.spec; do not edit!
+
+LIBRARY dplayx.dll
+
+EXPORTS
+  DirectPlayCreate @1
+  DirectPlayEnumerateA @2
+  DirectPlayEnumerateW @3
+  DirectPlayLobbyCreateA @4
+  DirectPlayLobbyCreateW @5
+  gdwDPlaySPRefCount @6 DATA
+  DirectPlayEnumerate=DirectPlayEnumerateA @9
+  DllCanUnloadNow @7 PRIVATE
+  DllGetClassObject @8 PRIVATE
+  DllRegisterServer @10 PRIVATE
+  DllUnregisterServer @11 PRIVATE

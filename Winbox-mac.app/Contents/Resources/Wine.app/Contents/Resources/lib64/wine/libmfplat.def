@@ -1,0 +1,26 @@
+; File generated automatically from dlls/mfplat/mfplat.spec; do not edit!
+
+LIBRARY mfplat.dll
+
+EXPORTS
+  MFCopyImage @38
+  MFCreateAttributes @42
+  MFCreateEventQueue @45
+  MFCreateFile @46
+  MFCreateMFByteStreamOnStream @48
+  MFCreateMediaEvent @51
+  MFCreateMediaType @52
+  MFCreateMemoryBuffer @54
+  MFCreateSample @58
+  MFCreateSourceResolver @61
+  MFCreateStreamDescriptor @62
+  MFGetPluginControl @97
+  MFGetSystemTime @101
+  MFShutdown @134
+  MFStartup @135
+  MFTEnum @137
+  MFTEnumEx @138
+  MFTRegister @140
+  MFTRegisterLocal @141
+  MFTUnregister @143
+  MFTUnregisterLocal @144

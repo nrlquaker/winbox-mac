@@ -1,0 +1,32 @@
+; File generated automatically from dlls/rsaenh/rsaenh.spec; do not edit!
+
+LIBRARY rsaenh.dll
+
+EXPORTS
+  CPAcquireContext=RSAENH_CPAcquireContext @1
+  CPCreateHash=RSAENH_CPCreateHash @2
+  CPDecrypt=RSAENH_CPDecrypt @3
+  CPDeriveKey=RSAENH_CPDeriveKey @4
+  CPDestroyHash=RSAENH_CPDestroyHash @5
+  CPDestroyKey=RSAENH_CPDestroyKey @6
+  CPDuplicateHash=RSAENH_CPDuplicateHash @7
+  CPDuplicateKey=RSAENH_CPDuplicateKey @8
+  CPEncrypt=RSAENH_CPEncrypt @9
+  CPExportKey=RSAENH_CPExportKey @10
+  CPGenKey=RSAENH_CPGenKey @11
+  CPGenRandom=RSAENH_CPGenRandom @12
+  CPGetHashParam=RSAENH_CPGetHashParam @13
+  CPGetKeyParam=RSAENH_CPGetKeyParam @14
+  CPGetProvParam=RSAENH_CPGetProvParam @15
+  CPGetUserKey=RSAENH_CPGetUserKey @16
+  CPHashData=RSAENH_CPHashData @17
+  CPHashSessionKey=RSAENH_CPHashSessionKey @18
+  CPImportKey=RSAENH_CPImportKey @19
+  CPReleaseContext=RSAENH_CPReleaseContext @20
+  CPSetHashParam=RSAENH_CPSetHashParam @21
+  CPSetKeyParam=RSAENH_CPSetKeyParam @22
+  CPSetProvParam=RSAENH_CPSetProvParam @23
+  CPSignHash=RSAENH_CPSignHash @24
+  CPVerifySignature=RSAENH_CPVerifySignature @25
+  DllRegisterServer @26 PRIVATE
+  DllUnregisterServer @27 PRIVATE

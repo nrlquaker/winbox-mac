@@ -1,0 +1,10 @@
+; File generated automatically from dlls/mf/mf.spec; do not edit!
+
+LIBRARY mf.dll
+
+EXPORTS
+  MFCreateMediaSession @42
+  MFCreateSourceResolver=mfplat.MFCreateSourceResolver @60
+  MFCreateTopology @63
+  MFGetService @75
+  MFGetSupportedMimeTypes @76

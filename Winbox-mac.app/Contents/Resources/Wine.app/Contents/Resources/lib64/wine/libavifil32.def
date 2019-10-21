@@ -1,0 +1,84 @@
+; File generated automatically from dlls/avifil32/avifil32.spec; do not edit!
+
+LIBRARY avifil32.dll
+
+EXPORTS
+  AVIBuildFilter=AVIBuildFilterA @1
+  AVIBuildFilterA @2
+  AVIBuildFilterW @3
+  AVIClearClipboard @4
+  AVIFileAddRef @5
+  AVIFileCreateStream=AVIFileCreateStreamA @6
+  AVIFileCreateStreamA @7
+  AVIFileCreateStreamW @8
+  AVIFileEndRecord @9
+  AVIFileExit @10
+  AVIFileGetStream @11
+  AVIFileInfo=AVIFileInfoA @12
+  AVIFileInfoA @13
+  AVIFileInfoW @14
+  AVIFileInit @15
+  AVIFileOpen=AVIFileOpenA @16
+  AVIFileOpenA @17
+  AVIFileOpenW @18
+  AVIFileReadData @19
+  AVIFileRelease @20
+  AVIFileWriteData @21
+  AVIGetFromClipboard @22
+  AVIMakeCompressedStream @23
+  AVIMakeFileFromStreams @24
+  AVIMakeStreamFromClipboard @25
+  AVIPutFileOnClipboard @26
+  AVISave=AVISaveA @27
+  AVISaveA @28
+  AVISaveOptions @29
+  AVISaveOptionsFree @30
+  AVISaveV=AVISaveVA @31
+  AVISaveVA @32
+  AVISaveVW @33
+  AVISaveW @34
+  AVIStreamAddRef @35
+  AVIStreamBeginStreaming @36
+  AVIStreamCreate @37
+  AVIStreamEndStreaming @38
+  AVIStreamFindSample @39
+  AVIStreamGetFrame @40
+  AVIStreamGetFrameClose @41
+  AVIStreamGetFrameOpen @42
+  AVIStreamInfo=AVIStreamInfoA @43
+  AVIStreamInfoA @44
+  AVIStreamInfoW @45
+  AVIStreamLength @46
+  AVIStreamOpenFromFile=AVIStreamOpenFromFileA @47
+  AVIStreamOpenFromFileA @48
+  AVIStreamOpenFromFileW @49
+  AVIStreamRead @50
+  AVIStreamReadData @51
+  AVIStreamReadFormat @52
+  AVIStreamRelease @53
+  AVIStreamSampleToTime @54
+  AVIStreamSetFormat @55
+  AVIStreamStart @56
+  AVIStreamTimeToSample @57
+  AVIStreamWrite @58
+  AVIStreamWriteData @59
+  CLSID_AVISimpleUnMarshal @60 DATA
+  CreateEditableStream @61
+  DllCanUnloadNow @62 PRIVATE
+  DllGetClassObject @63 PRIVATE
+  DllRegisterServer @64 PRIVATE
+  DllUnregisterServer @65 PRIVATE
+  EditStreamClone @66
+  EditStreamCopy @67
+  EditStreamCut @68
+  EditStreamPaste @69
+  EditStreamSetInfo=EditStreamSetInfoA @70
+  EditStreamSetInfoA @71
+  EditStreamSetInfoW @72
+  EditStreamSetName=EditStreamSetNameA @73
+  EditStreamSetNameA @74
+  EditStreamSetNameW @75
+  IID_IAVIEditStream @76 DATA
+  IID_IAVIFile @77 DATA
+  IID_IAVIStream @78 DATA
+  IID_IGetFrame @79 DATA

@@ -1,0 +1,40 @@
+; File generated automatically from dlls/dnsapi/dnsapi.spec; do not edit!
+
+LIBRARY dnsapi.dll
+
+EXPORTS
+  DnsAcquireContextHandle_A @1
+  DnsAcquireContextHandle_UTF8 @2
+  DnsAcquireContextHandle_W @3
+  DnsExtractRecordsFromMessage_UTF8 @31
+  DnsExtractRecordsFromMessage_W @32
+  DnsFlushResolverCache @34
+  DnsFlushResolverCacheEntry_A @35
+  DnsFlushResolverCacheEntry_UTF8 @36
+  DnsFlushResolverCacheEntry_W @37
+  DnsFree @38
+  DnsModifyRecordsInSet_A @69
+  DnsModifyRecordsInSet_UTF8 @70
+  DnsModifyRecordsInSet_W @71
+  DnsNameCompare_A @72
+  DnsNameCompare_W @76
+  DnsQuery_A @80
+  DnsQueryConfig @81
+  DnsQueryEx @82
+  DnsQuery_UTF8 @83
+  DnsQuery_W @84
+  DnsRecordCompare @87
+  DnsRecordCopyEx @88
+  DnsRecordListFree @89
+  DnsRecordSetCompare @90
+  DnsRecordSetCopyEx @91
+  DnsRecordSetDetach @92
+  DnsReleaseContextHandle @98
+  DnsReplaceRecordSetA @100
+  DnsReplaceRecordSetUTF8 @102
+  DnsReplaceRecordSetW @104
+  DnsValidateName_A @121
+  DnsValidateName_UTF8 @122
+  DnsValidateName_W @123
+  DnsWriteQuestionToBuffer_UTF8 @127
+  DnsWriteQuestionToBuffer_W @128

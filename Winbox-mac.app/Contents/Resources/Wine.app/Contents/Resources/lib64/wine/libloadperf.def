@@ -1,0 +1,11 @@
+; File generated automatically from dlls/loadperf/loadperf.spec; do not edit!
+
+LIBRARY loadperf.dll
+
+EXPORTS
+  InstallPerfDllA @2
+  InstallPerfDllW @3
+  LoadPerfCounterTextStringsA @6
+  LoadPerfCounterTextStringsW @7
+  UnloadPerfCounterTextStringsA @11
+  UnloadPerfCounterTextStringsW @12

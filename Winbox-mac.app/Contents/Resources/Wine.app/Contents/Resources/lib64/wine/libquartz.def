@@ -1,0 +1,13 @@
+; File generated automatically from dlls/quartz/quartz.spec; do not edit!
+
+LIBRARY quartz.dll
+
+EXPORTS
+  AMGetErrorTextA @1
+  AMGetErrorTextW @2
+  AmpFactorToDB @3
+  DBToAmpFactor @4
+  DllCanUnloadNow @5 PRIVATE
+  DllGetClassObject @6 PRIVATE
+  DllRegisterServer @7 PRIVATE
+  DllUnregisterServer @8 PRIVATE

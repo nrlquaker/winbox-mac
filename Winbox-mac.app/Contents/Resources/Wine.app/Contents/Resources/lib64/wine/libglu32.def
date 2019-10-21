@@ -1,0 +1,58 @@
+; File generated automatically from dlls/glu32/glu32.spec; do not edit!
+
+LIBRARY glu32.dll
+
+EXPORTS
+  gluBeginCurve=wine_gluBeginCurve @1
+  gluBeginPolygon @2
+  gluBeginSurface=wine_gluBeginSurface @3
+  gluBeginTrim=wine_gluBeginTrim @4
+  gluBuild1DMipmaps @5
+  gluBuild2DMipmaps @6
+  gluCheckExtension=wine_gluCheckExtension @7
+  gluCylinder @8
+  gluDeleteNurbsRenderer=wine_gluDeleteNurbsRenderer @9
+  gluDeleteQuadric @10
+  gluDeleteTess @11
+  gluDisk @12
+  gluEndCurve=wine_gluEndCurve @13
+  gluEndPolygon @14
+  gluEndSurface=wine_gluEndSurface @15
+  gluEndTrim=wine_gluEndTrim @16
+  gluErrorString=wine_gluErrorString @17
+  gluErrorUnicodeStringEXT=wine_gluErrorUnicodeStringEXT @18
+  gluGetNurbsProperty=wine_gluGetNurbsProperty @19
+  gluGetString=wine_gluGetString @20
+  gluGetTessProperty @21
+  gluLoadSamplingMatrices=wine_gluLoadSamplingMatrices @22
+  gluLookAt @23
+  gluNewNurbsRenderer=wine_gluNewNurbsRenderer @24
+  gluNewQuadric @25
+  gluNewTess @26
+  gluNextContour @27
+  gluNurbsCallback=wine_gluNurbsCallback @28
+  gluNurbsCurve=wine_gluNurbsCurve @29
+  gluNurbsProperty=wine_gluNurbsProperty @30
+  gluNurbsSurface=wine_gluNurbsSurface @31
+  gluOrtho2D @32
+  gluPartialDisk @33
+  gluPerspective @34
+  gluPickMatrix @35
+  gluProject @36
+  gluPwlCurve=wine_gluPwlCurve @37
+  gluQuadricCallback @38
+  gluQuadricDrawStyle @39
+  gluQuadricNormals @40
+  gluQuadricOrientation @41
+  gluQuadricTexture @42
+  gluScaleImage @43
+  gluSphere @44
+  gluTessBeginContour @45
+  gluTessBeginPolygon @46
+  gluTessCallback @47
+  gluTessEndContour @48
+  gluTessEndPolygon @49
+  gluTessNormal @50
+  gluTessProperty @51
+  gluTessVertex @52
+  gluUnProject @53

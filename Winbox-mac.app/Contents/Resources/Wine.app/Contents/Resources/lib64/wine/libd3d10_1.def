@@ -1,0 +1,30 @@
+; File generated automatically from dlls/d3d10_1/d3d10_1.spec; do not edit!
+
+LIBRARY d3d10_1.dll
+
+EXPORTS
+  D3D10CompileEffectFromMemory=d3d10.D3D10CompileEffectFromMemory @2
+  D3D10CompileShader=d3d10.D3D10CompileShader @3
+  D3D10CreateBlob=d3d10.D3D10CreateBlob @4
+  D3D10CreateDevice1 @5
+  D3D10CreateDeviceAndSwapChain1 @6
+  D3D10CreateEffectFromMemory=d3d10.D3D10CreateEffectFromMemory @7
+  D3D10CreateEffectPoolFromMemory=d3d10.D3D10CreateEffectPoolFromMemory @8
+  D3D10CreateStateBlock=d3d10.D3D10CreateStateBlock @9
+  D3D10DisassembleShader=d3d10.D3D10DisassembleShader @11
+  D3D10GetGeometryShaderProfile=d3d10.D3D10GetGeometryShaderProfile @12
+  D3D10GetInputAndOutputSignatureBlob=d3d10.D3D10GetInputAndOutputSignatureBlob @13
+  D3D10GetInputSignatureBlob=d3d10.D3D10GetInputSignatureBlob @14
+  D3D10GetOutputSignatureBlob=d3d10.D3D10GetOutputSignatureBlob @15
+  D3D10GetPixelShaderProfile=d3d10.D3D10GetPixelShaderProfile @16
+  D3D10GetShaderDebugInfo=d3d10.D3D10GetShaderDebugInfo @17
+  D3D10GetVertexShaderProfile=d3d10.D3D10GetVertexShaderProfile @19
+  D3D10ReflectShader=d3d10.D3D10ReflectShader @21
+  D3D10StateBlockMaskDifference=d3d10.D3D10StateBlockMaskDifference @23
+  D3D10StateBlockMaskDisableAll=d3d10.D3D10StateBlockMaskDisableAll @24
+  D3D10StateBlockMaskDisableCapture=d3d10.D3D10StateBlockMaskDisableCapture @25
+  D3D10StateBlockMaskEnableAll=d3d10.D3D10StateBlockMaskEnableAll @26
+  D3D10StateBlockMaskEnableCapture=d3d10.D3D10StateBlockMaskEnableCapture @27
+  D3D10StateBlockMaskGetSetting=d3d10.D3D10StateBlockMaskGetSetting @28
+  D3D10StateBlockMaskIntersect=d3d10.D3D10StateBlockMaskIntersect @29
+  D3D10StateBlockMaskUnion=d3d10.D3D10StateBlockMaskUnion @30

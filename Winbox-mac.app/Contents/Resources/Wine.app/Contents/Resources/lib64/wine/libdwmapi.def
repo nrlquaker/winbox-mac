@@ -1,0 +1,29 @@
+; File generated automatically from dlls/dwmapi/dwmapi.spec; do not edit!
+
+LIBRARY dwmapi.dll
+
+EXPORTS
+  DwmEnableComposition @102
+  DwmpGetColorizationParameters @127 NONAME
+  DwmAttachMilContent @111
+  DwmDefWindowProc @116
+  DwmDetachMilContent @117
+  DwmEnableBlurBehindWindow @122
+  DwmEnableMMCSS @123
+  DwmExtendFrameIntoClientArea @149
+  DwmFlush @165
+  DwmGetColorizationColor @166
+  DwmGetCompositionTimingInfo @167
+  DwmGetGraphicsStreamClient @168
+  DwmGetGraphicsStreamTransformHint @169
+  DwmGetTransportAttributes @170
+  DwmGetWindowAttribute @171
+  DwmInvalidateIconicBitmaps @172
+  DwmIsCompositionEnabled @173
+  DwmRegisterThumbnail @176
+  DwmSetIconicLivePreviewBitmap @178
+  DwmSetIconicThumbnail @179
+  DwmSetPresentParameters @180
+  DwmSetWindowAttribute @181
+  DwmUnregisterThumbnail @182
+  DwmUpdateThumbnailProperties @183

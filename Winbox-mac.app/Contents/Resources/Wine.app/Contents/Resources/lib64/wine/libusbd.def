@@ -1,0 +1,16 @@
+; File generated automatically from dlls/usbd.sys/usbd.sys.spec; do not edit!
+
+LIBRARY usbd.sys
+
+EXPORTS
+  USBD_CreateConfigurationRequestEx @1
+  USBD_ParseConfigurationDescriptorEx @2
+  USBD_ParseDescriptors @3
+  USBD_CreateConfigurationRequest @7
+  _USBD_CreateConfigurationRequestEx@8=USBD_CreateConfigurationRequestEx @8
+  USBD_GetInterfaceLength @17
+  USBD_GetUSBDIVersion @21
+  USBD_ParseConfigurationDescriptor @24
+  _USBD_ParseConfigurationDescriptorEx@28=USBD_ParseConfigurationDescriptorEx @25
+  _USBD_ParseDescriptors@16=USBD_ParseDescriptors @26
+  USBD_ValidateConfigurationDescriptor @34

@@ -1,54 +1,25 @@
 #!/bin/bash
 
-
-
 BUNDLERESOURCEPATH="$(dirname "$0")/../Resources"
 
-
-
-#find wine, try in Bundle, ~/Applications, /Applications, Spotlight
-if [ -f "$BUNDLERESOURCEPATH/Wine.bundle/Contents/Resources/bin/wine" ]; then
-    export WINEUSRPATH="$BUNDLERESOURCEPATH/Wine.bundle/Contents/Resources"
-elif [ -f "$HOME/Applications/Wine.app/Contents/Resources/bin/wine" ]; then
-    export WINEUSRPATH="$HOME/Applications/Wine.app/Contents/Resources"
-elif [ -f "/Applications/Wine.app/Contents/Resources/bin/wine" ]; then
-    export WINEUSRPATH="/Applications/Wine.app/Contents/Resources"
-elif [ -f "$(mdfind 'kMDItemCFBundleIdentifier == org.kronenberg.Wine' | grep -m 1 'Wine.app')/Contents/Resources/bin/wine" ]; then
-    export WINEUSRPATH="$(mdfind 'kMDItemCFBundleIdentifier == org.kronenberg.Wine' | grep -m 1 'Wine.app')/Contents/Resources"
-else
-    echo "Wine not found!"
-    exit 1
+if [ -f "$BUNDLERESOURCEPATH/Wine.app/Contents/Resources/bin/wine64" ]; then
+    export WINEUSRPATH="$BUNDLERESOURCEPATH/Wine.app/Contents/Resources"
 fi
 
-
-
-# create working copy
-export WINEPREFIX="$HOME/Library/Application Support/com.mikrotik.winbox_156313927421589"
+export WINEPREFIX="$HOME/Library/Application Support/$(defaults read "$BUNDLERESOURCEPATH/../Info" CFBundleIdentifier)"
 if [ ! -d "$WINEPREFIX" ]; then
-    "$BUNDLERESOURCEPATH/Winetricks.app/Contents/MacOS/./Winetricks" "$BUNDLERESOURCEPATH/wineprefix" "$WINEPREFIX" "$(defaults read "$BUNDLERESOURCEPATH/../Info" CFBundleName)"
+    "$BUNDLERESOURCEPATH/Winetricks.app/Contents/MacOS/./Winetricks" "$BUNDLERESOURCEPATH/wineprefix" "$WINEPREFIX" "$(defaults read "$BUNDLERESOURCEPATH/../Info" CFBundleName)" "WINEARCH=win64"
 fi
-
-
-
-# exports (we keep X11 for fallback) fix new Freetype 2.7+ engine (https://bugs.winehq.org/show_bug.cgi?id=41639)
-export PATH="$WINEUSRPATH/bin":"$PATH"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH":"$WINEUSRPATH/lib":"/opt/X11/lib":"/usr/X11/lib"
-export DYLD_FALLBACK_LIBRARY_PATH="/usr/lib":"$WINEUSRPATH/lib":"/opt/X11/lib":"/usr/X11/lib"
-export WINEPATH="$WINEUSRPATH/bin"
-export FREETYPE_PROPERTIES="truetype:interpreter-version=35"
 
 #some default windows vars that might be missing ( http://ss64.com/nt/syntax-variables.html )
 [ -z "$COMPUTERNAME" ] && export COMPUTERNAME="$(/usr/sbin/scutil --get ComputerName)"
 
-# start wine and program, if possible in the programs root directory, change to forwardslashes
-BIN_FILE="$(sed 's|\\|/|g' <<< "$(defaults read "$BUNDLERESOURCEPATH/../Info" WineProgramPath)")"
+BIN_FILE="C:/winebottler/winbox64.exe"
 BIN_PATH="$BUNDLERESOURCEPATH/wineprefix/drive_c$(sed 's|C:||' <<< "$(dirname "$BIN_FILE")")"
 if [ -d "$BIN_PATH" ]; then
     cd "$BIN_PATH"
 fi
-if [ "$(defaults read "$BUNDLERESOURCEPATH/../Info" WineProgramArguments)" != "" ]; then
-"$WINEUSRPATH/bin/wine" "$BIN_FILE" $(defaults read "$BUNDLERESOURCEPATH/../Info" WineProgramArguments)
-else
-"$WINEUSRPATH/bin/wine" "$BIN_FILE"
-fi
 
+DYLD_FALLBACK_LIBRARY_PATH=/usr/X11/lib "$WINEUSRPATH/bin/wine64" "$BIN_FILE"
+
+"$WINEUSRPATH/bin/wine64" "$BIN_FILE"

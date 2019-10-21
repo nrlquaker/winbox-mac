@@ -1,0 +1,8 @@
+; File generated automatically from dlls/jsproxy/jsproxy.spec; do not edit!
+
+LIBRARY jsproxy.dll
+
+EXPORTS
+  InternetInitializeAutoProxyDll=JSPROXY_InternetInitializeAutoProxyDll @101
+  InternetDeInitializeAutoProxyDll @102
+  InternetGetProxyInfo @103

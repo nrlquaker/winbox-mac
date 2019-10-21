@@ -1,0 +1,10 @@
+; File generated automatically from dlls/xmllite/xmllite.spec; do not edit!
+
+LIBRARY xmllite.dll
+
+EXPORTS
+  CreateXmlReader @1
+  CreateXmlReaderInputWithEncodingName @3
+  CreateXmlWriter @4
+  CreateXmlWriterOutputWithEncodingCodePage @5
+  CreateXmlWriterOutputWithEncodingName @6
