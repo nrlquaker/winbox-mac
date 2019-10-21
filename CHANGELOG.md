@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.20
+
+- allow to filter by IPv6 addresses and prefixes;
+- build 64-bit Winbox as well (https://mt.lv/FeuQe);
+- do not leave files locked on computer when uploading files to router;
+- fixed problem where some fields were not shown for read only users;
+- fixed Winbox crash when copying multiple files between routers;
+- make Ctrl+A work in script fields and other multiline fields;
+- make DLL hijacking attack not work: Winbox will not look at the directory it resides in, when looking for system DLLs;
+- on update, Winbox will check that code is signed by MikroTik and not somebody else;
+- removed Drag and Drop support on 64-bit Winbox in Wine;
+- show system note at login.
+
+
 ## 3.19
 
 - fixed problem where Winbox could not login into RouterOS v6.45 (or later) router;
