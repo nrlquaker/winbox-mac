@@ -25,6 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
  - macOS version: [e.g. 10.14.5]
+ - macOS language [e.g. English, Russian, Chinese]
  - Winbox-mac version [e.g. 3.18]
  - Winbox version [e.g. 3.18]
 
