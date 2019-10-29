@@ -17,7 +17,7 @@ fi
 #some default windows vars that might be missing ( http://ss64.com/nt/syntax-variables.html )
 [ -z "$COMPUTERNAME" ] && export COMPUTERNAME="$(/usr/sbin/scutil --get ComputerName)"
 
-BIN_FILE="C:/winebottler/winbox64.exe"
+BIN_FILE="C:/winbox/winbox64.exe"
 BIN_PATH="$BUNDLERESOURCEPATH/wineprefix/drive_c$(sed 's|C:||' <<< "$(dirname "$BIN_FILE")")"
 if [ -d "$BIN_PATH" ]; then
     cd "$BIN_PATH"
