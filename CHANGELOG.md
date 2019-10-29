@@ -2,62 +2,47 @@
 
 ## 3.20
 
-- allow to filter by IPv6 addresses and prefixes;
-- build 64-bit Winbox as well (https://mikrotik.com/download);
-- do not leave files locked on computer when uploading files to router;
-- fixed problem where some fields were not shown for read only users;
-- fixed Winbox crash when copying multiple files between routers;
-- make Ctrl+A work in script fields and other multiline fields;
-- make DLL hijacking attack not work: Winbox will not look at the directory it resides in, when looking for system DLLs;
-- on update, Winbox will check that code is signed by MikroTik and not somebody else;
-- removed Drag and Drop support on 64-bit Winbox in Wine;
-- show system note at login.
+- update winbox to [3.20 64-bit](https://download.mikrotik.com/winbox/3.20/winbox64.exe);
+- package app manually instead of WineBottler;
+- use 64-bit Wine compiled by [Mike Kronenberg](http://winebottler.kronenberg.org/specifications). Remove a lot of unneeded for Winbox files to greatly reduce its size;
+- use 64-bit Wine prefix;
+- change icon to the new one provided by @luccaccine.
 
 ## 3.19
 
-- fixed problem where Winbox could not login into RouterOS v6.45 (or later) router;
-- fixed DHCP lease sorting by "last seen" column.
+- update winbox to [3.19](https://download2.mikrotik.com/routeros/winbox/3.19/winbox.exe).
+- add empty folders in prefix to repo;
+- change user to winbox in prefix and reg files;
+- use icon from [mriza/winbox-installer](https://github.com/mriza/winbox-installer/tree/master/icons). This fixes visual bugs of the old one in Mojave.
 
 ## 3.18
 
-- fixed problem where winbox could not login in RouterOS v6.43 router for some users.
+- update winbox to [3.18](https://download2.mikrotik.com/routeros/winbox/3.18/winbox.exe).
 
 ## 3.17
 
-- fixed sudden disconnects from router (introduced in v3.15).
+- update winbox to [3.17](https://download2.mikrotik.com/routeros/winbox/3.17/winbox.exe).
 
 ## 3.16
 
-- added back support for connecting to older RouterOS v6 versions;
-- fixed crash when connecting to newest RouterOS on MacOS wine.
+- update winbox to [3.16](https://download2.mikrotik.com/routeros/winbox/3.16/winbox.exe).
 
 ## 3.15
 
-- fixed problem where connecting through RoMON agent with incomplete package set not all menus were available on the target router;
-- fixed arrow keys in table filter fields;
-- when connected to romon agent mark session as romon one.
+- update winbox to [3.15](https://download2.mikrotik.com/routeros/winbox/3.15/winbox.exe).
 
 ## 3.14
 
-- added support for new style authentication and encryption for connections to RouterOS v6.43;
-- make all connections in secure mode (all data is encrypted with AES128-CBC-SHA);
-- make winbox self upgrade check .exe signature;
-- make up/down keys select previous/next entry in address/neighbors list in connect window while login name or password fields are in focus;
-- make mouse wheel work anywere in connect window if login or password fields are in focus;
-- remember Romon Neighbours Table column widths;
-- fixed problem where selected table items were moved to the top if the table filters dropdown button was clicked twice.
+- update winbox to [3.14](https://download2.mikrotik.com/routeros/winbox/3.14/winbox.exe).
 
 ## 3.13
 
-- abandoned support for connecting to older RouterOS versions (older than v6), no DLLs will ever be downloaded;
-- winbox.exe is now signed executable.
+- update winbox to [3.13](https://download2.mikrotik.com/routeros/winbox/3.13/winbox.exe).
+
+## 3.12-fix
+
+- add user folder to prefix. Without it it wasn't possible to save configuration.
 
 ## 3.12
 
-- added new menu entry - "Export Without Passwords";
-- make Enter start filtering in Connect window if some of the filters are changed instead of connecting to router;
-- do not keep old passwords if user unselected Keep-Password later;
-- make file copy & paste work between routers again;
-- make Enter key activate Connect if one of connect fields were active even when master password field has not been entered yet;
-- fixed Reconnect in RoMON mode with "Open In New Window" enabled;
-- other fixes.
+- update winbox to [3.12](https://download2.mikrotik.com/routeros/winbox/3.12/winbox.exe).
