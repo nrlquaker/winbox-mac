@@ -3,7 +3,7 @@
 ## 3.20
 
 - allow to filter by IPv6 addresses and prefixes;
-- build 64-bit Winbox as well (https://mt.lv/FeuQe);
+- build 64-bit Winbox as well (https://mikrotik.com/download);
 - do not leave files locked on computer when uploading files to router;
 - fixed problem where some fields were not shown for read only users;
 - fixed Winbox crash when copying multiple files between routers;
@@ -12,7 +12,6 @@
 - on update, Winbox will check that code is signed by MikroTik and not somebody else;
 - removed Drag and Drop support on 64-bit Winbox in Wine;
 - show system note at login.
-
 
 ## 3.19
 
