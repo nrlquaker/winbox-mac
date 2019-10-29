@@ -6,7 +6,7 @@
 - package app manually instead of WineBottler;
 - use 64-bit Wine compiled by [Mike Kronenberg](http://winebottler.kronenberg.org/specifications). Remove a lot of unneeded for Winbox files to greatly reduce its size;
 - use 64-bit Wine prefix;
-- change icon to the new one provided by @luccaccine.
+- change icon to the new one provided by [Lucas di Lucca](https://github.com/luccaccine).
 
 ## 3.19
 
