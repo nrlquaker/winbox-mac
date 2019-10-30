@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.20.1
+
+- new [versioning system](VERSIONING.md);
+- fix font rendering in some cases;
+- fix ability to run app on non English OS;
+- change winbox64.exe location from winebottler to winbox
+
 ## 3.20
 
 - update winbox to [3.20 64-bit](https://download.mikrotik.com/winbox/3.20/winbox64.exe);
