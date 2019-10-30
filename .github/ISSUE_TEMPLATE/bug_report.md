@@ -7,6 +7,13 @@ assignees: nrlquaker
 
 ---
 
+**Checklist**
+
+- [ ] I understand that [if I ignore these instructions, my issue may be closed without review](https://github.com/nrlquaker/winbox-mac#reporting-bugs).
+- [ ] I made sure this is not the original Winbox issue.
+- [ ] I made sure this is not a [known issue](https://github.com/nrlquaker/winbox-mac#known-issues).
+
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
