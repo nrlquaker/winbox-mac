@@ -12,6 +12,6 @@ Next time you see warning just click `Open` to not show it again.
 
 ![winbox-mac screenshot](unverified_developer/warning2.png)
 
-or Just issue the following command in Terminal:
+or just enter the following command in the terminal:
 
-`xattr -r -d com.apple.quarantine /Applications/Winbox-mac.app`
+`xattr -rd com.apple.quarantine /Applications/Winbox-mac.app`
