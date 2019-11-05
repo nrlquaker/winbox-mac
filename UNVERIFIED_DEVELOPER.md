@@ -1,6 +1,6 @@
 # Unverified developer warning
 
-If you want remove this warning
+If you want to remove this warning
 
 ![winbox-mac screenshot](unverified_developer/warning.png)
 
