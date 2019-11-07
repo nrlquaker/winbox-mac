@@ -34,18 +34,16 @@ But please check [Notes](#notes) how to transfer managed addresses.
 
 - This is not official [MikroTik](https://mikrotik.com) build and is not related to Mikrotik in any way.
 - Check [this document](UNVERIFIED_DEVELOPER.md) for instructions how to remove "`winbox64.exe` cannot be opened because the developer cannot be verified" warning message.
-- Managed addresses are saved to `~/Library/Application Support/com.mikrotik.winbox_$(id)`. The id is different for each version of the app. ~~So if you want to keep them after updating not with winbox inner updater, you have to save them in the old version using `Tools -> Export...` then load in the new one with `Tools -> Import...`.~~
-- To keep managed address between update just copy `Addresses.cdb`. For example to copy from Winbox-mac 3.19 to 3.20 run
-   ```sh
-   cp ~/Library/Application\ Support/com.mikrotik.winbox_156313927421589/drive_c/users/winbox/Application\ Data/Mikrotik/Winbox/Addresses.cdb ~/Library/Application\ Support/com.mikrotik.winbox_320/drive_c/users/`id -un`/Application Data/Mikrotik/Winbox
-   ```
+- Managed addresses are saved to different directory in each version of the app. So if you want to keep them after updating, you have to save them in the old version using `Tools -> Export...` then load in the new one with `Tools -> Import...`.
+- Managed addresses from the old version can be copied to new one with `winbox-mac-addresses`. Just run `winbox-mac-addresses version`. Version should be 3.20.1 or higher.
+
 ## Reporting bugs
 
 Please make sure that you are using [bug report template](https://github.com/nrlquaker/winbox-mac/issues/new?assignees=nrlquaker&labels=&template=bug_report.md&title=) and checklist is complete. Otherwise it may be closed without review.
 
 ## Known issues
 
-- Opening file browsing windows freezes `Winbox-mac`. Its [related](https://forum.mikrotik.com/viewtopic.php?f=2&t=152795&p=754827#p755159) to `Catalina` or `Wine64`.
+- Opening file browsing windows freezes `Winbox-mac`. Its related to  `Wine`. This issue is fixed in Wine Staging 4.18. Will wait till stable build is released and update Wine.
 
 ## Contributions are welcomed
 
