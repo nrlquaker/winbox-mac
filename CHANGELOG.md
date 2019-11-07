@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.20.2
+
+- add `winbox-mac-addresses`. Its a [simple script](https://github.com/nrlquaker/winbox-mac-addresses) for copying Winbox-mac managed addresses from old versions to current. Valid for versions `>= 3.20.1`.
+
 ## 3.20.1
 
 - new [versioning system](VERSIONING.md);
