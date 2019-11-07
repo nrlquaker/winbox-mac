@@ -1,0 +1,45 @@
+#!/bin/bash
+
+PlistBuddy="/usr/libexec/PlistBuddy"
+plist="Winbox-mac.app/Contents/Info.plist"
+app_name=$($PlistBuddy -c "Print:CFBundleName" $plist)
+version=$($PlistBuddy -c "Print:CFBundleVersion" $plist)
+dir="Releases/$version"
+
+# 2 is exit code for create-dmg when package is unsigned
+# https://github.com/sindresorhus/create-dmg/issues/24
+check_result() {
+  if [ $? -eq 0 ] || [ $? -eq 2 ]; then
+    printf " Done.\n"
+  else
+	rm $app_name.app/Contents/MacOS/winbox-mac-addresses
+    printf " Failed.\n"
+    exit 1
+  fi
+}
+
+printf "Creating release for version $version.\n"
+
+printf "Copying winbox-mac-addresses:"
+cp winbox-mac-addresses/winbox-mac-addresses $app_name.app/Contents/MacOS/
+check_result
+
+printf "Creating release directory ($dir):"
+mkdir -p $dir
+check_result
+
+printf "Creating zip:"
+zip -qyr9 "$dir/$app_name-$version.zip" $app_name.app
+check_result
+
+printf "Creating dmg:"
+create-dmg --overwrite $app_name.app "$dir" > /dev/null 2>&1
+check_result
+
+printf "Renaming dmg:"
+mv "$dir/$app_name $version.dmg" "$dir/$app_name-$version.dmg"
+check_result
+
+printf "Cleaning:"
+rm $app_name.app/Contents/MacOS/winbox-mac-addresses
+check_result
