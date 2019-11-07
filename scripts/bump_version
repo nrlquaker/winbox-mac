@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PlistBuddy="/usr/libexec/PlistBuddy"
+plist="Winbox-mac.app/Contents/Info.plist"
+bundle_id="com.mikrotik.winbox_"
+
+$PlistBuddy -c "Set:CFBundleIdentifier $bundle_id$1" $plist
+$PlistBuddy -c "Set:CFBundleVersion $1" $plist
+$PlistBuddy -c "Set:CFBundleShortVersionString $1" $plist
