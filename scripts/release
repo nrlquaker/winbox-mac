@@ -12,7 +12,7 @@ check_result() {
   if [ "$1" == "0" ] || [ "$1" == "2" ]; then
     printf " Done.\n"
   else
-	rm $app_name.app/Contents/MacOS/winbox-mac-addresses
+    rm $app_name.app/Contents/MacOS/winbox-mac-addresses
     printf " Failed.\n"
     exit 1
   fi
