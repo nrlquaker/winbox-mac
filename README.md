@@ -35,7 +35,7 @@ But please check [Notes](#notes) how to transfer managed addresses.
 - This is not official [MikroTik](https://mikrotik.com) build and is not related to Mikrotik in any way.
 - Check [this document](UNVERIFIED_DEVELOPER.md) for instructions how to remove "`winbox64.exe` cannot be opened because the developer cannot be verified" warning message.
 - Managed addresses are saved to different directory in each version of the app. So if you want to keep them after updating, you have to save them in the old version using `Tools -> Export...` then load in the new one with `Tools -> Import...`.
-- Managed addresses from the old version can be copied to new one with `winbox-mac-addresses`. Just run `winbox-mac-addresses version`. Version should be 3.20.1 or higher.
+- Managed addresses from the old version can be copied to new one with [winbox-mac-addresses](https://github.com/nrlquaker/winbox-mac-addresses). Just run `winbox-mac-addresses version`. Version should be 3.20.1 or higher.
 
 ## Reporting bugs
 
