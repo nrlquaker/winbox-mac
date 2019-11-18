@@ -5,13 +5,13 @@ export FREETYPE_PROPERTIES="truetype:interpreter-version=35"
 
 BUNDLERESOURCEPATH="$(dirname "$0")/../Resources"
 
-if [ -f "$BUNDLERESOURCEPATH/Wine.app/Contents/Resources/bin/wine64" ]; then
-    export WINEUSRPATH="$BUNDLERESOURCEPATH/Wine.app/Contents/Resources"
+if [ -f "$BUNDLERESOURCEPATH/wine/bin/wine64" ]; then
+    export WINEUSRPATH="$BUNDLERESOURCEPATH/wine"
 fi
 
 export WINEPREFIX="$HOME/Library/Application Support/$(defaults read "$BUNDLERESOURCEPATH/../Info" CFBundleIdentifier)"
 if [ ! -d "$WINEPREFIX" ]; then
-    "$BUNDLERESOURCEPATH/Winetricks.app/Contents/MacOS/./Winetricks" "$BUNDLERESOURCEPATH/wineprefix" "$WINEPREFIX" "$(defaults read "$BUNDLERESOURCEPATH/../Info" CFBundleName)" "WINEARCH=win64"
+	cp -R "$BUNDLERESOURCEPATH/wineprefix/." "$WINEPREFIX"
 fi
 
 #some default windows vars that might be missing ( http://ss64.com/nt/syntax-variables.html )
