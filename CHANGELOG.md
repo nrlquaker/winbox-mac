@@ -1,6 +1,6 @@
 # Changelog
 
-##3.20.3
+## 3.20.3
 
 - remove `Winetricks.app` and just copy wineprefix to `Application Support`.
 
