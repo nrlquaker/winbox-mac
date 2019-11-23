@@ -11,7 +11,7 @@ fi
 
 export WINEPREFIX="$HOME/Library/Application Support/$(defaults read "$BUNDLERESOURCEPATH/../Info" CFBundleIdentifier)"
 if [ ! -d "$WINEPREFIX" ]; then
-	cp -R "$BUNDLERESOURCEPATH/wineprefix/." "$WINEPREFIX"
+    cp -R "$BUNDLERESOURCEPATH/wineprefix/." "$WINEPREFIX"
 fi
 
 #some default windows vars that might be missing ( http://ss64.com/nt/syntax-variables.html )
