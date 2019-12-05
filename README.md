@@ -60,4 +60,4 @@ There are two changelogs in this project. [One](CHANGELOG.md) related to `Winbox
 
 ## License
 
-winbox-mac is released under the [MIT License](https://github.com/nrlquaker/nfov/blob/master/LICENSE)
+winbox-mac is released under the [MIT License](https://github.com/nrlquaker/winbox-mac/blob/master/LICENSE)
