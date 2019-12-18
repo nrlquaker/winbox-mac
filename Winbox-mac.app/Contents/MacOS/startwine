@@ -9,9 +9,11 @@ if [ -f "$BUNDLERESOURCEPATH/wine/bin/wine64" ]; then
     export WINEUSRPATH="$BUNDLERESOURCEPATH/wine"
 fi
 
-export WINEPREFIX="$HOME/Library/Application Support/$(defaults read "$BUNDLERESOURCEPATH/../Info" CFBundleIdentifier)"
+BUNDLE_VER="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/../Info.plist" | sed -n "s/.*<string>\(.*\)<\/string>.*/\1/p")"
+export WINEPREFIX="$HOME/Library/Application Support/${BUNDLE_VER}"
 if [ ! -d "$WINEPREFIX" ]; then
-    cp -R "$BUNDLERESOURCEPATH/wineprefix/." "$WINEPREFIX"
+	cp -R "$BUNDLERESOURCEPATH/wineprefix/." "$WINEPREFIX"
+	xattr -rd com.apple.quarantine "$WINEPREFIX"
 fi
 
 #some default windows vars that might be missing ( http://ss64.com/nt/syntax-variables.html )
