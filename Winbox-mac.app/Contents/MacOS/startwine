@@ -9,7 +9,9 @@ if [ -f "$BUNDLERESOURCEPATH/wine/bin/wine64" ]; then
     export WINEUSRPATH="$BUNDLERESOURCEPATH/wine"
 fi
 
-export WINEPREFIX="$HOME/Library/Application Support/$(defaults read "$BUNDLERESOURCEPATH/../Info" CFBundleIdentifier)"
+PLUTIL_REGEX="s/.*<string>\(.*\)<\/string>.*/\1/p"
+CURRENT_VER="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/../Info.plist" | sed -n "$PLUTIL_REGEX")"
+export WINEPREFIX="$HOME/Library/Application Support/${CURRENT_VER}"
 if [ ! -d "$WINEPREFIX" ]; then
     cp -R "$BUNDLERESOURCEPATH/wineprefix/." "$WINEPREFIX"
 fi
