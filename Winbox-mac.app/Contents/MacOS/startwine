@@ -14,6 +14,7 @@ CURRENT_VER="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH
 export WINEPREFIX="$HOME/Library/Application Support/${CURRENT_VER}"
 if [ ! -d "$WINEPREFIX" ]; then
     cp -R "$BUNDLERESOURCEPATH/wineprefix/." "$WINEPREFIX"
+    xattr -rd com.apple.quarantine "$WINEPREFIX"
 fi
 
 #some default windows vars that might be missing ( http://ss64.com/nt/syntax-variables.html )
