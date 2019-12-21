@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.20.4
+
+- use plutil instead of defaults ;
+- remove quarantine flag from Application Support folder;
+- update `winbox-mac-addresses` to `0.1.1`.
+
 ## 3.20.3
 
 - remove `Winetricks.app` and just copy wineprefix to `Application Support`.
