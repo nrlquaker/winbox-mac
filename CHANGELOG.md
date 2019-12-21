@@ -2,7 +2,7 @@
 
 ## 3.20.4
 
-- use plutil instead of defaults ;
+- use plutil instead of defaults;
 - remove quarantine flag from Application Support folder;
 - update `winbox-mac-addresses` to `0.1.1`.
 
