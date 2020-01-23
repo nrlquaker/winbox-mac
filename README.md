@@ -52,7 +52,7 @@ Please check [versioning](VERSIONING.md) for versioning scheme explanation.
 
 ## Changelog
 
-There are two changelogs in this project. [One](CHANGELOG.md) related to `Winbox-mac`, the [other one](CHANGELOG_WINBOX.md) is for original Winbox.
+There are two changelogs in this project. [One](CHANGELOG.md) related to `Winbox-mac`, the [other one](CHANGELOG_WINBOX.md) is for original `Winbox`.
 
 ## License
 
