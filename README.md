@@ -19,8 +19,6 @@ Can be easily installed with [Homebrew Cask](https://caskroom.github.io):
 brew cask install nrlquaker-winbox
 ```
 
-There are two dependencies: [Freetype](https://www.freetype.org/index.html) and [XQuartz](https://www.xquartz.org). Installing with `brew cask` installs them automatically.
-
 ## Update
 
 Recommended way to update is to use [Homebrew Cask](https://caskroom.github.io):
