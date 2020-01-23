@@ -4,6 +4,7 @@
 
 - update `winbox-mac-addresses` to `0.2.0`;
 - update `Wine` to `stable 5.0`;
+- Remove `Freetype` and `xQuartz` dependencies;
 - fix issue that app opens again after closing main window.
 
 ## 3.20.4
