@@ -1,0 +1,9 @@
+; File generated automatically from ../wine/dlls/atlthunk/atlthunk.spec; do not edit!
+
+LIBRARY atlthunk.dll
+
+EXPORTS
+  AtlThunk_AllocateData @1
+  AtlThunk_DataToCode @2
+  AtlThunk_FreeData @3
+  AtlThunk_InitData @4

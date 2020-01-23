@@ -1,4 +1,4 @@
-; File generated automatically from dlls/xinput1_3/xinput1_3.spec; do not edit!
+; File generated automatically from ../wine/dlls/xinput1_3/xinput1_3.spec; do not edit!
 
 LIBRARY xinput1_3.dll
 

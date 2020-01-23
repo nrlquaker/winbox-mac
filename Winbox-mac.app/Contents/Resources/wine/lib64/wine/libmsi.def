@@ -1,4 +1,4 @@
-; File generated automatically from dlls/msi/msi.spec; do not edit!
+; File generated automatically from ../wine/dlls/msi/msi.spec; do not edit!
 
 LIBRARY msi.dll
 
@@ -10,6 +10,8 @@ EXPORTS
   MsiCollectUserInfoA @9
   MsiCollectUserInfoW @10
   MsiConfigureFeatureA @11
+  MsiConfigureFeatureFromDescriptorA @12 PRIVATE
+  MsiConfigureFeatureFromDescriptorW @13 PRIVATE
   MsiConfigureFeatureW @14
   MsiConfigureProductA @15
   MsiConfigureProductW @16
@@ -64,6 +66,8 @@ EXPORTS
   MsiGetProductCodeA @65
   MsiGetProductCodeW @66
   MsiGetProductInfoA @67
+  MsiGetProductInfoFromScriptA @68 PRIVATE
+  MsiGetProductInfoFromScriptW @69 PRIVATE
   MsiGetProductInfoW @70
   MsiGetProductPropertyA @71
   MsiGetProductPropertyW @72
@@ -79,6 +83,8 @@ EXPORTS
   MsiGetUserInfoW @82
   MsiInstallMissingComponentA @83
   MsiInstallMissingComponentW @84
+  MsiInstallMissingFileA @85 PRIVATE
+  MsiInstallMissingFileW @86 PRIVATE
   MsiInstallProductA @87
   MsiInstallProductW @88
   MsiLocateComponentA @89
@@ -93,6 +99,8 @@ EXPORTS
   MsiPreviewBillboardW @98
   MsiPreviewDialogA @99
   MsiPreviewDialogW @100
+  MsiProcessAdvertiseScriptA @101 PRIVATE
+  MsiProcessAdvertiseScriptW @102 PRIVATE
   MsiProcessMessage @103
   MsiProvideComponentA @104
   MsiProvideComponentFromDescriptorA @105
@@ -117,6 +125,8 @@ EXPORTS
   MsiRecordSetStringA @124
   MsiRecordSetStringW @125
   MsiReinstallFeatureA @126
+  MsiReinstallFeatureFromDescriptorA @127 PRIVATE
+  MsiReinstallFeatureFromDescriptorW @128 PRIVATE
   MsiReinstallFeatureW @129
   MsiReinstallProductA @130
   MsiReinstallProductW @131
@@ -130,6 +140,7 @@ EXPORTS
   MsiSetFeatureStateW @139
   MsiSetInstallLevel @140
   MsiSetInternalUI @141
+  MsiVerifyDiskSpace @142 PRIVATE
   MsiSetMode @143
   MsiSetPropertyA @144
   MsiSetPropertyW @145
@@ -170,10 +181,15 @@ EXPORTS
   MsiEnumPatchesA @180
   MsiEnumPatchesW @181
   DllGetVersion @182 PRIVATE
+  MsiGetProductCodeFromPackageCodeA @183 PRIVATE
+  MsiGetProductCodeFromPackageCodeW @184 PRIVATE
   MsiCreateTransformSummaryInfoA @185
   MsiCreateTransformSummaryInfoW @186
+  MsiQueryFeatureStateFromDescriptorA @187 PRIVATE
+  MsiQueryFeatureStateFromDescriptorW @188 PRIVATE
   MsiConfigureProductExA @189
   MsiConfigureProductExW @190
+  MsiInvalidateFeatureCache @191 PRIVATE
   MsiUseFeatureExA @192
   MsiUseFeatureExW @193
   MsiGetFileVersionA @194
@@ -194,6 +210,8 @@ EXPORTS
   MsiSourceListClearAllW @209
   MsiSourceListAddSourceA @210
   MsiSourceListAddSourceW @211
+  MsiSourceListForceResolutionA @212
+  MsiSourceListForceResolutionW @213
   MsiIsProductElevatedA @214
   MsiIsProductElevatedW @215
   MsiGetShortcutTargetA @216
@@ -209,13 +227,20 @@ EXPORTS
   MsiProvideAssemblyW @226
   MsiAdvertiseProductExA @227
   MsiAdvertiseProductExW @228
+  MsiNotifySidChangeA @229 PRIVATE
+  MsiNotifySidChangeW @230 PRIVATE
   MsiOpenPackageExA @231
   MsiOpenPackageExW @232
+  MsiDeleteUserDataA @233 PRIVATE
+  MsiDeleteUserDataW @234 PRIVATE
+  Migrate10CachedPackagesA @235 PRIVATE
   Migrate10CachedPackagesW @236
   MsiRemovePatchesA @237
   MsiRemovePatchesW @238
   MsiApplyMultiplePatchesA @239
   MsiApplyMultiplePatchesW @240
+  MsiExtractPatchXMLDataA @241 PRIVATE
+  MsiExtractPatchXMLDataW @242 PRIVATE
   MsiGetPatchInfoExA @243
   MsiGetPatchInfoExW @244
   MsiEnumProductsExA @245
@@ -234,6 +259,8 @@ EXPORTS
   MsiSourceListClearSourceW @258
   MsiSourceListClearAllExA @259
   MsiSourceListClearAllExW @260
+  MsiSourceListForceResolutionExA @261 PRIVATE
+  MsiSourceListForceResolutionExW @262 PRIVATE
   MsiSourceListEnumSourcesA @263
   MsiSourceListEnumSourcesW @264
   MsiSourceListGetInfoA @265
@@ -246,6 +273,8 @@ EXPORTS
   MsiSourceListEnumMediaDisksW @272
   MsiSourceListAddMediaDiskA @273
   MsiSourceListAddMediaDiskW @274
+  MsiSourceListClearMediaDiskA @275 PRIVATE
+  MsiSourceListClearMediaDiskW @276 PRIVATE
   MsiDetermineApplicablePatchesA @277
   MsiDetermineApplicablePatchesW @278
   MsiMessageBoxExA @279
@@ -257,12 +286,14 @@ EXPORTS
   MsiBeginTransactionW @285
   MsiEndTransaction @286
   MsiJoinTransaction @287
+  MsiSetOfflineContextW @288 PRIVATE
   MsiEnumComponentsExA @289
   MsiEnumComponentsExW @290
   MsiEnumClientsExA @291
   MsiEnumClientsExW @292
   MsiGetComponentPathExA @293
   MsiGetComponentPathExW @294
+  QueryInstanceCount @295 PRIVATE
   DllCanUnloadNow @296 PRIVATE
   DllGetClassObject @297 PRIVATE
   DllRegisterServer @298 PRIVATE

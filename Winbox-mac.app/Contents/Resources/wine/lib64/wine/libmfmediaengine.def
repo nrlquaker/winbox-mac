@@ -1,0 +1,8 @@
+; File generated automatically from ../wine/dlls/mfmediaengine/mfmediaengine.spec; do not edit!
+
+LIBRARY mfmediaengine.dll
+
+EXPORTS
+  DllCanUnloadNow @1 PRIVATE
+  DllGetActivationFactory @2 PRIVATE
+  DllGetClassObject @3 PRIVATE

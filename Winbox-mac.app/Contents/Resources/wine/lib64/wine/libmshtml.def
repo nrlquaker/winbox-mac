@@ -1,15 +1,20 @@
-; File generated automatically from dlls/mshtml/mshtml.spec; do not edit!
+; File generated automatically from ../wine/dlls/mshtml/mshtml.spec; do not edit!
 
 LIBRARY mshtml.dll
 
 EXPORTS
+  CreateHTMLPropertyPage @1 PRIVATE
   DllCanUnloadNow @2 PRIVATE
+  DllEnumClassObjects @3 PRIVATE
   DllGetClassObject @4 PRIVATE
   DllInstall @5 PRIVATE
   DllRegisterServer @6 PRIVATE
   DllUnregisterServer @7 PRIVATE
+  MatchExactGetIDsOfNames @8 PRIVATE
   PrintHTML @9
   RNIGetCompatibleVersion @10
   RunHTMLApplication @11
   ShowHTMLDialog @12
+  ShowModalDialog @13 PRIVATE
+  ShowModelessHTMLDialog @14 PRIVATE
   NP_GetEntryPoints @15

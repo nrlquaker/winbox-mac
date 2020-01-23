@@ -1,4 +1,4 @@
-; File generated automatically from dlls/msimg32/msimg32.spec; do not edit!
+; File generated automatically from ../wine/dlls/msimg32/msimg32.spec; do not edit!
 
 LIBRARY msimg32.dll
 

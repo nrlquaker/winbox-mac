@@ -1,11 +1,19 @@
-; File generated automatically from dlls/loadperf/loadperf.spec; do not edit!
+; File generated automatically from ../wine/dlls/loadperf/loadperf.spec; do not edit!
 
 LIBRARY loadperf.dll
 
 EXPORTS
+  BackupPerfRegistryToFileW @1 PRIVATE
   InstallPerfDllA @2
   InstallPerfDllW @3
+  LoadMofFromInstalledServiceA @4 PRIVATE
+  LoadMofFromInstalledServiceW @5 PRIVATE
   LoadPerfCounterTextStringsA @6
   LoadPerfCounterTextStringsW @7
+  RestorePerfRegistryFromFileW @8 PRIVATE
+  SetServiceAsTrustedA @9 PRIVATE
+  SetServiceAsTrustedW @10 PRIVATE
   UnloadPerfCounterTextStringsA @11
   UnloadPerfCounterTextStringsW @12
+  UpdatePerfNameFilesA @13 PRIVATE
+  UpdatePerfNameFilesW @14 PRIVATE

@@ -1,4 +1,4 @@
-; File generated automatically from dlls/crypt32/crypt32.spec; do not edit!
+; File generated automatically from ../wine/dlls/crypt32/crypt32.spec; do not edit!
 
 LIBRARY crypt32.dll
 
@@ -52,6 +52,7 @@ EXPORTS
   CertFindChainInStore @47
   CertFindExtension @48
   CertFindRDNAttr @49
+  CertFindSubjectInCTL @50 PRIVATE
   CertFreeCRLContext @51
   CertFreeCTLContext @52
   CertFreeCertificateChain @53
@@ -111,12 +112,20 @@ EXPORTS
   CryptAcquireContextU=advapi32.CryptAcquireContextW @107
   CryptBinaryToStringA @108
   CryptBinaryToStringW @109
+  CryptCloseAsyncHandle @110 PRIVATE
+  CryptCreateAsyncHandle @111 PRIVATE
+  CryptDecodeMessage @112 PRIVATE
   CryptDecodeObject @113
   CryptDecodeObjectEx @114
+  CryptDecryptAndVerifyMessageSignature @115 PRIVATE
+  CryptDecryptMessage @116 PRIVATE
   CryptEncodeObject @117
   CryptEncodeObjectEx @118
   CryptEncryptMessage @119
+  CryptEnumOIDFunction @120 PRIVATE
   CryptEnumOIDInfo @121
+  CryptEnumProvidersU @122 PRIVATE
+  CryptExportPKCS8 @123 PRIVATE
   CryptExportPublicKeyInfo @124
   CryptExportPublicKeyInfoEx @125
   CryptFindCertificateKeyProvInfo @126
@@ -124,6 +133,7 @@ EXPORTS
   CryptFindOIDInfo @128
   CryptFormatObject @129
   CryptFreeOIDFunctionAddress @130
+  CryptGetAsyncParam @131 PRIVATE
   CryptGetDefaultOIDDllList @132
   CryptGetDefaultOIDFunctionAddress @133
   CryptGetMessageCertificates @134
@@ -131,84 +141,111 @@ EXPORTS
   CryptGetOIDFunctionAddress @136
   CryptGetOIDFunctionValue @137
   CryptHashCertificate @138
-  CryptHashMessage @139
-  CryptHashPublicKeyInfo @140
-  CryptHashToBeSigned @141
-  CryptImportPublicKeyInfo @143
-  CryptImportPublicKeyInfoEx @144
-  CryptInitOIDFunctionSet @145
-  CryptInstallOIDFunctionAddress @146
-  CryptMemAlloc @148
-  CryptMemFree @149
-  CryptMemRealloc @150
-  CryptMsgClose @152
-  CryptMsgControl @153
-  CryptMsgDuplicate @156
-  CryptMsgEncodeAndSignCTL @157
-  CryptMsgGetAndVerifySigner @158
-  CryptMsgGetParam @159
-  CryptMsgOpenToDecode @160
-  CryptMsgOpenToEncode @161
-  CryptMsgSignCTL @162
-  CryptMsgUpdate @163
-  CryptMsgVerifyCountersignatureEncoded @164
-  CryptMsgVerifyCountersignatureEncodedEx @165
-  CryptProtectData @166
-  CryptProtectMemory @167
-  CryptQueryObject @168
-  CryptRegisterDefaultOIDFunction @169
-  CryptRegisterOIDFunction @170
-  CryptRegisterOIDInfo @171
-  CryptSIPAddProvider @172
-  CryptSIPCreateIndirectData @173
-  CryptSIPGetSignedDataMsg @174
-  CryptSIPLoad @175
-  CryptSIPPutSignedDataMsg @176
-  CryptSIPRemoveProvider @177
-  CryptSIPRemoveSignedDataMsg @178
-  CryptSIPRetrieveSubjectGuid @179
-  CryptSIPRetrieveSubjectGuidForCatalogFile @180
-  CryptSIPVerifyIndirectData @181
-  CryptSetKeyIdentifierProperty @183
-  CryptSetOIDFunctionValue @184
-  CryptSignAndEncodeCertificate @186
-  CryptSignCertificate @188
-  CryptSignMessage @190
-  CryptStringToBinaryA @192
-  CryptStringToBinaryW @193
-  CryptUnprotectData @194
-  CryptUnprotectMemory @195
-  CryptUnregisterDefaultOIDFunction @196
-  CryptUnregisterOIDFunction @197
-  CryptUnregisterOIDInfo @198
-  CryptVerifyCertificateSignature @199
-  CryptVerifyCertificateSignatureEx @200
-  CryptVerifyDetachedMessageHash @201
-  CryptVerifyDetachedMessageSignature @202
-  CryptVerifyMessageHash @203
-  CryptVerifyMessageSignature @204
-  I_CertUpdateStore @207
-  I_CryptAllocTls @208
-  I_CryptCreateLruCache @209
-  I_CryptCreateLruEntry @210
-  I_CryptDetachTls @211
-  I_CryptFindLruEntry @212
-  I_CryptFindLruEntryData @213
-  I_CryptFlushLruCache @214
-  I_CryptFreeLruCache @215
-  I_CryptFreeTls @216
-  I_CryptGetAsn1Decoder @217
-  I_CryptGetAsn1Encoder @218
-  I_CryptGetDefaultCryptProv @219
-  I_CryptGetOssGlobal @221
-  I_CryptGetTls @222
-  I_CryptInstallAsn1Module @224
-  I_CryptInstallOssGlobal @225
-  I_CryptReadTrustedPublisherDWORDValueFromRegistry @226
-  I_CryptSetTls @228
-  I_CryptUninstallAsn1Module @229
-  PFXExportCertStore @231
-  PFXExportCertStoreEx @232
-  PFXImportCertStore @233
-  PFXIsPFXBlob @234
-  PFXVerifyPassword @235
+  CryptHashCertificate2 @139
+  CryptHashMessage @140
+  CryptHashPublicKeyInfo @141
+  CryptHashToBeSigned @142
+  CryptImportPKCS8 @143 PRIVATE
+  CryptImportPublicKeyInfo @144
+  CryptImportPublicKeyInfoEx @145
+  CryptImportPublicKeyInfoEx2 @146
+  CryptInitOIDFunctionSet @147
+  CryptInstallOIDFunctionAddress @148
+  CryptLoadSip @149 PRIVATE
+  CryptMemAlloc @150
+  CryptMemFree @151
+  CryptMemRealloc @152
+  CryptMsgCalculateEncodedLength @153 PRIVATE
+  CryptMsgClose @154
+  CryptMsgControl @155
+  CryptMsgCountersign @156 PRIVATE
+  CryptMsgCountersignEncoded @157 PRIVATE
+  CryptMsgDuplicate @158
+  CryptMsgEncodeAndSignCTL @159
+  CryptMsgGetAndVerifySigner @160
+  CryptMsgGetParam @161
+  CryptMsgOpenToDecode @162
+  CryptMsgOpenToEncode @163
+  CryptMsgSignCTL @164
+  CryptMsgUpdate @165
+  CryptMsgVerifyCountersignatureEncoded @166
+  CryptMsgVerifyCountersignatureEncodedEx @167
+  CryptProtectData @168
+  CryptProtectMemory @169
+  CryptQueryObject @170
+  CryptRegisterDefaultOIDFunction @171
+  CryptRegisterOIDFunction @172
+  CryptRegisterOIDInfo @173
+  CryptSIPAddProvider @174
+  CryptSIPCreateIndirectData @175
+  CryptSIPGetSignedDataMsg @176
+  CryptSIPLoad @177
+  CryptSIPPutSignedDataMsg @178
+  CryptSIPRemoveProvider @179
+  CryptSIPRemoveSignedDataMsg @180
+  CryptSIPRetrieveSubjectGuid @181
+  CryptSIPRetrieveSubjectGuidForCatalogFile @182
+  CryptSIPVerifyIndirectData @183
+  CryptSetAsyncParam @184 PRIVATE
+  CryptSetKeyIdentifierProperty @185
+  CryptSetOIDFunctionValue @186
+  CryptSetProviderU @187 PRIVATE
+  CryptSignAndEncodeCertificate @188
+  CryptSignAndEncryptMessage @189 PRIVATE
+  CryptSignCertificate @190
+  CryptSignHashU @191 PRIVATE
+  CryptSignMessage @192
+  CryptSignMessageWithKey @193 PRIVATE
+  CryptStringToBinaryA @194
+  CryptStringToBinaryW @195
+  CryptUnprotectData @196
+  CryptUnprotectMemory @197
+  CryptUnregisterDefaultOIDFunction @198
+  CryptUnregisterOIDFunction @199
+  CryptUnregisterOIDInfo @200
+  CryptVerifyCertificateSignature @201
+  CryptVerifyCertificateSignatureEx @202
+  CryptVerifyDetachedMessageHash @203
+  CryptVerifyDetachedMessageSignature @204
+  CryptVerifyMessageHash @205
+  CryptVerifyMessageSignature @206
+  CryptVerifyMessageSignatureWithKey @207 PRIVATE
+  CryptVerifySignatureU @208 PRIVATE
+  I_CertUpdateStore @209
+  I_CryptAllocTls @210
+  I_CryptCreateLruCache @211
+  I_CryptCreateLruEntry @212
+  I_CryptDetachTls @213
+  I_CryptFindLruEntry @214
+  I_CryptFindLruEntryData @215
+  I_CryptFlushLruCache @216
+  I_CryptFreeLruCache @217
+  I_CryptFreeTls @218
+  I_CryptGetAsn1Decoder @219
+  I_CryptGetAsn1Encoder @220
+  I_CryptGetDefaultCryptProv @221
+  I_CryptGetDefaultCryptProvForEncrypt @222 PRIVATE
+  I_CryptGetOssGlobal @223
+  I_CryptGetTls @224
+  I_CryptInsertLruEntry @225 PRIVATE
+  I_CryptInstallAsn1Module @226
+  I_CryptInstallOssGlobal @227
+  I_CryptReadTrustedPublisherDWORDValueFromRegistry @228
+  I_CryptReleaseLruEntry @229 PRIVATE
+  I_CryptSetTls @230
+  I_CryptUninstallAsn1Module @231
+  I_CryptUninstallOssGlobal @232 PRIVATE
+  PFXExportCertStore @233
+  PFXExportCertStoreEx @234
+  PFXImportCertStore @235
+  PFXIsPFXBlob @236
+  PFXVerifyPassword @237
+  RegCreateHKCUKeyExU @238 PRIVATE
+  RegCreateKeyExU @239 PRIVATE
+  RegDeleteValueU @240 PRIVATE
+  RegEnumValueU @241 PRIVATE
+  RegOpenHKCUKeyExU @242 PRIVATE
+  RegOpenKeyExU @243 PRIVATE
+  RegQueryInfoKeyU @244 PRIVATE
+  RegQueryValueExU @245 PRIVATE
+  RegSetValueExU @246 PRIVATE

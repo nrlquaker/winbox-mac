@@ -1,4 +1,4 @@
-; File generated automatically from dlls/avifil32/avifil32.spec; do not edit!
+; File generated automatically from ../wine/dlls/avifil32/avifil32.spec; do not edit!
 
 LIBRARY avifil32.dll
 

@@ -1,4 +1,4 @@
-; File generated automatically from dlls/version/version.spec; do not edit!
+; File generated automatically from ../wine/dlls/version/version.spec; do not edit!
 
 LIBRARY version.dll
 

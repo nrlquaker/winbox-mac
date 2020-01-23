@@ -1,0 +1,98 @@
+; File generated automatically from ../wine/dlls/uiautomationcore/uiautomationcore.spec; do not edit!
+
+LIBRARY uiautomationcore.dll
+
+EXPORTS
+  DllCanUnloadNow @1 PRIVATE
+  DllGetClassObject @2 PRIVATE
+  DllRegisterServer @3 PRIVATE
+  DllUnregisterServer @4 PRIVATE
+  DockPattern_SetDockPosition @5 PRIVATE
+  ExpandCollapsePattern_Collapse @6 PRIVATE
+  ExpandCollapsePattern_Expand @7 PRIVATE
+  GridPattern_GetItem @8 PRIVATE
+  InvokePattern_Invoke @9 PRIVATE
+  ItemContainerPattern_FindItemByProperty @10 PRIVATE
+  LegacyIAccessiblePattern_DoDefaultAction @11 PRIVATE
+  LegacyIAccessiblePattern_GetIAccessible @12 PRIVATE
+  LegacyIAccessiblePattern_Select @13 PRIVATE
+  LegacyIAccessiblePattern_SetValue @14 PRIVATE
+  MultipleViewPattern_GetViewName @15 PRIVATE
+  MultipleViewPattern_SetCurrentView @16 PRIVATE
+  RangeValuePattern_SetValue @17 PRIVATE
+  ScrollItemPattern_ScrollIntoView @18 PRIVATE
+  ScrollPattern_Scroll @19 PRIVATE
+  ScrollPattern_SetScrollPercent @20 PRIVATE
+  SelectionItemPattern_AddToSelection @21 PRIVATE
+  SelectionItemPattern_RemoveFromSelection @22 PRIVATE
+  SelectionItemPattern_Select @23 PRIVATE
+  SynchronizedInputPattern_Cancel @24 PRIVATE
+  SynchronizedInputPattern_StartListening @25 PRIVATE
+  TextPattern_GetSelection @26 PRIVATE
+  TextPattern_GetVisibleRanges @27 PRIVATE
+  TextPattern_RangeFromChild @28 PRIVATE
+  TextPattern_RangeFromPoint @29 PRIVATE
+  TextPattern_get_DocumentRange @30 PRIVATE
+  TextPattern_get_SupportedTextSelection @31 PRIVATE
+  TextRange_AddToSelection @32 PRIVATE
+  TextRange_Clone @33 PRIVATE
+  TextRange_Compare @34 PRIVATE
+  TextRange_CompareEndpoints @35 PRIVATE
+  TextRange_ExpandToEnclosingUnit @36 PRIVATE
+  TextRange_FindAttribute @37 PRIVATE
+  TextRange_FindText @38 PRIVATE
+  TextRange_GetAttributeValue @39 PRIVATE
+  TextRange_GetBoundingRectangles @40 PRIVATE
+  TextRange_GetChildren @41 PRIVATE
+  TextRange_GetEnclosingElement @42 PRIVATE
+  TextRange_GetText @43 PRIVATE
+  TextRange_Move @44 PRIVATE
+  TextRange_MoveEndpointByRange @45 PRIVATE
+  TextRange_MoveEndpointByUnit @46 PRIVATE
+  TextRange_RemoveFromSelection @47 PRIVATE
+  TextRange_ScrollIntoView @48 PRIVATE
+  TextRange_Select @49 PRIVATE
+  TogglePattern_Toggle @50 PRIVATE
+  TransformPattern_Move @51 PRIVATE
+  TransformPattern_Resize @52 PRIVATE
+  TransformPattern_Rotate @53 PRIVATE
+  UiaAddEvent @54 PRIVATE
+  UiaClientsAreListening @55
+  UiaEventAddWindow @56 PRIVATE
+  UiaEventRemoveWindow @57 PRIVATE
+  UiaFind @58 PRIVATE
+  UiaGetErrorDescription @59 PRIVATE
+  UiaGetPatternProvider @60 PRIVATE
+  UiaGetPropertyValue @61 PRIVATE
+  UiaGetReservedMixedAttributeValue @62
+  UiaGetReservedNotSupportedValue @63
+  UiaGetRootNode @64 PRIVATE
+  UiaGetRuntimeId @65 PRIVATE
+  UiaGetUpdatedCache @66 PRIVATE
+  UiaHPatternObjectFromVariant @67 PRIVATE
+  UiaHTextRangeFromVariant @68 PRIVATE
+  UiaHUiaNodeFromVariant @69 PRIVATE
+  UiaHasServerSideProvider @70 PRIVATE
+  UiaHostProviderFromHwnd @71
+  UiaLookupId @72
+  UiaNavigate @73 PRIVATE
+  UiaNodeFromFocus @74 PRIVATE
+  UiaNodeFromHandle @75 PRIVATE
+  UiaNodeFromPoint @76 PRIVATE
+  UiaNodeFromProvider @77 PRIVATE
+  UiaNodeRelease @78 PRIVATE
+  UiaPatternRelease @79 PRIVATE
+  UiaRaiseAsyncContentLoadedEvent @80 PRIVATE
+  UiaRaiseAutomationEvent @81
+  UiaRaiseAutomationPropertyChangedEvent @82 PRIVATE
+  UiaRaiseStructureChangedEvent @83 PRIVATE
+  UiaRegisterProviderCallback @84 PRIVATE
+  UiaRemoveEvent @85 PRIVATE
+  UiaReturnRawElementProvider @86
+  UiaSetFocus @87 PRIVATE
+  UiaTextRangeRelease @88 PRIVATE
+  ValuePattern_SetValue @89 PRIVATE
+  VirtualizedItemPattern_Realize @90 PRIVATE
+  WindowPattern_Close @91 PRIVATE
+  WindowPattern_SetWindowVisualState @92 PRIVATE
+  WindowPattern_WaitForInputIdle @93 PRIVATE

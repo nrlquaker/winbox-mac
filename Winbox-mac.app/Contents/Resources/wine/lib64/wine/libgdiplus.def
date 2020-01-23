@@ -1,4 +1,4 @@
-; File generated automatically from dlls/gdiplus/gdiplus.spec; do not edit!
+; File generated automatically from ../wine/dlls/gdiplus/gdiplus.spec; do not edit!
 
 LIBRARY gdiplus.dll
 
@@ -67,6 +67,7 @@ EXPORTS
   GdipCombineRegionRegion @62
   GdipComment @63
   GdipCreateAdjustableArrowCap @64
+  GdipCreateBitmapFromDirectDrawSurface @65 PRIVATE
   GdipCreateBitmapFromFile @66
   GdipCreateBitmapFromFileICM @67
   GdipCreateBitmapFromGdiDib @68
@@ -196,9 +197,16 @@ EXPORTS
   GdipEndContainer @192
   GdipEnumerateMetafileDestPoint @193
   GdipEnumerateMetafileDestPointI @194
+  GdipEnumerateMetafileDestPoints @195 PRIVATE
+  GdipEnumerateMetafileDestPointsI @196 PRIVATE
   GdipEnumerateMetafileDestRect @197
   GdipEnumerateMetafileDestRectI @198
+  GdipEnumerateMetafileSrcRectDestPoint @199 PRIVATE
+  GdipEnumerateMetafileSrcRectDestPointI @200 PRIVATE
   GdipEnumerateMetafileSrcRectDestPoints @201
+  GdipEnumerateMetafileSrcRectDestPointsI @202 PRIVATE
+  GdipEnumerateMetafileSrcRectDestRect @203 PRIVATE
+  GdipEnumerateMetafileSrcRectDestRectI @204 PRIVATE
   GdipFillClosedCurve2 @205
   GdipFillClosedCurve2I @206
   GdipFillClosedCurve @207
@@ -235,6 +243,7 @@ EXPORTS
   GdipGetCompositingQuality @238
   GdipGetCustomLineCapBaseCap @239
   GdipGetCustomLineCapBaseInset @240
+  GdipGetCustomLineCapStrokeCaps @241 PRIVATE
   GdipGetCustomLineCapStrokeJoin @242
   GdipGetCustomLineCapType @243
   GdipGetCustomLineCapWidthScale @244
@@ -242,6 +251,7 @@ EXPORTS
   GdipGetDpiX @246
   GdipGetDpiY @247
   GdipGetEmHeight @248
+  GdipGetEncoderParameterList @249 PRIVATE
   GdipGetEncoderParameterListSize @250
   GdipGetFamily @251
   GdipGetFamilyName @252
@@ -293,6 +303,7 @@ EXPORTS
   GdipGetLogFontA @298
   GdipGetLogFontW @299
   GdipGetMatrixElements @300
+  GdipGetMetafileDownLevelRasterizationLimit @301 PRIVATE
   GdipGetMetafileHeaderFromEmf @302
   GdipGetMetafileHeaderFromFile @303
   GdipGetMetafileHeaderFromMetafile @304
@@ -328,6 +339,7 @@ EXPORTS
   GdipGetPathWorldBoundsI @334
   GdipGetPenBrushFill @335
   GdipGetPenColor @336
+  GdipGetPenCompoundArray @337 PRIVATE
   GdipGetPenCompoundCount @338
   GdipGetPenCustomEndCap @339
   GdipGetPenCustomStartCap @340
@@ -444,6 +456,7 @@ EXPORTS
   GdipRecordMetafileFileNameI @451
   GdipRecordMetafileI @452
   GdipRecordMetafileStream @453
+  GdipRecordMetafileStreamI @454
   GdipReleaseDC @455
   GdipRemovePropertyItem @456
   GdipResetClip @457
@@ -464,6 +477,7 @@ EXPORTS
   GdipRotateTextureTransform @472
   GdipRotateWorldTransform @473
   GdipSaveAdd @474
+  GdipSaveAddImage @475 PRIVATE
   GdipSaveGraphics @476
   GdipSaveImageToFile @477
   GdipSaveImageToStream @478
@@ -548,6 +562,7 @@ EXPORTS
   GdipSetPenMode @557
   GdipSetPenStartCap @558
   GdipSetPenTransform @559
+  GdipSetPenUnit @560 PRIVATE
   GdipSetPenWidth @561
   GdipSetPixelOffsetMode @562
   GdipSetPropertyItem @563
@@ -598,10 +613,14 @@ EXPORTS
   GdiplusShutdown=GdiplusShutdown_wrapper @608
   GdiplusStartup @609
   GdipFindFirstImageItem @610
+  GdipFindNextImageItem @611 PRIVATE
   GdipGetImageItemData @612
   GdipCreateEffect @613
   GdipDeleteEffect @614
+  GdipGetEffectParameterSize @615 PRIVATE
+  GdipGetEffectParameters @616 PRIVATE
   GdipSetEffectParameters @617
+  GdipInitializePalette @618
   GdipBitmapCreateApplyEffect @619
   GdipBitmapApplyEffect @620
   GdipBitmapGetHistogram @621
@@ -609,5 +628,8 @@ EXPORTS
   GdipBitmapConvertFormat @623
   GdipImageSetAbort @624
   GdipGraphicsSetAbort @625
+  GdipDrawImageFX @626 PRIVATE
   GdipConvertToEmfPlus @627
   GdipConvertToEmfPlusToFile @628
+  GdipConvertToEmfPlusToStream @629 PRIVATE
+  GdipPlayTSClientRecord @630 PRIVATE

@@ -1,0 +1,81 @@
+; File generated automatically from ../wine/dlls/hal/hal.spec; do not edit!
+
+LIBRARY hal.dll
+
+EXPORTS
+  HalClearSoftwareInterrupt @1 PRIVATE
+  HalRequestSoftwareInterrupt @2 PRIVATE
+  HalSystemVectorDispatchEntry @3 PRIVATE
+  KeAcquireInStackQueuedSpinLockRaiseToSynch @4 PRIVATE
+  KeAcquireQueuedSpinLock @5 PRIVATE
+  KeAcquireQueuedSpinLockRaiseToSynch @6 PRIVATE
+  KeAcquireSpinLockRaiseToSynch @7 PRIVATE
+  KeReleaseQueuedSpinLock @8 PRIVATE
+  KeTryToAcquireQueuedSpinLock @9 PRIVATE
+  KeTryToAcquireQueuedSpinLockRaiseToSynch @10 PRIVATE
+  HalAcquireDisplayOwnership @11 PRIVATE
+  HalAdjustResourceList @12 PRIVATE
+  HalAllProcessorsStarted @13 PRIVATE
+  HalAllocateAdapterChannel @14 PRIVATE
+  HalAllocateCommonBuffer @15 PRIVATE
+  HalAllocateCrashDumpRegisters @16 PRIVATE
+  HalAssignSlotResources @17 PRIVATE
+  HalBeginSystemInterrupt @18 PRIVATE
+  HalCalibratePerformanceCounter @19 PRIVATE
+  HalDisableSystemInterrupt @20 PRIVATE
+  HalDisplayString @21 PRIVATE
+  HalEnableSystemInterrupt @22 PRIVATE
+  HalEndSystemInterrupt @23 PRIVATE
+  HalFlushCommonBuffer @24 PRIVATE
+  HalFreeCommonBuffer @25 PRIVATE
+  HalGetAdapter @26 PRIVATE
+  HalGetBusData @27
+  HalGetBusDataByOffset @28
+  HalGetEnvironmentVariable @29 PRIVATE
+  HalGetInterruptVector @30 PRIVATE
+  HalHandleNMI @31 PRIVATE
+  HalInitSystem @32 PRIVATE
+  HalInitializeProcessor @33 PRIVATE
+  HalMakeBeep @34 PRIVATE
+  HalProcessorIdle @35 PRIVATE
+  HalQueryDisplayParameters @36 PRIVATE
+  HalQueryRealTimeClock @37 PRIVATE
+  HalReadDmaCounter @38 PRIVATE
+  HalReportResourceUsage @39 PRIVATE
+  HalRequestIpi @40 PRIVATE
+  HalReturnToFirmware @41 PRIVATE
+  HalSetBusData @42 PRIVATE
+  HalSetBusDataByOffset @43 PRIVATE
+  HalSetDisplayParameters @44 PRIVATE
+  HalSetEnvironmentVariable @45 PRIVATE
+  HalSetProfileInterval @46 PRIVATE
+  HalSetRealTimeClock @47 PRIVATE
+  HalSetTimeIncrement @48 PRIVATE
+  HalStartNextProcessor @49 PRIVATE
+  HalStartProfileInterrupt @50 PRIVATE
+  HalStopProfileInterrupt @51 PRIVATE
+  HalTranslateBusAddress @52
+  IoAssignDriveLetters @53 PRIVATE
+  IoFlushAdapterBuffers @54 PRIVATE
+  IoFreeAdapterChannel @55 PRIVATE
+  IoFreeMapRegisters @56 PRIVATE
+  IoMapTransfer @57 PRIVATE
+  IoReadPartitionTable @58 PRIVATE
+  IoSetPartitionInformation @59 PRIVATE
+  IoWritePartitionTable @60 PRIVATE
+  KdComPortInUse @61 PRIVATE
+  KeFlushWriteBuffer @62 PRIVATE
+  KeLowerIrql @63 PRIVATE
+  KeQueryPerformanceCounter @64
+  KeRaiseIrql @65 PRIVATE
+  KeRaiseIrqlToDpcLevel @66 PRIVATE
+  KeRaiseIrqlToSynchLevel @67 PRIVATE
+  KeStallExecutionProcessor @68 PRIVATE
+  READ_PORT_BUFFER_UCHAR @69 PRIVATE
+  READ_PORT_BUFFER_ULONG @70 PRIVATE
+  READ_PORT_BUFFER_USHORT @71 PRIVATE
+  READ_PORT_USHORT @72 PRIVATE
+  WRITE_PORT_BUFFER_UCHAR @73 PRIVATE
+  WRITE_PORT_BUFFER_ULONG @74 PRIVATE
+  WRITE_PORT_BUFFER_USHORT @75 PRIVATE
+  WRITE_PORT_USHORT @76 PRIVATE

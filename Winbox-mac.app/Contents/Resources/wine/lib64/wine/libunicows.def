@@ -1,4 +1,4 @@
-; File generated automatically from dlls/unicows/unicows.spec; do not edit!
+; File generated automatically from ../wine/dlls/unicows/unicows.spec; do not edit!
 
 LIBRARY unicows.dll
 
@@ -67,6 +67,7 @@ EXPORTS
   CreateProcessW @62
   CreateScalableFontResourceW @63
   CreateSemaphoreW @64
+  CreateStdAccessibleProxyW @65 PRIVATE
   CreateWaitableTimerW @66
   CreateWindowExW @67
   CryptAcquireContextW @68
@@ -236,6 +237,7 @@ EXPORTS
   GetSaveFileNameW @232
   GetShortPathNameW @233
   GetStartupInfoW @234
+  GetStateTextW @235 PRIVATE
   GetStringTypeExW @236
   GetStringTypeW @237
   GetSystemDirectoryW @238
@@ -474,6 +476,7 @@ EXPORTS
   WritePrivateProfileStructW @471
   WriteProfileSectionW @472
   WriteProfileStringW @473
+  __FreeAllLibrariesInMsluDll @474 PRIVATE
   auxGetDevCapsW @475
   capCreateCaptureWindowW @476
   capGetDriverDescriptionW @477

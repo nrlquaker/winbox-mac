@@ -1,4 +1,4 @@
-; File generated automatically from dlls/oledlg/oledlg.spec; do not edit!
+; File generated automatically from ../wine/dlls/oledlg/oledlg.spec; do not edit!
 
 LIBRARY oledlg.dll
 

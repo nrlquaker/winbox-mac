@@ -1,8 +1,10 @@
-; File generated automatically from dlls/rasapi32/rasapi32.spec; do not edit!
+; File generated automatically from ../wine/dlls/rasapi32/rasapi32.spec; do not edit!
 
 LIBRARY rasapi32.dll
 
 EXPORTS
+  RasAutodialAddressToNetwork @538 PRIVATE
+  RasAutodialEntryToNetwork @539 PRIVATE
   RasConnectionNotificationA @540
   RasConnectionNotificationW @541
   RasCreatePhonebookEntryA @542
@@ -13,36 +15,52 @@ EXPORTS
   RasDeleteSubEntryW @547
   RasDialA @548
   RasDialW @549
+  RasDialWow @550 PRIVATE
   RasEditPhonebookEntryA @551
   RasEditPhonebookEntryW @552
   RasEnumAutodialAddressesA @553
   RasEnumAutodialAddressesW @554
   RasEnumConnectionsA @555
   RasEnumConnectionsW @556
+  RasEnumConnectionsWow @557 PRIVATE
   RasEnumDevicesA @558
   RasEnumDevicesW @559
   RasEnumEntriesA @570
   RasEnumEntriesW @571
+  RasEnumEntriesWow @572 PRIVATE
   RasGetAutodialAddressA @573
   RasGetAutodialAddressW @574
   RasGetAutodialEnableA @575
   RasGetAutodialEnableW @576
   RasGetAutodialParamA @577
   RasGetAutodialParamW @578
+  RasGetConnectResponse @579 PRIVATE
   RasGetConnectStatusA @580
   RasGetConnectStatusW @581
+  RasGetConnectStatusWow @582 PRIVATE
   RasGetConnectionStatistics @583
+  RasGetCountryInfoA @584 PRIVATE
+  RasGetCountryInfoW @585 PRIVATE
+  RasGetCredentialsA @586 PRIVATE
+  RasGetCredentialsW @587 PRIVATE
   RasGetEntryDialParamsA @588
   RasGetEntryDialParamsW @589
   RasGetEntryPropertiesA @590
   RasGetEntryPropertiesW @591
   RasGetErrorStringA @592
   RasGetErrorStringW @593
+  RasGetErrorStringWow @594 PRIVATE
+  RasGetHport @595 PRIVATE
   RasGetLinkStatistics @596
   RasGetProjectionInfoA @597
   RasGetProjectionInfoW @598
+  RasGetSubEntryHandleA @599 PRIVATE
+  RasGetSubEntryHandleW @600 PRIVATE
+  RasGetSubEntryPropertiesA @601 PRIVATE
+  RasGetSubEntryPropertiesW @602 PRIVATE
   RasHangUpA @603
   RasHangUpW @604
+  RasHangUpWow @605 PRIVATE
   RasRenameEntryA @606
   RasRenameEntryW @607
   RasSetAutodialAddressA @608
@@ -51,13 +69,64 @@ EXPORTS
   RasSetAutodialEnableW @611
   RasSetAutodialParamA @612
   RasSetAutodialParamW @613
+  RasSetCredentialsA @614 PRIVATE
+  RasSetCredentialsW @615 PRIVATE
   RasSetCustomAuthDataA @616
   RasSetCustomAuthDataW @617
   RasSetEntryDialParamsA @618
   RasSetEntryDialParamsW @619
   RasSetEntryPropertiesA @620
   RasSetEntryPropertiesW @621
+  RasSetOldPassword @622 PRIVATE
   RasSetSubEntryPropertiesA @623
   RasSetSubEntryPropertiesW @624
   RasValidateEntryNameA @625
   RasValidateEntryNameW @626
+  RnaEngineRequest @500 PRIVATE
+  DialEngineRequest @501 PRIVATE
+  SuprvRequest @502 PRIVATE
+  DialInMessage @503 PRIVATE
+  RnaEnumConnEntries @504 PRIVATE
+  RnaGetConnEntry @505 PRIVATE
+  RnaFreeConnEntry @506 PRIVATE
+  RnaSaveConnEntry @507 PRIVATE
+  RnaDeleteConnEntry @508 PRIVATE
+  RnaRenameConnEntry @509 PRIVATE
+  RnaValidateEntryName @510 PRIVATE
+  RnaEnumDevices @511 PRIVATE
+  RnaGetDeviceInfo @512 PRIVATE
+  RnaGetDefaultDevConfig @513 PRIVATE
+  RnaBuildDevConfig @514 PRIVATE
+  RnaDevConfigDlg @515 PRIVATE
+  RnaFreeDevConfig @516 PRIVATE
+  RnaActivateEngine @517 PRIVATE
+  RnaDeactivateEngine @518 PRIVATE
+  SuprvEnumAccessInfo @519 PRIVATE
+  SuprvGetAccessInfo @520 PRIVATE
+  SuprvSetAccessInfo @521 PRIVATE
+  SuprvGetAdminConfig @522 PRIVATE
+  SuprvInitialize @523 PRIVATE
+  SuprvDeInitialize @524 PRIVATE
+  RnaUIDial @525 PRIVATE
+  RnaImplicitDial @526 PRIVATE
+  RasDial16 @527 PRIVATE
+  RnaSMMInfoDialog @528 PRIVATE
+  RnaEnumerateMacNames @529 PRIVATE
+  RnaEnumCountryInfo @530 PRIVATE
+  RnaGetAreaCodeList @531 PRIVATE
+  RnaFindDriver @532 PRIVATE
+  RnaInstallDriver @533 PRIVATE
+  RnaGetDialSettings @534 PRIVATE
+  RnaSetDialSettings @535 PRIVATE
+  RnaGetIPInfo @536 PRIVATE
+  RnaSetIPInfo @537 PRIVATE
+  RnaCloseMac @560 PRIVATE
+  RnaComplete @561 PRIVATE
+  RnaGetDevicePort @562 PRIVATE
+  RnaGetUserProfile @563 PRIVATE
+  RnaOpenMac @564 PRIVATE
+  RnaSessInitialize @565 PRIVATE
+  RnaStartCallback @566 PRIVATE
+  RnaTerminate @567 PRIVATE
+  RnaUICallbackDialog @568 PRIVATE
+  RnaUIUsernamePassword @569 PRIVATE

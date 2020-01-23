@@ -1,4 +1,4 @@
-; File generated automatically from dlls/lz32/lz32.spec; do not edit!
+; File generated automatically from ../wine/dlls/lz32/lz32.spec; do not edit!
 
 LIBRARY lz32.dll
 

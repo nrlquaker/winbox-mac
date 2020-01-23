@@ -1,4 +1,4 @@
-; File generated automatically from dlls/d3dx9_36/d3dx9_36.spec; do not edit!
+; File generated automatically from ../wine/dlls/d3dx9_36/d3dx9_36.spec; do not edit!
 
 LIBRARY d3dx9_36.dll
 
@@ -23,13 +23,22 @@ EXPORTS
   D3DXCompileShaderFromResourceW @18
   D3DXComputeBoundingBox @19
   D3DXComputeBoundingSphere @20
+  D3DXComputeIMTFromPerTexelSignal @21 PRIVATE
+  D3DXComputeIMTFromPerVertexSignal @22 PRIVATE
+  D3DXComputeIMTFromSignal @23 PRIVATE
+  D3DXComputeIMTFromTexture @24 PRIVATE
   D3DXComputeNormalMap @25
   D3DXComputeNormals @26
+  D3DXComputeTangent @27 PRIVATE
+  D3DXComputeTangentFrame @28 PRIVATE
   D3DXComputeTangentFrameEx @29
+  D3DXConcatenateMeshes @30 PRIVATE
   D3DXConvertMeshSubsetToSingleStrip @31
+  D3DXConvertMeshSubsetToStrips @32 PRIVATE
   D3DXCreateAnimationController @33
   D3DXCreateBox @34
   D3DXCreateBuffer @35
+  D3DXCreateCompressedAnimationSet @36 PRIVATE
   D3DXCreateCubeTexture @37
   D3DXCreateCubeTextureFromFileA @38
   D3DXCreateCubeTextureFromFileExA @39
@@ -37,6 +46,10 @@ EXPORTS
   D3DXCreateCubeTextureFromFileInMemory @41
   D3DXCreateCubeTextureFromFileInMemoryEx @42
   D3DXCreateCubeTextureFromFileW @43
+  D3DXCreateCubeTextureFromResourceA @44 PRIVATE
+  D3DXCreateCubeTextureFromResourceExA @45 PRIVATE
+  D3DXCreateCubeTextureFromResourceExW @46 PRIVATE
+  D3DXCreateCubeTextureFromResourceW @47 PRIVATE
   D3DXCreateCylinder @48
   D3DXCreateEffect @49
   D3DXCreateEffectCompiler @50
@@ -65,11 +78,20 @@ EXPORTS
   D3DXCreateMatrixStack @73
   D3DXCreateMesh @74
   D3DXCreateMeshFVF @75
+  D3DXCreateNPatchMesh @76 PRIVATE
+  D3DXCreatePMeshFromStream @77 PRIVATE
+  D3DXCreatePRTBuffer @78 PRIVATE
+  D3DXCreatePRTBufferTex @79 PRIVATE
+  D3DXCreatePRTCompBuffer @80 PRIVATE
+  D3DXCreatePRTEngine @81 PRIVATE
+  D3DXCreatePatchMesh @82 PRIVATE
   D3DXCreatePolygon @83
   D3DXCreateRenderToEnvMap @84
   D3DXCreateRenderToSurface @85
+  D3DXCreateSPMesh @86 PRIVATE
   D3DXCreateSkinInfo @87
   D3DXCreateSkinInfoFVF @88
+  D3DXCreateSkinInfoFromBlendedMesh @89 PRIVATE
   D3DXCreateSphere @90
   D3DXCreateSprite @91
   D3DXCreateTeapot @92
@@ -86,6 +108,7 @@ EXPORTS
   D3DXCreateTextureFromResourceExA @103
   D3DXCreateTextureFromResourceExW @104
   D3DXCreateTextureFromResourceW @105
+  D3DXCreateTextureGutterHelper @106 PRIVATE
   D3DXCreateTextureShader @107
   D3DXCreateTorus @108
   D3DXCreateVolumeTexture @109
@@ -95,6 +118,10 @@ EXPORTS
   D3DXCreateVolumeTextureFromFileInMemory @113
   D3DXCreateVolumeTextureFromFileInMemoryEx @114
   D3DXCreateVolumeTextureFromFileW @115
+  D3DXCreateVolumeTextureFromResourceA @116 PRIVATE
+  D3DXCreateVolumeTextureFromResourceExA @117 PRIVATE
+  D3DXCreateVolumeTextureFromResourceExW @118 PRIVATE
+  D3DXCreateVolumeTextureFromResourceW @119 PRIVATE
   D3DXDebugMute @120
   D3DXDeclaratorFromFVF @121
   D3DXDisassembleEffect @122
@@ -111,9 +138,20 @@ EXPORTS
   D3DXFindShaderComment @133
   D3DXFloat16To32Array @134
   D3DXFloat32To16Array @135
+  D3DXFrameAppendChild @136 PRIVATE
+  D3DXFrameCalculateBoundingSphere @137 PRIVATE
   D3DXFrameDestroy @138
   D3DXFrameFind @139
+  D3DXFrameNumNamedMatrices @140 PRIVATE
+  D3DXFrameRegisterNamedMatrices @141 PRIVATE
   D3DXFresnelTerm @142
+  D3DXGatherFragments @143 PRIVATE
+  D3DXGatherFragmentsFromFileA @144 PRIVATE
+  D3DXGatherFragmentsFromFileW @145 PRIVATE
+  D3DXGatherFragmentsFromResourceA @146 PRIVATE
+  D3DXGatherFragmentsFromResourceW @147 PRIVATE
+  D3DXGenerateOutputDecl @148 PRIVATE
+  D3DXGeneratePMesh @149 PRIVATE
   D3DXGetDeclLength @150
   D3DXGetDeclVertexSize @151
   D3DXGetDriverLevel @152
@@ -133,14 +171,21 @@ EXPORTS
   D3DXGetShaderVersion @166
   D3DXGetVertexShaderProfile @167
   D3DXIntersect @168
+  D3DXIntersectSubset @169 PRIVATE
   D3DXIntersectTri @170
   D3DXLoadMeshFromXA @171
   D3DXLoadMeshFromXInMemory @172
   D3DXLoadMeshFromXResource @173
   D3DXLoadMeshFromXW @174
+  D3DXLoadMeshFromXof @175 PRIVATE
   D3DXLoadMeshHierarchyFromXA @176
   D3DXLoadMeshHierarchyFromXInMemory @177
   D3DXLoadMeshHierarchyFromXW @178
+  D3DXLoadPRTBufferFromFileA @179 PRIVATE
+  D3DXLoadPRTBufferFromFileW @180 PRIVATE
+  D3DXLoadPRTCompBufferFromFileA @181 PRIVATE
+  D3DXLoadPRTCompBufferFromFileW @182 PRIVATE
+  D3DXLoadPatchMeshFromXof @183 PRIVATE
   D3DXLoadSkinMeshFromXof @184
   D3DXLoadSurfaceFromFileA @185
   D3DXLoadSurfaceFromFileInMemory @186
@@ -153,6 +198,8 @@ EXPORTS
   D3DXLoadVolumeFromFileInMemory @193
   D3DXLoadVolumeFromFileW @194
   D3DXLoadVolumeFromMemory @195
+  D3DXLoadVolumeFromResourceA @196 PRIVATE
+  D3DXLoadVolumeFromResourceW @197 PRIVATE
   D3DXLoadVolumeFromVolume @198
   D3DXMatrixAffineTransformation @199
   D3DXMatrixAffineTransformation2D @200
@@ -187,6 +234,7 @@ EXPORTS
   D3DXMatrixTranslation @229
   D3DXMatrixTranspose @230
   D3DXOptimizeFaces @231
+  D3DXOptimizeVertices @232 PRIVATE
   D3DXPlaneFromPointNormal @233
   D3DXPlaneFromPoints @234
   D3DXPlaneIntersectLine @235
@@ -211,6 +259,7 @@ EXPORTS
   D3DXQuaternionSquad @254
   D3DXQuaternionSquadSetup @255
   D3DXQuaternionToAxisAngle @256
+  D3DXRectPatchSize @257 PRIVATE
   D3DXSHAdd @258
   D3DXSHDot @259
   D3DXSHEvalConeLight @260
@@ -221,18 +270,43 @@ EXPORTS
   D3DXSHMultiply2 @265
   D3DXSHMultiply3 @266
   D3DXSHMultiply4 @267
+  D3DXSHMultiply5 @268 PRIVATE
+  D3DXSHMultiply6 @269 PRIVATE
+  D3DXSHPRTCompSplitMeshSC @270 PRIVATE
+  D3DXSHPRTCompSuperCluster @271 PRIVATE
+  D3DXSHProjectCubeMap @272 PRIVATE
   D3DXSHRotate @273
   D3DXSHRotateZ @274
   D3DXSHScale @275
+  D3DXSaveMeshHierarchyToFileA @276 PRIVATE
+  D3DXSaveMeshHierarchyToFileW @277 PRIVATE
+  D3DXSaveMeshToXA @278 PRIVATE
+  D3DXSaveMeshToXW @279 PRIVATE
+  D3DXSavePRTBufferToFileA @280 PRIVATE
+  D3DXSavePRTBufferToFileW @281 PRIVATE
+  D3DXSavePRTCompBufferToFileA @282 PRIVATE
+  D3DXSavePRTCompBufferToFileW @283 PRIVATE
   D3DXSaveSurfaceToFileA @284
   D3DXSaveSurfaceToFileInMemory @285
   D3DXSaveSurfaceToFileW @286
   D3DXSaveTextureToFileA @287
   D3DXSaveTextureToFileInMemory @288
   D3DXSaveTextureToFileW @289
+  D3DXSaveVolumeToFileA @290 PRIVATE
+  D3DXSaveVolumeToFileInMemory @291 PRIVATE
+  D3DXSaveVolumeToFileW @292 PRIVATE
+  D3DXSimplifyMesh @293 PRIVATE
   D3DXSphereBoundProbe @294
+  D3DXSplitMesh @295 PRIVATE
   D3DXTessellateNPatches @296
+  D3DXTessellateRectPatch @297 PRIVATE
+  D3DXTessellateTriPatch @298 PRIVATE
+  D3DXTriPatchSize @299 PRIVATE
+  D3DXUVAtlasCreate @300 PRIVATE
+  D3DXUVAtlasPack @301 PRIVATE
+  D3DXUVAtlasPartition @302 PRIVATE
   D3DXValidMesh @303
+  D3DXValidPatchMesh @304 PRIVATE
   D3DXVec2BaryCentric @305
   D3DXVec2CatmullRom @306
   D3DXVec2Hermite @307

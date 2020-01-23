@@ -1,4 +1,4 @@
-; File generated automatically from dlls/shfolder/shfolder.spec; do not edit!
+; File generated automatically from ../wine/dlls/shfolder/shfolder.spec; do not edit!
 
 LIBRARY shfolder.dll
 

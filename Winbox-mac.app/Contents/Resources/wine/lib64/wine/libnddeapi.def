@@ -1,4 +1,4 @@
-; File generated automatically from dlls/nddeapi/nddeapi.spec; do not edit!
+; File generated automatically from ../wine/dlls/nddeapi/nddeapi.spec; do not edit!
 
 LIBRARY nddeapi.dll
 
@@ -29,3 +29,5 @@ EXPORTS
   NDdeGetTrustedShareW @611
   NDdeSetTrustedShareW @612
   NDdeTrustedShareEnumW @613
+  NDdeSpecialCommandA @508 PRIVATE
+  NDdeSpecialCommandW @514 PRIVATE

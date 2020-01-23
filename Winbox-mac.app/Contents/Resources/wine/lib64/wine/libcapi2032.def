@@ -1,4 +1,4 @@
-; File generated automatically from dlls/capi2032/capi2032.spec; do not edit!
+; File generated automatically from ../wine/dlls/capi2032/capi2032.spec; do not edit!
 
 LIBRARY capi2032.dll
 

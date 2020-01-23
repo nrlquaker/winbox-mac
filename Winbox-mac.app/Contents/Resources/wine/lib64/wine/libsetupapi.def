@@ -1,20 +1,77 @@
-; File generated automatically from dlls/setupapi/setupapi.spec; do not edit!
+; File generated automatically from ../wine/dlls/setupapi/setupapi.spec; do not edit!
 
 LIBRARY setupapi.dll
 
 EXPORTS
+  AcquireSCMLock @1 PRIVATE
+  AddMiniIconToList @2 PRIVATE
+  AddTagToGroupOrderListEntry @3 PRIVATE
+  AppendStringToMultiSz @4 PRIVATE
   AssertFail @5
+  CMP_Init_Detection @6 PRIVATE
+  CMP_RegisterNotification @7 PRIVATE
+  CMP_Report_LogOn @8 PRIVATE
+  CMP_UnregisterNotification @9 PRIVATE
   CMP_WaitNoPendingInstallEvents @10
+  CMP_WaitServices @11 PRIVATE
+  CM_Add_Empty_Log_Conf @12 PRIVATE
+  CM_Add_Empty_Log_Conf_Ex @13 PRIVATE
+  CM_Add_IDA @14 PRIVATE
+  CM_Add_IDW @15 PRIVATE
+  CM_Add_ID_ExA @16 PRIVATE
+  CM_Add_ID_ExW @17 PRIVATE
+  CM_Add_Range @18 PRIVATE
+  CM_Add_Res_Des @19 PRIVATE
+  CM_Add_Res_Des_Ex @20 PRIVATE
   CM_Connect_MachineA @21
   CM_Connect_MachineW @22
   CM_Create_DevNodeA @23
   CM_Create_DevNodeW @24
+  CM_Create_DevNode_ExA @25 PRIVATE
+  CM_Create_DevNode_ExW @26 PRIVATE
+  CM_Create_Range_List @27 PRIVATE
+  CM_Delete_Class_Key @28 PRIVATE
+  CM_Delete_Class_Key_Ex @29 PRIVATE
+  CM_Delete_DevNode_Key @30 PRIVATE
+  CM_Delete_DevNode_Key_Ex @31 PRIVATE
+  CM_Delete_Range @32 PRIVATE
+  CM_Detect_Resource_Conflict @33 PRIVATE
+  CM_Detect_Resource_Conflict_Ex @34 PRIVATE
+  CM_Disable_DevNode @35 PRIVATE
+  CM_Disable_DevNode_Ex @36 PRIVATE
   CM_Disconnect_Machine @37
+  CM_Dup_Range_List @38 PRIVATE
+  CM_Enable_DevNode @39 PRIVATE
+  CM_Enable_DevNode_Ex @40 PRIVATE
   CM_Enumerate_Classes @41
+  CM_Enumerate_Classes_Ex @42 PRIVATE
+  CM_Enumerate_EnumeratorsA @43 PRIVATE
+  CM_Enumerate_EnumeratorsW @44 PRIVATE
+  CM_Enumerate_Enumerators_ExA @45 PRIVATE
+  CM_Enumerate_Enumerators_ExW @46 PRIVATE
+  CM_Find_Range @47 PRIVATE
+  CM_First_Range @48 PRIVATE
+  CM_Free_Log_Conf @49 PRIVATE
+  CM_Free_Log_Conf_Ex @50 PRIVATE
+  CM_Free_Log_Conf_Handle @51 PRIVATE
+  CM_Free_Range_List @52 PRIVATE
+  CM_Free_Res_Des @53 PRIVATE
+  CM_Free_Res_Des_Ex @54 PRIVATE
+  CM_Free_Res_Des_Handle @55 PRIVATE
   CM_Get_Child @56
   CM_Get_Child_Ex @57
+  CM_Get_Class_Key_NameA @58 PRIVATE
+  CM_Get_Class_Key_NameW @59 PRIVATE
+  CM_Get_Class_Key_Name_ExA @60 PRIVATE
+  CM_Get_Class_Key_Name_ExW @61 PRIVATE
+  CM_Get_Class_NameA @62 PRIVATE
+  CM_Get_Class_NameW @63 PRIVATE
+  CM_Get_Class_Name_ExA @64 PRIVATE
+  CM_Get_Class_Name_ExW @65 PRIVATE
   CM_Get_Class_Registry_PropertyA @66
   CM_Get_Class_Registry_PropertyW @67
+  CM_Get_Depth @68 PRIVATE
+  CM_Get_Depth_Ex @69 PRIVATE
   CM_Get_DevNode_Registry_PropertyA @70
   CM_Get_DevNode_Registry_PropertyW @71
   CM_Get_DevNode_Registry_Property_ExA @72
@@ -27,50 +84,179 @@ EXPORTS
   CM_Get_Device_ID_ExW @79
   CM_Get_Device_ID_ListA @80
   CM_Get_Device_ID_ListW @81
+  CM_Get_Device_ID_List_ExA @82 PRIVATE
+  CM_Get_Device_ID_List_ExW @83 PRIVATE
   CM_Get_Device_ID_List_SizeA @84
   CM_Get_Device_ID_List_SizeW @85
+  CM_Get_Device_ID_List_Size_ExA @86 PRIVATE
+  CM_Get_Device_ID_List_Size_ExW @87 PRIVATE
   CM_Get_Device_ID_Size @88
+  CM_Get_Device_ID_Size_Ex @89 PRIVATE
+  CM_Get_Device_Interface_AliasA @90 PRIVATE
+  CM_Get_Device_Interface_AliasW @91 PRIVATE
+  CM_Get_Device_Interface_Alias_ExA @92 PRIVATE
+  CM_Get_Device_Interface_Alias_ExW @93 PRIVATE
+  CM_Get_Device_Interface_ListA @94 PRIVATE
+  CM_Get_Device_Interface_ListW @95 PRIVATE
+  CM_Get_Device_Interface_List_ExA @96 PRIVATE
+  CM_Get_Device_Interface_List_ExW @97 PRIVATE
   CM_Get_Device_Interface_List_SizeA @98
   CM_Get_Device_Interface_List_SizeW @99
   CM_Get_Device_Interface_List_Size_ExA @100
   CM_Get_Device_Interface_List_Size_ExW @101
+  CM_Get_First_Log_Conf @102 PRIVATE
+  CM_Get_First_Log_Conf_Ex @103 PRIVATE
+  CM_Get_Global_State @104 PRIVATE
+  CM_Get_Global_State_Ex @105 PRIVATE
+  CM_Get_HW_Prof_FlagsA @106 PRIVATE
+  CM_Get_HW_Prof_FlagsW @107 PRIVATE
+  CM_Get_HW_Prof_Flags_ExA @108 PRIVATE
+  CM_Get_HW_Prof_Flags_ExW @109 PRIVATE
+  CM_Get_Hardware_Profile_InfoA @110 PRIVATE
+  CM_Get_Hardware_Profile_InfoW @111 PRIVATE
+  CM_Get_Hardware_Profile_Info_ExA @112 PRIVATE
+  CM_Get_Hardware_Profile_Info_ExW @113 PRIVATE
+  CM_Get_Log_Conf_Priority @114 PRIVATE
+  CM_Get_Log_Conf_Priority_Ex @115 PRIVATE
+  CM_Get_Next_Log_Conf @116 PRIVATE
+  CM_Get_Next_Log_Conf_Ex @117 PRIVATE
+  CM_Get_Next_Res_Des @118 PRIVATE
+  CM_Get_Next_Res_Des_Ex @119 PRIVATE
   CM_Get_Parent @120
+  CM_Get_Parent_Ex @121 PRIVATE
+  CM_Get_Res_Des_Data @122 PRIVATE
+  CM_Get_Res_Des_Data_Ex @123 PRIVATE
+  CM_Get_Res_Des_Data_Size @124 PRIVATE
+  CM_Get_Res_Des_Data_Size_Ex @125 PRIVATE
+  CM_Get_Sibling @126
   CM_Get_Sibling_Ex @127
   CM_Get_Version @128
+  CM_Get_Version_Ex @129 PRIVATE
+  CM_Intersect_Range_List @130 PRIVATE
+  CM_Invert_Range_List @131 PRIVATE
+  CM_Is_Dock_Station_Present @132 PRIVATE
   CM_Locate_DevNodeA @133
   CM_Locate_DevNodeW @134
   CM_Locate_DevNode_ExA @135
   CM_Locate_DevNode_ExW @136
+  CM_Merge_Range_List @137 PRIVATE
+  CM_Modify_Res_Des @138 PRIVATE
+  CM_Modify_Res_Des_Ex @139 PRIVATE
+  CM_Move_DevNode @140 PRIVATE
+  CM_Move_DevNode_Ex @141 PRIVATE
+  CM_Next_Range @142 PRIVATE
+  CM_Open_Class_KeyA @143 PRIVATE
+  CM_Open_Class_KeyW @144 PRIVATE
+  CM_Open_Class_Key_ExA @145 PRIVATE
+  CM_Open_Class_Key_ExW @146 PRIVATE
   CM_Open_DevNode_Key @147
+  CM_Open_DevNode_Key_Ex @148 PRIVATE
+  CM_Query_And_Remove_SubTreeA @149 PRIVATE
+  CM_Query_And_Remove_SubTreeW @150 PRIVATE
+  CM_Query_And_Remove_SubTree_ExA @151 PRIVATE
+  CM_Query_And_Remove_SubTree_ExW @152 PRIVATE
+  CM_Query_Arbitrator_Free_Data @153 PRIVATE
+  CM_Query_Arbitrator_Free_Data_Ex @154 PRIVATE
+  CM_Query_Arbitrator_Free_Size @155 PRIVATE
+  CM_Query_Arbitrator_Free_Size_Ex @156 PRIVATE
+  CM_Query_Remove_SubTree @157 PRIVATE
+  CM_Query_Remove_SubTree_Ex @158 PRIVATE
   CM_Reenumerate_DevNode @159
   CM_Reenumerate_DevNode_Ex @160
+  CM_Register_Device_Driver @161 PRIVATE
+  CM_Register_Device_Driver_Ex @162 PRIVATE
+  CM_Register_Device_InterfaceA @163 PRIVATE
+  CM_Register_Device_InterfaceW @164 PRIVATE
+  CM_Register_Device_Interface_ExA @165 PRIVATE
+  CM_Register_Device_Interface_ExW @166 PRIVATE
+  CM_Remove_SubTree @167 PRIVATE
+  CM_Remove_SubTree_Ex @168 PRIVATE
+  CM_Remove_Unmarked_Children @169 PRIVATE
+  CM_Remove_Unmarked_Children_Ex @170 PRIVATE
+  CM_Request_Device_EjectA @171
+  CM_Request_Device_EjectW @172
+  CM_Request_Eject_PC @173 PRIVATE
+  CM_Reset_Children_Marks @174 PRIVATE
+  CM_Reset_Children_Marks_Ex @175 PRIVATE
+  CM_Run_Detection @176 PRIVATE
+  CM_Run_Detection_Ex @177 PRIVATE
   CM_Set_Class_Registry_PropertyA @178
   CM_Set_Class_Registry_PropertyW @179
+  CM_Set_DevNode_Problem @180 PRIVATE
+  CM_Set_DevNode_Problem_Ex @181 PRIVATE
+  CM_Set_DevNode_Registry_PropertyA @182 PRIVATE
+  CM_Set_DevNode_Registry_PropertyW @183 PRIVATE
+  CM_Set_DevNode_Registry_Property_ExA @184 PRIVATE
+  CM_Set_DevNode_Registry_Property_ExW @185 PRIVATE
+  CM_Set_HW_Prof @186 PRIVATE
+  CM_Set_HW_Prof_Ex @187 PRIVATE
+  CM_Set_HW_Prof_FlagsA @188 PRIVATE
+  CM_Set_HW_Prof_FlagsW @189 PRIVATE
+  CM_Set_HW_Prof_Flags_ExA @190 PRIVATE
+  CM_Set_HW_Prof_Flags_ExW @191 PRIVATE
+  CM_Setup_DevNode @192 PRIVATE
+  CM_Setup_DevNode_Ex @193 PRIVATE
+  CM_Test_Range_Available @194 PRIVATE
+  CM_Uninstall_DevNode @195 PRIVATE
+  CM_Uninstall_DevNode_Ex @196 PRIVATE
+  CM_Unregister_Device_InterfaceA @197 PRIVATE
+  CM_Unregister_Device_InterfaceW @198 PRIVATE
+  CM_Unregister_Device_Interface_ExA @199 PRIVATE
+  CM_Unregister_Device_Interface_ExW @200 PRIVATE
   CaptureAndConvertAnsiArg @201
   CaptureStringArg @202
+  CenterWindowRelativeToParent @203 PRIVATE
+  ConcatenatePaths @204 PRIVATE
   DelayedMove @205
+  DelimStringToMultiSz @206 PRIVATE
+  DestroyTextFileReadBuffer @207 PRIVATE
   DoesUserHavePrivilege @208
   DuplicateString @209
   EnablePrivilege @210
+  ExtensionPropSheetPageProc @211 PRIVATE
   FileExists @212
+  FreeStringArray @213 PRIVATE
+  GetCurrentDriverSigningPolicy @214 PRIVATE
+  GetNewInfName @215 PRIVATE
+  GetSetFileTimestamp @216 PRIVATE
+  GetVersionInfoFromImage @217 PRIVATE
+  InfIsFromOemLocation @218 PRIVATE
   InstallCatalog @219
   InstallHinfSection=InstallHinfSectionA @220
   InstallHinfSectionA @221
   InstallHinfSectionW @222
+  InstallStop @223 PRIVATE
+  InstallStopEx @224 PRIVATE
   IsUserAdmin @225
+  LookUpStringInTable @226 PRIVATE
+  MemoryInitialize @227 PRIVATE
   MultiByteToUnicode @228
+  MultiSzFromSearchControl @229 PRIVATE
   MyFree @230
+  MyGetFileTitle @231 PRIVATE
   MyMalloc @232
   MyRealloc @233
   OpenAndMapFileForRead @234
+  OutOfMemory @235 PRIVATE
+  QueryMultiSzValueToArray @236 PRIVATE
   QueryRegistryValue @237
+  ReadAsciiOrUnicodeTextFile @238 PRIVATE
   RegistryDelnode @239
   RetreiveFileSecurity @240
+  RetrieveServiceConfig @241 PRIVATE
+  SearchForInfFile @242 PRIVATE
+  SetArrayToMultiSzValue @243 PRIVATE
   SetupAddInstallSectionToDiskSpaceListA @244
+  SetupAddInstallSectionToDiskSpaceListW @245 PRIVATE
+  SetupAddSectionToDiskSpaceListA @246 PRIVATE
+  SetupAddSectionToDiskSpaceListW @247 PRIVATE
   SetupAddToDiskSpaceListA @248
   SetupAddToDiskSpaceListW @249
   SetupAddToSourceListA @250
   SetupAddToSourceListW @251
+  SetupAdjustDiskSpaceListA @252 PRIVATE
+  SetupAdjustDiskSpaceListW @253 PRIVATE
+  SetupCancelTemporarySourceList @254 PRIVATE
   SetupCloseFileQueue @255
   SetupCloseInfFile @256
   SetupCloseLog @257
@@ -85,16 +271,20 @@ EXPORTS
   SetupCreateDiskSpaceListW @266
   SetupDecompressOrCopyFileA @267
   SetupDecompressOrCopyFileW @268
+  SetupDefaultQueueCallback @269 PRIVATE
   SetupDefaultQueueCallbackA @270
   SetupDefaultQueueCallbackW @271
   SetupDeleteErrorA @272
   SetupDeleteErrorW @273
   SetupDestroyDiskSpaceList @274
+  SetupDiAskForOEMDisk @275 PRIVATE
   SetupDiBuildClassInfoList @276
   SetupDiBuildClassInfoListExA @277
   SetupDiBuildClassInfoListExW @278
   SetupDiBuildDriverInfoList @279
   SetupDiCallClassInstaller @280
+  SetupDiCancelDriverInfoSearch @281 PRIVATE
+  SetupDiChangeState @282 PRIVATE
   SetupDiClassGuidsFromNameA @283
   SetupDiClassGuidsFromNameExA @284
   SetupDiClassGuidsFromNameExW @285
@@ -118,6 +308,7 @@ EXPORTS
   SetupDiDeleteDeviceInfo @303
   SetupDiDeleteDeviceInterfaceData @304
   SetupDiDeleteDeviceInterfaceRegKey @305
+  SetupDiDeleteDeviceRegKey @306 PRIVATE
   SetupDiDestroyClassImageList @307
   SetupDiDestroyDeviceInfoList @308
   SetupDiDestroyDriverInfoList @309
@@ -133,190 +324,280 @@ EXPORTS
   SetupDiGetClassDescriptionExA @319
   SetupDiGetClassDescriptionExW @320
   SetupDiGetClassDescriptionW @321
+  SetupDiGetClassDevPropertySheetsA @322 PRIVATE
+  SetupDiGetClassDevPropertySheetsW @323 PRIVATE
   SetupDiGetClassDevsA @324
   SetupDiGetClassDevsExA @325
   SetupDiGetClassDevsExW @326
   SetupDiGetClassDevsW @327
   SetupDiGetClassImageIndex @328
   SetupDiGetClassImageList @329
+  SetupDiGetClassImageListExA @330 PRIVATE
+  SetupDiGetClassImageListExW @331 PRIVATE
+  SetupDiGetClassInstallParamsA @332 PRIVATE
+  SetupDiGetClassInstallParamsW @333 PRIVATE
+  SetupDiGetDeviceInfoListClass @334 PRIVATE
   SetupDiGetDeviceInfoListDetailA @335
   SetupDiGetDeviceInfoListDetailW @336
   SetupDiGetDeviceInstallParamsA @337
   SetupDiGetDeviceInstallParamsW @338
   SetupDiGetDeviceInstanceIdA @339
   SetupDiGetDeviceInstanceIdW @340
+  SetupDiGetDeviceInterfaceAlias @341 PRIVATE
   SetupDiGetDeviceInterfaceDetailA @342
   SetupDiGetDeviceInterfaceDetailW @343
   SetupDiGetDevicePropertyW @344
   SetupDiGetDeviceRegistryPropertyA @345
   SetupDiGetDeviceRegistryPropertyW @346
+  SetupDiGetDriverInfoDetailA @347 PRIVATE
+  SetupDiGetDriverInfoDetailW @348 PRIVATE
+  SetupDiGetDriverInstallParamsA @349 PRIVATE
+  SetupDiGetDriverInstallParamsW @350 PRIVATE
+  SetupDiGetHwProfileFriendlyNameA @351 PRIVATE
+  SetupDiGetHwProfileFriendlyNameExA @352 PRIVATE
+  SetupDiGetHwProfileFriendlyNameExW @353 PRIVATE
+  SetupDiGetHwProfileFriendlyNameW @354 PRIVATE
+  SetupDiGetHwProfileList @355 PRIVATE
+  SetupDiGetHwProfileListExA @356 PRIVATE
+  SetupDiGetHwProfileListExW @357 PRIVATE
   SetupDiGetINFClassA @358
   SetupDiGetINFClassW @359
+  SetupDiGetSelectedDevice @360 PRIVATE
+  SetupDiGetSelectedDriverA @361 PRIVATE
+  SetupDiGetSelectedDriverW @362 PRIVATE
+  SetupDiGetWizardPage @363 PRIVATE
   SetupDiInstallClassA @364
+  SetupDiInstallClassExA @365 PRIVATE
+  SetupDiInstallClassExW @366 PRIVATE
   SetupDiInstallClassW @367
-  SetupDiLoadClassIcon @370
-  SetupDiOpenClassRegKey @372
-  SetupDiOpenClassRegKeyExA @373
-  SetupDiOpenClassRegKeyExW @374
-  SetupDiOpenDevRegKey @375
-  SetupDiOpenDeviceInfoA @376
-  SetupDiOpenDeviceInfoW @377
-  SetupDiOpenDeviceInterfaceA @378
-  SetupDiOpenDeviceInterfaceW @380
-  SetupDiRegisterDeviceInfo @381
-  SetupDiRemoveDevice @382
-  SetupDiRemoveDeviceInterface @383
-  SetupDiSelectBestCompatDrv @384
-  SetupDiSetClassInstallParamsA @387
-  SetupDiSetClassInstallParamsW @388
-  SetupDiSetDeviceInstallParamsA @389
-  SetupDiSetDeviceInstallParamsW @390
-  SetupDiSetDeviceRegistryPropertyA @391
-  SetupDiSetDeviceRegistryPropertyW @392
-  SetupDiSetSelectedDevice @395
-  SetupDuplicateDiskSpaceListA @399
-  SetupDuplicateDiskSpaceListW @400
-  SetupEnumInfSectionsA @401
-  SetupEnumInfSectionsW @402
-  SetupFindFirstLineA @403
-  SetupFindFirstLineW @404
-  SetupFindNextLine @405
-  SetupFindNextMatchLineA @406
-  SetupFindNextMatchLineW @407
-  SetupGetBinaryField @412
-  SetupGetFieldCount @413
-  SetupGetFileCompressionInfoA @414
-  SetupGetFileCompressionInfoExA @415
-  SetupGetFileCompressionInfoExW @416
-  SetupGetFileCompressionInfoW @417
-  SetupGetFileQueueCount @418
-  SetupGetFileQueueFlags @419
-  SetupGetInfFileListA @420
-  SetupGetInfFileListW @421
-  SetupGetInfInformationA @422
-  SetupGetInfInformationW @423
-  SetupGetIntField @425
-  SetupGetLineByIndexA @426
-  SetupGetLineByIndexW @427
-  SetupGetLineCountA @428
-  SetupGetLineCountW @429
-  SetupGetLineTextA @430
-  SetupGetLineTextW @431
-  SetupGetMultiSzFieldA @432
-  SetupGetMultiSzFieldW @433
-  SetupGetNonInteractiveMode @434
-  SetupGetSourceFileLocationA @435
-  SetupGetSourceFileLocationW @436
-  SetupGetSourceInfoA @439
-  SetupGetSourceInfoW @440
-  SetupGetStringFieldA @441
-  SetupGetStringFieldW @442
-  SetupGetTargetPathA @443
-  SetupGetTargetPathW @444
-  SetupInitDefaultQueueCallback @445
-  SetupInitDefaultQueueCallbackEx @446
-  SetupInitializeFileLogA @447
-  SetupInitializeFileLogW @448
-  SetupInstallFileA @449
-  SetupInstallFileExA @450
-  SetupInstallFileExW @451
-  SetupInstallFileW @452
-  SetupInstallFilesFromInfSectionA @453
-  SetupInstallFilesFromInfSectionW @454
-  SetupInstallFromInfSectionA @455
-  SetupInstallFromInfSectionW @456
-  SetupInstallServicesFromInfSectionA @457
-  SetupInstallServicesFromInfSectionW @460
-  SetupIterateCabinetA @461
-  SetupIterateCabinetW @462
-  SetupLogErrorA @463
-  SetupLogErrorW @464
-  SetupLogFileA @465
-  SetupLogFileW @466
-  SetupOpenAppendInfFileA @467
-  SetupOpenAppendInfFileW @468
-  SetupOpenFileQueue @469
-  SetupOpenInfFileA @470
-  SetupOpenInfFileW @471
-  SetupOpenLog @472
-  SetupOpenMasterInf @473
-  SetupPromptForDiskA @474
-  SetupPromptForDiskW @475
-  SetupPromptReboot @476
-  SetupQueryDrivesInDiskSpaceListA @477
-  SetupQueryDrivesInDiskSpaceListW @478
-  SetupQueryInfFileInformationA @481
-  SetupQueryInfFileInformationW @482
-  SetupQueryInfOriginalFileInformationA @483
-  SetupQueryInfOriginalFileInformationW @484
-  SetupQuerySpaceRequiredOnDriveA @489
-  SetupQuerySpaceRequiredOnDriveW @490
-  SetupQueueCopyA @491
-  SetupQueueCopyIndirectA @492
-  SetupQueueCopyIndirectW @493
-  SetupQueueCopySectionA @494
-  SetupQueueCopySectionW @495
-  SetupQueueCopyW @496
-  SetupQueueDefaultCopyA @497
-  SetupQueueDefaultCopyW @498
-  SetupQueueDeleteA @499
-  SetupQueueDeleteSectionA @500
-  SetupQueueDeleteSectionW @501
-  SetupQueueDeleteW @502
-  SetupQueueRenameA @503
-  SetupQueueRenameSectionA @504
-  SetupQueueRenameSectionW @505
-  SetupQueueRenameW @506
-  SetupRenameErrorA @517
-  SetupRenameErrorW @518
-  SetupScanFileQueueA @520
-  SetupScanFileQueueW @521
-  SetupSetDirectoryIdA @522
-  SetupSetDirectoryIdW @525
-  SetupSetFileQueueAlternatePlatformA @526
-  SetupSetFileQueueAlternatePlatformW @527
-  SetupSetFileQueueFlags @528
-  SetupSetNonInteractiveMode @529
-  SetupSetSourceListA @532
-  SetupSetSourceListW @533
-  SetupTermDefaultQueueCallback @534
-  SetupTerminateFileLog @535
-  SetupUninstallOEMInfA @536
-  SetupUninstallOEMInfW @537
-  StampFileSecurity @539
-  StringTableAddString @540
-  StringTableAddStringEx @541
-  StringTableDestroy @542
-  StringTableDuplicate @543
-  StringTableGetExtraData @545
-  StringTableInitialize @546
-  StringTableInitializeEx @547
-  StringTableLookUpString @548
-  StringTableLookUpStringEx @549
-  StringTableSetExtraData @550
-  StringTableStringFromId @551
-  StringTableStringFromIdEx @552
-  StringTableTrim @553
-  TakeOwnershipOfFile @554
-  UnicodeToMultiByte @555
-  UnmapAndCloseFile @556
-  pSetupFree=MyFree @565
-  pSetupGetField @566
-  pSetupGetGlobalFlags @567
-  pSetupGetQueueFlags @569
-  pSetupInstallCatalog @573
-  pSetupIsUserAdmin=IsUserAdmin @574
-  pSetupMalloc=MyMalloc @576
-  pSetupRealloc=MyRealloc @577
-  pSetupSetGlobalFlags @578
-  pSetupSetQueueFlags @579
-  pSetupStringTableAddString=StringTableAddString @582
-  pSetupStringTableAddStringEx=StringTableAddStringEx @583
-  pSetupStringTableDestroy=StringTableDestroy @584
-  pSetupStringTableDuplicate=StringTableDuplicate @585
-  pSetupStringTableGetExtraData=StringTableGetExtraData @587
-  pSetupStringTableInitialize=StringTableInitialize @588
-  pSetupStringTableInitializeEx=StringTableInitializeEx @589
-  pSetupStringTableLookUpString=StringTableLookUpString @590
-  pSetupStringTableLookUpStringEx=StringTableLookUpStringEx @591
-  pSetupStringTableSetExtraData=StringTableSetExtraData @592
+  SetupDiInstallDevice @368
+  SetupDiInstallDeviceInterfaces @369
+  SetupDiInstallDriverFiles @370
+  SetupDiLoadClassIcon @371
+  SetupDiMoveDuplicateDevice @372 PRIVATE
+  SetupDiOpenClassRegKey @373
+  SetupDiOpenClassRegKeyExA @374
+  SetupDiOpenClassRegKeyExW @375
+  SetupDiOpenDevRegKey @376
+  SetupDiOpenDeviceInfoA @377
+  SetupDiOpenDeviceInfoW @378
+  SetupDiOpenDeviceInterfaceA @379
+  SetupDiOpenDeviceInterfaceRegKey @380 PRIVATE
+  SetupDiOpenDeviceInterfaceW @381
+  SetupDiRegisterCoDeviceInstallers @382
+  SetupDiRegisterDeviceInfo @383
+  SetupDiRemoveDevice @384
+  SetupDiRemoveDeviceInterface @385
+  SetupDiSelectBestCompatDrv @386
+  SetupDiSelectDevice @387 PRIVATE
+  SetupDiSelectOEMDrv @388 PRIVATE
+  SetupDiSetClassInstallParamsA @389
+  SetupDiSetClassInstallParamsW @390
+  SetupDiSetDeviceInstallParamsA @391
+  SetupDiSetDeviceInstallParamsW @392
+  SetupDiSetDevicePropertyW @393
+  SetupDiSetDeviceRegistryPropertyA @394
+  SetupDiSetDeviceRegistryPropertyW @395
+  SetupDiSetDriverInstallParamsA @396 PRIVATE
+  SetupDiSetDriverInstallParamsW @397 PRIVATE
+  SetupDiSetSelectedDevice @398
+  SetupDiSetSelectedDriverA @399 PRIVATE
+  SetupDiSetSelectedDriverW @400 PRIVATE
+  SetupDiUnremoveDevice @401 PRIVATE
+  SetupDuplicateDiskSpaceListA @402
+  SetupDuplicateDiskSpaceListW @403
+  SetupEnumInfSectionsA @404
+  SetupEnumInfSectionsW @405
+  SetupFindFirstLineA @406
+  SetupFindFirstLineW @407
+  SetupFindNextLine @408
+  SetupFindNextMatchLineA @409
+  SetupFindNextMatchLineW @410
+  SetupFreeSourceListA @411 PRIVATE
+  SetupFreeSourceListW @412 PRIVATE
+  SetupGetBackupInformationA @413 PRIVATE
+  SetupGetBackupInformationW @414 PRIVATE
+  SetupGetBinaryField @415
+  SetupGetFieldCount @416
+  SetupGetFileCompressionInfoA @417
+  SetupGetFileCompressionInfoExA @418
+  SetupGetFileCompressionInfoExW @419
+  SetupGetFileCompressionInfoW @420
+  SetupGetFileQueueCount @421
+  SetupGetFileQueueFlags @422
+  SetupGetInfDriverStoreLocationW @423
+  SetupGetInfFileListA @424
+  SetupGetInfFileListW @425
+  SetupGetInfInformationA @426
+  SetupGetInfInformationW @427
+  SetupGetInfSections @428 PRIVATE
+  SetupGetIntField @429
+  SetupGetLineByIndexA @430
+  SetupGetLineByIndexW @431
+  SetupGetLineCountA @432
+  SetupGetLineCountW @433
+  SetupGetLineTextA @434
+  SetupGetLineTextW @435
+  SetupGetMultiSzFieldA @436
+  SetupGetMultiSzFieldW @437
+  SetupGetNonInteractiveMode @438
+  SetupGetSourceFileLocationA @439
+  SetupGetSourceFileLocationW @440
+  SetupGetSourceFileSizeA @441 PRIVATE
+  SetupGetSourceFileSizeW @442 PRIVATE
+  SetupGetSourceInfoA @443
+  SetupGetSourceInfoW @444
+  SetupGetStringFieldA @445
+  SetupGetStringFieldW @446
+  SetupGetTargetPathA @447
+  SetupGetTargetPathW @448
+  SetupInitDefaultQueueCallback @449
+  SetupInitDefaultQueueCallbackEx @450
+  SetupInitializeFileLogA @451
+  SetupInitializeFileLogW @452
+  SetupInstallFileA @453
+  SetupInstallFileExA @454
+  SetupInstallFileExW @455
+  SetupInstallFileW @456
+  SetupInstallFilesFromInfSectionA @457
+  SetupInstallFilesFromInfSectionW @458
+  SetupInstallFromInfSectionA @459
+  SetupInstallFromInfSectionW @460
+  SetupInstallServicesFromInfSectionA @461
+  SetupInstallServicesFromInfSectionExA @462 PRIVATE
+  SetupInstallServicesFromInfSectionExW @463 PRIVATE
+  SetupInstallServicesFromInfSectionW @464
+  SetupIterateCabinetA @465
+  SetupIterateCabinetW @466
+  SetupLogErrorA @467
+  SetupLogErrorW @468
+  SetupLogFileA @469
+  SetupLogFileW @470
+  SetupOpenAppendInfFileA @471
+  SetupOpenAppendInfFileW @472
+  SetupOpenFileQueue @473
+  SetupOpenInfFileA @474
+  SetupOpenInfFileW @475
+  SetupOpenLog @476
+  SetupOpenMasterInf @477
+  SetupPromptForDiskA @478
+  SetupPromptForDiskW @479
+  SetupPromptReboot @480
+  SetupQueryDrivesInDiskSpaceListA @481
+  SetupQueryDrivesInDiskSpaceListW @482
+  SetupQueryFileLogA @483 PRIVATE
+  SetupQueryFileLogW @484 PRIVATE
+  SetupQueryInfFileInformationA @485
+  SetupQueryInfFileInformationW @486
+  SetupQueryInfOriginalFileInformationA @487
+  SetupQueryInfOriginalFileInformationW @488
+  SetupQueryInfVersionInformationA @489 PRIVATE
+  SetupQueryInfVersionInformationW @490 PRIVATE
+  SetupQuerySourceListA @491 PRIVATE
+  SetupQuerySourceListW @492 PRIVATE
+  SetupQuerySpaceRequiredOnDriveA @493
+  SetupQuerySpaceRequiredOnDriveW @494
+  SetupQueueCopyA @495
+  SetupQueueCopyIndirectA @496
+  SetupQueueCopyIndirectW @497
+  SetupQueueCopySectionA @498
+  SetupQueueCopySectionW @499
+  SetupQueueCopyW @500
+  SetupQueueDefaultCopyA @501
+  SetupQueueDefaultCopyW @502
+  SetupQueueDeleteA @503
+  SetupQueueDeleteSectionA @504
+  SetupQueueDeleteSectionW @505
+  SetupQueueDeleteW @506
+  SetupQueueRenameA @507
+  SetupQueueRenameSectionA @508
+  SetupQueueRenameSectionW @509
+  SetupQueueRenameW @510
+  SetupRemoveFileLogEntryA @511 PRIVATE
+  SetupRemoveFileLogEntryW @512 PRIVATE
+  SetupRemoveFromDiskSpaceListA @513 PRIVATE
+  SetupRemoveFromDiskSpaceListW @514 PRIVATE
+  SetupRemoveFromSourceListA @515 PRIVATE
+  SetupRemoveFromSourceListW @516 PRIVATE
+  SetupRemoveInstallSectionFromDiskSpaceListA @517 PRIVATE
+  SetupRemoveInstallSectionFromDiskSpaceListW @518 PRIVATE
+  SetupRemoveSectionFromDiskSpaceListA @519 PRIVATE
+  SetupRemoveSectionFromDiskSpaceListW @520 PRIVATE
+  SetupRenameErrorA @521
+  SetupRenameErrorW @522
+  SetupScanFileQueue @523 PRIVATE
+  SetupScanFileQueueA @524
+  SetupScanFileQueueW @525
+  SetupSetDirectoryIdA @526
+  SetupSetDirectoryIdExA @527 PRIVATE
+  SetupSetDirectoryIdExW @528 PRIVATE
+  SetupSetDirectoryIdW @529
+  SetupSetFileQueueAlternatePlatformA @530
+  SetupSetFileQueueAlternatePlatformW @531
+  SetupSetFileQueueFlags @532
+  SetupSetNonInteractiveMode @533
+  SetupSetPlatformPathOverrideA @534 PRIVATE
+  SetupSetPlatformPathOverrideW @535 PRIVATE
+  SetupSetSourceListA @536
+  SetupSetSourceListW @537
+  SetupTermDefaultQueueCallback @538
+  SetupTerminateFileLog @539
+  SetupUninstallOEMInfA @540
+  SetupUninstallOEMInfW @541
+  ShouldDeviceBeExcluded @542 PRIVATE
+  StampFileSecurity @543
+  StringTableAddString @544
+  StringTableAddStringEx @545
+  StringTableDestroy @546
+  StringTableDuplicate @547
+  StringTableEnum @548 PRIVATE
+  StringTableGetExtraData @549
+  StringTableInitialize @550
+  StringTableInitializeEx @551
+  StringTableLookUpString @552
+  StringTableLookUpStringEx @553
+  StringTableSetExtraData @554
+  StringTableStringFromId @555
+  StringTableStringFromIdEx @556
+  StringTableTrim @557
+  TakeOwnershipOfFile @558
+  UnicodeToMultiByte @559
+  UnmapAndCloseFile @560
+  VerifyCatalogFile @561 PRIVATE
+  VerifyFile @562 PRIVATE
+  pSetupAccessRunOnceNodeList @563 PRIVATE
+  pSetupAddMiniIconToList @564 PRIVATE
+  pSetupAddTagToGroupOrderListEntry @565 PRIVATE
+  pSetupAppendStringToMultiSz @566 PRIVATE
+  pSetupDestroyRunOnceNodeList @567 PRIVATE
+  pSetupDirectoryIdToPath @568 PRIVATE
+  pSetupFree=MyFree @569
+  pSetupGetField @570
+  pSetupGetGlobalFlags @571
+  pSetupGetOsLoaderDriveAndPath @572 PRIVATE
+  pSetupGetQueueFlags @573
+  pSetupGetVersionDatum @574 PRIVATE
+  pSetupGuidFromString @575 PRIVATE
+  pSetupIsGuidNull @576 PRIVATE
+  pSetupInstallCatalog @577
+  pSetupIsUserAdmin=IsUserAdmin @578
+  pSetupMakeSurePathExists @579 PRIVATE
+  pSetupMalloc=MyMalloc @580
+  pSetupRealloc=MyRealloc @581
+  pSetupSetGlobalFlags @582
+  pSetupSetQueueFlags @583
+  pSetupSetSystemSourceFlags @584 PRIVATE
+  pSetupStringFromGuid @585 PRIVATE
+  pSetupStringTableAddString=StringTableAddString @586
+  pSetupStringTableAddStringEx=StringTableAddStringEx @587
+  pSetupStringTableDestroy=StringTableDestroy @588
+  pSetupStringTableDuplicate=StringTableDuplicate @589
+  pSetupStringTableEnum @590 PRIVATE
+  pSetupStringTableGetExtraData=StringTableGetExtraData @591
+  pSetupStringTableInitialize=StringTableInitialize @592
+  pSetupStringTableInitializeEx=StringTableInitializeEx @593
+  pSetupStringTableLookUpString=StringTableLookUpString @594
+  pSetupStringTableLookUpStringEx=StringTableLookUpStringEx @595
+  pSetupStringTableSetExtraData=StringTableSetExtraData @596
+  pSetupVerifyCatalogFile @597 PRIVATE
+  pSetupVerifyQueuedCatalogs @598 PRIVATE

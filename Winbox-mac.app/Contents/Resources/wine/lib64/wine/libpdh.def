@@ -1,47 +1,168 @@
-; File generated automatically from dlls/pdh/pdh.spec; do not edit!
+; File generated automatically from ../wine/dlls/pdh/pdh.spec; do not edit!
 
 LIBRARY pdh.dll
 
 EXPORTS
+  PdhPlaGetLogFileNameA @1 PRIVATE
+  PdhAdd009CounterA @2 PRIVATE
+  PdhAdd009CounterW @3 PRIVATE
   PdhAddCounterA @4
   PdhAddCounterW @5
   PdhAddEnglishCounterA @6
   PdhAddEnglishCounterW @7
   PdhBindInputDataSourceA @8
   PdhBindInputDataSourceW @9
+  PdhBrowseCountersA @10 PRIVATE
+  PdhBrowseCountersHA @11 PRIVATE
+  PdhBrowseCountersHW @12 PRIVATE
+  PdhBrowseCountersW @13 PRIVATE
   PdhCalculateCounterFromRawValue @14
+  PdhCloseLog @15 PRIVATE
   PdhCloseQuery @16
   PdhCollectQueryData @17
   PdhCollectQueryDataWithTime @18
   PdhCollectQueryDataEx @19
+  PdhComputeCounterStatistics @20 PRIVATE
+  PdhConnectMachineA @21 PRIVATE
+  PdhConnectMachineW @22 PRIVATE
+  PdhCreateSQLTablesA @23 PRIVATE
+  PdhCreateSQLTablesW @24 PRIVATE
+  PdhEnumLogSetNamesA @25 PRIVATE
+  PdhEnumLogSetNamesW @26 PRIVATE
+  PdhEnumMachinesA @27 PRIVATE
+  PdhEnumMachinesHA @28 PRIVATE
+  PdhEnumMachinesHW @29 PRIVATE
+  PdhEnumMachinesW @30 PRIVATE
   PdhEnumObjectItemsA @31
+  PdhEnumObjectItemsHA @32 PRIVATE
+  PdhEnumObjectItemsHW @33 PRIVATE
   PdhEnumObjectItemsW @34
+  PdhEnumObjectsA @35 PRIVATE
+  PdhEnumObjectsHA @36 PRIVATE
+  PdhEnumObjectsHW @37 PRIVATE
+  PdhEnumObjectsW @38 PRIVATE
   PdhExpandCounterPathA @39
   PdhExpandCounterPathW @40
   PdhExpandWildCardPathA @41
+  PdhExpandWildCardPathHA @42 PRIVATE
+  PdhExpandWildCardPathHW @43 PRIVATE
   PdhExpandWildCardPathW @44
+  PdhFormatFromRawValue @45 PRIVATE
   PdhGetCounterInfoA @46
   PdhGetCounterInfoW @47
   PdhGetCounterTimeBase @48
+  PdhGetDataSourceTimeRangeA @49 PRIVATE
+  PdhGetDataSourceTimeRangeH @50 PRIVATE
+  PdhGetDataSourceTimeRangeW @51 PRIVATE
+  PdhGetDefaultPerfCounterA @52 PRIVATE
+  PdhGetDefaultPerfCounterHA @53 PRIVATE
+  PdhGetDefaultPerfCounterHW @54 PRIVATE
+  PdhGetDefaultPerfCounterW @55 PRIVATE
+  PdhGetDefaultPerfObjectA @56 PRIVATE
+  PdhGetDefaultPerfObjectHA @57 PRIVATE
+  PdhGetDefaultPerfObjectHW @58 PRIVATE
+  PdhGetDefaultPerfObjectW @59 PRIVATE
   PdhGetDllVersion @60
+  PdhGetFormattedCounterArrayA @61 PRIVATE
+  PdhGetFormattedCounterArrayW @62 PRIVATE
   PdhGetFormattedCounterValue @63
+  PdhGetLogFileSize @64 PRIVATE
   PdhGetLogFileTypeA @65
   PdhGetLogFileTypeW @66
+  PdhGetLogSetGUID @67 PRIVATE
+  PdhGetRawCounterArrayA @68 PRIVATE
+  PdhGetRawCounterArrayW @69 PRIVATE
   PdhGetRawCounterValue @70
+  PdhIsRealTimeQuery @71 PRIVATE
+  PdhListLogFileHeaderA @72 PRIVATE
+  PdhListLogFileHeaderW @73 PRIVATE
+  PdhLogServiceCommandA @74 PRIVATE
+  PdhLogServiceCommandW @75 PRIVATE
+  PdhLogServiceControlA @76 PRIVATE
+  PdhLogServiceControlW @77 PRIVATE
   PdhLookupPerfIndexByNameA @78
   PdhLookupPerfIndexByNameW @79
   PdhLookupPerfNameByIndexA @80
   PdhLookupPerfNameByIndexW @81
   PdhMakeCounterPathA @82
   PdhMakeCounterPathW @83
+  PdhOpenLogA @84 PRIVATE
+  PdhOpenLogW @85 PRIVATE
   PdhOpenQuery=PdhOpenQueryW @86
   PdhOpenQueryA @87
+  PdhOpenQueryH @88 PRIVATE
   PdhOpenQueryW @89
+  PdhParseCounterPathA @90 PRIVATE
+  PdhParseCounterPathW @91 PRIVATE
+  PdhParseInstanceNameA @92 PRIVATE
+  PdhParseInstanceNameW @93 PRIVATE
+  PdhPlaAddItemA @94 PRIVATE
+  PdhPlaAddItemW @95 PRIVATE
+  PdhPlaCreateA @96 PRIVATE
+  PdhPlaCreateW @97 PRIVATE
+  PdhPlaDeleteA @98 PRIVATE
+  PdhPlaDeleteW @99 PRIVATE
+  PdhPlaEnumCollectionsA @100 PRIVATE
+  PdhPlaEnumCollectionsW @101 PRIVATE
+  PdhPlaGetInfoA @102 PRIVATE
+  PdhPlaGetInfoW @103 PRIVATE
+  PdhPlaGetLogFileNameW @104 PRIVATE
+  PdhPlaGetScheduleA @105 PRIVATE
+  PdhPlaGetScheduleW @106 PRIVATE
+  PdhPlaRemoveAllItemsA @107 PRIVATE
+  PdhPlaRemoveAllItemsW @108 PRIVATE
+  PdhPlaScheduleA @109 PRIVATE
+  PdhPlaScheduleW @110 PRIVATE
+  PdhPlaSetInfoA @111 PRIVATE
+  PdhPlaSetInfoW @112 PRIVATE
+  PdhPlaSetItemListA @113 PRIVATE
+  PdhPlaSetItemListW @114 PRIVATE
+  PdhPlaSetRunAsA @115 PRIVATE
+  PdhPlaSetRunAsW @116 PRIVATE
+  PdhPlaStartA @117 PRIVATE
+  PdhPlaStartW @118 PRIVATE
+  PdhPlaStopA @119 PRIVATE
+  PdhPlaStopW @120 PRIVATE
+  PdhPlaValidateInfoA @121 PRIVATE
+  PdhPlaValidateInfoW @122 PRIVATE
+  PdhReadRawLogRecord @123 PRIVATE
+  PdhRelogA @124 PRIVATE
+  PdhRelogW @125 PRIVATE
   PdhRemoveCounter @126
+  PdhSelectDataSourceA @127 PRIVATE
+  PdhSelectDataSourceW @128 PRIVATE
   PdhSetCounterScaleFactor @129
   PdhSetDefaultRealTimeDataSource @130
+  PdhSetLogSetRunID @131 PRIVATE
+  PdhSetQueryTimeRange @132 PRIVATE
+  PdhTranslate009CounterA @133 PRIVATE
+  PdhTranslate009CounterW @134 PRIVATE
+  PdhTranslateLocaleCounterA @135 PRIVATE
+  PdhTranslateLocaleCounterW @136 PRIVATE
+  PdhUpdateLogA @137 PRIVATE
+  PdhUpdateLogFileCatalog @138 PRIVATE
+  PdhUpdateLogW @139 PRIVATE
   PdhValidatePathA @140
   PdhValidatePathExA @141
   PdhValidatePathExW @142
   PdhValidatePathW @143
   PdhVbAddCounter @144
+  PdhVbCreateCounterPathList @145 PRIVATE
+  PdhVbGetCounterPathElements @146 PRIVATE
+  PdhVbGetCounterPathFromList @147 PRIVATE
+  PdhVbGetDoubleCounterValue @148 PRIVATE
+  PdhVbGetLogFileSize @149 PRIVATE
+  PdhVbGetOneCounterPath @150 PRIVATE
+  PdhVbIsGoodStatus @151 PRIVATE
+  PdhVbOpenLog @152 PRIVATE
+  PdhVbOpenQuery @153 PRIVATE
+  PdhVbUpdateLog @154 PRIVATE
+  PdhVerifySQLDBA @155 PRIVATE
+  PdhVerifySQLDBW @156 PRIVATE
+  PdhiPla2003SP1Installed @157 PRIVATE
+  PdhiPlaFormatBlanksA @158 PRIVATE
+  PdhiPlaFormatBlanksW @159 PRIVATE
+  PdhiPlaGetVersion @160 PRIVATE
+  PdhiPlaRunAs @161 PRIVATE
+  PdhiPlaSetRunAs @162 PRIVATE
+  PlaTimeInfoToMilliSeconds @163 PRIVATE

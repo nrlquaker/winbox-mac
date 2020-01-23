@@ -1,4 +1,4 @@
-; File generated automatically from dlls/jsproxy/jsproxy.spec; do not edit!
+; File generated automatically from ../wine/dlls/jsproxy/jsproxy.spec; do not edit!
 
 LIBRARY jsproxy.dll
 
@@ -6,3 +6,6 @@ EXPORTS
   InternetInitializeAutoProxyDll=JSPROXY_InternetInitializeAutoProxyDll @101
   InternetDeInitializeAutoProxyDll @102
   InternetGetProxyInfo @103
+  InternetInitializeAutoProxyDllEx @104 PRIVATE
+  InternetDeInitializeAutoProxyDllEx @105 PRIVATE
+  InternetGetProxyInfoEx @106 PRIVATE

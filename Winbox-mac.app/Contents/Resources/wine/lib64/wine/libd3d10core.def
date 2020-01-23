@@ -1,4 +1,4 @@
-; File generated automatically from dlls/d3d10core/d3d10core.spec; do not edit!
+; File generated automatically from ../wine/dlls/d3d10core/d3d10core.spec; do not edit!
 
 LIBRARY d3d10core.dll
 

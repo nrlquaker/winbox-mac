@@ -1,13 +1,26 @@
-; File generated automatically from dlls/url/url.spec; do not edit!
+; File generated automatically from ../wine/dlls/url/url.spec; do not edit!
 
 LIBRARY url.dll
 
 EXPORTS
   AddMIMEFileTypesPS @1
+  AutodialHookCallback @2 PRIVATE
+  DummyEntryPoint @3 PRIVATE
+  DummyEntryPointA @4 PRIVATE
   FileProtocolHandler=FileProtocolHandlerA @5
   FileProtocolHandlerA @6
   InetIsOffline @7
+  MIMEAssociationDialogA @8 PRIVATE
+  MIMEAssociationDialogW @9 PRIVATE
+  MailToProtocolHandler @10 PRIVATE
+  MailToProtocolHandlerA @11 PRIVATE
+  NewsProtocolHandler @12 PRIVATE
+  NewsProtocolHandlerA @13 PRIVATE
   OpenURL=OpenURLA @14
   OpenURLA @15
   TelnetProtocolHandler=TelnetProtocolHandlerA @16
   TelnetProtocolHandlerA @17
+  TranslateURLA @18 PRIVATE
+  TranslateURLW @19 PRIVATE
+  URLAssociationDialogA @20 PRIVATE
+  URLAssociationDialogW @21 PRIVATE

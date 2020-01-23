@@ -1,9 +1,11 @@
-; File generated automatically from dlls/d3d9/d3d9.spec; do not edit!
+; File generated automatically from ../wine/dlls/d3d9/d3d9.spec; do not edit!
 
 LIBRARY d3d9.dll
 
 EXPORTS
   Direct3DShaderValidatorCreate9 @1
+  PSGPError @2 PRIVATE
+  PSGPSampleTexture @3 PRIVATE
   D3DPERF_BeginEvent @4
   D3DPERF_EndEvent @5
   D3DPERF_GetStatus @6
@@ -11,6 +13,7 @@ EXPORTS
   D3DPERF_SetMarker @8
   D3DPERF_SetOptions @9
   D3DPERF_SetRegion @10
+  DebugSetLevel @11 PRIVATE
   DebugSetMute @12
   Direct3DCreate9 @13
   Direct3DCreate9Ex @14

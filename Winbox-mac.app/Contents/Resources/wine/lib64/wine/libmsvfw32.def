@@ -1,4 +1,4 @@
-; File generated automatically from dlls/msvfw32/msvfw32.spec; do not edit!
+; File generated automatically from ../wine/dlls/msvfw32/msvfw32.spec; do not edit!
 
 LIBRARY msvfw32.dll
 
@@ -37,6 +37,7 @@ EXPORTS
   ICInfo @33
   ICInstall @34
   ICLocate @35
+  ICMThunk @36 PRIVATE
   ICOpen @37
   ICOpenFunction @38
   ICRemove @39
@@ -48,3 +49,4 @@ EXPORTS
   MCIWndCreateA @45
   MCIWndCreateW @46
   MCIWndRegisterClass @47
+  StretchDIB @48 PRIVATE

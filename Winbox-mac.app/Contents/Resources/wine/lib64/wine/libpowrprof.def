@@ -1,4 +1,4 @@
-; File generated automatically from dlls/powrprof/powrprof.spec; do not edit!
+; File generated automatically from ../wine/dlls/powrprof/powrprof.spec; do not edit!
 
 LIBRARY powrprof.dll
 
@@ -21,11 +21,12 @@ EXPORTS
   PowerGetActiveScheme @16
   PowerSetActiveScheme @17
   PowerReadDCValue @18
-  ReadGlobalPwrPolicy @19
-  ReadProcessorPwrScheme @20
-  ReadPwrScheme @21
-  SetActivePwrScheme @22
-  SetSuspendState @23
-  WriteGlobalPwrPolicy @24
-  WriteProcessorPwrScheme @25
-  WritePwrScheme @26
+  PowerReadFriendlyName @19
+  ReadGlobalPwrPolicy @20
+  ReadProcessorPwrScheme @21
+  ReadPwrScheme @22
+  SetActivePwrScheme @23
+  SetSuspendState @24
+  WriteGlobalPwrPolicy @25
+  WriteProcessorPwrScheme @26
+  WritePwrScheme @27

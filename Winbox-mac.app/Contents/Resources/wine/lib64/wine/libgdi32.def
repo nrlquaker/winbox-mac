@@ -1,4 +1,4 @@
-; File generated automatically from dlls/gdi32/gdi32.spec; do not edit!
+; File generated automatically from ../wine/dlls/gdi32/gdi32.spec; do not edit!
 
 LIBRARY gdi32.dll
 
@@ -9,6 +9,7 @@ EXPORTS
   AddFontResourceA @108
   AddFontResourceExA @109
   AddFontResourceExW @110
+  AddFontResourceTracking @111 PRIVATE
   AddFontResourceW @112
   AngleArc @113
   AnimatePalette @114
@@ -16,12 +17,16 @@ EXPORTS
   ArcTo @116
   BeginPath @117
   BitBlt @118
+  ByeByeGDI @119 PRIVATE
   CancelDC @120
+  CheckColorsInGamut @121 PRIVATE
   ChoosePixelFormat @122
   Chord @123
   CloseEnhMetaFile @124
   CloseFigure @125
   CloseMetaFile @126
+  ColorCorrectPalette @127 PRIVATE
+  ColorMatchToTarget @128 PRIVATE
   CombineRgn @129
   CombineTransform @130
   CopyEnhMetaFileA @131
@@ -70,318 +75,389 @@ EXPORTS
   CreateScalableFontResourceA @174
   CreateScalableFontResourceW @175
   CreateSolidBrush @176
-  D3DKMTCreateDCFromMemory @177
-  D3DKMTDestroyDCFromMemory @178
-  D3DKMTEscape @179
-  D3DKMTOpenAdapterFromHdc @180
-  DPtoLP @181
-  DeleteColorSpace @182
-  DeleteDC @183
-  DeleteEnhMetaFile @184
-  DeleteMetaFile @185
-  DeleteObject @186
-  DescribePixelFormat @187
-  DrawEscape @191
-  Ellipse @192
-  EnableEUDC @193
-  EndDoc @194
-  EndPage @195
-  EndPath @196
-  EnumEnhMetaFile @197
-  EnumFontFamiliesA @198
-  EnumFontFamiliesExA @199
-  EnumFontFamiliesExW @200
-  EnumFontFamiliesW @201
-  EnumFontsA @202
-  EnumFontsW @203
-  EnumICMProfilesA @204
-  EnumICMProfilesW @205
-  EnumMetaFile @206
-  EnumObjects @207
-  EqualRgn @208
-  Escape @209
-  ExcludeClipRect @210
-  ExtCreatePen @211
-  ExtCreateRegion @212
-  ExtEscape @213
-  ExtFloodFill @214
-  ExtSelectClipRgn @215
-  ExtTextOutA @216
-  ExtTextOutW @217
-  FillPath @218
-  FillRgn @219
-  FixBrushOrgEx @220
-  FlattenPath @221
-  FloodFill @222
-  FontIsLinked @223
-  FrameRgn @224
-  GdiAlphaBlend @226
-  GdiComment @229
-  GdiConvertToDevmodeW @239
-  GdiDescribePixelFormat @260
-  GdiDrawStream @262
-  GdiEntry13 @263
-  GdiFlush @264
-  GdiGetBatchLimit @265
-  GdiGetCharDimensions @266
-  GdiGetCodePage @267
-  GdiGetSpoolMessage @272
-  GdiGradientFill @273
-  GdiInitSpool @274
-  GdiInitializeLanguagePack @275
-  GdiIsMetaFileDC @276
-  GdiIsMetaPrintDC @277
-  GdiIsPlayMetafileDC @278
-  GdiRealizationInfo @282
-  GdiSetBatchLimit @285
-  GdiSetPixelFormat @286
-  GdiSwapBuffers @288
-  GdiTransparentBlt @289
-  GetArcDirection @294
-  GetAspectRatioFilterEx @295
-  GetBitmapBits @296
-  GetBitmapDimensionEx @297
-  GetBkColor @298
-  GetBkMode @299
-  GetBoundsRect @300
-  GetBrushOrgEx @301
-  GetCharABCWidthsA @302
-  GetCharABCWidthsFloatA @303
-  GetCharABCWidthsFloatW @304
-  GetCharABCWidthsI @305
-  GetCharABCWidthsW @306
-  GetCharWidth32A @307
-  GetCharWidth32W @308
-  GetCharWidthA=GetCharWidth32A @309
-  GetCharWidthFloatA @310
-  GetCharWidthFloatW @311
-  GetCharWidthI @312
-  GetCharWidthW=GetCharWidth32W @313
-  GetCharacterPlacementA @315
-  GetCharacterPlacementW @316
-  GetClipBox @317
-  GetClipRgn @318
-  GetColorAdjustment @319
-  GetColorSpace @320
-  GetCurrentObject @321
-  GetCurrentPositionEx @322
-  GetDCBrushColor @323
-  GetDCOrgEx @324
-  GetDCPenColor @325
-  GetDIBColorTable @326
-  GetDIBits @327
-  GetDeviceCaps @328
-  GetDeviceGammaRamp @329
-  GetEnhMetaFileA @331
-  GetEnhMetaFileBits @332
-  GetEnhMetaFileDescriptionA @333
-  GetEnhMetaFileDescriptionW @334
-  GetEnhMetaFileHeader @335
-  GetEnhMetaFilePaletteEntries @336
-  GetEnhMetaFileW @337
-  GetFontData @338
-  GetFontFileData @339
-  GetFontFileInfo @340
-  GetFontLanguageInfo @341
-  GetFontRealizationInfo @342
-  GetFontResourceInfoW @344
-  GetFontUnicodeRanges @345
-  GetGlyphIndicesA @346
-  GetGlyphIndicesW @347
-  GetGlyphOutline=GetGlyphOutlineA @348
-  GetGlyphOutlineA @349
-  GetGlyphOutlineW @350
-  GetGraphicsMode @352
-  GetICMProfileA @353
-  GetICMProfileW @354
-  GetKerningPairs=GetKerningPairsA @355
-  GetKerningPairsA @356
-  GetKerningPairsW @357
-  GetLayout @358
-  GetLogColorSpaceA @359
-  GetLogColorSpaceW @360
-  GetMapMode @361
-  GetMetaFileA @362
-  GetMetaFileBitsEx @363
-  GetMetaFileW @364
-  GetMetaRgn @365
-  GetMiterLimit @366
-  GetNearestColor @367
-  GetNearestPaletteIndex @368
-  GetObjectA @369
-  GetObjectType @370
-  GetObjectW @371
-  GetOutlineTextMetricsA @372
-  GetOutlineTextMetricsW @373
-  GetPaletteEntries @374
-  GetPath @375
-  GetPixel @376
-  GetPixelFormat @377
-  GetPolyFillMode @378
-  GetROP2 @379
-  GetRandomRgn @380
-  GetRasterizerCaps @381
-  GetRegionData @382
-  GetRelAbs @383
-  GetRgnBox @384
-  GetStockObject @385
-  GetStretchBltMode @386
-  GetSystemPaletteEntries @387
-  GetSystemPaletteUse @388
-  GetTextAlign @389
-  GetTextCharacterExtra @390
-  GetTextCharset @391
-  GetTextCharsetInfo @392
-  GetTextColor @393
-  GetTextExtentExPointA @394
-  GetTextExtentExPointI @395
-  GetTextExtentExPointW @396
-  GetTextExtentPoint32A @397
-  GetTextExtentPoint32W @398
-  GetTextExtentPointA @399
-  GetTextExtentPointI @400
-  GetTextExtentPointW @401
-  GetTextFaceA @402
-  GetTextFaceW @403
-  GetTextMetricsA @404
-  GetTextMetricsW @405
-  GetTransform @406
-  GetViewportExtEx @407
-  GetViewportOrgEx @408
-  GetWinMetaFileBits @409
-  GetWindowExtEx @410
-  GetWindowOrgEx @411
-  GetWorldTransform @412
-  IntersectClipRect @413
-  InvertRgn @414
-  LPtoDP @415
-  LineDDA @416
-  LineTo @417
-  MaskBlt @420
-  MirrorRgn @421
-  ModifyWorldTransform @422
-  MoveToEx @423
-  NamedEscape @424
-  OffsetClipRgn @425
-  OffsetRgn @426
-  OffsetViewportOrgEx @427
-  OffsetWindowOrgEx @428
-  PaintRgn @429
-  PatBlt @430
-  PathToRegion @431
-  Pie @432
-  PlayEnhMetaFile @433
-  PlayEnhMetaFileRecord @434
-  PlayMetaFile @435
-  PlayMetaFileRecord @436
-  PlgBlt @437
-  PolyBezier @438
-  PolyBezierTo @439
-  PolyDraw @440
-  PolyPolygon @441
-  PolyPolyline @442
-  PolyTextOutA @443
-  PolyTextOutW @444
-  Polygon @445
-  Polyline @446
-  PolylineTo @447
-  PtInRegion @448
-  PtVisible @449
-  RealizePalette @450
-  RectInRegion @451
-  RectVisible @452
-  Rectangle @453
-  RemoveFontMemResourceEx @454
-  RemoveFontResourceA @455
-  RemoveFontResourceExA @456
-  RemoveFontResourceExW @457
-  RemoveFontResourceW @459
-  ResetDCA @460
-  ResetDCW @461
-  ResizePalette @462
-  RestoreDC @463
-  RoundRect @464
-  SaveDC @465
-  ScaleViewportExtEx @466
-  ScaleWindowExtEx @467
-  SelectClipPath @469
-  SelectClipRgn @470
-  SelectObject @472
-  SelectPalette @473
-  SetAbortProc @474
-  SetArcDirection @475
-  SetBitmapBits @476
-  SetBitmapDimensionEx @477
-  SetBkColor @478
-  SetBkMode @479
-  SetBoundsRect @480
-  SetBrushOrgEx @481
-  SetColorAdjustment @482
-  SetColorSpace @483
-  SetDCBrushColor @484
-  SetDCPenColor @485
-  SetDIBColorTable @486
-  SetDIBits @487
-  SetDIBitsToDevice @488
-  SetDeviceGammaRamp @489
-  SetEnhMetaFileBits @490
-  SetGraphicsMode @492
-  SetICMMode @493
-  SetICMProfileA @494
-  SetICMProfileW @495
-  SetLayout @496
-  SetMagicColors @497
-  SetMapMode @498
-  SetMapperFlags @499
-  SetMetaFileBitsEx @500
-  SetMetaRgn @501
-  SetMiterLimit @502
-  SetObjectOwner @503
-  SetPaletteEntries @504
-  SetPixel @505
-  SetPixelFormat @506
-  SetPixelV @507
-  SetPolyFillMode @508
-  SetROP2 @509
-  SetRectRgn @510
-  SetRelAbs @511
-  SetStretchBltMode @512
-  SetSystemPaletteUse @513
-  SetTextAlign @514
-  SetTextCharacterExtra @515
-  SetTextColor @516
-  SetTextJustification @517
-  SetViewportExtEx @518
-  SetViewportOrgEx @519
-  SetVirtualResolution @520
-  SetWinMetaFileBits @521
-  SetWindowExtEx @522
-  SetWindowOrgEx @523
-  SetWorldTransform @524
-  StartDocA @525
-  StartDocW @526
-  StartPage @527
-  StretchBlt @528
-  StretchDIBits @529
-  StrokeAndFillPath @530
-  StrokePath @531
-  SwapBuffers @532
-  TextOutA @533
-  TextOutW @534
-  TranslateCharsetInfo @535
-  UnrealizeObject @537
-  UpdateColors @538
-  UpdateICMRegKey=UpdateICMRegKeyA @539
-  UpdateICMRegKeyA @540
-  UpdateICMRegKeyW @541
-  WidenPath @542
-  pfnRealizePalette @544 DATA
-  pfnSelectPalette @545 DATA
-  GetDCHook @547
-  SetDCHook @548
-  SetHookFlags @549
-  __wine_make_gdi_object_system @550
-  __wine_set_visible_region @551
-  __wine_set_display_driver @552
-  __wine_get_wgl_driver @553
-  __wine_get_vulkan_driver @554
+  D3DKMTCheckVidPnExclusiveOwnership @177
+  D3DKMTCloseAdapter @178
+  D3DKMTCreateDCFromMemory @179
+  D3DKMTCreateDevice @180
+  D3DKMTDestroyDCFromMemory @181
+  D3DKMTDestroyDevice @182
+  D3DKMTEscape @183
+  D3DKMTOpenAdapterFromGdiDisplayName @184
+  D3DKMTOpenAdapterFromHdc @185
+  D3DKMTQueryStatistics @186
+  D3DKMTSetVidPnSourceOwner @187
+  DPtoLP @188
+  DeleteColorSpace @189
+  DeleteDC @190
+  DeleteEnhMetaFile @191
+  DeleteMetaFile @192
+  DeleteObject @193
+  DescribePixelFormat @194
+  DeviceCapabilitiesEx @195 PRIVATE
+  DeviceCapabilitiesExA @196 PRIVATE
+  DeviceCapabilitiesExW @197 PRIVATE
+  DrawEscape @198
+  Ellipse @199
+  EnableEUDC @200
+  EndDoc @201
+  EndPage @202
+  EndPath @203
+  EnumEnhMetaFile @204
+  EnumFontFamiliesA @205
+  EnumFontFamiliesExA @206
+  EnumFontFamiliesExW @207
+  EnumFontFamiliesW @208
+  EnumFontsA @209
+  EnumFontsW @210
+  EnumICMProfilesA @211
+  EnumICMProfilesW @212
+  EnumMetaFile @213
+  EnumObjects @214
+  EqualRgn @215
+  Escape @216
+  ExcludeClipRect @217
+  ExtCreatePen @218
+  ExtCreateRegion @219
+  ExtEscape @220
+  ExtFloodFill @221
+  ExtSelectClipRgn @222
+  ExtTextOutA @223
+  ExtTextOutW @224
+  FillPath @225
+  FillRgn @226
+  FixBrushOrgEx @227
+  FlattenPath @228
+  FloodFill @229
+  FontIsLinked @230
+  FrameRgn @231
+  FreeImageColorMatcher @232 PRIVATE
+  GdiAlphaBlend @233
+  GdiAssociateObject @234 PRIVATE
+  GdiCleanCacheDC @235 PRIVATE
+  GdiComment @236
+  GdiConvertAndCheckDC @237 PRIVATE
+  GdiConvertBitmap @238 PRIVATE
+  GdiConvertBrush @239 PRIVATE
+  GdiConvertDC @240 PRIVATE
+  GdiConvertEnhMetaFile @241 PRIVATE
+  GdiConvertFont @242 PRIVATE
+  GdiConvertMetaFilePict @243 PRIVATE
+  GdiConvertPalette @244 PRIVATE
+  GdiConvertRegion @245 PRIVATE
+  GdiConvertToDevmodeW @246
+  GdiCreateLocalBitmap @247 PRIVATE
+  GdiCreateLocalBrush @248 PRIVATE
+  GdiCreateLocalEnhMetaFile @249 PRIVATE
+  GdiCreateLocalFont @250 PRIVATE
+  GdiCreateLocalMetaFilePict @251 PRIVATE
+  GdiCreateLocalPalette @252 PRIVATE
+  GdiCreateLocalRegion @253 PRIVATE
+  GdiDciBeginAccess @254 PRIVATE
+  GdiDciCreateOffscreenSurface @255 PRIVATE
+  GdiDciCreateOverlaySurface @256 PRIVATE
+  GdiDciCreatePrimarySurface @257 PRIVATE
+  GdiDciDestroySurface @258 PRIVATE
+  GdiDciDrawSurface @259 PRIVATE
+  GdiDciEndAccess @260 PRIVATE
+  GdiDciEnumSurface @261 PRIVATE
+  GdiDciInitialize @262 PRIVATE
+  GdiDciSetClipList @263 PRIVATE
+  GdiDciSetDestination @264 PRIVATE
+  GdiDeleteLocalDC @265 PRIVATE
+  GdiDeleteLocalObject @266 PRIVATE
+  GdiDescribePixelFormat @267
+  GdiDllInitialize @268 PRIVATE
+  GdiDrawStream @269
+  GdiEntry13 @270
+  GdiFlush @271
+  GdiGetBatchLimit @272
+  GdiGetCharDimensions @273
+  GdiGetCodePage @274
+  GdiGetLocalBitmap @275 PRIVATE
+  GdiGetLocalBrush @276 PRIVATE
+  GdiGetLocalDC @277 PRIVATE
+  GdiGetLocalFont @278 PRIVATE
+  GdiGetSpoolMessage @279
+  GdiGradientFill @280
+  GdiInitSpool @281
+  GdiInitializeLanguagePack @282
+  GdiIsMetaFileDC @283
+  GdiIsMetaPrintDC @284
+  GdiIsPlayMetafileDC @285
+  GdiPlayDCScript @286 PRIVATE
+  GdiPlayJournal @287 PRIVATE
+  GdiPlayScript @288 PRIVATE
+  GdiRealizationInfo @289
+  GdiReleaseLocalDC @290 PRIVATE
+  GdiSetAttrs @291 PRIVATE
+  GdiSetBatchLimit @292
+  GdiSetPixelFormat @293
+  GdiSetServerAttr @294 PRIVATE
+  GdiSwapBuffers @295
+  GdiTransparentBlt @296
+  GdiWinWatchClose @297 PRIVATE
+  GdiWinWatchDidStatusChange @298 PRIVATE
+  GdiWinWatchGetClipList @299 PRIVATE
+  GdiWinWatchOpen @300 PRIVATE
+  GetArcDirection @301
+  GetAspectRatioFilterEx @302
+  GetBitmapBits @303
+  GetBitmapDimensionEx @304
+  GetBkColor @305
+  GetBkMode @306
+  GetBoundsRect @307
+  GetBrushOrgEx @308
+  GetCharABCWidthsA @309
+  GetCharABCWidthsFloatA @310
+  GetCharABCWidthsFloatW @311
+  GetCharABCWidthsI @312
+  GetCharABCWidthsW @313
+  GetCharWidth32A @314
+  GetCharWidth32W @315
+  GetCharWidthA=GetCharWidth32A @316
+  GetCharWidthFloatA @317
+  GetCharWidthFloatW @318
+  GetCharWidthI @319
+  GetCharWidthInfo @320
+  GetCharWidthW=GetCharWidth32W @321
+  GetCharWidthWOW @322 PRIVATE
+  GetCharacterPlacementA @323
+  GetCharacterPlacementW @324
+  GetClipBox @325
+  GetClipRgn @326
+  GetColorAdjustment @327
+  GetColorSpace @328
+  GetCurrentObject @329
+  GetCurrentPositionEx @330
+  GetDCBrushColor @331
+  GetDCOrgEx @332
+  GetDCPenColor @333
+  GetDIBColorTable @334
+  GetDIBits @335
+  GetDeviceCaps @336
+  GetDeviceGammaRamp @337
+  GetETM @338 PRIVATE
+  GetEnhMetaFileA @339
+  GetEnhMetaFileBits @340
+  GetEnhMetaFileDescriptionA @341
+  GetEnhMetaFileDescriptionW @342
+  GetEnhMetaFileHeader @343
+  GetEnhMetaFilePaletteEntries @344
+  GetEnhMetaFileW @345
+  GetFontData @346
+  GetFontFileData @347
+  GetFontFileInfo @348
+  GetFontLanguageInfo @349
+  GetFontRealizationInfo @350
+  GetFontResourceInfo @351 PRIVATE
+  GetFontResourceInfoW @352
+  GetFontUnicodeRanges @353
+  GetGlyphIndicesA @354
+  GetGlyphIndicesW @355
+  GetGlyphOutline=GetGlyphOutlineA @356
+  GetGlyphOutlineA @357
+  GetGlyphOutlineW @358
+  GetGlyphOutlineWow @359 PRIVATE
+  GetGraphicsMode @360
+  GetICMProfileA @361
+  GetICMProfileW @362
+  GetKerningPairs=GetKerningPairsA @363
+  GetKerningPairsA @364
+  GetKerningPairsW @365
+  GetLayout @366
+  GetLogColorSpaceA @367
+  GetLogColorSpaceW @368
+  GetMapMode @369
+  GetMetaFileA @370
+  GetMetaFileBitsEx @371
+  GetMetaFileW @372
+  GetMetaRgn @373
+  GetMiterLimit @374
+  GetNearestColor @375
+  GetNearestPaletteIndex @376
+  GetObjectA @377
+  GetObjectType @378
+  GetObjectW @379
+  GetOutlineTextMetricsA @380
+  GetOutlineTextMetricsW @381
+  GetPaletteEntries @382
+  GetPath @383
+  GetPixel @384
+  GetPixelFormat @385
+  GetPolyFillMode @386
+  GetROP2 @387
+  GetRandomRgn @388
+  GetRasterizerCaps @389
+  GetRegionData @390
+  GetRelAbs @391
+  GetRgnBox @392
+  GetStockObject @393
+  GetStretchBltMode @394
+  GetSystemPaletteEntries @395
+  GetSystemPaletteUse @396
+  GetTextAlign @397
+  GetTextCharacterExtra @398
+  GetTextCharset @399
+  GetTextCharsetInfo @400
+  GetTextColor @401
+  GetTextExtentExPointA @402
+  GetTextExtentExPointI @403
+  GetTextExtentExPointW @404
+  GetTextExtentPoint32A @405
+  GetTextExtentPoint32W @406
+  GetTextExtentPointA @407
+  GetTextExtentPointI @408
+  GetTextExtentPointW @409
+  GetTextFaceA @410
+  GetTextFaceW @411
+  GetTextMetricsA @412
+  GetTextMetricsW @413
+  GetTransform @414
+  GetViewportExtEx @415
+  GetViewportOrgEx @416
+  GetWinMetaFileBits @417
+  GetWindowExtEx @418
+  GetWindowOrgEx @419
+  GetWorldTransform @420
+  IntersectClipRect @421
+  InvertRgn @422
+  LPtoDP @423
+  LineDDA @424
+  LineTo @425
+  LoadImageColorMatcherA @426 PRIVATE
+  LoadImageColorMatcherW @427 PRIVATE
+  MaskBlt @428
+  MirrorRgn @429
+  ModifyWorldTransform @430
+  MoveToEx @431
+  NamedEscape @432
+  OffsetClipRgn @433
+  OffsetRgn @434
+  OffsetViewportOrgEx @435
+  OffsetWindowOrgEx @436
+  PaintRgn @437
+  PatBlt @438
+  PathToRegion @439
+  Pie @440
+  PlayEnhMetaFile @441
+  PlayEnhMetaFileRecord @442
+  PlayMetaFile @443
+  PlayMetaFileRecord @444
+  PlgBlt @445
+  PolyBezier @446
+  PolyBezierTo @447
+  PolyDraw @448
+  PolyPolygon @449
+  PolyPolyline @450
+  PolyTextOutA @451
+  PolyTextOutW @452
+  Polygon @453
+  Polyline @454
+  PolylineTo @455
+  PtInRegion @456
+  PtVisible @457
+  RealizePalette @458
+  RectInRegion @459
+  RectVisible @460
+  Rectangle @461
+  RemoveFontMemResourceEx @462
+  RemoveFontResourceA @463
+  RemoveFontResourceExA @464
+  RemoveFontResourceExW @465
+  RemoveFontResourceTracking @466 PRIVATE
+  RemoveFontResourceW @467
+  ResetDCA @468
+  ResetDCW @469
+  ResizePalette @470
+  RestoreDC @471
+  RoundRect @472
+  SaveDC @473
+  ScaleViewportExtEx @474
+  ScaleWindowExtEx @475
+  SelectBrushLocal @476 PRIVATE
+  SelectClipPath @477
+  SelectClipRgn @478
+  SelectFontLocal @479 PRIVATE
+  SelectObject @480
+  SelectPalette @481
+  SetAbortProc @482
+  SetArcDirection @483
+  SetBitmapBits @484
+  SetBitmapDimensionEx @485
+  SetBkColor @486
+  SetBkMode @487
+  SetBoundsRect @488
+  SetBrushOrgEx @489
+  SetColorAdjustment @490
+  SetColorSpace @491
+  SetDCBrushColor @492
+  SetDCPenColor @493
+  SetDIBColorTable @494
+  SetDIBits @495
+  SetDIBitsToDevice @496
+  SetDeviceGammaRamp @497
+  SetEnhMetaFileBits @498
+  SetFontEnumeration @499 PRIVATE
+  SetGraphicsMode @500
+  SetICMMode @501
+  SetICMProfileA @502
+  SetICMProfileW @503
+  SetLayout @504
+  SetMagicColors @505
+  SetMapMode @506
+  SetMapperFlags @507
+  SetMetaFileBitsEx @508
+  SetMetaRgn @509
+  SetMiterLimit @510
+  SetObjectOwner @511
+  SetPaletteEntries @512
+  SetPixel @513
+  SetPixelFormat @514
+  SetPixelV @515
+  SetPolyFillMode @516
+  SetROP2 @517
+  SetRectRgn @518
+  SetRelAbs @519
+  SetStretchBltMode @520
+  SetSystemPaletteUse @521
+  SetTextAlign @522
+  SetTextCharacterExtra @523
+  SetTextColor @524
+  SetTextJustification @525
+  SetViewportExtEx @526
+  SetViewportOrgEx @527
+  SetVirtualResolution @528
+  SetWinMetaFileBits @529
+  SetWindowExtEx @530
+  SetWindowOrgEx @531
+  SetWorldTransform @532
+  StartDocA @533
+  StartDocW @534
+  StartPage @535
+  StretchBlt @536
+  StretchDIBits @537
+  StrokeAndFillPath @538
+  StrokePath @539
+  SwapBuffers @540
+  TextOutA @541
+  TextOutW @542
+  TranslateCharsetInfo @543
+  UnloadNetworkFonts @544 PRIVATE
+  UnrealizeObject @545
+  UpdateColors @546
+  UpdateICMRegKey=UpdateICMRegKeyA @547
+  UpdateICMRegKeyA @548
+  UpdateICMRegKeyW @549
+  WidenPath @550
+  gdiPlaySpoolStream @551 PRIVATE
+  pfnRealizePalette @552 DATA
+  pfnSelectPalette @553 DATA
+  pstackConnect @554 PRIVATE
+  GetDCHook @555
+  SetDCHook @556
+  SetHookFlags @557
+  __wine_make_gdi_object_system @558
+  __wine_set_visible_region @559
+  __wine_set_display_driver @560
+  __wine_get_wgl_driver @561
+  __wine_get_vulkan_driver @562

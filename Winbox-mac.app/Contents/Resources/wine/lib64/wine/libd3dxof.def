@@ -1,4 +1,4 @@
-; File generated automatically from dlls/d3dxof/d3dxof.spec; do not edit!
+; File generated automatically from ../wine/dlls/d3dxof/d3dxof.spec; do not edit!
 
 LIBRARY d3dxof.dll
 

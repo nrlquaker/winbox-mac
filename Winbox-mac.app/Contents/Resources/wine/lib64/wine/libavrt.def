@@ -1,10 +1,19 @@
-; File generated automatically from dlls/avrt/avrt.spec; do not edit!
+; File generated automatically from ../wine/dlls/avrt/avrt.spec; do not edit!
 
 LIBRARY avrt.dll
 
 EXPORTS
   AvQuerySystemResponsiveness @1
   AvRevertMmThreadCharacteristics @2
+  AvRtCreateThreadOrderingGroup @3 PRIVATE
+  AvRtCreateThreadOrderingGroupExA @4 PRIVATE
+  AvRtCreateThreadOrderingGroupExW @5 PRIVATE
+  AvRtDeleteThreadOrderingGroup @6 PRIVATE
+  AvRtJoinThreadOrderingGroup @7 PRIVATE
+  AvRtLeaveThreadOrderingGroup @8 PRIVATE
+  AvRtWaitOnThreadOrderingGroup @9 PRIVATE
+  AvSetMmMaxThreadCharacteristicsA @10 PRIVATE
+  AvSetMmMaxThreadCharacteristicsW @11 PRIVATE
   AvSetMmThreadCharacteristicsA @12
   AvSetMmThreadCharacteristicsW @13
   AvSetMmThreadPriority @14

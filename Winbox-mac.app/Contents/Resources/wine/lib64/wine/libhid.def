@@ -1,33 +1,49 @@
-; File generated automatically from dlls/hid/hid.spec; do not edit!
+; File generated automatically from ../wine/dlls/hid/hid.spec; do not edit!
 
 LIBRARY hid.dll
 
 EXPORTS
+  HidD_FlushQueue @1
   HidD_FreePreparsedData @2
   HidD_GetAttributes @3
+  HidD_GetConfiguration @4 PRIVATE
   HidD_GetFeature @5
   HidD_GetHidGuid @6
+  HidD_GetIndexedString @7
   HidD_GetInputReport @8
   HidD_GetManufacturerString @9
+  HidD_GetMsGenreDescriptor @10 PRIVATE
   HidD_GetNumInputBuffers @11
+  HidD_GetPhysicalDescriptor @12 PRIVATE
   HidD_GetPreparsedData @13
   HidD_GetProductString @14
   HidD_GetSerialNumberString @15
+  HidD_Hello @16 PRIVATE
+  HidD_SetConfiguration @17 PRIVATE
   HidD_SetFeature @18
   HidD_SetNumInputBuffers @19
   HidD_SetOutputReport @20
   HidP_GetButtonCaps @21
   HidP_GetCaps @22
   HidP_GetData @23
+  HidP_GetExtendedAttributes @24 PRIVATE
+  HidP_GetLinkCollectionNodes @25 PRIVATE
   HidP_GetScaledUsageValue @26
   HidP_GetSpecificButtonCaps @27
   HidP_GetSpecificValueCaps @28
   HidP_GetUsageValue @29
+  HidP_GetUsageValueArray @30 PRIVATE
   HidP_GetUsages @31
   HidP_GetUsagesEx @32
   HidP_GetValueCaps @33
   HidP_InitializeReportForID @34
   HidP_MaxDataListLength @35
   HidP_MaxUsageListLength @36
+  HidP_SetData @37 PRIVATE
+  HidP_SetScaledUsageValue @38 PRIVATE
   HidP_SetUsageValue @39
+  HidP_SetUsageValueArray @40 PRIVATE
+  HidP_SetUsages @41
   HidP_TranslateUsagesToI8042ScanCodes @42
+  HidP_UnsetUsages @43 PRIVATE
+  HidP_UsageListDifference @44 PRIVATE

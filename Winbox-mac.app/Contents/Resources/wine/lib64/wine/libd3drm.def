@@ -1,4 +1,4 @@
-; File generated automatically from dlls/d3drm/d3drm.spec; do not edit!
+; File generated automatically from ../wine/dlls/d3drm/d3drm.spec; do not edit!
 
 LIBRARY d3drm.dll
 

@@ -1,4 +1,4 @@
-; File generated automatically from dlls/imagehlp/imagehlp.spec; do not edit!
+; File generated automatically from ../wine/dlls/imagehlp/imagehlp.spec; do not edit!
 
 LIBRARY imagehlp.dll
 
@@ -12,6 +12,8 @@ EXPORTS
   FindDebugInfoFileEx=dbghelp.FindDebugInfoFileEx @7
   FindExecutableImage=dbghelp.FindExecutableImage @8
   FindExecutableImageEx=dbghelp.FindExecutableImageEx @9
+  FindFileInPath @10 PRIVATE
+  FindFileInSearchPath @11 PRIVATE
   GetImageConfigInformation @12
   GetImageUnusedHeaderBytes @13
   GetTimestampForLoadedLibrary=dbghelp.GetTimestampForLoadedLibrary @14
@@ -35,8 +37,11 @@ EXPORTS
   MapDebugInformation=dbghelp.MapDebugInformation @32
   MapFileAndCheckSumA @33
   MapFileAndCheckSumW @34
+  MarkImageAsRunFromSwap @35 PRIVATE
+  ReBaseImage64 @36 PRIVATE
   ReBaseImage @37
   RemovePrivateCvSymbolic @38
+  RemovePrivateCvSymbolicEx @39 PRIVATE
   RemoveRelocations @40
   SearchTreeForFile=dbghelp.SearchTreeForFile @41
   SetImageConfigInformation @42
@@ -45,12 +50,15 @@ EXPORTS
   StackWalk=dbghelp.StackWalk @45
   SymCleanup=dbghelp.SymCleanup @46
   SymEnumSourceFiles=dbghelp.SymEnumSourceFiles @47
+  SymEnumSym @48 PRIVATE
   SymEnumSymbols=dbghelp.SymEnumSymbols @49
   SymEnumTypes=dbghelp.SymEnumTypes @50
   SymEnumerateModules64=dbghelp.SymEnumerateModules64 @51
   SymEnumerateModules=dbghelp.SymEnumerateModules @52
   SymEnumerateSymbols64=dbghelp.SymEnumerateSymbols64 @53
   SymEnumerateSymbols=dbghelp.SymEnumerateSymbols @54
+  SymEnumerateSymbolsW64 @55 PRIVATE
+  SymEnumerateSymbolsW @56 PRIVATE
   SymFindFileInPath=dbghelp.SymFindFileInPath @57
   SymFromAddr=dbghelp.SymFromAddr @58
   SymFromName=dbghelp.SymFromName @59
@@ -58,6 +66,8 @@ EXPORTS
   SymFunctionTableAccess=dbghelp.SymFunctionTableAccess @61
   SymGetLineFromAddr64=dbghelp.SymGetLineFromAddr64 @62
   SymGetLineFromAddr=dbghelp.SymGetLineFromAddr @63
+  SymGetLineFromName64 @64 PRIVATE
+  SymGetLineFromName @65 PRIVATE
   SymGetLineNext64=dbghelp.SymGetLineNext64 @66
   SymGetLineNext=dbghelp.SymGetLineNext @67
   SymGetLinePrev64=dbghelp.SymGetLinePrev64 @68

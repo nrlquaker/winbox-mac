@@ -1,8 +1,19 @@
-; File generated automatically from dlls/cryptdll/cryptdll.spec; do not edit!
+; File generated automatically from ../wine/dlls/cryptdll/cryptdll.spec; do not edit!
 
 LIBRARY cryptdll.dll
 
 EXPORTS
+  CDBuildIntegrityVect @1 PRIVATE
+  CDBuildVect @2 PRIVATE
+  CDFindCommonCSystem @3 PRIVATE
+  CDFindCommonCSystemWithKey @4 PRIVATE
+  CDGenerateRandomBits @5 PRIVATE
+  CDLocateCSystem @6 PRIVATE
+  CDLocateCheckSum @7 PRIVATE
+  CDLocateRng @8 PRIVATE
+  CDRegisterCSystem @9 PRIVATE
+  CDRegisterCheckSum @10 PRIVATE
+  CDRegisterRng @11 PRIVATE
   MD5Final=advapi32.MD5Final @12
   MD5Init=advapi32.MD5Init @13
   MD5Update=advapi32.MD5Update @14

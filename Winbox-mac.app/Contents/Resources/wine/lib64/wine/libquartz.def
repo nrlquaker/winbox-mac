@@ -1,4 +1,4 @@
-; File generated automatically from dlls/quartz/quartz.spec; do not edit!
+; File generated automatically from ../wine/dlls/quartz/quartz.spec; do not edit!
 
 LIBRARY quartz.dll
 
@@ -11,3 +11,4 @@ EXPORTS
   DllGetClassObject @6 PRIVATE
   DllRegisterServer @7 PRIVATE
   DllUnregisterServer @8 PRIVATE
+  GetProxyDllInfo @9 PRIVATE

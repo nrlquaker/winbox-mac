@@ -1,4 +1,4 @@
-; File generated automatically from dlls/bcrypt/bcrypt.spec; do not edit!
+; File generated automatically from ../wine/dlls/bcrypt/bcrypt.spec; do not edit!
 
 LIBRARY bcrypt.dll
 
@@ -6,28 +6,60 @@ EXPORTS
   BCryptAddContextFunction @1
   BCryptAddContextFunctionProvider @2
   BCryptCloseAlgorithmProvider @3
+  BCryptConfigureContext @4 PRIVATE
+  BCryptConfigureContextFunction @5 PRIVATE
+  BCryptCreateContext @6 PRIVATE
   BCryptCreateHash @7
   BCryptDecrypt @8
-  BCryptDestroyHash @11
-  BCryptDestroyKey @12
-  BCryptDuplicateHash @14
-  BCryptDuplicateKey @15
-  BCryptEncrypt @16
-  BCryptEnumAlgorithms @17
-  BCryptExportKey @23
-  BCryptFinishHash @25
-  BCryptGenRandom @27
-  BCryptGenerateSymmetricKey @29
-  BCryptGetFipsAlgorithmMode @30
-  BCryptGetProperty @31
-  BCryptHash @32
-  BCryptHashData @33
-  BCryptImportKey @34
-  BCryptImportKeyPair @35
-  BCryptOpenAlgorithmProvider @36
-  BCryptRegisterProvider @42
-  BCryptRemoveContextFunction @43
-  BCryptRemoveContextFunctionProvider @44
-  BCryptSetProperty @49
-  BCryptUnregisterProvider @52
-  BCryptVerifySignature @53
+  BCryptDeleteContext @9 PRIVATE
+  BCryptDeriveKey @10
+  BCryptDeriveKeyPBKDF2 @11
+  BCryptDestroyHash @12
+  BCryptDestroyKey @13
+  BCryptDestroySecret @14
+  BCryptDuplicateHash @15
+  BCryptDuplicateKey @16
+  BCryptEncrypt @17
+  BCryptEnumAlgorithms @18
+  BCryptEnumContextFunctionProviders @19 PRIVATE
+  BCryptEnumContextFunctions @20
+  BCryptEnumContexts @21 PRIVATE
+  BCryptEnumProviders @22 PRIVATE
+  BCryptEnumRegisteredProviders @23 PRIVATE
+  BCryptExportKey @24
+  BCryptFinalizeKeyPair @25
+  BCryptFinishHash @26
+  BCryptFreeBuffer @27
+  BCryptGenRandom @28
+  BCryptGenerateKeyPair @29
+  BCryptGenerateSymmetricKey @30
+  BCryptGetFipsAlgorithmMode @31
+  BCryptGetProperty @32
+  BCryptHash @33
+  BCryptHashData @34
+  BCryptImportKey @35
+  BCryptImportKeyPair @36
+  BCryptOpenAlgorithmProvider @37
+  BCryptQueryContextConfiguration @38 PRIVATE
+  BCryptQueryContextFunctionConfiguration @39 PRIVATE
+  BCryptQueryContextFunctionProperty @40 PRIVATE
+  BCryptQueryProviderRegistration @41 PRIVATE
+  BCryptRegisterConfigChangeNotify @42 PRIVATE
+  BCryptRegisterProvider @43
+  BCryptRemoveContextFunction @44
+  BCryptRemoveContextFunctionProvider @45
+  BCryptResolveProviders @46 PRIVATE
+  BCryptSecretAgreement @47
+  BCryptSetAuditingInterface @48 PRIVATE
+  BCryptSetContextFunctionProperty @49 PRIVATE
+  BCryptSetProperty @50
+  BCryptSignHash @51
+  BCryptUnregisterConfigChangeNotify @52 PRIVATE
+  BCryptUnregisterProvider @53
+  BCryptVerifySignature @54
+  GetAsymmetricEncryptionInterface @55 PRIVATE
+  GetCipherInterface @56 PRIVATE
+  GetHashInterface @57 PRIVATE
+  GetRngInterface @58 PRIVATE
+  GetSecretAgreementInterface @59 PRIVATE
+  GetSignatureInterface @60 PRIVATE

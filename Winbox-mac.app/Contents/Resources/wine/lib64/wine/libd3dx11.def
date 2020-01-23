@@ -1,4 +1,4 @@
-; File generated automatically from dlls/d3dx11_43/d3dx11_43.spec; do not edit!
+; File generated automatically from ../wine/dlls/d3dx11_43/d3dx11_43.spec; do not edit!
 
 LIBRARY d3dx11_43.dll
 
@@ -7,14 +7,43 @@ EXPORTS
   D3DX11CompileFromFileA @2
   D3DX11CompileFromFileW @3
   D3DX11CompileFromMemory @4
+  D3DX11CompileFromResourceA @5 PRIVATE
+  D3DX11CompileFromResourceW @6 PRIVATE
+  D3DX11ComputeNormalMap @7 PRIVATE
+  D3DX11CreateAsyncCompilerProcessor @8 PRIVATE
   D3DX11CreateAsyncFileLoaderA @9
   D3DX11CreateAsyncFileLoaderW @10
   D3DX11CreateAsyncMemoryLoader @11
   D3DX11CreateAsyncResourceLoaderA @12
   D3DX11CreateAsyncResourceLoaderW @13
+  D3DX11CreateAsyncShaderPreprocessProcessor @14 PRIVATE
+  D3DX11CreateAsyncShaderResourceViewProcessor @15 PRIVATE
+  D3DX11CreateAsyncTextureInfoProcessor @16 PRIVATE
+  D3DX11CreateAsyncTextureProcessor @17 PRIVATE
+  D3DX11CreateShaderResourceViewFromFileA @18 PRIVATE
+  D3DX11CreateShaderResourceViewFromFileW @19 PRIVATE
+  D3DX11CreateShaderResourceViewFromMemory @20
+  D3DX11CreateShaderResourceViewFromResourceA @21 PRIVATE
+  D3DX11CreateShaderResourceViewFromResourceW @22 PRIVATE
   D3DX11CreateTextureFromFileA @23
   D3DX11CreateTextureFromFileW @24
   D3DX11CreateTextureFromMemory @25
+  D3DX11CreateTextureFromResourceA @26 PRIVATE
+  D3DX11CreateTextureFromResourceW @27 PRIVATE
+  D3DX11CreateThreadPump @28 PRIVATE
   D3DX11FilterTexture @29
+  D3DX11GetImageInfoFromFileA @30 PRIVATE
+  D3DX11GetImageInfoFromFileW @31 PRIVATE
   D3DX11GetImageInfoFromMemory @32
+  D3DX11GetImageInfoFromResourceA @33 PRIVATE
+  D3DX11GetImageInfoFromResourceW @34 PRIVATE
+  D3DX11LoadTextureFromTexture @35 PRIVATE
+  D3DX11PreprocessShaderFromFileA @36 PRIVATE
+  D3DX11PreprocessShaderFromFileW @37 PRIVATE
+  D3DX11PreprocessShaderFromMemory @38 PRIVATE
+  D3DX11PreprocessShaderFromResourceA @39 PRIVATE
+  D3DX11PreprocessShaderFromResourceW @40 PRIVATE
+  D3DX11SHProjectCubeMap @41 PRIVATE
+  D3DX11SaveTextureToFileA @42
+  D3DX11SaveTextureToFileW @43
   D3DX11SaveTextureToMemory @44

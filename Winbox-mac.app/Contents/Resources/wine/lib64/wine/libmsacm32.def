@@ -1,4 +1,4 @@
-; File generated automatically from dlls/msacm32/msacm32.spec; do not edit!
+; File generated automatically from ../wine/dlls/msacm32/msacm32.spec; do not edit!
 
 LIBRARY msacm32.dll
 
@@ -36,6 +36,7 @@ EXPORTS
   acmFormatTagEnumA @31
   acmFormatTagEnumW @32
   acmGetVersion @33
+  acmMessage32 @34 PRIVATE
   acmMetrics @35
   acmStreamClose @36
   acmStreamConvert @37

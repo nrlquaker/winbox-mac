@@ -1,7 +1,24 @@
-; File generated automatically from dlls/vdmdbg/vdmdbg.spec; do not edit!
+; File generated automatically from ../wine/dlls/vdmdbg/vdmdbg.spec; do not edit!
 
 LIBRARY vdmdbg.dll
 
 EXPORTS
+  VDMBreakThread @1 PRIVATE
+  VDMDetectWOW @2 PRIVATE
   VDMEnumProcessWOW @3
   VDMEnumTaskWOW @4
+  VDMEnumTaskWOWEx @5 PRIVATE
+  VDMGetModuleSelector @6 PRIVATE
+  VDMGetPointer @7 PRIVATE
+  VDMGetSelectorModule @8 PRIVATE
+  VDMGetThreadContext @9 PRIVATE
+  VDMGetThreadSelectorEntry @10 PRIVATE
+  VDMGlobalFirst @11 PRIVATE
+  VDMGlobalNext @12 PRIVATE
+  VDMKillWOW @13 PRIVATE
+  VDMModuleFirst @14 PRIVATE
+  VDMModuleNext @15 PRIVATE
+  VDMProcessException @16 PRIVATE
+  VDMSetThreadContext @17 PRIVATE
+  VDMStartTaskInWOW @18 PRIVATE
+  VDMTerminateTaskWOW @19 PRIVATE

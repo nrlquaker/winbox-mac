@@ -1,4 +1,4 @@
-; File generated automatically from dlls/winmm/winmm.spec; do not edit!
+; File generated automatically from ../wine/dlls/winmm/winmm.spec; do not edit!
 
 LIBRARY winmm.dll
 
@@ -125,6 +125,7 @@ EXPORTS
   mmioDescend @124
   mmioFlush @125
   mmioGetInfo @126
+  mmioInstallIOProc16 @127 PRIVATE
   mmioInstallIOProcA @128
   mmioInstallIOProcW @129
   mmioOpenA @130

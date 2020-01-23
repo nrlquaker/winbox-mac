@@ -1,4 +1,4 @@
-; File generated automatically from dlls/hlink/hlink.spec; do not edit!
+; File generated automatically from ../wine/dlls/hlink/hlink.spec; do not edit!
 
 LIBRARY hlink.dll
 
@@ -12,13 +12,25 @@ EXPORTS
   HlinkOnNavigate @9
   HlinkNavigate @10
   HlinkUpdateStackItem @11
+  HlinkOnRenameDocument @12 PRIVATE
   HlinkResolveMonikerForData @14
+  HlinkResolveStringForData @15 PRIVATE
+  OleSaveToStreamEx @16 PRIVATE
   HlinkParseDisplayName @18
   HlinkQueryCreateFromData @20
+  HlinkSetSpecialReference @21 PRIVATE
   HlinkGetSpecialReference @22
+  HlinkCreateShortcut @23 PRIVATE
+  HlinkResolveShortcut @24 PRIVATE
   HlinkIsShortcut @25
+  HlinkResolveShortcutToString @26 PRIVATE
+  HlinkCreateShortcutFromString @27 PRIVATE
+  HlinkGetValueFromParams @28 PRIVATE
+  HlinkCreateShortcutFromMoniker @29 PRIVATE
+  HlinkResolveShortcutToMoniker @30 PRIVATE
   HlinkTranslateURL @31
   HlinkCreateExtensionServices @32
+  HlinkPreprocessMoniker @33 PRIVATE
   DllCanUnloadNow @13 PRIVATE
   DllGetClassObject @17 PRIVATE
   DllRegisterServer @19 PRIVATE

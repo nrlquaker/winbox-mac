@@ -1,4 +1,4 @@
-; File generated automatically from dlls/dplayx/dplayx.spec; do not edit!
+; File generated automatically from ../wine/dlls/dplayx/dplayx.spec; do not edit!
 
 LIBRARY dplayx.dll
 

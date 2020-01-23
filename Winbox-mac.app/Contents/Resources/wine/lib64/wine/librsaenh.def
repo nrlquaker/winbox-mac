@@ -1,4 +1,4 @@
-; File generated automatically from dlls/rsaenh/rsaenh.spec; do not edit!
+; File generated automatically from ../wine/dlls/rsaenh/rsaenh.spec; do not edit!
 
 LIBRARY rsaenh.dll
 

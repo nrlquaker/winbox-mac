@@ -1,4 +1,4 @@
-; File generated automatically from dlls/userenv/userenv.spec; do not edit!
+; File generated automatically from ../wine/dlls/userenv/userenv.spec; do not edit!
 
 LIBRARY userenv.dll
 

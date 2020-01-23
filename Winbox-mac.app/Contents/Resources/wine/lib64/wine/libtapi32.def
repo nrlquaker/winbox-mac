@@ -1,4 +1,4 @@
-; File generated automatically from dlls/tapi32/tapi32.spec; do not edit!
+; File generated automatically from ../wine/dlls/tapi32/tapi32.spec; do not edit!
 
 LIBRARY tapi32.dll
 
@@ -177,5 +177,7 @@ EXPORTS
   tapiGetLocationInfo=tapiGetLocationInfoA @172
   tapiGetLocationInfoA @173
   tapiGetLocationInfoW @174
+  tapiRequestDrop @175 PRIVATE
   tapiRequestMakeCall=tapiRequestMakeCallA @176
   tapiRequestMakeCallA @177
+  tapiRequestMediaCall @178 PRIVATE

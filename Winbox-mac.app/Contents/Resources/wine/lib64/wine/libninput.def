@@ -1,12 +1,29 @@
-; File generated automatically from dlls/ninput/ninput.spec; do not edit!
+; File generated automatically from ../wine/dlls/ninput/ninput.spec; do not edit!
 
 LIBRARY ninput.dll
 
 EXPORTS
+  DefaultInputHandler @1 PRIVATE
+  AddPointerInteractionContext @2 PRIVATE
+  BufferPointerPacketsInteractionContext @3 PRIVATE
   CreateInteractionContext @4
   DestroyInteractionContext @5
+  GetCrossSlideParameterInteractionContext @6 PRIVATE
+  GetInertiaParameterInteractionContext @7 PRIVATE
+  GetInteractionConfigurationInteractionContext @8 PRIVATE
+  GetMouseWheelParameterInteractionContext @9 PRIVATE
   GetPropertyInteractionContext @10
+  GetStateInteractionContext @11 PRIVATE
+  ProcessBufferedPacketsInteractionContext @12 PRIVATE
   ProcessInertiaInteractionContext @13
+  ProcessPointerFramesInteractionContext @14 PRIVATE
   RegisterOutputCallbackInteractionContext @15
+  RemovePointerInteractionContext @16 PRIVATE
+  ResetInteractionContext @17 PRIVATE
+  SetCrossSlideParametersInteractionContext @18 PRIVATE
+  SetInertiaParameterInteractionContext @19 PRIVATE
   SetInteractionConfigurationInteractionContext @20
+  SetMouseWheelParameterInteractionContext @21 PRIVATE
+  SetPivotInteractionContext @22 PRIVATE
   SetPropertyInteractionContext @23
+  StopInteractionContext @24 PRIVATE

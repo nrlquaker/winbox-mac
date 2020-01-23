@@ -1,6 +1,6 @@
 #! /bin/sh
 
-prefix=/Users/reb/winebottler/usr
+prefix=/usr
 exec_prefix=${prefix}
 includedir=${prefix}/include
 libdir=${exec_prefix}/lib
@@ -58,7 +58,7 @@ while test $# -gt 0; do
       ;;
 
     --version)
-	echo 2.9.9
+	echo 2.9.4
 	exit 0
 	;;
 
@@ -86,12 +86,12 @@ while test $# -gt 0; do
 	then
 	    if [ "-L${libdir}" = "-L/usr/lib" -o "-L${libdir}" = "-L/usr/lib64" ]
 	    then
-		echo -lxml2 -L/Users/reb/winebottler/usr/lib -lz  -lpthread  -liconv  -lm  
+		echo -lxml2 -lz -llzma -lpthread  -liconv  -lm  
 	    else
-		echo -L${libdir} -lxml2 -L/Users/reb/winebottler/usr/lib -lz  -lpthread  -liconv  -lm  
+		echo -L${libdir} -lxml2 -lz -llzma -lpthread  -liconv  -lm  
 	    fi
 	else
-	    echo -L${libdir} -lxml2 -L/Users/reb/winebottler/usr/lib -lz  -lpthread  -liconv  -lm   
+	    echo -L${libdir} -lxml2 -lz -llzma -lpthread  -liconv  -lm   
 	fi
        	;;
 

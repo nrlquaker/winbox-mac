@@ -1,0 +1,14 @@
+; File generated automatically from ../wine/dlls/mfreadwrite/mfreadwrite.spec; do not edit!
+
+LIBRARY mfreadwrite.dll
+
+EXPORTS
+  DllCanUnloadNow @1 PRIVATE
+  DllGetClassObject @2 PRIVATE
+  DllRegisterServer @3 PRIVATE
+  DllUnregisterServer @4 PRIVATE
+  MFCreateSinkWriterFromMediaSink @5
+  MFCreateSinkWriterFromURL @6
+  MFCreateSourceReaderFromByteStream @7
+  MFCreateSourceReaderFromMediaSource @8
+  MFCreateSourceReaderFromURL @9

@@ -1,88 +1,131 @@
-; File generated automatically from dlls/wintrust/wintrust.spec; do not edit!
+; File generated automatically from ../wine/dlls/wintrust/wintrust.spec; do not edit!
 
 LIBRARY wintrust.dll
 
 EXPORTS
+  AddPersonalTrustDBPages @1 PRIVATE
+  CatalogCompactHashDatabase @2 PRIVATE
   CryptCATAdminAcquireContext @3
-  CryptCATAdminAddCatalog @4
-  CryptCATAdminCalcHashFromFileHandle @5
-  CryptCATAdminEnumCatalogFromHash @6
-  CryptCATAdminReleaseCatalogContext @8
-  CryptCATAdminReleaseContext @9
-  CryptCATAdminRemoveCatalog @10
-  CryptCATAdminResolveCatalogPath @11
-  CryptCATCDFClose @12
-  CryptCATCDFEnumCatAttributes @15
-  CryptCATCDFEnumMembersByCDFTagEx @18
-  CryptCATCDFOpen @19
-  CryptCATCatalogInfoFromContext @20
-  CryptCATClose @21
-  CryptCATEnumerateAttr @22
-  CryptCATEnumerateCatAttr @23
-  CryptCATEnumerateMember @24
-  CryptCATGetAttrInfo @25
-  CryptCATGetCatAttrInfo @26
-  CryptCATGetMemberInfo @27
-  CryptCATOpen @29
-  CryptSIPCreateIndirectData @36
-  CryptSIPGetSignedDataMsg @39
-  CryptSIPPutSignedDataMsg @40
-  CryptSIPRemoveSignedDataMsg @41
-  CryptSIPVerifyIndirectData @42
-  DllRegisterServer @43 PRIVATE
-  DllUnregisterServer @44 PRIVATE
-  DriverCleanupPolicy @45
-  DriverFinalPolicy @46
-  DriverInitializePolicy @47
-  FindCertsByIssuer @48
-  GenericChainCertificateTrust @49
-  GenericChainFinalProv @50
-  HTTPSCertificateTrust @51
-  HTTPSFinalProv @52
-  IsCatalogFile @53
-  OpenPersonalTrustDBDialog @58
-  SoftpubAuthenticode @59
-  SoftpubCheckCert @60
-  SoftpubCleanup @61
-  SoftpubDefCertInit @62
-  SoftpubDllRegisterServer @63
-  SoftpubDllUnregisterServer @64
-  SoftpubInitialize @67
-  SoftpubLoadMessage @69
-  SoftpubLoadSignature @70
-  TrustIsCertificateSelfSigned @74
-  WTHelperCertCheckValidSignature @76
-  WTHelperGetFileHandle @81
-  WTHelperGetFileName @82
-  WTHelperGetKnownUsages @83
-  WTHelperGetProvCertFromChain @84
-  WTHelperGetProvPrivateDataFromChain @85
-  WTHelperGetProvSignerFromChain @86
-  WTHelperProvDataFromStateData @89
-  WVTAsn1CatMemberInfoDecode @90
-  WVTAsn1CatMemberInfoEncode @91
-  WVTAsn1CatNameValueDecode @92
-  WVTAsn1CatNameValueEncode @93
-  WVTAsn1SpcFinancialCriteriaInfoDecode @94
-  WVTAsn1SpcFinancialCriteriaInfoEncode @95
-  WVTAsn1SpcIndirectDataContentDecode @96
-  WVTAsn1SpcIndirectDataContentEncode @97
-  WVTAsn1SpcLinkDecode @98
-  WVTAsn1SpcLinkEncode @99
-  WVTAsn1SpcPeImageDataDecode @102
-  WVTAsn1SpcPeImageDataEncode @103
-  WVTAsn1SpcSpOpusInfoDecode @108
-  WVTAsn1SpcSpOpusInfoEncode @109
-  WinVerifyTrust @112
-  WinVerifyTrustEx @113
-  WintrustAddActionID @114
-  WintrustAddDefaultForUsage @115
-  WintrustCertificateTrust @116
-  WintrustGetRegPolicyFlags @118
-  WintrustLoadFunctionPointers @119
-  WintrustRemoveActionID @120
-  WintrustSetRegPolicyFlags @121
-  mscat32DllRegisterServer @122
-  mscat32DllUnregisterServer @123
-  mssip32DllRegisterServer @124
-  mssip32DllUnregisterServer @125
+  CryptCATAdminAcquireContext2 @4
+  CryptCATAdminAddCatalog @5
+  CryptCATAdminCalcHashFromFileHandle @6
+  CryptCATAdminEnumCatalogFromHash @7
+  CryptCATAdminPauseServiceForBackup @8 PRIVATE
+  CryptCATAdminReleaseCatalogContext @9
+  CryptCATAdminReleaseContext @10
+  CryptCATAdminRemoveCatalog @11
+  CryptCATAdminResolveCatalogPath @12
+  CryptCATCDFClose @13
+  CryptCATCDFEnumAttributes @14 PRIVATE
+  CryptCATCDFEnumAttributesWithCDFTag @15 PRIVATE
+  CryptCATCDFEnumCatAttributes @16
+  CryptCATCDFEnumMembers @17 PRIVATE
+  CryptCATCDFEnumMembersByCDFTag @18 PRIVATE
+  CryptCATCDFEnumMembersByCDFTagEx @19
+  CryptCATCDFOpen @20
+  CryptCATCatalogInfoFromContext @21
+  CryptCATClose @22
+  CryptCATEnumerateAttr @23
+  CryptCATEnumerateCatAttr @24
+  CryptCATEnumerateMember @25
+  CryptCATGetAttrInfo @26
+  CryptCATGetCatAttrInfo @27
+  CryptCATGetMemberInfo @28
+  CryptCATHandleFromStore @29 PRIVATE
+  CryptCATOpen @30
+  CryptCATPersistStore @31 PRIVATE
+  CryptCATPutAttrInfo @32 PRIVATE
+  CryptCATPutCatAttrInfo @33 PRIVATE
+  CryptCATPutMemberInfo @34 PRIVATE
+  CryptCATStoreFromHandle @35 PRIVATE
+  CryptCATVerifyMember @36 PRIVATE
+  CryptSIPCreateIndirectData @37
+  CryptSIPGetInfo @38 PRIVATE
+  CryptSIPGetRegWorkingFlags @39 PRIVATE
+  CryptSIPGetSignedDataMsg @40
+  CryptSIPPutSignedDataMsg @41
+  CryptSIPRemoveSignedDataMsg @42
+  CryptSIPVerifyIndirectData @43
+  DllRegisterServer @44 PRIVATE
+  DllUnregisterServer @45 PRIVATE
+  DriverCleanupPolicy @46
+  DriverFinalPolicy @47
+  DriverInitializePolicy @48
+  FindCertsByIssuer @49
+  GenericChainCertificateTrust @50
+  GenericChainFinalProv @51
+  HTTPSCertificateTrust @52
+  HTTPSFinalProv @53
+  IsCatalogFile @54
+  MsCatConstructHashTag @55 PRIVATE
+  MsCatFreeHashTag @56 PRIVATE
+  OfficeCleanupPolicy @57 PRIVATE
+  OfficeInitializePolicy @58 PRIVATE
+  OpenPersonalTrustDBDialog @59
+  SoftpubAuthenticode @60
+  SoftpubCheckCert @61
+  SoftpubCleanup @62
+  SoftpubDefCertInit @63
+  SoftpubDllRegisterServer @64
+  SoftpubDllUnregisterServer @65
+  SoftpubDumpStructure @66 PRIVATE
+  SoftpubFreeDefUsageCallData @67 PRIVATE
+  SoftpubInitialize @68
+  SoftpubLoadDefUsageCallData @69 PRIVATE
+  SoftpubLoadMessage @70
+  SoftpubLoadSignature @71
+  TrustDecode @72 PRIVATE
+  TrustFindIssuerCertificate @73 PRIVATE
+  TrustFreeDecode @74 PRIVATE
+  TrustIsCertificateSelfSigned @75
+  TrustOpenStores @76 PRIVATE
+  WTHelperCertCheckValidSignature @77
+  WTHelperCertFindIssuerCertificate @78 PRIVATE
+  WTHelperCertIsSelfSigned @79 PRIVATE
+  WTHelperCheckCertUsage @80 PRIVATE
+  WTHelperGetAgencyInfo @81 PRIVATE
+  WTHelperGetFileHandle @82
+  WTHelperGetFileName @83
+  WTHelperGetKnownUsages @84
+  WTHelperGetProvCertFromChain @85
+  WTHelperGetProvPrivateDataFromChain @86
+  WTHelperGetProvSignerFromChain @87
+  WTHelperIsInRootStore @88 PRIVATE
+  WTHelperOpenKnownStores @89 PRIVATE
+  WTHelperProvDataFromStateData @90
+  WVTAsn1CatMemberInfoDecode @91
+  WVTAsn1CatMemberInfoEncode @92
+  WVTAsn1CatNameValueDecode @93
+  WVTAsn1CatNameValueEncode @94
+  WVTAsn1SpcFinancialCriteriaInfoDecode @95
+  WVTAsn1SpcFinancialCriteriaInfoEncode @96
+  WVTAsn1SpcIndirectDataContentDecode @97
+  WVTAsn1SpcIndirectDataContentEncode @98
+  WVTAsn1SpcLinkDecode @99
+  WVTAsn1SpcLinkEncode @100
+  WVTAsn1SpcMinimalCriteriaInfoDecode @101 PRIVATE
+  WVTAsn1SpcMinimalCriteriaInfoEncode @102 PRIVATE
+  WVTAsn1SpcPeImageDataDecode @103
+  WVTAsn1SpcPeImageDataEncode @104
+  WVTAsn1SpcSigInfoDecode @105 PRIVATE
+  WVTAsn1SpcSigInfoEncode @106 PRIVATE
+  WVTAsn1SpcSpAgencyInfoDecode @107 PRIVATE
+  WVTAsn1SpcSpAgencyInfoEncode @108 PRIVATE
+  WVTAsn1SpcSpOpusInfoDecode @109
+  WVTAsn1SpcSpOpusInfoEncode @110
+  WVTAsn1SpcStatementTypeDecode @111 PRIVATE
+  WVTAsn1SpcStatementTypeEncode @112 PRIVATE
+  WinVerifyTrust @113
+  WinVerifyTrustEx @114
+  WintrustAddActionID @115
+  WintrustAddDefaultForUsage @116
+  WintrustCertificateTrust @117
+  WintrustGetDefaultForUsage @118 PRIVATE
+  WintrustGetRegPolicyFlags @119
+  WintrustLoadFunctionPointers @120
+  WintrustRemoveActionID @121
+  WintrustSetRegPolicyFlags @122
+  mscat32DllRegisterServer @123
+  mscat32DllUnregisterServer @124
+  mssip32DllRegisterServer @125
+  mssip32DllUnregisterServer @126

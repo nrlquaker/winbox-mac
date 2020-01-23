@@ -1,4 +1,4 @@
-; File generated automatically from dlls/usbd.sys/usbd.sys.spec; do not edit!
+; File generated automatically from ../wine/dlls/usbd.sys/usbd.sys.spec; do not edit!
 
 LIBRARY usbd.sys
 
@@ -6,11 +6,35 @@ EXPORTS
   USBD_CreateConfigurationRequestEx @1
   USBD_ParseConfigurationDescriptorEx @2
   USBD_ParseDescriptors @3
+  USBD_AllocateDeviceName @4 PRIVATE
+  USBD_CalculateUsbBandwidth @5 PRIVATE
+  USBD_CompleteRequest @6 PRIVATE
   USBD_CreateConfigurationRequest @7
   _USBD_CreateConfigurationRequestEx@8=USBD_CreateConfigurationRequestEx @8
+  USBD_CreateDevice @9 PRIVATE
+  USBD_Debug_GetHeap @10 PRIVATE
+  USBD_Debug_LogEntry @11 PRIVATE
+  USBD_Debug_RetHeap @12 PRIVATE
+  USBD_Dispatch @13 PRIVATE
+  USBD_FreeDeviceMutex @14 PRIVATE
+  USBD_FreeDeviceName @15 PRIVATE
+  USBD_GetDeviceInformation @16 PRIVATE
   USBD_GetInterfaceLength @17
+  USBD_GetPdoRegistryParameter @18 PRIVATE
+  USBD_GetRegistryKeyValue @19 PRIVATE
+  USBD_GetSuspendPowerState @20 PRIVATE
   USBD_GetUSBDIVersion @21
+  USBD_InitializeDevice @22 PRIVATE
+  USBD_MakePdoName @23 PRIVATE
   USBD_ParseConfigurationDescriptor @24
   _USBD_ParseConfigurationDescriptorEx@28=USBD_ParseConfigurationDescriptorEx @25
   _USBD_ParseDescriptors@16=USBD_ParseDescriptors @26
+  USBD_QueryBusTime @27 PRIVATE
+  USBD_RegisterHcDeviceCapabilities @28 PRIVATE
+  USBD_RegisterHcFilter @29 PRIVATE
+  USBD_RegisterHostController @30 PRIVATE
+  USBD_RemoveDevice @31 PRIVATE
+  USBD_RestoreDevice @32 PRIVATE
+  USBD_SetSuspendPowerState @33 PRIVATE
   USBD_ValidateConfigurationDescriptor @34
+  USBD_WaitDeviceMutex @35 PRIVATE

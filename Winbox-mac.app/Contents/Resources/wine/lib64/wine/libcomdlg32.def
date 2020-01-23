@@ -1,4 +1,4 @@
-; File generated automatically from dlls/comdlg32/comdlg32.spec; do not edit!
+; File generated automatically from ../wine/dlls/comdlg32/comdlg32.spec; do not edit!
 
 LIBRARY comdlg32.dll
 
@@ -19,6 +19,7 @@ EXPORTS
   GetOpenFileNameW @14
   GetSaveFileNameA @15
   GetSaveFileNameW @16
+  LoadAlterBitmap @17 PRIVATE
   PageSetupDlgA @18
   PageSetupDlgW @19
   PrintDlgA @20
@@ -27,3 +28,6 @@ EXPORTS
   PrintDlgW @23
   ReplaceTextA @24
   ReplaceTextW @25
+  WantArrows @26 PRIVATE
+  dwLBSubclass @27 PRIVATE
+  dwOKSubclass @28 PRIVATE

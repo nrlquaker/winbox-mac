@@ -1,4 +1,4 @@
-; File generated automatically from dlls/mscms/mscms.spec; do not edit!
+; File generated automatically from ../wine/dlls/mscms/mscms.spec; do not edit!
 
 LIBRARY mscms.dll
 
@@ -8,6 +8,20 @@ EXPORTS
   CheckBitmapBits @3
   CheckColors @4
   CloseColorProfile @5
+  CloseDisplay @6 PRIVATE
+  ColorCplGetDefaultProfileScope @7 PRIVATE
+  ColorCplGetDefaultRenderingIntentScope @8 PRIVATE
+  ColorCplGetProfileProperties @9 PRIVATE
+  ColorCplHasSystemWideAssociationListChanged @10 PRIVATE
+  ColorCplInitialize @11 PRIVATE
+  ColorCplLoadAssociationList @12 PRIVATE
+  ColorCplMergeAssociationLists @13 PRIVATE
+  ColorCplOverwritePerUserAssociationList @14 PRIVATE
+  ColorCplReleaseProfileProperties @15 PRIVATE
+  ColorCplResetSystemWideAssociationListChangedWarning @16 PRIVATE
+  ColorCplSaveAssociationList @17 PRIVATE
+  ColorCplSetUsePerUserProfiles @18 PRIVATE
+  ColorCplUninitialize @19 PRIVATE
   ConvertColorNameToIndex @20
   ConvertIndexToColorName @21
   CreateColorTransformA @22
@@ -16,7 +30,13 @@ EXPORTS
   CreateMultiProfileTransform @25
   CreateProfileFromLogColorSpaceA @26
   CreateProfileFromLogColorSpaceW @27
+  DccwCreateDisplayProfileAssociationList @28 PRIVATE
+  DccwGetDisplayProfileAssociationList @29 PRIVATE
+  DccwGetGamutSize @30 PRIVATE
+  DccwReleaseDisplayProfileAssociationList @31 PRIVATE
+  DccwSetDisplayProfileAssociationList @32 PRIVATE
   DeleteColorTransform @33
+  DeviceRenameEvent @34 PRIVATE
   DisassociateColorProfileFromDeviceA @35
   DisassociateColorProfileFromDeviceW @36
   EnumColorProfilesA @37
@@ -38,10 +58,19 @@ EXPORTS
   GetStandardColorSpaceProfileW @53
   InstallColorProfileA @54
   InstallColorProfileW @55
+  InternalGetDeviceConfig @56 PRIVATE
+  InternalGetPS2CSAFromLCS @57 PRIVATE
+  InternalGetPS2ColorRenderingDictionary @58 PRIVATE
+  InternalGetPS2ColorSpaceArray @59 PRIVATE
+  InternalGetPS2PreviewCRD @60 PRIVATE
+  InternalRefreshCalibration @61 PRIVATE
+  InternalSetDeviceConfig @62 PRIVATE
+  InternalWcsAssociateColorProfileWithDevice @63 PRIVATE
   IsColorProfileTagPresent @64
   IsColorProfileValid @65
   OpenColorProfileA @66
   OpenColorProfileW @67
+  OpenDisplay @68 PRIVATE
   RegisterCMMA @69
   RegisterCMMW @70
   SelectCMM @71
@@ -58,7 +87,22 @@ EXPORTS
   UninstallColorProfileW @82
   UnregisterCMMA @83
   UnregisterCMMW @84
+  WcsAssociateColorProfileWithDevice @85 PRIVATE
+  WcsCheckColors @86 PRIVATE
+  WcsCreateIccProfile @87 PRIVATE
+  WcsDisassociateColorProfileFromDevice @88 PRIVATE
+  WcsEnumColorProfiles @89 PRIVATE
   WcsEnumColorProfilesSize @90
+  WcsGetCalibrationManagementState @91 PRIVATE
+  WcsGetDefaultColorProfile @92 PRIVATE
+  WcsGetDefaultColorProfileSize @93 PRIVATE
+  WcsGetDefaultRenderingIntent @94 PRIVATE
   WcsGetUsePerUserProfiles @95
+  WcsGpCanInstallOrUninstallProfiles @96 PRIVATE
   WcsOpenColorProfileA @97
   WcsOpenColorProfileW @98
+  WcsSetCalibrationManagementState @99 PRIVATE
+  WcsSetDefaultColorProfile @100 PRIVATE
+  WcsSetDefaultRenderingIntent @101 PRIVATE
+  WcsSetUsePerUserProfiles @102 PRIVATE
+  WcsTranslateColors @103 PRIVATE

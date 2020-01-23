@@ -1,4 +1,4 @@
-; File generated automatically from dlls/opengl32/opengl32.spec; do not edit!
+; File generated automatically from ../wine/dlls/opengl32/opengl32.spec; do not edit!
 
 LIBRARY opengl32.dll
 

@@ -1,4 +1,4 @@
-; File generated automatically from dlls/glu32/glu32.spec; do not edit!
+; File generated automatically from ../wine/dlls/glu32/glu32.spec; do not edit!
 
 LIBRARY glu32.dll
 

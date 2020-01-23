@@ -1,6 +1,6 @@
 #! /bin/sh
 
-prefix=/Users/reb/winebottler/usr
+prefix=/usr
 exec_prefix=${prefix}
 exec_prefix_set=no
 includedir=${prefix}/include
@@ -60,12 +60,12 @@ while test $# -gt 0; do
 	;;
 
     --version)
-	echo 1.1.33
+	echo 1.1.29
 	exit 0
 	;;
 
     --plugins)
-	echo /Users/reb/winebottler/usr/lib/libxslt-plugins
+	echo /usr/lib/libxslt-plugins
 	exit 0
 	;;
 
@@ -89,11 +89,11 @@ while test $# -gt 0; do
     shift
 done
 
-the_libs="-L${libdir} -lxslt -L/Users/reb/winebottler/src/libxml2-2.9.9 -L/Users/reb/winebottler/usr/lib -lxml2 -L/Users/reb/winebottler/usr/lib -lz -lpthread -liconv -lm  "
+the_libs="-L${libdir} -lxslt -lxml2  "
 if test "$includedir" != "/usr/include"; then
-    the_flags="$the_flags -I$includedir `/Users/reb/winebottler/src/libxml2-2.9.9/xml2-config --cflags`"
+    the_flags="$the_flags -I$includedir `xml2-config --cflags`"
 else
-    the_flags="$the_flags `/Users/reb/winebottler/src/libxml2-2.9.9/xml2-config --cflags`"
+    the_flags="$the_flags `xml2-config --cflags`"
 fi
 
 if $cflags; then

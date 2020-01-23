@@ -1,4 +1,4 @@
-; File generated automatically from dlls/advpack/advpack.spec; do not edit!
+; File generated automatically from ../wine/dlls/advpack/advpack.spec; do not edit!
 
 LIBRARY advpack.dll
 

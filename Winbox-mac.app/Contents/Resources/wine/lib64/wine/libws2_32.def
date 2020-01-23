@@ -1,4 +1,4 @@
-; File generated automatically from dlls/ws2_32/ws2_32.spec; do not edit!
+; File generated automatically from ../wine/dlls/ws2_32/ws2_32.spec; do not edit!
 
 LIBRARY ws2_32.dll
 
@@ -50,6 +50,7 @@ EXPORTS
   WSAStartup @115
   WSACleanup @116
   __WSAFDIsSet @151
+  WEP @500 PRIVATE
   FreeAddrInfoExW @24
   FreeAddrInfoW @25
   GetAddrInfoExCancel @26
@@ -121,6 +122,8 @@ EXPORTS
   WSCInstallNameSpace @99
   WSCInstallProvider @100
   WSCUnInstallNameSpace @117
+  WSCUpdateProvider @118 PRIVATE
+  WSCWriteNameSpaceOrder @119 PRIVATE
   WSCWriteProviderOrder @120
   freeaddrinfo=WS_freeaddrinfo @121
   getaddrinfo=WS_getaddrinfo @122

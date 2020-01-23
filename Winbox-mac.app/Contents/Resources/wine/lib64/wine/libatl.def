@@ -1,4 +1,4 @@
-; File generated automatically from dlls/atl/atl.spec; do not edit!
+; File generated automatically from ../wine/dlls/atl/atl.spec; do not edit!
 
 LIBRARY atl.dll
 
@@ -22,9 +22,11 @@ EXPORTS
   AtlModuleUnregisterServer @22
   AtlModuleUpdateRegistryFromResourceD @23
   AtlWaitWithMessageLoop @24
+  AtlSetErrorInfo @25 PRIVATE
   AtlCreateTargetDC @26
   AtlHiMetricToPixel @27
   AtlPixelToHiMetric @28
+  AtlDevModeW2A @29 PRIVATE
   AtlComPtrAssign @30
   AtlComQIPtrAssign @31
   AtlInternalQueryInterface @32
@@ -49,6 +51,7 @@ EXPORTS
   AtlIPersistPropertyBag_Load @52
   AtlIPersistPropertyBag_Save @53
   AtlGetObjectSourceInterface @54
+  AtlModuleUnRegisterTypeLib @55 PRIVATE
   AtlModuleLoadTypeLib @56
   AtlModuleUnregisterServerEx @57
   AtlModuleAddTermFunc @58

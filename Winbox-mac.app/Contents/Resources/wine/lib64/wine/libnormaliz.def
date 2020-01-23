@@ -1,4 +1,4 @@
-; File generated automatically from dlls/normaliz/normaliz.spec; do not edit!
+; File generated automatically from ../wine/dlls/normaliz/normaliz.spec; do not edit!
 
 LIBRARY normaliz.dll
 

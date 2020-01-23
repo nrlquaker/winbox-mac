@@ -1,4 +1,4 @@
-; File generated automatically from dlls/ieframe/ieframe.spec; do not edit!
+; File generated automatically from ../wine/dlls/ieframe/ieframe.spec; do not edit!
 
 LIBRARY ieframe.dll
 

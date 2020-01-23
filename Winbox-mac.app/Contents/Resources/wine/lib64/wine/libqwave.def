@@ -1,0 +1,19 @@
+; File generated automatically from ../wine/dlls/qwave/qwave.spec; do not edit!
+
+LIBRARY qwave.dll
+
+EXPORTS
+  QDLHPathDiagnostics @1 PRIVATE
+  QDLHStartDiagnosingPath @2 PRIVATE
+  QOSAddSocketToFlow @3 PRIVATE
+  QOSCancel @4 PRIVATE
+  QOSCloseHandle @5 PRIVATE
+  QOSCreateHandle @6
+  QOSEnumerateFlows @7 PRIVATE
+  QOSNotifyFlow @8 PRIVATE
+  QOSQueryFlow @9 PRIVATE
+  QOSRemoveSocketFromFlow @10 PRIVATE
+  QOSSetFlow @11 PRIVATE
+  QOSStartTrackingClient @12 PRIVATE
+  QOSStopTrackingClient @13 PRIVATE
+  ServiceMain @14 PRIVATE

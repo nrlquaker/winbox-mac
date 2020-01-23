@@ -1,4 +1,4 @@
-; File generated automatically from dlls/wintab32/wintab32.spec; do not edit!
+; File generated automatically from ../wine/dlls/wintab32/wintab32.spec; do not edit!
 
 LIBRARY wintab32.dll
 

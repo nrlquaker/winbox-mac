@@ -1,4 +1,4 @@
-; File generated automatically from dlls/comctl32/comctl32.spec; do not edit!
+; File generated automatically from ../wine/dlls/comctl32/comctl32.spec; do not edit!
 
 LIBRARY comctl32.dll
 
@@ -29,6 +29,8 @@ EXPORTS
   FindMRUStringA @155 NONAME
   DelMRUString @156 NONAME
   CreateMRUListLazyA @157 NONAME
+  CreatePage @163 NONAME PRIVATE
+  CreateProxyPage @164 NONAME PRIVATE
   AddMRUData @167 NONAME
   FindMRUData @169 NONAME
   Str_GetPtrA @233 NONAME
@@ -89,11 +91,13 @@ EXPORTS
   LoadIconMetric @380 NONAME
   LoadIconWithScaleDown @381 NONAME
   SmoothScrollWindow @382 NONAME
+  DoReaderMode @383 NONAME PRIVATE
   SetPathWordBreakProc @384 NONAME
   DPA_EnumCallback @385 NONAME
   DPA_DestroyCallback @386 NONAME
   DSA_EnumCallback @387 NONAME
   DSA_DestroyCallback @388 NONAME
+  SHGetProcessDword @389 NONAME PRIVATE
   ImageList_SetColorTable @390 NONAME
   CreateMRUListW @400 NONAME
   AddMRUStringW @401 NONAME

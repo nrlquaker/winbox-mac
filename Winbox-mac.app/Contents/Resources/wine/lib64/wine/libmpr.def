@@ -1,4 +1,4 @@
-; File generated automatically from dlls/mpr/mpr.spec; do not edit!
+; File generated automatically from ../wine/dlls/mpr/mpr.spec; do not edit!
 
 LIBRARY mpr.dll
 
@@ -46,13 +46,22 @@ EXPORTS
   WNetEnumCachedPasswords @64
   WNetEnumResourceA @65
   WNetEnumResourceW @66
+  WNetFMXEditPerm @67 PRIVATE
+  WNetFMXGetPermCaps @68 PRIVATE
+  WNetFMXGetPermHelp @69 PRIVATE
+  WNetFormatNetworkNameA @70 PRIVATE
+  WNetFormatNetworkNameW @71 PRIVATE
   WNetGetCachedPassword @72
   WNetGetConnectionA @73
   WNetGetConnectionW @74
+  WNetGetDirectoryTypeA @75 PRIVATE
+  WNetGetHomeDirectoryA @76 PRIVATE
+  WNetGetHomeDirectoryW @77 PRIVATE
   WNetGetLastErrorA @78
   WNetGetLastErrorW @79
   WNetGetNetworkInformationA @80
   WNetGetNetworkInformationW @81
+  WNetGetPropertyTextA @82 PRIVATE
   WNetGetProviderNameA @83
   WNetGetProviderNameW @84
   WNetGetResourceInformationA @85
@@ -66,10 +75,14 @@ EXPORTS
   WNetLogoffA @93
   WNetLogoffW @94
   WNetLogonA @95
+  WNetLogonNotify @96 PRIVATE
   WNetLogonW @97
   WNetOpenEnumA @98
   WNetOpenEnumW @99
+  WNetPasswordChangeNotify @100 PRIVATE
+  WNetPropertyDialogA @101 PRIVATE
   WNetRemoveCachedPassword @102
+  WNetRestoreConnection @103 PRIVATE
   WNetRestoreConnectionA @104
   WNetRestoreConnectionW @105
   WNetSetConnectionA @106

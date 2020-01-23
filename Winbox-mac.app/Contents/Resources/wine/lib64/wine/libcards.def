@@ -1,4 +1,4 @@
-; File generated automatically from dlls/cards/cards.spec; do not edit!
+; File generated automatically from ../wine/dlls/cards/cards.spec; do not edit!
 
 LIBRARY cards.dll
 

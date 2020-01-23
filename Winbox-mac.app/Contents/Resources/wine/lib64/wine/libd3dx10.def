@@ -1,28 +1,74 @@
-; File generated automatically from dlls/d3dx10_43/d3dx10_43.spec; do not edit!
+; File generated automatically from ../wine/dlls/d3dx10_43/d3dx10_43.spec; do not edit!
 
 LIBRARY d3dx10_43.dll
 
 EXPORTS
+  D3DX10CreateThreadPump @1 PRIVATE
   D3DX10CheckVersion @2
+  D3DX10CompileFromFileA @3 PRIVATE
+  D3DX10CompileFromFileW @4 PRIVATE
   D3DX10CompileFromMemory @5
+  D3DX10CompileFromResourceA @6 PRIVATE
+  D3DX10CompileFromResourceW @7 PRIVATE
+  D3DX10ComputeNormalMap @8 PRIVATE
+  D3DX10CreateAsyncCompilerProcessor @9 PRIVATE
+  D3DX10CreateAsyncEffectCreateProcessor @10 PRIVATE
+  D3DX10CreateAsyncEffectPoolCreateProcessor @11 PRIVATE
   D3DX10CreateAsyncFileLoaderA @12
   D3DX10CreateAsyncFileLoaderW @13
   D3DX10CreateAsyncMemoryLoader @14
   D3DX10CreateAsyncResourceLoaderA @15
   D3DX10CreateAsyncResourceLoaderW @16
+  D3DX10CreateAsyncShaderPreprocessProcessor @17 PRIVATE
+  D3DX10CreateAsyncShaderResourceViewProcessor @18 PRIVATE
+  D3DX10CreateAsyncTextureInfoProcessor @19 PRIVATE
+  D3DX10CreateAsyncTextureProcessor @20 PRIVATE
   D3DX10CreateDevice @21
   D3DX10CreateDeviceAndSwapChain @22
   D3DX10CreateEffectFromFileA @23
   D3DX10CreateEffectFromFileW @24
   D3DX10CreateEffectFromMemory @25
+  D3DX10CreateEffectFromResourceA @26 PRIVATE
+  D3DX10CreateEffectFromResourceW @27 PRIVATE
   D3DX10CreateEffectPoolFromFileA @28
   D3DX10CreateEffectPoolFromFileW @29
   D3DX10CreateEffectPoolFromMemory @30
+  D3DX10CreateEffectPoolFromResourceA @31 PRIVATE
+  D3DX10CreateEffectPoolFromResourceW @32 PRIVATE
+  D3DX10CreateFontA @33 PRIVATE
+  D3DX10CreateFontIndirectA @34 PRIVATE
+  D3DX10CreateFontIndirectW @35 PRIVATE
+  D3DX10CreateFontW @36 PRIVATE
+  D3DX10CreateMesh @37 PRIVATE
+  D3DX10CreateShaderResourceViewFromFileA @38 PRIVATE
+  D3DX10CreateShaderResourceViewFromFileW @39 PRIVATE
+  D3DX10CreateShaderResourceViewFromMemory @40 PRIVATE
+  D3DX10CreateShaderResourceViewFromResourceA @41 PRIVATE
+  D3DX10CreateShaderResourceViewFromResourceW @42 PRIVATE
+  D3DX10CreateSkinInfo @43 PRIVATE
+  D3DX10CreateSprite @44 PRIVATE
+  D3DX10CreateTextureFromFileA @45 PRIVATE
+  D3DX10CreateTextureFromFileW @46 PRIVATE
   D3DX10CreateTextureFromMemory @47
+  D3DX10CreateTextureFromResourceA @48 PRIVATE
+  D3DX10CreateTextureFromResourceW @49 PRIVATE
   D3DX10FilterTexture @50
   D3DX10GetFeatureLevel1 @51
+  D3DX10GetImageInfoFromFileA @52 PRIVATE
+  D3DX10GetImageInfoFromFileW @53 PRIVATE
   D3DX10GetImageInfoFromMemory @54
+  D3DX10GetImageInfoFromResourceA @55 PRIVATE
+  D3DX10GetImageInfoFromResourceW @56 PRIVATE
+  D3DX10LoadTextureFromTexture @57
+  D3DX10PreprocessShaderFromFileA @58 PRIVATE
+  D3DX10PreprocessShaderFromFileW @59 PRIVATE
   D3DX10PreprocessShaderFromMemory @60
+  D3DX10PreprocessShaderFromResourceA @61 PRIVATE
+  D3DX10PreprocessShaderFromResourceW @62 PRIVATE
+  D3DX10SHProjectCubeMap @63 PRIVATE
+  D3DX10SaveTextureToFileA @64 PRIVATE
+  D3DX10SaveTextureToFileW @65 PRIVATE
+  D3DX10SaveTextureToMemory @66 PRIVATE
   D3DX10UnsetAllDeviceObjects @67
   D3DXBoxBoundProbe=d3dx9_36.D3DXBoxBoundProbe @68
   D3DXColorAdjustContrast=d3dx9_36.D3DXColorAdjustContrast @69

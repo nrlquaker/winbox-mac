@@ -1,12 +1,44 @@
-; File generated automatically from dlls/winspool.drv/winspool.drv.spec; do not edit!
+; File generated automatically from ../wine/dlls/winspool.drv/winspool.drv.spec; do not edit!
 
 LIBRARY winspool.drv
 
 EXPORTS
+  EnumPrinterPropertySheets @100 NONAME PRIVATE
+  ClusterSplOpen @101 NONAME PRIVATE
+  ClusterSplClose @102 NONAME PRIVATE
+  ClusterSplIsAlive @103 NONAME PRIVATE
   GetDefaultPrinterA @201
   SetDefaultPrinterA @202
   GetDefaultPrinterW @203
   SetDefaultPrinterW @204
+  SplReadPrinter @205 NONAME PRIVATE
+  AddPerMachineConnectionA @206 NONAME PRIVATE
+  AddPerMachineConnectionW @207 NONAME PRIVATE
+  DeletePerMachineConnectionA @208 NONAME PRIVATE
+  DeletePerMachineConnectionW @209 NONAME PRIVATE
+  EnumPerMachineConnectionsA @210 NONAME PRIVATE
+  EnumPerMachineConnectionsW @211 NONAME PRIVATE
+  LoadPrinterDriver @212 NONAME PRIVATE
+  RefCntLoadDriver @213 NONAME PRIVATE
+  RefCntUnloadDriver @214 NONAME PRIVATE
+  ForceUnloadDriver @215 NONAME PRIVATE
+  PublishPrinterA @216 NONAME PRIVATE
+  PublishPrinterW @217 NONAME PRIVATE
+  CallCommonPropertySheetUI @218 NONAME PRIVATE
+  PrintUIQueueCreate @219 NONAME PRIVATE
+  PrintUIPrinterPropPages @220 NONAME PRIVATE
+  PrintUIDocumentDefaults @221 NONAME PRIVATE
+  SendRecvBidiData @222 NONAME PRIVATE
+  RouterFreeBidiResponseContainer @223 NONAME PRIVATE
+  ExternalConnectToLd64In32Server @224 NONAME PRIVATE
+  PrintUIWebPnpEntry @226 NONAME PRIVATE
+  PrintUIWebPnpPostEntry @227 NONAME PRIVATE
+  PrintUICreateInstance @228 NONAME PRIVATE
+  PrintUIDocumentPropertiesWrap @229 NONAME PRIVATE
+  PrintUIPrinterSetup @230 NONAME PRIVATE
+  PrintUIServerPropPages @231 NONAME PRIVATE
+  AddDriverCatalog @232 NONAME PRIVATE
+  ADVANCEDSETUPDIALOG @104 PRIVATE
   AbortPrinter @105
   AddFormA @106
   AddFormW @107
@@ -32,10 +64,16 @@ EXPORTS
   AddPrinterW @127
   AdvancedDocumentPropertiesA @128
   AdvancedDocumentPropertiesW @129
+  AdvancedSetupDialog @130 PRIVATE
   ClosePrinter @131
   ConfigurePortA @132
   ConfigurePortW @133
   ConnectToPrinterDlg @134
+  ConvertAnsiDevModeToUnicodeDevMode @135 PRIVATE
+  ConvertUnicodeDevModeToAnsiDevMode @136 PRIVATE
+  CreatePrinterIC @137 PRIVATE
+  DEVICECAPABILITIES @138 PRIVATE
+  DEVICEMODE @139 PRIVATE
   DeleteFormA @140
   DeleteFormW @141
   DeleteMonitorA @142
@@ -55,11 +93,16 @@ EXPORTS
   DeletePrinterDriverExA @156
   DeletePrinterDriverExW @157
   DeletePrinterDriverW @158
+  DeletePrinterIC @159 PRIVATE
+  DevQueryPrint @160 PRIVATE
   DeviceCapabilities=DeviceCapabilitiesA @161
   DeviceCapabilitiesA @162
   DeviceCapabilitiesW @163
+  DeviceMode @164 PRIVATE
+  DocumentEvent @165 PRIVATE
   DocumentPropertiesA @166
   DocumentPropertiesW @167
+  EXTDEVICEMODE @168 PRIVATE
   EndDocPrinter @169
   EndPagePrinter @170
   EnumFormsA @171
@@ -112,11 +155,15 @@ EXPORTS
   PerfClose @249
   PerfCollect @250
   PerfOpen @251
+  PlayGdiScriptOnPrinterIC @252 PRIVATE
+  PrinterMessageBoxA @253 PRIVATE
+  PrinterMessageBoxW @254 PRIVATE
   PrinterProperties @255
   ReadPrinter @256
   ResetPrinterA @257
   ResetPrinterW @258
   ScheduleJob @259
+  SetAllocFailCount @260 PRIVATE
   SetFormA @261
   SetFormW @262
   SetJobA @263
@@ -127,7 +174,9 @@ EXPORTS
   SetPrinterDataExW @268
   SetPrinterDataW @269
   SetPrinterW @270
+  SpoolerDevQueryPrintW @271 PRIVATE
   SpoolerInit @272
+  SpoolerPrinterEvent @273 PRIVATE
   StartDocDlgA @274
   StartDocDlgW @275
   StartDocPrinterA @276
@@ -135,5 +184,6 @@ EXPORTS
   StartPagePrinter @278
   UploadPrinterDriverPackageA @279
   UploadPrinterDriverPackageW @280
+  WaitForPrinterChange @281 PRIVATE
   WritePrinter @282
   XcvDataW @283

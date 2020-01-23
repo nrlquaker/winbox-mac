@@ -1,4 +1,4 @@
-; File generated automatically from dlls/wtsapi32/wtsapi32.spec; do not edit!
+; File generated automatically from ../wine/dlls/wtsapi32/wtsapi32.spec; do not edit!
 
 LIBRARY wtsapi32.dll
 
@@ -9,39 +9,49 @@ EXPORTS
   WTSDisconnectSession @4
   WTSEnableChildSessions @5
   WTSEnumerateProcessesA @6
-  WTSEnumerateProcessesW @7
-  WTSEnumerateServersA @8
-  WTSEnumerateServersW @9
-  WTSEnumerateSessionsA @10
-  WTSEnumerateSessionsW @11
-  WTSFreeMemory @12
-  WTSLogoffSession @13
-  WTSOpenServerA @14
-  WTSOpenServerW @15
-  WTSQuerySessionInformationA @16
-  WTSQuerySessionInformationW @17
-  WTSQueryUserConfigA @18
-  WTSQueryUserConfigW @19
-  WTSQueryUserToken @20
-  WTSRegisterSessionNotification @21
-  WTSRegisterSessionNotificationEx @22
-  WTSSendMessageA @23
-  WTSSendMessageW @24
-  WTSSetUserConfigA @27
-  WTSSetUserConfigW @28
-  WTSShutdownSystem @29
-  WTSStartRemoteControlSessionA @30
-  WTSStartRemoteControlSessionW @31
-  WTSStopRemoteControlSession @32
-  WTSTerminateProcess @33
-  WTSUnRegisterSessionNotification @34
-  WTSUnRegisterSessionNotificationEx @35
-  WTSVirtualChannelClose @36
-  WTSVirtualChannelOpen @37
-  WTSVirtualChannelOpenEx @38
-  WTSVirtualChannelPurgeInput @39
-  WTSVirtualChannelPurgeOutput @40
-  WTSVirtualChannelQuery @41
-  WTSVirtualChannelRead @42
-  WTSVirtualChannelWrite @43
-  WTSWaitSystemEvent @44
+  WTSEnumerateProcessesExA @7
+  WTSEnumerateProcessesExW @8
+  WTSEnumerateProcessesW @9
+  WTSEnumerateServersA @10
+  WTSEnumerateServersW @11
+  WTSEnumerateSessionsA @12
+  WTSEnumerateSessionsExA @13
+  WTSEnumerateSessionsExW @14
+  WTSEnumerateSessionsW @15
+  WTSFreeMemory @16
+  WTSFreeMemoryExA @17
+  WTSFreeMemoryExW @18
+  WTSLogoffSession @19
+  WTSOpenServerA @20
+  WTSOpenServerExA @21
+  WTSOpenServerExW @22
+  WTSOpenServerW @23
+  WTSQuerySessionInformationA @24
+  WTSQuerySessionInformationW @25
+  WTSQueryUserConfigA @26
+  WTSQueryUserConfigW @27
+  WTSQueryUserToken @28
+  WTSRegisterSessionNotification @29
+  WTSRegisterSessionNotificationEx @30
+  WTSSendMessageA @31
+  WTSSendMessageW @32
+  WTSSetSessionInformationA @33 PRIVATE
+  WTSSetSessionInformationW @34 PRIVATE
+  WTSSetUserConfigA @35
+  WTSSetUserConfigW @36
+  WTSShutdownSystem @37
+  WTSStartRemoteControlSessionA @38
+  WTSStartRemoteControlSessionW @39
+  WTSStopRemoteControlSession @40
+  WTSTerminateProcess @41
+  WTSUnRegisterSessionNotification @42
+  WTSUnRegisterSessionNotificationEx @43
+  WTSVirtualChannelClose @44
+  WTSVirtualChannelOpen @45
+  WTSVirtualChannelOpenEx @46
+  WTSVirtualChannelPurgeInput @47
+  WTSVirtualChannelPurgeOutput @48
+  WTSVirtualChannelQuery @49
+  WTSVirtualChannelRead @50
+  WTSVirtualChannelWrite @51
+  WTSWaitSystemEvent @52

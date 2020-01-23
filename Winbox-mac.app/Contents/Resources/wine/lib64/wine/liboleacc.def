@@ -1,12 +1,15 @@
-; File generated automatically from dlls/oleacc/oleacc.spec; do not edit!
+; File generated automatically from ../wine/dlls/oleacc/oleacc.spec; do not edit!
 
 LIBRARY oleacc.dll
 
 EXPORTS
   AccessibleChildren @1
+  AccessibleObjectFromEvent @2 PRIVATE
   AccessibleObjectFromPoint @3
   AccessibleObjectFromWindow @4
   CreateStdAccessibleObject @5
+  CreateStdAccessibleProxyA @6 PRIVATE
+  CreateStdAccessibleProxyW @7 PRIVATE
   DllGetClassObject @8 PRIVATE
   DllRegisterServer @9 PRIVATE
   DllUnregisterServer @10 PRIVATE

@@ -1,4 +1,4 @@
-; File generated automatically from dlls/dsound/dsound.spec; do not edit!
+; File generated automatically from ../wine/dlls/dsound/dsound.spec; do not edit!
 
 LIBRARY dsound.dll
 

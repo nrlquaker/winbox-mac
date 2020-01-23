@@ -1,4 +1,4 @@
-; File generated automatically from dlls/dpnet/dpnet.spec; do not edit!
+; File generated automatically from ../wine/dlls/dpnet/dpnet.spec; do not edit!
 
 LIBRARY dpnet.dll
 

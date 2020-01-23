@@ -1,4 +1,4 @@
-; File generated automatically from dlls/oleaut32/oleaut32.spec; do not edit!
+; File generated automatically from ../wine/dlls/oleaut32/oleaut32.spec; do not edit!
 
 LIBRARY oleaut32.dll
 
@@ -145,6 +145,7 @@ EXPORTS
   VarAdd @141
   VarAnd @142
   VarDiv @143
+  OACreateTypeLib2 @144 PRIVATE
   DispCallFunc @146
   VariantChangeTypeEx @147
   SafeArrayPtrOfIndex @148
@@ -293,6 +294,9 @@ EXPORTS
   LPSAFEARRAY_UserMarshal @292
   LPSAFEARRAY_UserUnmarshal @293
   LPSAFEARRAY_UserFree @294
+  LPSAFEARRAY_Size @295 PRIVATE
+  LPSAFEARRAY_Marshal @296 PRIVATE
+  LPSAFEARRAY_Unmarshal @297 PRIVATE
   VarDecCmpR8 @298
   VarCyAdd @299
   VarCyMul @303
@@ -314,6 +318,8 @@ EXPORTS
   VarDateFromUdateEx @319
   GetRecordInfoFromGuids @322
   GetRecordInfoFromTypeInfo @323
+  SetVarConversionLocaleSetting @325 PRIVATE
+  GetVarConversionLocaleSetting @326 PRIVATE
   SetOaNoCache @327
   VarCyMulI8 @329
   VarDateFromUdate @330
@@ -356,7 +362,28 @@ EXPORTS
   VarI1FromUI8 @377
   VarUI2FromI8 @378
   VarUI2FromUI8 @379
+  UserHWND_from_local @380 PRIVATE
+  UserHWND_to_local @381 PRIVATE
+  UserHWND_free_inst @382 PRIVATE
+  UserHWND_free_local @383 PRIVATE
+  UserBSTR_from_local @384 PRIVATE
+  UserBSTR_to_local @385 PRIVATE
+  UserBSTR_free_inst @386 PRIVATE
+  UserBSTR_free_local @387 PRIVATE
+  UserVARIANT_from_local @388 PRIVATE
+  UserVARIANT_to_local @389 PRIVATE
+  UserVARIANT_free_inst @390 PRIVATE
+  UserVARIANT_free_local @391 PRIVATE
+  UserEXCEPINFO_from_local @392 PRIVATE
+  UserEXCEPINFO_to_local @393 PRIVATE
+  UserEXCEPINFO_free_inst @394 PRIVATE
+  UserEXCEPINFO_free_local @395 PRIVATE
+  UserMSG_from_local @396 PRIVATE
+  UserMSG_to_local @397 PRIVATE
+  UserMSG_free_inst @398 PRIVATE
+  UserMSG_free_local @399 PRIVATE
   OleLoadPictureEx @401
+  OleLoadPictureFileEx @402 PRIVATE
   SafeArrayCreateVector @411
   SafeArrayCopyData @412
   VectorFromBstr @413

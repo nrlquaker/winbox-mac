@@ -1,4 +1,4 @@
-; File generated automatically from dlls/olepro32/olepro32.spec; do not edit!
+; File generated automatically from ../wine/dlls/olepro32/olepro32.spec; do not edit!
 
 LIBRARY olepro32.dll
 

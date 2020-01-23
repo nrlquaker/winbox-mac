@@ -1,4 +1,4 @@
-; File generated automatically from dlls/hidclass.sys/hidclass.sys.spec; do not edit!
+; File generated automatically from ../wine/dlls/hidclass.sys/hidclass.sys.spec; do not edit!
 
 LIBRARY hidclass.sys
 

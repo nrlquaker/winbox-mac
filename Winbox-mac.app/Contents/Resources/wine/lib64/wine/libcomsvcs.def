@@ -1,9 +1,25 @@
-; File generated automatically from dlls/comsvcs/comsvcs.spec; do not edit!
+; File generated automatically from ../wine/dlls/comsvcs/comsvcs.spec; do not edit!
 
 LIBRARY comsvcs.dll
 
 EXPORTS
+  CosGetCallContext @5 PRIVATE
+  CoCreateActivity @6 PRIVATE
+  CoEnterServiceDomain @7 PRIVATE
+  CoLeaveServiceDomain @8 PRIVATE
+  CoLoadServices @9 PRIVATE
+  ComSvcsExceptionFilter @10 PRIVATE
+  ComSvcsLogError @11 PRIVATE
+  DispManGetContext @12 PRIVATE
   DllCanUnloadNow @13 PRIVATE
   DllGetClassObject @14 PRIVATE
   DllRegisterServer @15 PRIVATE
   DllUnregisterServer @16 PRIVATE
+  GetMTAThreadPoolMetrics @17 PRIVATE
+  GetManagedExtensions @18 PRIVATE
+  GetObjectContext @19 PRIVATE
+  GetTrkSvrObject @20 PRIVATE
+  MTSCreateActivity @21 PRIVATE
+  MiniDumpW @22 PRIVATE
+  RecycleSurrogate @23 PRIVATE
+  SafeRef @24 PRIVATE

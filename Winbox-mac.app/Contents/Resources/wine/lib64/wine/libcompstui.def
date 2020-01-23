@@ -1,4 +1,4 @@
-; File generated automatically from dlls/compstui/compstui.spec; do not edit!
+; File generated automatically from ../wine/dlls/compstui/compstui.spec; do not edit!
 
 LIBRARY compstui.dll
 

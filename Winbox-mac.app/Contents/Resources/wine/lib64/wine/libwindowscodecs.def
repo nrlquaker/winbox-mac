@@ -1,4 +1,4 @@
-; File generated automatically from dlls/windowscodecs/windowscodecs.spec; do not edit!
+; File generated automatically from ../wine/dlls/windowscodecs/windowscodecs.spec; do not edit!
 
 LIBRARY windowscodecs.dll
 
@@ -7,6 +7,8 @@ EXPORTS
   DllGetClassObject @2 PRIVATE
   DllRegisterServer @3 PRIVATE
   DllUnregisterServer @4 PRIVATE
+  IEnumString_Next_WIC_Proxy @5 PRIVATE
+  IEnumString_Reset_WIC_Proxy @6 PRIVATE
   IPropertyBag2_Write_Proxy @7
   IWICBitmapClipper_Initialize_Proxy=IWICBitmapClipper_Initialize_Proxy_W @8
   IWICBitmapCodecInfo_DoesSupportAnimation_Proxy=IWICBitmapCodecInfo_DoesSupportAnimation_Proxy_W @9
@@ -112,7 +114,10 @@ EXPORTS
   WICCreateBitmapFromSectionEx @109
   WICCreateColorContext_Proxy @110
   WICCreateImagingFactory_Proxy @111
+  WICGetMetadataContentSize @112 PRIVATE
   WICMapGuidToShortName @113
   WICMapSchemaToName @114
   WICMapShortNameToGuid @115
+  WICMatchMetadataContent @116 PRIVATE
+  WICSerializeMetadataContent @117 PRIVATE
   WICSetEncoderFormat_Proxy @118

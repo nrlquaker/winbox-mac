@@ -1,4 +1,4 @@
-; File generated automatically from dlls/d3d10/d3d10.spec; do not edit!
+; File generated automatically from ../wine/dlls/d3d10/d3d10.spec; do not edit!
 
 LIBRARY d3d10.dll
 
@@ -11,6 +11,7 @@ EXPORTS
   D3D10CreateEffectFromMemory @6
   D3D10CreateEffectPoolFromMemory @7
   D3D10CreateStateBlock @8
+  D3D10DisassembleEffect @9 PRIVATE
   D3D10DisassembleShader @10
   D3D10GetGeometryShaderProfile @11
   D3D10GetInputAndOutputSignatureBlob=d3dcompiler_43.D3DGetInputAndOutputSignatureBlob @12
@@ -18,8 +19,11 @@ EXPORTS
   D3D10GetOutputSignatureBlob=d3dcompiler_43.D3DGetOutputSignatureBlob @14
   D3D10GetPixelShaderProfile @15
   D3D10GetShaderDebugInfo=d3dcompiler_43.D3DGetDebugInfo @16
+  D3D10GetVersion @17 PRIVATE
   D3D10GetVertexShaderProfile @18
+  D3D10PreprocessShader @19 PRIVATE
   D3D10ReflectShader @20
+  D3D10RegisterLayers @21 PRIVATE
   D3D10StateBlockMaskDifference @22
   D3D10StateBlockMaskDisableAll @23
   D3D10StateBlockMaskDisableCapture @24

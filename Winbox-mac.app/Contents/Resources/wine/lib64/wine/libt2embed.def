@@ -1,16 +1,30 @@
-; File generated automatically from dlls/t2embed/t2embed.spec; do not edit!
+; File generated automatically from ../wine/dlls/t2embed/t2embed.spec; do not edit!
 
 LIBRARY t2embed.dll
 
 EXPORTS
+  TTCharToUnicode @1 PRIVATE
   TTDeleteEmbeddedFont @2
   TTEmbedFont @3
+  TTEmbedFontFromFileA @4 PRIVATE
+  TTEnableEmbeddingForFacename @5 PRIVATE
+  TTGetEmbeddedFontInfo @6 PRIVATE
   TTGetEmbeddingType @7
   TTIsEmbeddingEnabled @8
   TTIsEmbeddingEnabledForFacename @9
   TTLoadEmbeddedFont @10
+  TTRunValidationTests @11 PRIVATE
+  _TTCharToUnicode@24 @12 PRIVATE
+  _TTDeleteEmbeddedFont@12 @13 PRIVATE
   _TTEmbedFont@44=TTEmbedFont @14
+  _TTEmbedFontFromFileA@52 @15 PRIVATE
+  _TTEnableEmbeddingForFacename@8 @16 PRIVATE
+  _TTGetEmbeddedFontInfo@28 @17 PRIVATE
   _TTGetEmbeddingType@8=TTGetEmbeddingType @18
   _TTIsEmbeddingEnabled@8=TTIsEmbeddingEnabled @19
   _TTIsEmbeddingEnabledForFacename@8=TTIsEmbeddingEnabledForFacename @20
   _TTLoadEmbeddedFont@40=TTLoadEmbeddedFont @21
+  _TTRunValidationTests@8 @22 PRIVATE
+  TTEmbedFontEx @23 PRIVATE
+  TTRunValidationTestsEx @24 PRIVATE
+  TTGetNewFontName @25 PRIVATE

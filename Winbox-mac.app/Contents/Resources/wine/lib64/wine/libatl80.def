@@ -1,4 +1,4 @@
-; File generated automatically from dlls/atl80/atl80.spec; do not edit!
+; File generated automatically from ../wine/dlls/atl80/atl80.spec; do not edit!
 
 LIBRARY atl80.dll
 
@@ -16,9 +16,11 @@ EXPORTS
   AtlComModuleUnregisterServer @22
   AtlUpdateRegistryFromResourceD @23
   AtlWaitWithMessageLoop @24
+  AtlSetErrorInfo @25 PRIVATE
   AtlCreateTargetDC @26
   AtlHiMetricToPixel @27
   AtlPixelToHiMetric @28
+  AtlDevModeW2A @29 PRIVATE
   AtlComPtrAssign @30
   AtlComQIPtrAssign @31
   AtlInternalQueryInterface @32
@@ -33,6 +35,8 @@ EXPORTS
   AtlAxWinInit @42
   AtlWinModuleAddCreateWndData @43
   AtlWinModuleExtractCreateWndData @44
+  AtlWinModuleRegisterWndClassInfoW @45 PRIVATE
+  AtlWinModuleRegisterWndClassInfoA @46 PRIVATE
   AtlAxGetControl @47
   AtlAxGetHost @48
   AtlRegisterClassCategoriesHelper @49
@@ -41,10 +45,14 @@ EXPORTS
   AtlIPersistPropertyBag_Load @52
   AtlIPersistPropertyBag_Save @53
   AtlGetObjectSourceInterface @54
+  AtlUnRegisterTypeLib @55 PRIVATE
   AtlLoadTypeLib @56
   AtlModuleAddTermFunc @58
   AtlAxCreateControlLic @59
   AtlAxCreateControlLicEx @60
   AtlCreateRegistrar @61
+  AtlWinModuleRegisterClassExW @62 PRIVATE
+  AtlWinModuleRegisterClassExA @63 PRIVATE
   AtlCallTermFunc @64
   AtlWinModuleInit @65
+  AtlWinModuleTerm @66 PRIVATE

@@ -1,4 +1,4 @@
-; File generated automatically from dlls/mswsock/mswsock.spec; do not edit!
+; File generated automatically from ../wine/dlls/mswsock/mswsock.spec; do not edit!
 
 LIBRARY mswsock.dll
 
@@ -7,5 +7,31 @@ EXPORTS
   EnumProtocolsA=ws2_32.WSAEnumProtocolsA @2
   EnumProtocolsW=ws2_32.WSAEnumProtocolsW @3
   GetAcceptExSockaddrs @4
+  GetAddressByNameA @5 PRIVATE
+  GetAddressByNameW @6 PRIVATE
+  GetNameByTypeA @7 PRIVATE
+  GetNameByTypeW @8 PRIVATE
+  GetServiceA @9 PRIVATE
+  GetServiceW @10 PRIVATE
+  GetTypeByNameA @11 PRIVATE
+  GetTypeByNameW @12 PRIVATE
+  MigrateWinsockConfiguration @13 PRIVATE
+  NPLoadNameSpaces @14 PRIVATE
+  NSPStartup @15 PRIVATE
+  ServiceMain @16 PRIVATE
+  SetServiceA @17 PRIVATE
+  SetServiceW @18 PRIVATE
+  StartWsdpService @19 PRIVATE
+  StopWsdpService @20 PRIVATE
+  SvchostPushServiceGlobals @21 PRIVATE
   TransmitFile @22
   WSARecvEx @23
+  WSPStartup @24 PRIVATE
+  dn_expand @25 PRIVATE
+  getnetbyname @26 PRIVATE
+  inet_network @27 PRIVATE
+  rcmd @28 PRIVATE
+  rexec @29 PRIVATE
+  rresvport @30 PRIVATE
+  s_perror @31 PRIVATE
+  sethostname @32 PRIVATE

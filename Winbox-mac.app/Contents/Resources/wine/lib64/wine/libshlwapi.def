@@ -1,4 +1,4 @@
-; File generated automatically from dlls/shlwapi/shlwapi.spec; do not edit!
+; File generated automatically from ../wine/dlls/shlwapi/shlwapi.spec; do not edit!
 
 LIBRARY shlwapi.dll
 
@@ -209,6 +209,7 @@ EXPORTS
   SHIsChildOrSelf @204 NONAME
   SHGetValueGoodBootA @205 NONAME
   SHGetValueGoodBootW @206 NONAME
+  IContextMenu_Invoke @207 NONAME PRIVATE
   FDSA_Initialize @208 NONAME
   FDSA_Destroy @209 NONAME
   FDSA_InsertItem @210 NONAME
@@ -227,7 +228,16 @@ EXPORTS
   SHGlobalCounterGetValue @223 NONAME
   SHGlobalCounterIncrement @224 NONAME
   SHStripMneumonicW @225 NONAME
+  ZoneCheckPathA @226 NONAME PRIVATE
+  ZoneCheckPathW @227 NONAME PRIVATE
+  ZoneCheckUrlA @228 NONAME PRIVATE
+  ZoneCheckUrlW @229 NONAME PRIVATE
+  ZoneCheckUrlExA @230 NONAME PRIVATE
   ZoneCheckUrlExW @231 NONAME
+  ZoneCheckUrlExCacheA @232 NONAME PRIVATE
+  ZoneCheckUrlExCacheW @233 NONAME PRIVATE
+  ZoneCheckHost @234 NONAME PRIVATE
+  ZoneCheckHostEx @235 NONAME PRIVATE
   SHPinDllOfCLSID @236 NONAME
   SHRegisterClassW @237 NONAME
   SHUnregisterClassesA @238 NONAME
@@ -238,21 +248,38 @@ EXPORTS
   StopWatchA @243 NONAME
   StopWatchW @244 NONAME
   StopWatch_TimerHandler @245 NONAME
+  StopWatch_CheckMsg @246 NONAME PRIVATE
   StopWatch_MarkFrameStart @247 NONAME
+  StopWatch_MarkSameFrameStart @248 NONAME PRIVATE
   StopWatch_MarkJavaStop @249 NONAME
   GetPerfTime @250 NONAME
+  StopWatch_DispatchTime @251 NONAME PRIVATE
   StopWatch_SetMsgLastLocation @252 NONAME
+  StopWatchExA @253 NONAME PRIVATE
+  StopWatchExW @254 NONAME PRIVATE
+  EventTraceHandler @255 NONAME PRIVATE
   IUnknown_GetSite=shcore.IUnknown_GetSite @256 NONAME
   SHCreateWorkerWindowA @257 NONAME
+  SHRegisterWaitForSingleObject @258 NONAME PRIVATE
+  SHUnregisterWait @259 NONAME PRIVATE
   SHQueueUserWorkItem @260 NONAME
+  SHCreateTimerQueue @261 NONAME PRIVATE
+  SHDeleteTimerQueue @262 NONAME PRIVATE
   SHSetTimerQueueTimer @263 NONAME
+  SHChangeTimerQueueTimer @264 NONAME PRIVATE
+  SHCancelTimerQueueTimer @265 NONAME PRIVATE
   SHRestrictionLookup @266 NONAME
   SHWeakQueryInterface @267 NONAME
   SHWeakReleaseInterface @268 NONAME
   GUIDFromStringA @269 NONAME
   GUIDFromStringW @270 NONAME
   SHGetRestriction @271 NONAME
+  SHSetThreadPoolLimits @272 NONAME PRIVATE
+  SHTerminateThreadPool @273 NONAME PRIVATE
+  RegisterGlobalHotkeyW @274 NONAME PRIVATE
+  RegisterGlobalHotkeyA @275 NONAME PRIVATE
   WhichPlatform @276 NONAME
+  SHDialogBox @277 NONAME PRIVATE
   SHCreateWorkerWindowW @278 NONAME
   SHInvokeDefaultCommand @279 NONAME
   SHRegGetIntW=shcore.SHRegGetIntW @280 NONAME
@@ -263,11 +290,16 @@ EXPORTS
   IConnectionPoint_OnChanged @285 NONAME
   IUnknown_CPContainerInvokeParam @286 NONAME
   IUnknown_CPContainerOnChanged @287 NONAME
+  IUnknown_CPContainerInvokeIndirect @288 NONAME PRIVATE
   PlaySoundWrapW @289 NONAME
+  SHMirrorIcon @290 NONAME PRIVATE
   SHMessageBoxCheckExA @291 NONAME
   SHMessageBoxCheckExW @292 NONAME
+  SHCancelUserWorkItems @293 NONAME PRIVATE
   SHGetIniStringW @294 NONAME
   SHSetIniStringW @295 NONAME
+  CreateURLFileContentsW @296 NONAME PRIVATE
+  CreateURLFileContentsA @297 NONAME PRIVATE
   WritePrivateProfileStringWrapW=kernel32.WritePrivateProfileStringW @298 NONAME
   ExtTextOutWrapW=gdi32.ExtTextOutW @299 NONAME
   CreateFontWrapW=gdi32.CreateFontW @300 NONAME
@@ -286,6 +318,8 @@ EXPORTS
   SHGetFileInfoWrapW @313 NONAME
   RegisterClassExWrapW=user32.RegisterClassExW @314 NONAME
   GetClassInfoExWrapW=user32.GetClassInfoExW @315 NONAME
+  IShellFolder_GetDisplayNameOf @316 NONAME PRIVATE
+  IShellFolder_ParseDisplayName @317 NONAME PRIVATE
   DragQueryFileWrapW @318 NONAME
   FindWindowExWrapW=user32.FindWindowExW @319 NONAME
   RegisterMIMETypeForExtensionA @320 NONAME
@@ -316,6 +350,8 @@ EXPORTS
   SHAnsiToAnsi=shcore.SHAnsiToAnsi @345 NONAME
   SHUnicodeToUnicode=shcore.SHUnicodeToUnicode @346 NONAME
   RegDeleteValueWrapW=advapi32.RegDeleteValueW @347 NONAME
+  SHGetFileDescriptionW @348 NONAME PRIVATE
+  SHGetFileDescriptionA @349 NONAME PRIVATE
   GetFileVersionInfoSizeWrapW @350 NONAME
   GetFileVersionInfoWrapW @351 NONAME
   VerQueryValueWrapW @352 NONAME
@@ -340,10 +376,20 @@ EXPORTS
   DdeInitializeWrapW=user32.DdeInitializeW @371 NONAME
   DdeCreateStringHandleWrapW=user32.DdeCreateStringHandleW @372 NONAME
   DdeQueryStringWrapW=user32.DdeQueryStringW @373 NONAME
+  SHCheckDiskForMediaA @374 NONAME PRIVATE
+  SHCheckDiskForMediaW @375 NONAME PRIVATE
   MLGetUILanguage=kernel32.GetUserDefaultUILanguage @376 NONAME
   MLLoadLibraryA @377 NONAME
   MLLoadLibraryW @378 NONAME
+  Shell_GetCachedImageIndexWrapW @379 NONAME PRIVATE
+  Shell_GetCachedImageIndexWrapA @380 NONAME PRIVATE
+  AssocCopyVerbs @381 NONAME PRIVATE
   ZoneComputePaneSize @382 NONAME
+  ZoneConfigureW @383 NONAME PRIVATE
+  SHRestrictedMessageBox @384 NONAME PRIVATE
+  SHLoadRawAccelerators @385 NONAME PRIVATE
+  SHQueryRawAccelerator @386 NONAME PRIVATE
+  SHQueryRawAcceleratorMsg @387 NONAME PRIVATE
   ShellMessageBoxWrapW @388 NONAME
   GetSaveFileNameWrapW @389 NONAME
   WNetRestoreConnectionWrapW @390 NONAME
@@ -351,6 +397,10 @@ EXPORTS
   EndDialogWrap=user32.EndDialog @392 NONAME
   CreateDialogIndirectParamWrapW=user32.CreateDialogIndirectParamW @393 NONAME
   SHChangeNotifyWrap @394 NONAME
+  MLWinHelpA @395 NONAME PRIVATE
+  MLHtmlHelpA @396 NONAME PRIVATE
+  MLWinHelpW @397 NONAME PRIVATE
+  MLHtmlHelpW @398 NONAME PRIVATE
   StrCpyNXA @399 NONAME
   StrCpyNXW @400 NONAME
   PageSetupDlgWrapW @401 NONAME
@@ -359,11 +409,20 @@ EXPORTS
   IShellFolder_EnumObjects=SHIShellFolder_EnumObjects @404 NONAME
   MLBuildResURLA @405 NONAME
   MLBuildResURLW @406 NONAME
+  AssocMakeProgid @407 NONAME PRIVATE
+  AssocMakeShell @408 NONAME PRIVATE
+  AssocMakeApplicationByKeyW @409 NONAME PRIVATE
+  AssocMakeApplicationByKeyA @410 NONAME PRIVATE
+  AssocMakeFileExtsToApplicationW @411 NONAME PRIVATE
+  AssocMakeFileExtsToApplicationA @412 NONAME PRIVATE
   SHGetMachineInfo @413 NONAME
+  SHHtmlHelpOnDemandW @414 NONAME PRIVATE
+  SHHtmlHelpOnDemandA @415 NONAME PRIVATE
   SHWinHelpOnDemandW @416 NONAME
   SHWinHelpOnDemandA @417 NONAME
   MLFreeLibrary @418 NONAME
   SHFlushSFCacheWrap @419 NONAME
+  SHLoadPersistedDataObject @421 NONAME PRIVATE
   SHGlobalCounterCreateNamedA @422 NONAME
   SHGlobalCounterCreateNamedW @423 NONAME
   SHGlobalCounterDecrement @424 NONAME
@@ -380,6 +439,7 @@ EXPORTS
   CLSIDFromProgIDWrap=ole32.CLSIDFromProgID @435 NONAME
   CLSIDFromStringWrap @436 NONAME
   IsOS=shcore.IsOS @437 NONAME
+  SHLoadRegUIStringA @438 NONAME PRIVATE
   SHLoadRegUIStringW @439 NONAME
   SHGetWebFolderFilePathA @440 NONAME
   SHGetWebFolderFilePathW @441 NONAME
@@ -388,7 +448,14 @@ EXPORTS
   SHGetSystemWindowsDirectoryW=kernel32.GetSystemWindowsDirectoryW @444 NONAME
   PathFileExistsAndAttributesA @445 NONAME
   PathFileExistsAndAttributesW @446 NONAME
+  FixSlashesAndColonA @447 NONAME PRIVATE
   FixSlashesAndColonW @448 NONAME
+  NextPathA @449 NONAME PRIVATE
+  NextPathW @450 NONAME PRIVATE
+  CharUpperNoDBCSA @451 NONAME PRIVATE
+  CharUpperNoDBCSW @452 NONAME PRIVATE
+  CharLowerNoDBCSA @453 NONAME PRIVATE
+  CharLowerNoDBCSW @454 NONAME PRIVATE
   PathIsValidCharA @455 NONAME
   PathIsValidCharW @456 NONAME
   GetLongPathNameWrapW=kernel32.GetLongPathNameW @457 NONAME
@@ -399,30 +466,87 @@ EXPORTS
   UrlFixupW @462 NONAME
   SHExpandEnvironmentStringsForUserA=userenv.ExpandEnvironmentStringsForUserA @463 NONAME
   SHExpandEnvironmentStringsForUserW=userenv.ExpandEnvironmentStringsForUserW @464 NONAME
+  PathUnExpandEnvStringsForUserA @465 NONAME PRIVATE
+  PathUnExpandEnvStringsForUserW @466 NONAME PRIVATE
+  SHRunIndirectRegClientCommand @467 NONAME PRIVATE
+  RunIndirectRegCommand @468 NONAME PRIVATE
+  RunRegCommand @469 NONAME PRIVATE
+  IUnknown_ProfferServiceOld @470 NONAME PRIVATE
   SHCreatePropertyBagOnRegKey @471 NONAME
+  SHCreatePropertyBagOnProfileSelection @472 NONAME PRIVATE
+  SHGetIniStringUTF7W @473 NONAME PRIVATE
+  SHSetIniStringUTF7W @474 NONAME PRIVATE
   GetShellSecurityDescriptor @475 NONAME
   SHGetObjectCompatFlags @476 NONAME
+  SHCreatePropertyBagOnMemory @477 NONAME PRIVATE
   IUnknown_TranslateAcceleratorIO @478 NONAME
   IUnknown_UIActivateIO @479 NONAME
   UrlCrackW=wininet.InternetCrackUrlW @480 NONAME
   IUnknown_HasFocusIO @481 NONAME
+  SHMessageBoxHelpA @482 NONAME PRIVATE
+  SHMessageBoxHelpW @483 NONAME PRIVATE
   IUnknown_QueryServiceExec @484 NONAME
+  MapWin32ErrorToSTG @485 NONAME PRIVATE
+  ModeToCreateFileFlags @486 NONAME PRIVATE
   SHLoadIndirectString @487 NONAME
+  SHConvertGraphicsFile @488 NONAME PRIVATE
   GlobalAddAtomWrapW=kernel32.GlobalAddAtomW @489 NONAME
   GlobalFindAtomWrapW=kernel32.GlobalFindAtomW @490 NONAME
   SHGetShellKey @491 NONAME
+  PrettifyFileDescriptionW @492 NONAME PRIVATE
+  SHPropertyBag_ReadType @493 NONAME PRIVATE
+  SHPropertyBag_ReadStr @494 NONAME PRIVATE
+  SHPropertyBag_WriteStr @495 NONAME PRIVATE
   SHPropertyBag_ReadLONG @496 NONAME
+  SHPropertyBag_WriteLONG @497 NONAME PRIVATE
+  SHPropertyBag_ReadBOOLOld @498 NONAME PRIVATE
+  SHPropertyBag_WriteBOOL @499 NONAME PRIVATE
+  SHPropertyBag_ReadGUID @505 NONAME PRIVATE
+  SHPropertyBag_WriteGUID @506 NONAME PRIVATE
+  SHPropertyBag_ReadDWORD @507 NONAME PRIVATE
+  SHPropertyBag_WriteDWORD @508 NONAME PRIVATE
   IUnknown_OnFocusChangeIS @509 NONAME
+  SHLockSharedEx @510 NONAME PRIVATE
+  PathFileExistsDefExtAndAttributesW @511 NONAME PRIVATE
+  IStream_ReadPidl @512 NONAME PRIVATE
+  IStream_WritePidl @513 NONAME PRIVATE
   IUnknown_ProfferService @514 NONAME
   SHGetViewStatePropertyBag @515 NONAME
   SKGetValueW @516 NONAME
   SKSetValueW @517 NONAME
   SKDeleteValueW @518 NONAME
   SKAllocValueW @519 NONAME
+  SHPropertyBag_ReadBSTR @520 NONAME PRIVATE
+  SHPropertyBag_ReadPOINTL @521 NONAME PRIVATE
+  SHPropertyBag_WritePOINTL @522 NONAME PRIVATE
+  SHPropertyBag_ReadRECTL @523 NONAME PRIVATE
+  SHPropertyBag_WriteRECTL @524 NONAME PRIVATE
+  SHPropertyBag_ReadPOINTS @525 NONAME PRIVATE
+  SHPropertyBag_WritePOINTS @526 NONAME PRIVATE
+  SHPropertyBag_ReadSHORT @527 NONAME PRIVATE
+  SHPropertyBag_WriteSHORT @528 NONAME PRIVATE
+  SHPropertyBag_ReadInt @529 NONAME PRIVATE
+  SHPropertyBag_WriteInt @530 NONAME PRIVATE
+  SHPropertyBag_ReadStream @531 NONAME PRIVATE
+  SHPropertyBag_WriteStream @532 NONAME PRIVATE
+  SHGetPerScreenResName @533 NONAME PRIVATE
+  SHPropertyBag_ReadBOOL @534 NONAME PRIVATE
+  SHPropertyBag_Delete @535 NONAME PRIVATE
+  IUnknown_QueryServicePropertyBag @536 NONAME PRIVATE
+  SHBoolSystemParametersInfo @537 NONAME PRIVATE
   IUnknown_QueryServiceForWebBrowserApp @538 NONAME
+  IUnknown_ShowBrowserBar @539 NONAME PRIVATE
+  SHInvokeCommandOnContextMenu @540 NONAME PRIVATE
+  SHInvokeCommandsOnContextMen @541 NONAME PRIVATE
   GetUIVersion @542 NONAME
   CreateColorSpaceWrapW=gdi32.CreateColorSpaceW @543 NONAME
+  QuerySourceCreateFromKey @544 NONAME PRIVATE
+  SHForwardContextMenuMsg @545 NONAME PRIVATE
+  IUnknown_DoContextMenuPopup @546 NONAME PRIVATE
+  SHAreIconsEqual @548 NONAME PRIVATE
   SHCoCreateInstanceAC @549 NONAME
+  GetTemplateInfoFromHandle @550 NONAME PRIVATE
+  IShellFolder_CompareIDs @551 NONAME PRIVATE
   AssocCreate @500
   AssocGetPerceivedType @501
   AssocIsDangerous @502

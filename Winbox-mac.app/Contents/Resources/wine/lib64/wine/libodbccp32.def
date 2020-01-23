@@ -1,4 +1,4 @@
-; File generated automatically from dlls/odbccp32/odbccp32.spec; do not edit!
+; File generated automatically from ../wine/dlls/odbccp32/odbccp32.spec; do not edit!
 
 LIBRARY odbccp32.dll
 
@@ -31,7 +31,9 @@ EXPORTS
   SQLGetConfigMode @27
   SQLSetConfigMode @28
   SQLInstallTranslatorEx @29
+  SQLCreateDataSourceEx @30 PRIVATE
   ODBCCPlApplet @101
+  SelectTransDlg @112 PRIVATE
   SQLInstallDriverW @202
   SQLInstallDriverManagerW @203
   SQLGetInstalledDriversW @204
@@ -55,3 +57,6 @@ EXPORTS
   SQLWriteFileDSNW @225
   SQLInstallDriverExW @226
   SQLInstallTranslatorExW @229
+  SQLCreateDataSourceExW @230 PRIVATE
+  SQLLoadDriverListBox @231 PRIVATE
+  SQLLoadDataSourcesListBox @232 PRIVATE

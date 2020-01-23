@@ -1,7 +1,61 @@
-; File generated automatically from dlls/rtutils/rtutils.spec; do not edit!
+; File generated automatically from ../wine/dlls/rtutils/rtutils.spec; do not edit!
 
 LIBRARY rtutils.dll
 
 EXPORTS
+  CreateWaitEvent @1 PRIVATE
+  CreateWaitEventBinding @2 PRIVATE
+  CreateWaitTimer @3 PRIVATE
+  DeRegisterWaitEventBinding @4 PRIVATE
+  DeRegisterWaitEventBindingSelf @5 PRIVATE
+  DeRegisterWaitEventsTimers @6 PRIVATE
+  DeRegisterWaitEventsTimersSelf @7 PRIVATE
+  DebugPrintWaitWorkerThreads @8 PRIVATE
+  LogErrorA @9 PRIVATE
+  LogErrorW @10 PRIVATE
+  LogEventA @11 PRIVATE
+  LogEventW @12 PRIVATE
+  MprSetupProtocolEnum @13 PRIVATE
+  MprSetupProtocolFree @14 PRIVATE
+  QueueWorkItem @15 PRIVATE
+  RegisterWaitEventBinding @16 PRIVATE
+  RegisterWaitEventsTimers @17 PRIVATE
+  RouterAssert @18 PRIVATE
+  RouterGetErrorStringA @19 PRIVATE
+  RouterGetErrorStringW @20 PRIVATE
+  RouterLogDeregisterA @21 PRIVATE
+  RouterLogDeregisterW @22 PRIVATE
+  RouterLogEventA @23 PRIVATE
+  RouterLogEventDataA @24 PRIVATE
+  RouterLogEventDataW @25 PRIVATE
+  RouterLogEventExA @26 PRIVATE
+  RouterLogEventExW @27 PRIVATE
+  RouterLogEventStringA @28 PRIVATE
+  RouterLogEventStringW @29 PRIVATE
+  RouterLogEventValistExA @30 PRIVATE
+  RouterLogEventValistExW @31 PRIVATE
+  RouterLogEventW @32 PRIVATE
+  RouterLogRegisterA @33 PRIVATE
+  RouterLogRegisterW @34 PRIVATE
+  SetIoCompletionProc @35 PRIVATE
+  TraceDeregisterA @36 PRIVATE
+  TraceDeregisterExA @37 PRIVATE
+  TraceDeregisterExW @38 PRIVATE
+  TraceDeregisterW @39 PRIVATE
+  TraceDumpExA @40 PRIVATE
+  TraceDumpExW @41 PRIVATE
+  TraceGetConsoleA @42 PRIVATE
+  TraceGetConsoleW @43 PRIVATE
+  TracePrintfA @44 PRIVATE
+  TracePrintfExA @45 PRIVATE
+  TracePrintfExW @46 PRIVATE
+  TracePrintfW @47 PRIVATE
+  TracePutsExA @48 PRIVATE
+  TracePutsExW @49 PRIVATE
   TraceRegisterExA @50
   TraceRegisterExW @51
+  TraceVprintfExA @52 PRIVATE
+  TraceVprintfExW @53 PRIVATE
+  UpdateWaitTimer @54 PRIVATE
+  WTFreeEvent @55 PRIVATE
+  WTFreeTimer @56 PRIVATE

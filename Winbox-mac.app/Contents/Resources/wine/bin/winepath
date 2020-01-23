@@ -57,8 +57,8 @@ do
 done
 
 # finally, the default bin directory
-if [ -x "/Users/reb/winebottler/usr/bin/wine" ]; then exec "/Users/reb/winebottler/usr/bin/wine" "$appname" "$@"; fi
-if [ -x "/Users/reb/winebottler/usr/bin/wine64" ]; then exec "/Users/reb/winebottler/usr/bin/wine64" "$appname" "$@"; fi
+if [ -x "/usr/local/bin/wine" ]; then exec "/usr/local/bin/wine" "$appname" "$@"; fi
+if [ -x "/usr/local/bin/wine64" ]; then exec "/usr/local/bin/wine64" "$appname" "$@"; fi
 
 echo "$0: the Wine loader is missing"
 exit 1

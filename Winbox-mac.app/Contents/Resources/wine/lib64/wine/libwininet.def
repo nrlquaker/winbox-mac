@@ -1,10 +1,25 @@
-; File generated automatically from dlls/wininet/wininet.spec; do not edit!
+; File generated automatically from ../wine/dlls/wininet/wininet.spec; do not edit!
 
 LIBRARY wininet.dll
 
 EXPORTS
+  DoConnectoidsExist @101 NONAME PRIVATE
   GetDiskInfoA @102 NONAME
+  PerformOperationOverUrlCacheA @103 NONAME PRIVATE
+  HttpCheckDavComplianceA @104 NONAME PRIVATE
+  HttpCheckDavComplianceW @105 NONAME PRIVATE
+  ImportCookieFileA @108 NONAME PRIVATE
+  ExportCookieFileA @109 NONAME PRIVATE
+  ImportCookieFileW @110 NONAME PRIVATE
+  ExportCookieFileW @111 NONAME PRIVATE
+  IsProfilesEnabled @112 NONAME PRIVATE
+  IsDomainlegalCookieDomainA @116 NONAME PRIVATE
   IsDomainLegalCookieDomainW @117 NONAME
+  FindP3PPolicySymbol @118 NONAME PRIVATE
+  MapResourceToPolicy @120 NONAME PRIVATE
+  GetP3PPolicy @121 NONAME PRIVATE
+  FreeP3PObject @122 NONAME PRIVATE
+  GetP3PRequestStatus @123 NONAME PRIVATE
   CommitUrlCacheEntryA @106
   CommitUrlCacheEntryW @107
   CreateMD5SSOHash @113
@@ -38,6 +53,8 @@ EXPORTS
   FindNextUrlCacheEntryExW @148
   FindNextUrlCacheEntryW @149
   FindNextUrlCacheGroup @150
+  ForceNexusLookup @151 PRIVATE
+  ForceNexusLookupExW @152 PRIVATE
   FreeUrlCacheSpaceA @153
   FreeUrlCacheSpaceW @154
   FtpCommandA @155
@@ -51,11 +68,13 @@ EXPORTS
   FtpGetCurrentDirectoryA @163
   FtpGetCurrentDirectoryW @164
   FtpGetFileA @165
+  FtpGetFileEx @166 PRIVATE
   FtpGetFileSize @167
   FtpGetFileW @168
   FtpOpenFileA @169
   FtpOpenFileW @170
   FtpPutFileA @171
+  FtpPutFileEx @172 PRIVATE
   FtpPutFileW @173
   FtpRemoveDirectoryA @174
   FtpRemoveDirectoryW @175
@@ -71,6 +90,7 @@ EXPORTS
   GetUrlCacheEntryInfoW @185
   GetUrlCacheGroupAttributeA @186
   GetUrlCacheGroupAttributeW @187
+  GetUrlCacheHeaderData @188 PRIVATE
   GopherCreateLocatorA @189
   GopherCreateLocatorW @190
   GopherFindFirstFileA @191
@@ -83,6 +103,7 @@ EXPORTS
   GopherOpenFileW @198
   HttpAddRequestHeadersA @199
   HttpAddRequestHeadersW @200
+  HttpCheckDavCompliance @201 PRIVATE
   HttpEndRequestA @202
   HttpEndRequestW @203
   HttpOpenRequestA @204
@@ -94,8 +115,11 @@ EXPORTS
   HttpSendRequestExW @210
   HttpSendRequestW @211
   IncrementUrlCacheHeaderData @212
+  InternetAlgIdToStringA @213 PRIVATE
+  InternetAlgIdToStringW @214 PRIVATE
   InternetAttemptConnect @215
   InternetAutodial @216
+  InternetAutodialCallback @217 PRIVATE
   InternetAutodialHangup @218
   InternetCanonicalizeUrlA @219
   InternetCanonicalizeUrlW @220
@@ -114,6 +138,7 @@ EXPORTS
   InternetCrackUrlW @233
   InternetCreateUrlA @234
   InternetCreateUrlW @235
+  InternetDebugGetLocalTime @236 PRIVATE
   InternetDial=InternetDialA @237
   InternetDialA @238
   InternetDialW @239
@@ -122,6 +147,9 @@ EXPORTS
   InternetErrorDlg @242
   InternetFindNextFileA @243
   InternetFindNextFileW @244
+  InternetFortezzaCommand @245 PRIVATE
+  InternetGetCertByURL @246 PRIVATE
+  InternetGetCertByURLA @247 PRIVATE
   InternetGetConnectedState @248
   InternetGetConnectedStateEx=InternetGetConnectedStateExA @249
   InternetGetConnectedStateExA @250
@@ -144,6 +172,7 @@ EXPORTS
   InternetInitializeAutoProxyDll @267
   InternetLockRequestFile @268
   InternetOpenA @269
+  InternetOpenServerPushParse @270 PRIVATE
   InternetOpenUrlA @271
   InternetOpenUrlW @272
   InternetOpenW @273
@@ -154,10 +183,16 @@ EXPORTS
   InternetReadFile @278
   InternetReadFileExA @279
   InternetReadFileExW @280
+  InternetSecurityProtocolToStringA @281 PRIVATE
+  InternetSecurityProtocolToStringW @282 PRIVATE
+  InternetServerPushParse @283 PRIVATE
   InternetSetCookieA @284
   InternetSetCookieExA @285
   InternetSetCookieExW @286
   InternetSetCookieW @287
+  InternetSetDialState @288 PRIVATE
+  InternetSetDialStateA @289 PRIVATE
+  InternetSetDialStateW @290 PRIVATE
   InternetSetFilePointer @291
   InternetSetOptionA @292
   InternetSetOptionExA @293
@@ -179,6 +214,8 @@ EXPORTS
   InternetTimeToSystemTimeW @309
   InternetUnlockRequestFile @310
   InternetWriteFile @311
+  InternetWriteFileExA @312 PRIVATE
+  InternetWriteFileExW @313 PRIVATE
   IsHostInProxyBypassList @314
   IsUrlCacheEntryExpiredA @315
   IsUrlCacheEntryExpiredW @316
@@ -203,9 +240,14 @@ EXPORTS
   SetUrlCacheEntryInfoW @335
   SetUrlCacheGroupAttributeA @336
   SetUrlCacheGroupAttributeW @337
+  SetUrlCacheHeaderData @338 PRIVATE
+  ShowCertificate @339 PRIVATE
   ShowClientAuthCerts @340
+  ShowSecurityInfo @341 PRIVATE
   ShowX509EncodedCertificate @342
   UnlockUrlCacheEntryFile=UnlockUrlCacheEntryFileA @343
   UnlockUrlCacheEntryFileA @344
   UnlockUrlCacheEntryFileW @345
   UnlockUrlCacheEntryStream @346
+  UpdateUrlCacheContentPath @347 PRIVATE
+  UrlZonesDetach @348 PRIVATE

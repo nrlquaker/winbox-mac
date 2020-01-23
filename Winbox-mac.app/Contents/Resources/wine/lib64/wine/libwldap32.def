@@ -1,4 +1,4 @@
-; File generated automatically from dlls/wldap32/wldap32.spec; do not edit!
+; File generated automatically from ../wine/dlls/wldap32/wldap32.spec; do not edit!
 
 LIBRARY wldap32.dll
 
@@ -190,6 +190,8 @@ EXPORTS
   ldap_search_ext_s=ldap_search_ext_sA @195
   ldap_search_ext_sA @196
   ldap_escape_filter_element=ldap_escape_filter_elementA @197
+  ldap_set_dbg_flags @198 PRIVATE
+  ldap_set_dbg_routine @199 PRIVATE
   ldap_memfree=ldap_memfreeA @200
   ldap_startup @201
   ldap_cleanup @202

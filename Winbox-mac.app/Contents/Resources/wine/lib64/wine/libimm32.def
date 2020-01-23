@@ -1,8 +1,9 @@
-; File generated automatically from dlls/imm32/imm32.spec; do not edit!
+; File generated automatically from ../wine/dlls/imm32/imm32.spec; do not edit!
 
 LIBRARY imm32.dll
 
 EXPORTS
+  ImmActivateLayout @1 PRIVATE
   ImmAssociateContext @2
   ImmAssociateContextEx @3
   ImmConfigureIMEA @4
@@ -22,6 +23,7 @@ EXPORTS
   ImmEnumRegisterWordW @18
   ImmEscapeA @19
   ImmEscapeW @20
+  ImmFreeLayout @21 PRIVATE
   ImmGenerateMessage @22
   ImmGetCandidateListA @23
   ImmGetCandidateListCountA @24
@@ -49,6 +51,7 @@ EXPORTS
   ImmGetIMCLockCount @46
   ImmGetIMEFileNameA @47
   ImmGetIMEFileNameW @48
+  ImmGetImeInfoEx @49 PRIVATE
   ImmGetImeMenuItemsA @50
   ImmGetImeMenuItemsW @51
   ImmGetOpenStatus @52
@@ -57,21 +60,39 @@ EXPORTS
   ImmGetRegisterWordStyleW @55
   ImmGetStatusWindowPos @56
   ImmGetVirtualKey @57
+  ImmIMPGetIMEA @58 PRIVATE
+  ImmIMPGetIMEW @59 PRIVATE
+  ImmIMPQueryIMEA @60 PRIVATE
+  ImmIMPQueryIMEW @61 PRIVATE
+  ImmIMPSetIMEA @62 PRIVATE
+  ImmIMPSetIMEW @63 PRIVATE
   ImmInstallIMEA @64
   ImmInstallIMEW @65
   ImmIsIME @66
   ImmIsUIMessageA @67
   ImmIsUIMessageW @68
+  ImmLoadIME @69 PRIVATE
+  ImmLoadLayout @70 PRIVATE
+  ImmLockClientImc @71 PRIVATE
   ImmLockIMC @72
   ImmLockIMCC @73
+  ImmLockImeDpi @74 PRIVATE
   ImmNotifyIME @75
+  ImmPenAuxInput @76 PRIVATE
   ImmProcessKey @77
+  ImmPutImeMenuItemsIntoMappedFile @78 PRIVATE
   ImmReSizeIMCC @79
+  ImmRegisterClient @80 PRIVATE
   ImmRegisterWordA @81
   ImmRegisterWordW @82
   ImmReleaseContext @83
   ImmRequestMessageA @84
   ImmRequestMessageW @85
+  ImmSendIMEMessageExA @86 PRIVATE
+  ImmSendIMEMessageExW @87 PRIVATE
+  ImmSendMessageToActiveDefImeWndW @88 PRIVATE
+  ImmSetActiveContext @89 PRIVATE
+  ImmSetActiveContextConsoleIME @90 PRIVATE
   ImmSetCandidateWindow @91
   ImmSetCompositionFontA @92
   ImmSetCompositionFontW @93
@@ -83,11 +104,17 @@ EXPORTS
   ImmSetStatusWindowPos @99
   ImmShowSoftKeyboard @100
   ImmSimulateHotKey @101
+  ImmSystemHandler @102 PRIVATE
   ImmTranslateMessage @103
+  ImmUnlockClientImc @104 PRIVATE
   ImmUnlockIMC @105
   ImmUnlockIMCC @106
+  ImmUnlockImeDpi @107 PRIVATE
   ImmUnregisterWordA @108
   ImmUnregisterWordW @109
+  ImmWINNLSEnableIME @110 PRIVATE
+  ImmWINNLSGetEnableStatus @111 PRIVATE
+  ImmWINNLSGetIMEHotkey @112 PRIVATE
   __wine_get_ui_window @113
   __wine_register_window @114
   __wine_unregister_window @115

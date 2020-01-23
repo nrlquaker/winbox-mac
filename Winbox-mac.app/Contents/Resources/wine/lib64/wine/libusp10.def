@@ -1,8 +1,9 @@
-; File generated automatically from dlls/usp10/usp10.spec; do not edit!
+; File generated automatically from ../wine/dlls/usp10/usp10.spec; do not edit!
 
 LIBRARY usp10.dll
 
 EXPORTS
+  LpkPresent @1 PRIVATE
   ScriptApplyDigitSubstitution @2
   ScriptApplyLogicalWidth @3
   ScriptBreak @4
@@ -10,6 +11,7 @@ EXPORTS
   ScriptCacheGetHeight @6
   ScriptFreeCache @7
   ScriptGetCMap @8
+  ScriptGetFontAlternateGlyphs @9 PRIVATE
   ScriptGetFontFeatureTags @10
   ScriptGetFontLanguageTags @11
   ScriptGetFontProperties @12
@@ -24,6 +26,7 @@ EXPORTS
   ScriptLayout @21
   ScriptPlace @22
   ScriptPlaceOpenType @23
+  ScriptPositionSingleGlyph @24 PRIVATE
   ScriptRecordDigitSubstitution @25
   ScriptShape @26
   ScriptShapeOpenType @27
@@ -38,5 +41,9 @@ EXPORTS
   ScriptString_pLogAttr @36
   ScriptString_pSize @37
   ScriptString_pcOutChars @38
+  ScriptSubstituteSingleGlyph @39 PRIVATE
   ScriptTextOut @40
   ScriptXtoCP @41
+  UspAllocCache @42 PRIVATE
+  UspAllocTemp @43 PRIVATE
+  UspFreeMem @44 PRIVATE

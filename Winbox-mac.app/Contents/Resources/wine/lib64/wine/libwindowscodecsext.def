@@ -1,4 +1,4 @@
-; File generated automatically from dlls/windowscodecsext/windowscodecsext.spec; do not edit!
+; File generated automatically from ../wine/dlls/windowscodecsext/windowscodecsext.spec; do not edit!
 
 LIBRARY windowscodecsext.dll
 

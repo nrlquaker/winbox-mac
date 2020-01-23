@@ -1,13 +1,66 @@
-; File generated automatically from dlls/httpapi/httpapi.spec; do not edit!
+; File generated automatically from ../wine/dlls/httpapi/httpapi.spec; do not edit!
 
 LIBRARY httpapi.dll
 
 EXPORTS
+  HttpAddFragmentToCache @1 PRIVATE
   HttpAddUrl @2
-  HttpCreateHttpHandle @8
-  HttpCreateServerSession @9
-  HttpDeleteServiceConfiguration @11
-  HttpInitialize @22
-  HttpQueryServiceConfiguration @31
-  HttpSetServiceConfiguration @48
-  HttpTerminate @51
+  HttpAddUrlToConfigGroup @3 PRIVATE
+  HttpAddUrlToUrlGroup @4
+  HttpCancelHttpRequest @5 PRIVATE
+  HttpCreateAppPool @6 PRIVATE
+  HttpCreateConfigGroup @7 PRIVATE
+  HttpCreateFilter @8 PRIVATE
+  HttpCreateHttpHandle @9
+  HttpCreateRequestQueue @10
+  HttpCreateServerSession @11
+  HttpCreateUrlGroup @12
+  HttpCloseRequestQueue @13
+  HttpCloseServerSession @14
+  HttpCloseUrlGroup @15
+  HttpDeleteConfigGroup @16 PRIVATE
+  HttpDeleteServiceConfiguration @17
+  HttpFilterAccept @18 PRIVATE
+  HttpFilterAppRead @19 PRIVATE
+  HttpFilterAppWrite @20 PRIVATE
+  HttpFilterAppWriteAndRawRead @21 PRIVATE
+  HttpFilterClose @22 PRIVATE
+  HttpFilterRawRead @23 PRIVATE
+  HttpFilterRawWrite @24 PRIVATE
+  HttpFilterRawWriteAndAppRead @25 PRIVATE
+  HttpFlushResponseCache @26 PRIVATE
+  HttpGetCounters @27 PRIVATE
+  HttpInitialize @28
+  HttpInitializeServerContext @29 PRIVATE
+  HttpOpenAppPool @30 PRIVATE
+  HttpOpenControlChannel @31 PRIVATE
+  HttpOpenFilter @32 PRIVATE
+  HttpQueryAppPoolInformation @33 PRIVATE
+  HttpQueryConfigGroupInformation @34 PRIVATE
+  HttpQueryControlChannelInformation @35 PRIVATE
+  HttpQueryServerContextInformation @36 PRIVATE
+  HttpQueryServiceConfiguration @37
+  HttpReadFragmentFromCache @38 PRIVATE
+  HttpReceiveClientCertificate @39 PRIVATE
+  HttpReceiveHttpRequest @40
+  HttpReceiveHttpResponse @41 PRIVATE
+  HttpReceiveRequestEntityBody @42
+  HttpRemoveAllUrlsFromConfigGroup @43 PRIVATE
+  HttpRemoveUrl @44
+  HttpRemoveUrlFromConfigGroup @45 PRIVATE
+  HttpRemoveUrlFromUrlGroup @46
+  HttpSendHttpRequest @47 PRIVATE
+  HttpSendHttpResponse @48
+  HttpSendRequestEntityBody @49 PRIVATE
+  HttpSendResponseEntityBody @50 PRIVATE
+  HttpSetAppPoolInformation @51 PRIVATE
+  HttpSetConfigGroupInformation @52 PRIVATE
+  HttpSetControlChannelInformation @53 PRIVATE
+  HttpSetServerContextInformation @54 PRIVATE
+  HttpSetServiceConfiguration @55
+  HttpSetUrlGroupProperty @56
+  HttpShutdownAppPool @57 PRIVATE
+  HttpShutdownFilter @58 PRIVATE
+  HttpTerminate @59
+  HttpWaitForDemandStart @60 PRIVATE
+  HttpWaitForDisconnect @61 PRIVATE

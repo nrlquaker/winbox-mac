@@ -1,8 +1,10 @@
-; File generated automatically from dlls/secur32/secur32.spec; do not edit!
+; File generated automatically from ../wine/dlls/secur32/secur32.spec; do not edit!
 
 LIBRARY secur32.dll
 
 EXPORTS
+  SecDeleteUserModeContext @1 PRIVATE
+  SecInitUserModeContext @2 PRIVATE
   AcceptSecurityContext @3
   AcquireCredentialsHandleA @4
   AcquireCredentialsHandleW @5
@@ -14,6 +16,8 @@ EXPORTS
   CompleteAuthToken @11
   DecryptMessage @12
   DeleteSecurityContext @13
+  DeleteSecurityPackageA @14 PRIVATE
+  DeleteSecurityPackageW @15 PRIVATE
   EncryptMessage @16
   EnumerateSecurityPackagesA @17
   EnumerateSecurityPackagesW @18
@@ -22,6 +26,7 @@ EXPORTS
   FreeCredentialsHandle @21
   GetComputerObjectNameA @22
   GetComputerObjectNameW @23
+  GetSecurityUserInfo @24 PRIVATE
   GetUserNameExA @25
   GetUserNameExW @26
   ImpersonateSecurityContext @27
@@ -40,6 +45,8 @@ EXPORTS
   LsaLogonUser @40
   LsaLookupAuthenticationPackage @41
   LsaRegisterLogonProcess @42
+  LsaRegisterPolicyChangeNotification @43 PRIVATE
+  LsaUnregisterPolicyChangeNotification @44 PRIVATE
   MakeSignature @45
   QueryContextAttributesA @46
   QueryContextAttributesW @47
@@ -49,7 +56,21 @@ EXPORTS
   QuerySecurityPackageInfoA @51
   QuerySecurityPackageInfoW @52
   RevertSecurityContext @53
+  SaslAcceptSecurityContext @54 PRIVATE
+  SaslEnumerateProfilesA @55 PRIVATE
+  SaslEnumerateProfilesW @56 PRIVATE
+  SaslGetProfilePackageA @57 PRIVATE
+  SaslGetProfilePackageW @58 PRIVATE
+  SaslIdentifyPackageA @59 PRIVATE
+  SaslIdentifyPackageW @60 PRIVATE
+  SaslInitializeSecurityContextA @61 PRIVATE
+  SaslInitializeSecurityContextW @62 PRIVATE
   SealMessage=EncryptMessage @63
+  SecCacheSspiPackages @64 PRIVATE
+  SecGetLocaleSpecificEncryptionRules @65 PRIVATE
+  SecpFreeMemory @66 PRIVATE
+  SecpTranslateName @67 PRIVATE
+  SecpTranslateNameEx @68 PRIVATE
   SetContextAttributesA @69
   SetContextAttributesW @70
   SspiEncodeAuthIdentityAsStrings=sspicli.SspiEncodeAuthIdentityAsStrings @71

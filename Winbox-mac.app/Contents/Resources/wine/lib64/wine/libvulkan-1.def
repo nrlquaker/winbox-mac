@@ -1,4 +1,4 @@
-; File generated automatically from dlls/vulkan-1/vulkan-1.spec; do not edit!
+; File generated automatically from ../wine/dlls/vulkan-1/vulkan-1.spec; do not edit!
 
 LIBRARY vulkan-1.dll
 
@@ -67,6 +67,8 @@ EXPORTS
   vkCreateDescriptorSetLayout=winevulkan.wine_vkCreateDescriptorSetLayout @62
   vkCreateDescriptorUpdateTemplate=winevulkan.wine_vkCreateDescriptorUpdateTemplate @63
   vkCreateDevice=winevulkan.wine_vkCreateDevice @64
+  vkCreateDisplayModeKHR @65 PRIVATE
+  vkCreateDisplayPlaneSurfaceKHR @66 PRIVATE
   vkCreateEvent=winevulkan.wine_vkCreateEvent @67
   vkCreateFence=winevulkan.wine_vkCreateFence @68
   vkCreateFramebuffer=winevulkan.wine_vkCreateFramebuffer @69
@@ -82,6 +84,7 @@ EXPORTS
   vkCreateSamplerYcbcrConversion=winevulkan.wine_vkCreateSamplerYcbcrConversion @79
   vkCreateSemaphore=winevulkan.wine_vkCreateSemaphore @80
   vkCreateShaderModule=winevulkan.wine_vkCreateShaderModule @81
+  vkCreateSharedSwapchainsKHR @82 PRIVATE
   vkCreateSwapchainKHR=winevulkan.wine_vkCreateSwapchainKHR @83
   vkCreateWin32SurfaceKHR=winevulkan.wine_vkCreateWin32SurfaceKHR @84
   vkDestroyBuffer=winevulkan.wine_vkDestroyBuffer @85
@@ -131,6 +134,9 @@ EXPORTS
   vkGetDeviceProcAddr=winevulkan.wine_vkGetDeviceProcAddr @129
   vkGetDeviceQueue=winevulkan.wine_vkGetDeviceQueue @130
   vkGetDeviceQueue2=winevulkan.wine_vkGetDeviceQueue2 @131
+  vkGetDisplayModePropertiesKHR @132 PRIVATE
+  vkGetDisplayPlaneCapabilitiesKHR @133 PRIVATE
+  vkGetDisplayPlaneSupportedDisplaysKHR @134 PRIVATE
   vkGetEventStatus=winevulkan.wine_vkGetEventStatus @135
   vkGetFenceStatus=winevulkan.wine_vkGetFenceStatus @136
   vkGetImageMemoryRequirements=winevulkan.wine_vkGetImageMemoryRequirements @137
@@ -139,6 +145,11 @@ EXPORTS
   vkGetImageSparseMemoryRequirements2=winevulkan.wine_vkGetImageSparseMemoryRequirements2 @140
   vkGetImageSubresourceLayout=winevulkan.wine_vkGetImageSubresourceLayout @141
   vkGetInstanceProcAddr=winevulkan.wine_vkGetInstanceProcAddr @142
+  vkGetPhysicalDeviceDisplayPlanePropertiesKHR @143 PRIVATE
+  vkGetPhysicalDeviceDisplayPropertiesKHR @144 PRIVATE
+  vkGetPhysicalDeviceExternalBufferProperties=winevulkan.wine_vkGetPhysicalDeviceExternalBufferProperties @145
+  vkGetPhysicalDeviceExternalFenceProperties=winevulkan.wine_vkGetPhysicalDeviceExternalFenceProperties @146
+  vkGetPhysicalDeviceExternalSemaphoreProperties=winevulkan.wine_vkGetPhysicalDeviceExternalSemaphoreProperties @147
   vkGetPhysicalDeviceFeatures=winevulkan.wine_vkGetPhysicalDeviceFeatures @148
   vkGetPhysicalDeviceFeatures2=winevulkan.wine_vkGetPhysicalDeviceFeatures2 @149
   vkGetPhysicalDeviceFormatProperties=winevulkan.wine_vkGetPhysicalDeviceFormatProperties @150

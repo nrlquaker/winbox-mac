@@ -1,11 +1,23 @@
-; File generated automatically from dlls/newdev/newdev.spec; do not edit!
+; File generated automatically from ../wine/dlls/newdev/newdev.spec; do not edit!
 
 LIBRARY newdev.dll
 
 EXPORTS
+  DeviceInternetSettingUiW @1 PRIVATE
+  DiInstallDevice @2 PRIVATE
   DiInstallDriverA @3
   DiInstallDriverW @4
+  DiRollbackDriver @5 PRIVATE
+  DiShowUpdateDevice @6 PRIVATE
+  DiUninstallDevice @7 PRIVATE
   InstallNewDevice @8
   InstallSelectedDriver @9
+  InstallWindowsUpdateDriver @10 PRIVATE
+  SetInternetPolicies @11 PRIVATE
   UpdateDriverForPlugAndPlayDevicesA @12
   UpdateDriverForPlugAndPlayDevicesW @13
+  pDiDeviceInstallActionW @14 PRIVATE
+  pDiDeviceInstallNotificationW @15 PRIVATE
+  pDiDoDeviceInstallAsAdmin @16 PRIVATE
+  pDiDoFinishInstallAsAdmin @17 PRIVATE
+  pDiDoNullDriverInstall @18 PRIVATE

@@ -1,4 +1,4 @@
-; File generated automatically from dlls/winhttp/winhttp.spec; do not edit!
+; File generated automatically from ../wine/dlls/winhttp/winhttp.spec; do not edit!
 
 LIBRARY winhttp.dll
 

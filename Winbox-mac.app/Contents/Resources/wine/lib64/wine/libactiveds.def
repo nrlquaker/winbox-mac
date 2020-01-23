@@ -1,4 +1,4 @@
-; File generated automatically from dlls/activeds/activeds.spec; do not edit!
+; File generated automatically from ../wine/dlls/activeds/activeds.spec; do not edit!
 
 LIBRARY activeds.dll
 
@@ -19,3 +19,11 @@ EXPORTS
   FreeADsStr @18
   ReallocADsStr @19
   ADsEncodeBinaryData @20
+  PropVariantToAdsType @21 PRIVATE
+  AdsTypeToPropVariant @22 PRIVATE
+  AdsFreeAdsValues @23 PRIVATE
+  ADsDecodeBinaryData @24 PRIVATE
+  AdsTypeToPropVariant2 @25 PRIVATE
+  PropVariantToAdsType2 @26 PRIVATE
+  ConvertSecDescriptorToVariant @27 PRIVATE
+  ConvertSecurityDescriptorToSecDes @28 PRIVATE

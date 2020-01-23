@@ -1,4 +1,4 @@
-; File generated automatically from dlls/riched20/riched20.spec; do not edit!
+; File generated automatically from ../wine/dlls/riched20/riched20.spec; do not edit!
 
 LIBRARY riched20.dll
 

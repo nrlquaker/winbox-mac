@@ -1,0 +1,50 @@
+; File generated automatically from ../wine/dlls/dhcpcsvc/dhcpcsvc.spec; do not edit!
+
+LIBRARY dhcpcsvc.dll
+
+EXPORTS
+  DhcpAcquireParameters @1 PRIVATE
+  DhcpAcquireParametersByBroadcast @2 PRIVATE
+  DhcpCApiCleanup @3
+  DhcpCApiInitialize @4
+  DhcpDeRegisterConnectionStateNotification @5 PRIVATE
+  DhcpDeRegisterOptions @6 PRIVATE
+  DhcpDeRegisterParamChange @7 PRIVATE
+  DhcpDelPersistentRequestParams @8 PRIVATE
+  DhcpEnumClasses @9 PRIVATE
+  DhcpFallbackRefreshParams @10 PRIVATE
+  DhcpFreeMem @11 PRIVATE
+  DhcpGetDhcpServicedConnctions @12 PRIVATE
+  DhcpGetNotificationStatus @13 PRIVATE
+  DhcpHandlePnPEvent @14 PRIVATE
+  DhcpLeaseIpAddress @15 PRIVATE
+  DhcpLeaseIpAddressEx @16 PRIVATE
+  DhcpNotifyConfigChange @17 PRIVATE
+  DhcpNotifyConfigChangeEx @18 PRIVATE
+  DhcpNotifyMediaReconnected @19 PRIVATE
+  DhcpOpenGlobalEvent @20 PRIVATE
+  DhcpPersistentRequestParams @21 PRIVATE
+  DhcpQueryHWInfo @22 PRIVATE
+  DhcpRegisterConnectionStateNotification @23 PRIVATE
+  DhcpRegisterOptions @24 PRIVATE
+  DhcpRegisterParamChange @25 PRIVATE
+  DhcpReleaseIpAddressLease @26 PRIVATE
+  DhcpReleaseIpAddressLeaseEx @27 PRIVATE
+  DhcpReleaseParameters @28 PRIVATE
+  DhcpRemoveDNSRegistration @29 PRIVATE
+  DhcpRenewIpAddressLease @30 PRIVATE
+  DhcpRenewIpAddressLeaseEx @31 PRIVATE
+  DhcpRequestCachedParams @32 PRIVATE
+  DhcpRequestOptions @33 PRIVATE
+  DhcpRequestParams @34
+  DhcpSetMSFTVendorSpecificOptions @35 PRIVATE
+  DhcpStaticRefreshParams @36 PRIVATE
+  DhcpUndoRequestParams @37 PRIVATE
+  McastApiCleanup @38 PRIVATE
+  McastApiStartup @39 PRIVATE
+  McastEnumerateScopes @40 PRIVATE
+  McastGenUID @41 PRIVATE
+  McastReleaseAddress @42 PRIVATE
+  McastRenewAddress @43 PRIVATE
+  McastRequestAddress @44 PRIVATE
+  ServiceMain @45 PRIVATE

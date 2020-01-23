@@ -1,4 +1,4 @@
-; File generated automatically from dlls/wsock32/wsock32.spec; do not edit!
+; File generated automatically from ../wine/dlls/wsock32/wsock32.spec; do not edit!
 
 LIBRARY wsock32.dll
 

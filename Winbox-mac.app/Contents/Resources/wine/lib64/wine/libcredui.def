@@ -1,12 +1,17 @@
-; File generated automatically from dlls/credui/credui.spec; do not edit!
+; File generated automatically from ../wine/dlls/credui/credui.spec; do not edit!
 
 LIBRARY credui.dll
 
 EXPORTS
   CredPackAuthenticationBufferW @1
+  CredUICmdLinePromptForCredentialsA @2 PRIVATE
+  CredUICmdLinePromptForCredentialsW @3 PRIVATE
+  CredUIConfirmCredentialsA @4 PRIVATE
   CredUIConfirmCredentialsW @5
   CredUIInitControls @6
+  CredUIParseUserNameA @7 PRIVATE
   CredUIParseUserNameW @8
+  CredUIPromptForCredentialsA @9 PRIVATE
   CredUIPromptForCredentialsW @10
   CredUIPromptForWindowsCredentialsW @11
   CredUIReadSSOCredA @12
@@ -14,4 +19,8 @@ EXPORTS
   CredUIStoreSSOCredA @14
   CredUIStoreSSOCredW @15
   CredUnPackAuthenticationBufferW @16
+  DllCanUnloadNow @17 PRIVATE
+  DllGetClassObject @18 PRIVATE
+  DllRegisterServer @19 PRIVATE
+  DllUnregisterServer @20 PRIVATE
   SspiPromptForCredentialsW @21

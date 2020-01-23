@@ -1,4 +1,4 @@
-; File generated automatically from dlls/sti/sti.spec; do not edit!
+; File generated automatically from ../wine/dlls/sti/sti.spec; do not edit!
 
 LIBRARY sti.dll
 

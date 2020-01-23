@@ -1,4 +1,4 @@
-; File generated automatically from dlls/winevulkan/winevulkan.spec; do not edit!
+; File generated automatically from ../wine/dlls/winevulkan/winevulkan.spec; do not edit!
 
 LIBRARY winevulkan.dll
 
@@ -70,6 +70,8 @@ EXPORTS
   wine_vkCreateDescriptorSetLayout @65 PRIVATE
   wine_vkCreateDescriptorUpdateTemplate @66 PRIVATE
   wine_vkCreateDevice @67 PRIVATE
+  vkCreateDisplayModeKHR @68 PRIVATE
+  vkCreateDisplayPlaneSurfaceKHR @69 PRIVATE
   wine_vkCreateEvent @70 PRIVATE
   wine_vkCreateFence @71 PRIVATE
   wine_vkCreateFramebuffer @72 PRIVATE
@@ -85,6 +87,7 @@ EXPORTS
   wine_vkCreateSamplerYcbcrConversion @82 PRIVATE
   wine_vkCreateSemaphore @83 PRIVATE
   wine_vkCreateShaderModule @84 PRIVATE
+  vkCreateSharedSwapchainsKHR @85 PRIVATE
   wine_vkCreateSwapchainKHR @86 PRIVATE
   wine_vkCreateWin32SurfaceKHR @87 PRIVATE
   wine_vkDestroyBuffer @88 PRIVATE
@@ -134,6 +137,9 @@ EXPORTS
   wine_vkGetDeviceProcAddr @132 PRIVATE
   wine_vkGetDeviceQueue @133 PRIVATE
   wine_vkGetDeviceQueue2 @134 PRIVATE
+  vkGetDisplayModePropertiesKHR @135 PRIVATE
+  vkGetDisplayPlaneCapabilitiesKHR @136 PRIVATE
+  vkGetDisplayPlaneSupportedDisplaysKHR @137 PRIVATE
   wine_vkGetEventStatus @138 PRIVATE
   wine_vkGetFenceStatus @139 PRIVATE
   wine_vkGetImageMemoryRequirements @140 PRIVATE
@@ -142,6 +148,11 @@ EXPORTS
   wine_vkGetImageSparseMemoryRequirements2 @143 PRIVATE
   wine_vkGetImageSubresourceLayout @144 PRIVATE
   wine_vkGetInstanceProcAddr @145 PRIVATE
+  vkGetPhysicalDeviceDisplayPlanePropertiesKHR @146 PRIVATE
+  vkGetPhysicalDeviceDisplayPropertiesKHR @147 PRIVATE
+  wine_vkGetPhysicalDeviceExternalBufferProperties @148 PRIVATE
+  wine_vkGetPhysicalDeviceExternalFenceProperties @149 PRIVATE
+  wine_vkGetPhysicalDeviceExternalSemaphoreProperties @150 PRIVATE
   wine_vkGetPhysicalDeviceFeatures @151 PRIVATE
   wine_vkGetPhysicalDeviceFeatures2 @152 PRIVATE
   wine_vkGetPhysicalDeviceFormatProperties @153 PRIVATE

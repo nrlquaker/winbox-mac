@@ -1,10 +1,12 @@
-; File generated automatically from dlls/cabinet/cabinet.spec; do not edit!
+; File generated automatically from ../wine/dlls/cabinet/cabinet.spec; do not edit!
 
 LIBRARY cabinet.dll
 
 EXPORTS
+  GetDllVersion @1 PRIVATE
   DllGetVersion @2 PRIVATE
   Extract @3
+  DeleteExtractedFiles @4 PRIVATE
   FCICreate @10
   FCIAddFile @11
   FCIFlushFolder @12

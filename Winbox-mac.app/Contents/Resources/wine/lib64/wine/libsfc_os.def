@@ -1,11 +1,23 @@
-; File generated automatically from dlls/sfc_os/sfc_os.spec; do not edit!
+; File generated automatically from ../wine/dlls/sfc_os/sfc_os.spec; do not edit!
 
 LIBRARY sfc_os.dll
 
 EXPORTS
+  BeginFileMapEnumeration @1 PRIVATE
+  CloseFileMapEnumeration @2 PRIVATE
+  GetNextFileMapContent @3 PRIVATE
   SRSetRestorePointA @4
   SRSetRestorePointW @5
+  SfcClose @6 PRIVATE
   SfcConnectToServer @7
+  SfcFileException @8 PRIVATE
   SfcGetNextProtectedFile @9
+  SfcInitProt @10 PRIVATE
+  SfcInitiateScan @11 PRIVATE
+  SfcInstallProtectedFiles @12 PRIVATE
   SfcIsFileProtected @13
   SfcIsKeyProtected @14
+  SfcTerminateWatcherThread @15 PRIVATE
+  SfpDeleteCatalog @16 PRIVATE
+  SfpInstallCatalog @17 PRIVATE
+  SfpVerifyFile @18 PRIVATE
