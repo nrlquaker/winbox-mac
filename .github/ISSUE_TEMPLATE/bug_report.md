@@ -11,8 +11,6 @@ assignees: nrlquaker
 
 - [ ] I understand that [if I ignore these instructions, my issue may be closed without review](https://github.com/nrlquaker/winbox-mac#reporting-bugs).
 - [ ] I made sure this is not the original Winbox issue.
-- [ ] I have installed [dependencies](https://github.com/nrlquaker/winbox-mac#installation).
-
 
 **Describe the bug**
 A clear and concise description of what the bug is.
