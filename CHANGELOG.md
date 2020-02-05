@@ -2,9 +2,10 @@
 
 ## 3.20.5
 
-- update `winbox-mac-addresses` to `0.2.0`;
-- update `Wine` to `stable 5.0`;
-- Remove `Freetype` and `xQuartz` dependencies;
+- use `com.mikrotik.winbox` folder in `Application Support` for all versions;
+- update `Wine` to `staging 5.1`;
+- remove `winbox-mac-addresses`;
+- remove `Freetype` and `xQuartz` dependencies;
 - fix issue that app opens again after closing main window.
 
 ## 3.20.4
