@@ -62,128 +62,130 @@ EXPORTS
   CM_Get_Class_Registry_PropertyW=setupapi.CM_Get_Class_Registry_PropertyW @57
   CM_Get_Depth @58 PRIVATE
   CM_Get_Depth_Ex @59 PRIVATE
-  CM_Get_DevNode_Registry_PropertyA=setupapi.CM_Get_DevNode_Registry_PropertyA @60
-  CM_Get_DevNode_Registry_PropertyW=setupapi.CM_Get_DevNode_Registry_PropertyW @61
-  CM_Get_DevNode_Registry_Property_ExA=setupapi.CM_Get_DevNode_Registry_Property_ExA @62
-  CM_Get_DevNode_Registry_Property_ExW=setupapi.CM_Get_DevNode_Registry_Property_ExW @63
-  CM_Get_DevNode_Status=setupapi.CM_Get_DevNode_Status @64
-  CM_Get_DevNode_Status_Ex=setupapi.CM_Get_DevNode_Status_Ex @65
-  CM_Get_Device_IDA=setupapi.CM_Get_Device_IDA @66
-  CM_Get_Device_IDW=setupapi.CM_Get_Device_IDW @67
-  CM_Get_Device_ID_ExA=setupapi.CM_Get_Device_ID_ExA @68
-  CM_Get_Device_ID_ExW=setupapi.CM_Get_Device_ID_ExW @69
-  CM_Get_Device_ID_ListA=setupapi.CM_Get_Device_ID_ListA @70
-  CM_Get_Device_ID_ListW=setupapi.CM_Get_Device_ID_ListW @71
-  CM_Get_Device_ID_List_ExA @72 PRIVATE
-  CM_Get_Device_ID_List_ExW @73 PRIVATE
-  CM_Get_Device_ID_List_SizeA=setupapi.CM_Get_Device_ID_List_SizeA @74
-  CM_Get_Device_ID_List_SizeW=setupapi.CM_Get_Device_ID_List_SizeW @75
-  CM_Get_Device_ID_List_Size_ExA @76 PRIVATE
-  CM_Get_Device_ID_List_Size_ExW @77 PRIVATE
-  CM_Get_Device_ID_Size=setupapi.CM_Get_Device_ID_Size @78
-  CM_Get_Device_ID_Size_Ex @79 PRIVATE
-  CM_Get_Device_Interface_AliasA @80 PRIVATE
-  CM_Get_Device_Interface_AliasW @81 PRIVATE
-  CM_Get_Device_Interface_Alias_ExA @82 PRIVATE
-  CM_Get_Device_Interface_Alias_ExW @83 PRIVATE
-  CM_Get_Device_Interface_ListA @84 PRIVATE
-  CM_Get_Device_Interface_ListW @85 PRIVATE
-  CM_Get_Device_Interface_List_ExA @86 PRIVATE
-  CM_Get_Device_Interface_List_ExW @87 PRIVATE
-  CM_Get_Device_Interface_List_SizeA=setupapi.CM_Get_Device_Interface_List_SizeA @88
-  CM_Get_Device_Interface_List_SizeW=setupapi.CM_Get_Device_Interface_List_SizeW @89
-  CM_Get_Device_Interface_List_Size_ExA=setupapi.CM_Get_Device_Interface_List_Size_ExA @90
-  CM_Get_Device_Interface_List_Size_ExW=setupapi.CM_Get_Device_Interface_List_Size_ExW @91
-  CM_Get_First_Log_Conf @92 PRIVATE
-  CM_Get_First_Log_Conf_Ex @93 PRIVATE
-  CM_Get_Global_State @94 PRIVATE
-  CM_Get_Global_State_Ex @95 PRIVATE
-  CM_Get_HW_Prof_FlagsA @96 PRIVATE
-  CM_Get_HW_Prof_FlagsW @97 PRIVATE
-  CM_Get_HW_Prof_Flags_ExA @98 PRIVATE
-  CM_Get_HW_Prof_Flags_ExW @99 PRIVATE
-  CM_Get_Hardware_Profile_InfoA @100 PRIVATE
-  CM_Get_Hardware_Profile_InfoW @101 PRIVATE
-  CM_Get_Hardware_Profile_Info_ExA @102 PRIVATE
-  CM_Get_Hardware_Profile_Info_ExW @103 PRIVATE
-  CM_Get_Log_Conf_Priority @104 PRIVATE
-  CM_Get_Log_Conf_Priority_Ex @105 PRIVATE
-  CM_Get_Next_Log_Conf @106 PRIVATE
-  CM_Get_Next_Log_Conf_Ex @107 PRIVATE
-  CM_Get_Next_Res_Des @108 PRIVATE
-  CM_Get_Next_Res_Des_Ex @109 PRIVATE
-  CM_Get_Parent=setupapi.CM_Get_Parent @110
-  CM_Get_Parent_Ex @111 PRIVATE
-  CM_Get_Res_Des_Data @112 PRIVATE
-  CM_Get_Res_Des_Data_Ex @113 PRIVATE
-  CM_Get_Res_Des_Data_Size @114 PRIVATE
-  CM_Get_Res_Des_Data_Size_Ex @115 PRIVATE
-  CM_Get_Sibling=setupapi.CM_Get_Sibling @116
-  CM_Get_Sibling_Ex=setupapi.CM_Get_Sibling_Ex @117
-  CM_Get_Version=setupapi.CM_Get_Version @118
-  CM_Get_Version_Ex @119 PRIVATE
-  CM_Intersect_Range_List @120 PRIVATE
-  CM_Invert_Range_List @121 PRIVATE
-  CM_Is_Dock_Station_Present @122 PRIVATE
-  CM_Locate_DevNodeA=setupapi.CM_Locate_DevNodeA @123
-  CM_Locate_DevNodeW=setupapi.CM_Locate_DevNodeW @124
-  CM_Locate_DevNode_ExA=setupapi.CM_Locate_DevNode_ExA @125
-  CM_Locate_DevNode_ExW=setupapi.CM_Locate_DevNode_ExW @126
-  CM_Merge_Range_List @127 PRIVATE
-  CM_Modify_Res_Des @128 PRIVATE
-  CM_Modify_Res_Des_Ex @129 PRIVATE
-  CM_Move_DevNode @130 PRIVATE
-  CM_Move_DevNode_Ex @131 PRIVATE
-  CM_Next_Range @132 PRIVATE
-  CM_Open_Class_KeyA @133 PRIVATE
-  CM_Open_Class_KeyW @134 PRIVATE
-  CM_Open_Class_Key_ExA @135 PRIVATE
-  CM_Open_Class_Key_ExW @136 PRIVATE
-  CM_Open_DevNode_Key=setupapi.CM_Open_DevNode_Key @137
-  CM_Open_DevNode_Key_Ex @138 PRIVATE
-  CM_Query_Arbitrator_Free_Data @139 PRIVATE
-  CM_Query_Arbitrator_Free_Data_Ex @140 PRIVATE
-  CM_Query_Arbitrator_Free_Size @141 PRIVATE
-  CM_Query_Arbitrator_Free_Size_Ex @142 PRIVATE
-  CM_Query_Remove_SubTree @143 PRIVATE
-  CM_Query_Remove_SubTree_Ex @144 PRIVATE
-  CM_Reenumerate_DevNode=setupapi.CM_Reenumerate_DevNode @145
-  CM_Reenumerate_DevNode_Ex=setupapi.CM_Reenumerate_DevNode_Ex @146
-  CM_Register_Device_Driver @147 PRIVATE
-  CM_Register_Device_Driver_Ex @148 PRIVATE
-  CM_Register_Device_InterfaceA @149 PRIVATE
-  CM_Register_Device_InterfaceW @150 PRIVATE
-  CM_Register_Device_Interface_ExA @151 PRIVATE
-  CM_Register_Device_Interface_ExW @152 PRIVATE
-  CM_Remove_SubTree @153 PRIVATE
-  CM_Remove_SubTree_Ex @154 PRIVATE
-  CM_Remove_Unmarked_Children @155 PRIVATE
-  CM_Remove_Unmarked_Children_Ex @156 PRIVATE
-  CM_Request_Eject_PC @157 PRIVATE
-  CM_Reset_Children_Marks @158 PRIVATE
-  CM_Reset_Children_Marks_Ex @159 PRIVATE
-  CM_Run_Detection @160 PRIVATE
-  CM_Run_Detection_Ex @161 PRIVATE
-  CM_Set_Class_Registry_PropertyA=setupapi.CM_Set_Class_Registry_PropertyA @162
-  CM_Set_Class_Registry_PropertyW=setupapi.CM_Set_Class_Registry_PropertyW @163
-  CM_Set_DevNode_Problem @164 PRIVATE
-  CM_Set_DevNode_Problem_Ex @165 PRIVATE
-  CM_Set_DevNode_Registry_PropertyA @166 PRIVATE
-  CM_Set_DevNode_Registry_PropertyW @167 PRIVATE
-  CM_Set_DevNode_Registry_Property_ExA @168 PRIVATE
-  CM_Set_DevNode_Registry_Property_ExW @169 PRIVATE
-  CM_Set_HW_Prof @170 PRIVATE
-  CM_Set_HW_Prof_Ex @171 PRIVATE
-  CM_Set_HW_Prof_FlagsA @172 PRIVATE
-  CM_Set_HW_Prof_FlagsW @173 PRIVATE
-  CM_Set_HW_Prof_Flags_ExA @174 PRIVATE
-  CM_Set_HW_Prof_Flags_ExW @175 PRIVATE
-  CM_Setup_DevNode @176 PRIVATE
-  CM_Setup_DevNode_Ex @177 PRIVATE
-  CM_Test_Range_Available @178 PRIVATE
-  CM_Uninstall_DevNode @179 PRIVATE
-  CM_Uninstall_DevNode_Ex @180 PRIVATE
-  CM_Unregister_Device_InterfaceA @181 PRIVATE
-  CM_Unregister_Device_InterfaceW @182 PRIVATE
-  CM_Unregister_Device_Interface_ExA @183 PRIVATE
-  CM_Unregister_Device_Interface_ExW @184 PRIVATE
+  CM_Get_DevNode_PropertyW=setupapi.CM_Get_DevNode_PropertyW @60
+  CM_Get_DevNode_Property_ExW=setupapi.CM_Get_DevNode_Property_ExW @61
+  CM_Get_DevNode_Registry_PropertyA=setupapi.CM_Get_DevNode_Registry_PropertyA @62
+  CM_Get_DevNode_Registry_PropertyW=setupapi.CM_Get_DevNode_Registry_PropertyW @63
+  CM_Get_DevNode_Registry_Property_ExA=setupapi.CM_Get_DevNode_Registry_Property_ExA @64
+  CM_Get_DevNode_Registry_Property_ExW=setupapi.CM_Get_DevNode_Registry_Property_ExW @65
+  CM_Get_DevNode_Status=setupapi.CM_Get_DevNode_Status @66
+  CM_Get_DevNode_Status_Ex=setupapi.CM_Get_DevNode_Status_Ex @67
+  CM_Get_Device_IDA=setupapi.CM_Get_Device_IDA @68
+  CM_Get_Device_IDW=setupapi.CM_Get_Device_IDW @69
+  CM_Get_Device_ID_ExA=setupapi.CM_Get_Device_ID_ExA @70
+  CM_Get_Device_ID_ExW=setupapi.CM_Get_Device_ID_ExW @71
+  CM_Get_Device_ID_ListA=setupapi.CM_Get_Device_ID_ListA @72
+  CM_Get_Device_ID_ListW=setupapi.CM_Get_Device_ID_ListW @73
+  CM_Get_Device_ID_List_ExA @74 PRIVATE
+  CM_Get_Device_ID_List_ExW @75 PRIVATE
+  CM_Get_Device_ID_List_SizeA=setupapi.CM_Get_Device_ID_List_SizeA @76
+  CM_Get_Device_ID_List_SizeW=setupapi.CM_Get_Device_ID_List_SizeW @77
+  CM_Get_Device_ID_List_Size_ExA @78 PRIVATE
+  CM_Get_Device_ID_List_Size_ExW @79 PRIVATE
+  CM_Get_Device_ID_Size=setupapi.CM_Get_Device_ID_Size @80
+  CM_Get_Device_ID_Size_Ex @81 PRIVATE
+  CM_Get_Device_Interface_AliasA @82 PRIVATE
+  CM_Get_Device_Interface_AliasW @83 PRIVATE
+  CM_Get_Device_Interface_Alias_ExA @84 PRIVATE
+  CM_Get_Device_Interface_Alias_ExW @85 PRIVATE
+  CM_Get_Device_Interface_ListA @86 PRIVATE
+  CM_Get_Device_Interface_ListW @87 PRIVATE
+  CM_Get_Device_Interface_List_ExA @88 PRIVATE
+  CM_Get_Device_Interface_List_ExW @89 PRIVATE
+  CM_Get_Device_Interface_List_SizeA=setupapi.CM_Get_Device_Interface_List_SizeA @90
+  CM_Get_Device_Interface_List_SizeW=setupapi.CM_Get_Device_Interface_List_SizeW @91
+  CM_Get_Device_Interface_List_Size_ExA=setupapi.CM_Get_Device_Interface_List_Size_ExA @92
+  CM_Get_Device_Interface_List_Size_ExW=setupapi.CM_Get_Device_Interface_List_Size_ExW @93
+  CM_Get_First_Log_Conf @94 PRIVATE
+  CM_Get_First_Log_Conf_Ex @95 PRIVATE
+  CM_Get_Global_State @96 PRIVATE
+  CM_Get_Global_State_Ex @97 PRIVATE
+  CM_Get_HW_Prof_FlagsA @98 PRIVATE
+  CM_Get_HW_Prof_FlagsW @99 PRIVATE
+  CM_Get_HW_Prof_Flags_ExA @100 PRIVATE
+  CM_Get_HW_Prof_Flags_ExW @101 PRIVATE
+  CM_Get_Hardware_Profile_InfoA @102 PRIVATE
+  CM_Get_Hardware_Profile_InfoW @103 PRIVATE
+  CM_Get_Hardware_Profile_Info_ExA @104 PRIVATE
+  CM_Get_Hardware_Profile_Info_ExW @105 PRIVATE
+  CM_Get_Log_Conf_Priority @106 PRIVATE
+  CM_Get_Log_Conf_Priority_Ex @107 PRIVATE
+  CM_Get_Next_Log_Conf @108 PRIVATE
+  CM_Get_Next_Log_Conf_Ex @109 PRIVATE
+  CM_Get_Next_Res_Des @110 PRIVATE
+  CM_Get_Next_Res_Des_Ex @111 PRIVATE
+  CM_Get_Parent=setupapi.CM_Get_Parent @112
+  CM_Get_Parent_Ex @113 PRIVATE
+  CM_Get_Res_Des_Data @114 PRIVATE
+  CM_Get_Res_Des_Data_Ex @115 PRIVATE
+  CM_Get_Res_Des_Data_Size @116 PRIVATE
+  CM_Get_Res_Des_Data_Size_Ex @117 PRIVATE
+  CM_Get_Sibling=setupapi.CM_Get_Sibling @118
+  CM_Get_Sibling_Ex=setupapi.CM_Get_Sibling_Ex @119
+  CM_Get_Version=setupapi.CM_Get_Version @120
+  CM_Get_Version_Ex @121 PRIVATE
+  CM_Intersect_Range_List @122 PRIVATE
+  CM_Invert_Range_List @123 PRIVATE
+  CM_Is_Dock_Station_Present @124 PRIVATE
+  CM_Locate_DevNodeA=setupapi.CM_Locate_DevNodeA @125
+  CM_Locate_DevNodeW=setupapi.CM_Locate_DevNodeW @126
+  CM_Locate_DevNode_ExA=setupapi.CM_Locate_DevNode_ExA @127
+  CM_Locate_DevNode_ExW=setupapi.CM_Locate_DevNode_ExW @128
+  CM_Merge_Range_List @129 PRIVATE
+  CM_Modify_Res_Des @130 PRIVATE
+  CM_Modify_Res_Des_Ex @131 PRIVATE
+  CM_Move_DevNode @132 PRIVATE
+  CM_Move_DevNode_Ex @133 PRIVATE
+  CM_Next_Range @134 PRIVATE
+  CM_Open_Class_KeyA @135 PRIVATE
+  CM_Open_Class_KeyW @136 PRIVATE
+  CM_Open_Class_Key_ExA @137 PRIVATE
+  CM_Open_Class_Key_ExW @138 PRIVATE
+  CM_Open_DevNode_Key=setupapi.CM_Open_DevNode_Key @139
+  CM_Open_DevNode_Key_Ex @140 PRIVATE
+  CM_Query_Arbitrator_Free_Data @141 PRIVATE
+  CM_Query_Arbitrator_Free_Data_Ex @142 PRIVATE
+  CM_Query_Arbitrator_Free_Size @143 PRIVATE
+  CM_Query_Arbitrator_Free_Size_Ex @144 PRIVATE
+  CM_Query_Remove_SubTree @145 PRIVATE
+  CM_Query_Remove_SubTree_Ex @146 PRIVATE
+  CM_Reenumerate_DevNode=setupapi.CM_Reenumerate_DevNode @147
+  CM_Reenumerate_DevNode_Ex=setupapi.CM_Reenumerate_DevNode_Ex @148
+  CM_Register_Device_Driver @149 PRIVATE
+  CM_Register_Device_Driver_Ex @150 PRIVATE
+  CM_Register_Device_InterfaceA @151 PRIVATE
+  CM_Register_Device_InterfaceW @152 PRIVATE
+  CM_Register_Device_Interface_ExA @153 PRIVATE
+  CM_Register_Device_Interface_ExW @154 PRIVATE
+  CM_Remove_SubTree @155 PRIVATE
+  CM_Remove_SubTree_Ex @156 PRIVATE
+  CM_Remove_Unmarked_Children @157 PRIVATE
+  CM_Remove_Unmarked_Children_Ex @158 PRIVATE
+  CM_Request_Eject_PC @159 PRIVATE
+  CM_Reset_Children_Marks @160 PRIVATE
+  CM_Reset_Children_Marks_Ex @161 PRIVATE
+  CM_Run_Detection @162 PRIVATE
+  CM_Run_Detection_Ex @163 PRIVATE
+  CM_Set_Class_Registry_PropertyA=setupapi.CM_Set_Class_Registry_PropertyA @164
+  CM_Set_Class_Registry_PropertyW=setupapi.CM_Set_Class_Registry_PropertyW @165
+  CM_Set_DevNode_Problem @166 PRIVATE
+  CM_Set_DevNode_Problem_Ex @167 PRIVATE
+  CM_Set_DevNode_Registry_PropertyA @168 PRIVATE
+  CM_Set_DevNode_Registry_PropertyW @169 PRIVATE
+  CM_Set_DevNode_Registry_Property_ExA @170 PRIVATE
+  CM_Set_DevNode_Registry_Property_ExW @171 PRIVATE
+  CM_Set_HW_Prof @172 PRIVATE
+  CM_Set_HW_Prof_Ex @173 PRIVATE
+  CM_Set_HW_Prof_FlagsA @174 PRIVATE
+  CM_Set_HW_Prof_FlagsW @175 PRIVATE
+  CM_Set_HW_Prof_Flags_ExA @176 PRIVATE
+  CM_Set_HW_Prof_Flags_ExW @177 PRIVATE
+  CM_Setup_DevNode @178 PRIVATE
+  CM_Setup_DevNode_Ex @179 PRIVATE
+  CM_Test_Range_Available @180 PRIVATE
+  CM_Uninstall_DevNode @181 PRIVATE
+  CM_Uninstall_DevNode_Ex @182 PRIVATE
+  CM_Unregister_Device_InterfaceA @183 PRIVATE
+  CM_Unregister_Device_InterfaceW @184 PRIVATE
+  CM_Unregister_Device_Interface_ExA @185 PRIVATE
+  CM_Unregister_Device_Interface_ExW @186 PRIVATE

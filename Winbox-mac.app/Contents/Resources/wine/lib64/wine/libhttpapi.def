@@ -56,11 +56,12 @@ EXPORTS
   HttpSetAppPoolInformation @51 PRIVATE
   HttpSetConfigGroupInformation @52 PRIVATE
   HttpSetControlChannelInformation @53 PRIVATE
-  HttpSetServerContextInformation @54 PRIVATE
-  HttpSetServiceConfiguration @55
-  HttpSetUrlGroupProperty @56
-  HttpShutdownAppPool @57 PRIVATE
-  HttpShutdownFilter @58 PRIVATE
-  HttpTerminate @59
-  HttpWaitForDemandStart @60 PRIVATE
-  HttpWaitForDisconnect @61 PRIVATE
+  HttpSetRequestQueueProperty @54
+  HttpSetServerContextInformation @55 PRIVATE
+  HttpSetServiceConfiguration @56
+  HttpSetUrlGroupProperty @57
+  HttpShutdownAppPool @58 PRIVATE
+  HttpShutdownFilter @59 PRIVATE
+  HttpTerminate @60
+  HttpWaitForDemandStart @61 PRIVATE
+  HttpWaitForDisconnect @62 PRIVATE

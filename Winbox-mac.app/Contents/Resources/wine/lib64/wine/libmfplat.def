@@ -71,7 +71,7 @@ EXPORTS
   MFCreateSystemTimeSource @66
   MFCreateSystemUnderlyingClock @67 PRIVATE
   MFCreateTempFile @68 PRIVATE
-  MFCreateTransformActivate @69 PRIVATE
+  MFCreateTransformActivate @69
   MFCreateURLFromPath @70 PRIVATE
   MFCreateUdpSockets @71 PRIVATE
   MFCreateVideoMediaType @72 PRIVATE
@@ -155,7 +155,7 @@ EXPORTS
   MFTRegisterLocalByCLSID @150
   MFTUnregister @151
   MFTUnregisterLocal @152
-  MFTUnregisterLocalByCLSID @153 PRIVATE
+  MFTUnregisterLocalByCLSID @153
   MFTraceError @154 PRIVATE
   MFTraceFuncEnter @155 PRIVATE
   MFUnblockThread @156 PRIVATE

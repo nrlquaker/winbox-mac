@@ -95,8 +95,8 @@ EXPORTS
   WcsEnumColorProfilesSize @90
   WcsGetCalibrationManagementState @91 PRIVATE
   WcsGetDefaultColorProfile @92 PRIVATE
-  WcsGetDefaultColorProfileSize @93 PRIVATE
-  WcsGetDefaultRenderingIntent @94 PRIVATE
+  WcsGetDefaultColorProfileSize @93
+  WcsGetDefaultRenderingIntent @94
   WcsGetUsePerUserProfiles @95
   WcsGpCanInstallOrUninstallProfiles @96 PRIVATE
   WcsOpenColorProfileA @97
