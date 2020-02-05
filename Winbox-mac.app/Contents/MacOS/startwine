@@ -12,4 +12,6 @@ BUNDLE_ID="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/.
 
 export WINEPREFIX="$HOME/Library/Application Support/${BUNDLE_ID}"
 
-"$WINEUSRPATH/bin/wine64" "$BUNDLERESOURCEPATH/winbox64.exe"
+cd "$BUNDLERESOURCEPATH"
+
+"$WINEUSRPATH/bin/wine64" "winbox64.exe"
