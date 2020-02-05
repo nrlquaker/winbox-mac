@@ -2,28 +2,15 @@
 
 export LC_CTYPE="en_US.UTF-8"
 export FREETYPE_PROPERTIES="truetype:interpreter-version=35"
+export WINEDLLOVERRIDES="mscoree,mshtml="
 
 BUNDLERESOURCEPATH="$(dirname "$0")/../Resources"
-
-if [ -f "$BUNDLERESOURCEPATH/wine/bin/wine64" ]; then
-    export WINEUSRPATH="$BUNDLERESOURCEPATH/wine"
-fi
+WINEUSRPATH="$BUNDLERESOURCEPATH/wine"
 
 PLUTIL_REGEX="s/.*<string>\(.*\)<\/string>.*/\1/p"
 CURRENT_VER="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/../Info.plist" | sed -n "$PLUTIL_REGEX")"
+
 export WINEPREFIX="$HOME/Library/Application Support/${CURRENT_VER}"
-if [ ! -d "$WINEPREFIX" ]; then
-    cp -R "$BUNDLERESOURCEPATH/wineprefix/." "$WINEPREFIX"
-    xattr -rd com.apple.quarantine "$WINEPREFIX"
-fi
 
-#some default windows vars that might be missing ( http://ss64.com/nt/syntax-variables.html )
-[ -z "$COMPUTERNAME" ] && export COMPUTERNAME="$(/usr/sbin/scutil --get ComputerName)"
+"$WINEUSRPATH/bin/wine64" "$BUNDLERESOURCEPATH/winbox64.exe"
 
-BIN_FILE="C:/winbox/winbox64.exe"
-BIN_PATH="$BUNDLERESOURCEPATH/wineprefix/drive_c$(sed 's|C:||' <<< "$(dirname "$BIN_FILE")")"
-if [ -d "$BIN_PATH" ]; then
-    cd "$BIN_PATH"
-fi
-
-"$WINEUSRPATH/bin/wine64" "$BIN_FILE"
