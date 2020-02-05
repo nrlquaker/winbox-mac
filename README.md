@@ -27,6 +27,10 @@ brew update
 brew cask upgrade nrlquaker-winbox
 ```
 
+## Note
+
+To properly import/export addresses you have to run `Winbox-mac.app/Contents/MacOS/startwine` from CLI or add `/bin/bash` to Security & Privacy → Privacy → Full Disk Access.
+
 ## Reporting bugs
 
 Please make sure that you are using [bug report template](https://github.com/nrlquaker/winbox-mac/issues/new?assignees=nrlquaker&labels=&template=bug_report.md&title=) and checklist is complete. Otherwise it may be closed without review.
