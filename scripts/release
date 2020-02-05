@@ -12,17 +12,12 @@ check_result() {
   if [ "$1" == "0" ] || [ "$1" == "2" ]; then
     printf " Done.\n"
   else
-    rm $app_name.app/Contents/MacOS/winbox-mac-addresses
     printf " Failed.\n"
     exit 1
   fi
 }
 
 printf "Creating release for version $version.\n"
-
-printf "Copying winbox-mac-addresses:"
-cp winbox-mac-addresses/winbox-mac-addresses $app_name.app/Contents/MacOS/
-check_result $?
 
 printf "Creating release directory ($dir):"
 mkdir -p $dir
@@ -38,8 +33,4 @@ check_result $?
 
 printf "Renaming dmg:"
 mv "$dir/$app_name $version.dmg" "$dir/$app_name-$version.dmg"
-check_result $?
-
-printf "Cleaning:"
-rm $app_name.app/Contents/MacOS/winbox-mac-addresses
 check_result $?
