@@ -8,9 +8,8 @@ BUNDLERESOURCEPATH="$(dirname "$0")/../Resources"
 WINEUSRPATH="$BUNDLERESOURCEPATH/wine"
 
 PLUTIL_REGEX="s/.*<string>\(.*\)<\/string>.*/\1/p"
-CURRENT_VER="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/../Info.plist" | sed -n "$PLUTIL_REGEX")"
+BUNDLE_ID="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/../Info.plist" | sed -n "$PLUTIL_REGEX")"
 
-export WINEPREFIX="$HOME/Library/Application Support/${CURRENT_VER}"
+export WINEPREFIX="$HOME/Library/Application Support/${BUNDLE_ID}"
 
 "$WINEUSRPATH/bin/wine64" "$BUNDLERESOURCEPATH/winbox64.exe"
-

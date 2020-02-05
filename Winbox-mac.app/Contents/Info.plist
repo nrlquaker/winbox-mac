@@ -26,7 +26,7 @@
 	<key>CFBundleIconFile</key>
 	<string>Icon.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.mikrotik.winbox_3.20.5</string>
+	<string>com.mikrotik.winbox</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
