@@ -5,7 +5,6 @@ export FREETYPE_PROPERTIES="truetype:interpreter-version=35"
 export WINEDLLOVERRIDES="mscoree,mshtml="
 
 BUNDLERESOURCEPATH="$(dirname "$0")/../Resources"
-WINEUSRPATH="$BUNDLERESOURCEPATH/wine"
 
 PLUTIL_REGEX="s/.*<string>\(.*\)<\/string>.*/\1/p"
 BUNDLE_ID="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/../Info.plist" | sed -n "$PLUTIL_REGEX")"
@@ -13,5 +12,4 @@ BUNDLE_ID="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/.
 export WINEPREFIX="$HOME/Library/Application Support/${BUNDLE_ID}"
 
 cd "$BUNDLERESOURCEPATH"
-
-"$WINEUSRPATH/bin/wine64" "winbox64.exe"
+"$BUNDLERESOURCEPATH/wine/bin/wine64" "winbox64.exe"
