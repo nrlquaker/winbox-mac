@@ -29,7 +29,7 @@ brew cask upgrade nrlquaker-winbox
 
 ## Note
 
-To properly import/export addresses you have to run `Winbox-mac.app/Contents/MacOS/startwine` from CLI or add `/bin/bash` to Security & Privacy → Privacy → Full Disk Access.
+To properly import/export addresses you have to run `Winbox-mac.app/Contents/MacOS/startwine` from CLI or add `/bin/bash` to Security & Privacy → Privacy → Full Disk Access. To be able to see hidden files in file choosing dialog press <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd>.
 
 ## Reporting bugs
 
