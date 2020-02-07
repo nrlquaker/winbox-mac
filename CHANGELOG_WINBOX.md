@@ -1,5 +1,13 @@
 # Winbox changelog
 
+## 3.21
+
+- added support for HiDPI displays;
+- download WinBox specific files from router only into AppData folder and not anywhere else (CVE-2020-5720);
+- enabled Drag and Drop support on 64-bit WinBox in Wine;
+- font size can be increased/decreased under "Settings/Zoom In" or "Zoom Out";
+- improved MikroTik signature checking on WinBox update.
+
 ## 3.20
 
 - allow to filter by IPv6 addresses and prefixes;
