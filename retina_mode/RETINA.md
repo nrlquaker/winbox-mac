@@ -8,4 +8,4 @@ To enable retina mode run:
 
 retina.reg is available [here](https://github.com/nrlquaker/winbox-mac/blob/master/retina_mode/retina.reg).
 
-<img src="screenshot.png" alt="winbox-mac screenshot" style="zoom:50%;" />
+![winbox-mac screenshot](screenshot.png)
