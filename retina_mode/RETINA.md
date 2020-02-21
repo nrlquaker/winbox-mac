@@ -1,7 +1,5 @@
 # Retina mode
 
-
-
 To enable retina mode run:
 
 `WINEPREFIX="~/Library/Application Support/com.mikrotik.winbox" /Applications/Winbox-mac.app/Contents/Resources/wine/bin/wine64 regedit retina.reg`
