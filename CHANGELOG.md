@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.21.1
+
+- add ability to pass command line arguments;
+- add `libpng15.15.dylib`;
+- remove fixme-esync from log;
+- rename executable to `winbox-mac`.
+
 ## 3.21.0
 
 - update winbox to [3.21](https://download.mikrotik.com/winbox/3.21/winbox64.exe).
