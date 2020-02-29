@@ -3,6 +3,7 @@
 export LC_CTYPE="en_US.UTF-8"
 export FREETYPE_PROPERTIES="truetype:interpreter-version=35"
 export WINEDLLOVERRIDES="mscoree,mshtml="
+export WINEDEBUG="fixme-esync"
 
 BUNDLERESOURCEPATH="$(dirname "$0")/../Resources"
 
