@@ -22,7 +22,7 @@
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
-	<string>startwine</string>
+	<string>winbox-mac</string>
 	<key>CFBundleIconFile</key>
 	<string>Icon.icns</string>
 	<key>CFBundleIdentifier</key>
