@@ -1,5 +1,16 @@
 # Winbox changelog
 
+## 3.22
+
+- added 24x24 and 32x32 icon support (RouterOS v6.47 required);
+- added Legacy Mode (disabled by default) to allow using older, less secure connections to RouterOS older than v6.43;
+- added scroll bar support in item property windows;
+- added support for super low DPI - 72, accessible by Zoom Out;
+- fixed Log window drawing on HiDPI displays;
+- fixed Zoom In/Zoom Out setting persistence after window is closed;
+- made table row height 15px by default;
+- use monospace font for big pop-up messages.
+
 ## 3.21
 
 - added support for HiDPI displays;
