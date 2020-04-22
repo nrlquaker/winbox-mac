@@ -1,5 +1,14 @@
 # Winbox changelog
 
+## 3.23
+
+- added support for Ctrl+C and Ctrl+A shortcuts in read-only fields;
+- always use fixed width font in terminal window;
+- do not resize inner windows when main window is resized;
+- fixed default configuration approval window disappearing when using "Show Script" button;
+- fixed main window size saving between sessions;
+- improved large table loading speed in RouterOS v7.
+
 ## 3.22
 
 - added 24x24 and 32x32 icon support (RouterOS v6.47 required);
