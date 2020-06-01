@@ -56,7 +56,7 @@ If you like this project and you find it useful help me to improve it. First of 
 ## Version
 
 Current version is based on [Winbox 3.24](https://download.mikrotik.com/winbox/3.24/winbox64.exe).
-Wine version is `5.1 staging`.
+Wine version is `5.7 staging`.
 
 Please check [versioning](VERSIONING.md) for versioning scheme explanation.
 
