@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.24.0
+
+- update winbox to [3.24](https://download.mikrotik.com/winbox/3.24/winbox64.exe);
+- update `Wine` to `staging 5.7`.
+
 ## 3.23.0
 
 - update winbox to [3.23](https://download.mikrotik.com/winbox/3.23/winbox64.exe).
