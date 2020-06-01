@@ -1,5 +1,19 @@
 # Winbox changelog
 
+## 3.24
+
+What's new in v3.24:
+
+- fixed WinBox crash when viewing firewall rule with src/dst-address-type configured;
+- fixed checkbox group disabled state inheritance;
+- fixed dates and times in interface link up/down properties (RouterOS v6.47 required);
+- fixed system comment message display;
+- fixed vertical font alignment in optional fields;
+- fixed window size inheritance from the previous session;
+- keep advanced and simple mode table settings separately;
+- make WinBox upgrade work with wine 5.0 or newer;
+- properly show popup windows on top.
+
 ## 3.23
 
 - added support for Ctrl+C and Ctrl+A shortcuts in read-only fields;
