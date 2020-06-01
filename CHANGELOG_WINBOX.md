@@ -2,8 +2,6 @@
 
 ## 3.24
 
-What's new in v3.24:
-
 - fixed WinBox crash when viewing firewall rule with src/dst-address-type configured;
 - fixed checkbox group disabled state inheritance;
 - fixed dates and times in interface link up/down properties (RouterOS v6.47 required);
