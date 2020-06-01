@@ -118,15 +118,17 @@ EXPORTS
   WSCDeinstallProvider @95
   WSCEnableNSProvider @96
   WSCEnumProtocols @97
-  WSCGetProviderPath @98
-  WSCInstallNameSpace @99
-  WSCInstallProvider @100
-  WSCUnInstallNameSpace @117
-  WSCUpdateProvider @118 PRIVATE
-  WSCWriteNameSpaceOrder @119 PRIVATE
-  WSCWriteProviderOrder @120
-  freeaddrinfo=WS_freeaddrinfo @121
-  getaddrinfo=WS_getaddrinfo @122
-  getnameinfo=WS_getnameinfo @123
-  inet_ntop=WS_inet_ntop @124
-  inet_pton=WS_inet_pton @125
+  WSCGetProviderInfo @98
+  WSCGetProviderPath @99
+  WSCInstallNameSpace @100
+  WSCInstallProvider @117
+  WSCSetApplicationCategory @118
+  WSCUnInstallNameSpace @119
+  WSCUpdateProvider @120 PRIVATE
+  WSCWriteNameSpaceOrder @121 PRIVATE
+  WSCWriteProviderOrder @122
+  freeaddrinfo=WS_freeaddrinfo @123
+  getaddrinfo=WS_getaddrinfo @124
+  getnameinfo=WS_getnameinfo @125
+  inet_ntop=WS_inet_ntop @126
+  inet_pton=WS_inet_pton @127

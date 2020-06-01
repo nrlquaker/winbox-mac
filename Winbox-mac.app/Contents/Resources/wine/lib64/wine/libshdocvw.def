@@ -6,7 +6,7 @@ EXPORTS
   IEWinMain @101 NONAME
   CreateShortcutInDirA @102 NONAME PRIVATE
   CreateShortcutInDirW @103 NONAME PRIVATE
-  WhichPlatformFORWARD @104 NONAME
+  WhichPlatform=shlwapi.WhichPlatform @104 NONAME
   CreateShortcutInDirEx @105 NONAME PRIVATE
   HlinkFindFrame @106 PRIVATE
   SetShellOfflineState @107 PRIVATE

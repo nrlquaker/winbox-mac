@@ -32,8 +32,8 @@ EXPORTS
   D3DX11CreateTextureFromResourceW @27 PRIVATE
   D3DX11CreateThreadPump @28 PRIVATE
   D3DX11FilterTexture @29
-  D3DX11GetImageInfoFromFileA @30 PRIVATE
-  D3DX11GetImageInfoFromFileW @31 PRIVATE
+  D3DX11GetImageInfoFromFileA @30
+  D3DX11GetImageInfoFromFileW @31
   D3DX11GetImageInfoFromMemory @32
   D3DX11GetImageInfoFromResourceA @33 PRIVATE
   D3DX11GetImageInfoFromResourceW @34 PRIVATE

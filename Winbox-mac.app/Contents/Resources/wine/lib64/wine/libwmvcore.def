@@ -22,4 +22,4 @@ EXPORTS
   WMCreateWriterNetworkSink @17 PRIVATE
   WMCreateWriterPriv @18
   WMCreateWriterPushSink @19 PRIVATE
-  WMIsContentProtected @20 PRIVATE
+  WMIsContentProtected @20

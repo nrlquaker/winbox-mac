@@ -351,8 +351,8 @@ EXPORTS
   SetupDiGetDevicePropertyW @346
   SetupDiGetDeviceRegistryPropertyA @347
   SetupDiGetDeviceRegistryPropertyW @348
-  SetupDiGetDriverInfoDetailA @349 PRIVATE
-  SetupDiGetDriverInfoDetailW @350 PRIVATE
+  SetupDiGetDriverInfoDetailA @349
+  SetupDiGetDriverInfoDetailW @350
   SetupDiGetDriverInstallParamsA @351 PRIVATE
   SetupDiGetDriverInstallParamsW @352 PRIVATE
   SetupDiGetHwProfileFriendlyNameA @353 PRIVATE
@@ -365,8 +365,8 @@ EXPORTS
   SetupDiGetINFClassA @360
   SetupDiGetINFClassW @361
   SetupDiGetSelectedDevice @362 PRIVATE
-  SetupDiGetSelectedDriverA @363 PRIVATE
-  SetupDiGetSelectedDriverW @364 PRIVATE
+  SetupDiGetSelectedDriverA @363
+  SetupDiGetSelectedDriverW @364
   SetupDiGetWizardPage @365 PRIVATE
   SetupDiInstallClassA @366
   SetupDiInstallClassExA @367 PRIVATE
@@ -384,7 +384,7 @@ EXPORTS
   SetupDiOpenDeviceInfoA @379
   SetupDiOpenDeviceInfoW @380
   SetupDiOpenDeviceInterfaceA @381
-  SetupDiOpenDeviceInterfaceRegKey @382 PRIVATE
+  SetupDiOpenDeviceInterfaceRegKey @382
   SetupDiOpenDeviceInterfaceW @383
   SetupDiRegisterCoDeviceInstallers @384
   SetupDiRegisterDeviceInfo @385

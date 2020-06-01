@@ -27,12 +27,12 @@ EXPORTS
   HidP_GetCaps @22
   HidP_GetData @23
   HidP_GetExtendedAttributes @24 PRIVATE
-  HidP_GetLinkCollectionNodes @25 PRIVATE
+  HidP_GetLinkCollectionNodes @25
   HidP_GetScaledUsageValue @26
   HidP_GetSpecificButtonCaps @27
   HidP_GetSpecificValueCaps @28
   HidP_GetUsageValue @29
-  HidP_GetUsageValueArray @30 PRIVATE
+  HidP_GetUsageValueArray @30
   HidP_GetUsages @31
   HidP_GetUsagesEx @32
   HidP_GetValueCaps @33

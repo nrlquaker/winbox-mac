@@ -420,7 +420,7 @@ EXPORTS
   IoIsWdmVersionAvailable @415
   IoMakeAssociatedIrp @416 PRIVATE
   IoOpenDeviceInterfaceRegistryKey @417 PRIVATE
-  IoOpenDeviceRegistryKey @418 PRIVATE
+  IoOpenDeviceRegistryKey @418
   IoPageRead @419 PRIVATE
   IoPnPDeliverServicePowerNotification @420 PRIVATE
   IoQueryDeviceDescription @421

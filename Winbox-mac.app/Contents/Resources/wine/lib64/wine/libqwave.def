@@ -5,7 +5,7 @@ LIBRARY qwave.dll
 EXPORTS
   QDLHPathDiagnostics @1 PRIVATE
   QDLHStartDiagnosingPath @2 PRIVATE
-  QOSAddSocketToFlow @3 PRIVATE
+  QOSAddSocketToFlow @3
   QOSCancel @4 PRIVATE
   QOSCloseHandle @5 PRIVATE
   QOSCreateHandle @6

@@ -55,13 +55,13 @@ EXPORTS
   MFCreateProxyLocator @50 PRIVATE
   MFCreateRemoteDesktopPlugin @51 PRIVATE
   MFCreateSAMIByteStreamPlugin @52 PRIVATE
-  MFCreateSampleCopierMFT @53 PRIVATE
+  MFCreateSampleCopierMFT @53
   MFCreateSampleGrabberSinkActivate @54
   MFCreateSecureHttpSchemePlugin @55 PRIVATE
   MFCreateSequencerSegmentOffset @56 PRIVATE
   MFCreateSequencerSource @57
   MFCreateSequencerSourceRemoteStream @58 PRIVATE
-  MFCreateSimpleTypeHandler @59 PRIVATE
+  MFCreateSimpleTypeHandler @59
   MFCreateSourceResolver=mfplat.MFCreateSourceResolver @60
   MFCreateStandardQualityManager @61
   MFCreateTopoLoader @62
@@ -79,8 +79,8 @@ EXPORTS
   MFGetMultipleServiceProviders @74 PRIVATE
   MFGetService @75
   MFGetSupportedMimeTypes @76
-  MFGetSupportedSchemes @77 PRIVATE
-  MFGetTopoNodeCurrentType @78 PRIVATE
+  MFGetSupportedSchemes @77
+  MFGetTopoNodeCurrentType @78
   MFReadSequencerSegmentOffset @79 PRIVATE
   MFRequireProtectedEnvironment @80 PRIVATE
   MFShutdownObject @81

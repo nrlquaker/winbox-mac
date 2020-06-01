@@ -88,7 +88,7 @@ EXPORTS
   URLOpenBlockingStreamA @83
   URLOpenBlockingStreamW @84
   URLOpenPullStreamA @85 PRIVATE
-  URLOpenPullStreamW @86 PRIVATE
+  URLOpenPullStreamW @86
   URLOpenStreamA @87
   URLOpenStreamW @88
   UrlMkBuildVersion @89 PRIVATE
