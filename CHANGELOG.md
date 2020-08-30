@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.25.0
+
+- update winbox to [3.25](https://download.mikrotik.com/winbox/3.25/winbox64.exe).
+
 ## 3.24.1
 
 - add `DYLD_FALLBACK_LIBRARY_PATH`.
