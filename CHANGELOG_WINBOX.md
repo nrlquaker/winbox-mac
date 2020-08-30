@@ -1,5 +1,19 @@
 # Winbox changelog
 
+## 3.25
+
+- added "Find Next - F3" tooltip for Find field;
+- added support for CTRL+ and CTRL- keyboard shortcuts for Zoom in and Zoom out;
+- added support for DNS names in address type fields;
+- do not scroll to first log entry when minimizing WinBox if Log window was open;
+- fixed crash when an active Terminal window was opened when WinBox was minimized;
+- fixed crash when opening session with Health window open;
+- fixed multiple "peer" parameter presence when editing an IPsec policy;
+- fixed secure connection establishment after trying to connect to legacy mode devices;
+- fixed session file size increase with each WinBox usage;
+- improved window resizing and scaling behavior on systems that include high DPI monitors;
+- show disabled item icons in gray.
+
 ## 3.24
 
 - fixed WinBox crash when viewing firewall rule with src/dst-address-type configured;
