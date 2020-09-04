@@ -1,5 +1,15 @@
 # Winbox changelog
 
+## 3.27
+
+- fixed content drawing of read-only tables (introduced in v3.26).
+
+## 3.26
+
+- fixed CAPsMAN service failure when viewing Radios table;
+- fixed Hotspot service failure when viewing Hosts table;
+- support Ctrl++ & Ctrl+- on keypad for quick access to Zoom In/Zoom Out.
+
 ## 3.25
 
 - added "Find Next - F3" tooltip for Find field;
