@@ -20,6 +20,11 @@ Can be easily installed with [Homebrew Cask](https://caskroom.github.io):
 ```sh
 brew cask install nrlquaker-winbox
 ```
+if you received an error "Calling brew cask install is disabled! Use brew install [--cask] instead." Please use this command:
+
+```sh
+brew install --cask nrlquaker-winbox
+```
 
 ## Update
 
