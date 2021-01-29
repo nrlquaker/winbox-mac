@@ -18,7 +18,7 @@ Icon is provided by [Lucas di Lucca](https://github.com/lucasdelucca). This is n
 Can be easily installed with [Homebrew Cask](https://caskroom.github.io):
 
 ```sh
-brew cask install nrlquaker-winbox
+brew install --cask nrlquaker-winbox
 ```
 
 ## Update
@@ -26,7 +26,7 @@ brew cask install nrlquaker-winbox
 Recommended way to update is to use [Homebrew Cask](https://caskroom.github.io):
 ```
 brew update
-brew cask upgrade nrlquaker-winbox
+brew upgrade --cask nrlquaker-winbox
 ```
 
 ## Command line arguments
