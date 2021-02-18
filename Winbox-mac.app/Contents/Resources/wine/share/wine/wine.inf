@@ -1,5 +1,5 @@
 ;; .INF script for the basic Wine configuration
-;; Version: Wine 5.7
+;; Version: Wine 6.2
 ;;
 ;; This should be run through setupapi:
 ;;   rundll32 setupapi.dll,InstallHinfSection DefaultInstall 128 wine.inf
@@ -30,7 +30,7 @@ signature="$CHICAGO$"
 RegisterDlls=RegisterDllsSection
 WineFakeDlls=FakeDllsWin32,FakeDlls
 UpdateInis=SystemIni
-CopyFiles=InfFiles,NlsFiles,SortFiles
+CopyFiles=ColorFiles,InfFiles,NlsFiles,SortFiles
 AddReg=\
     Classes,\
     ContentIndex,\
@@ -39,7 +39,6 @@ AddReg=\
     Debugger,\
     DirectX,\
     Fonts,\
-    KeyboardLayouts,\
     MCI,\
     Misc,\
     Nls,\
@@ -55,7 +54,7 @@ AddReg=\
 RegisterDlls=RegisterDllsSection
 WineFakeDlls=FakeDllsWin32,FakeDlls
 UpdateInis=SystemIni
-CopyFiles=InfFiles,NlsFiles,SortFiles
+CopyFiles=ColorFiles,InfFiles,NlsFiles,SortFiles
 AddReg=\
     Classes,\
     ContentIndex,\
@@ -64,7 +63,6 @@ AddReg=\
     Debugger,\
     DirectX,\
     Fonts,\
-    KeyboardLayouts,\
     MCI,\
     Misc,\
     Nls,\
@@ -82,7 +80,7 @@ RegisterDlls=RegisterDllsSection
 WineFakeDlls=FakeDllsWin64,FakeDlls
 WinePreInstall=Wow64
 UpdateInis=SystemIni
-CopyFiles=InfFiles,NlsFiles,SortFiles
+CopyFiles=ColorFiles,InfFiles,NlsFiles,SortFiles
 AddReg=\
     Classes,\
     ContentIndex,\
@@ -92,7 +90,6 @@ AddReg=\
     Debugger,\
     DirectX,\
     Fonts,\
-    KeyboardLayouts,\
     MCI,\
     Misc,\
     Nls,\
@@ -110,7 +107,7 @@ RegisterDlls=RegisterDllsSection
 WineFakeDlls=FakeDllsWin64,FakeDlls
 WinePreInstall=Wow64
 UpdateInis=SystemIni
-CopyFiles=InfFiles,NlsFiles,SortFiles
+CopyFiles=ColorFiles,InfFiles,NlsFiles,SortFiles
 AddReg=\
     Classes,\
     ContentIndex,\
@@ -141,7 +138,6 @@ AddReg=\
     CurrentVersionWow64,\
     Debugger,\
     DirectX,\
-    KeyboardLayouts,\
     MCI,\
     Misc,\
     Tapi,\
@@ -153,6 +149,7 @@ WineFakeDlls=FakeDllsWin32
 
 [DefaultInstall.Services]
 AddService=BITS,0,BITSService
+AddService=EventLog,0,EventLogService
 AddService=HTTP,0,HTTPService
 AddService=MSIServer,0,MSIService
 AddService=MountMgr,0x800,MountMgrService
@@ -167,9 +164,11 @@ AddService=FontCache,0,FontCacheService
 AddService=Schedule,0,TaskSchedulerService
 AddService=Winmgmt,0,WinmgmtService
 AddService=wuauserv,0,wuauService
+AddService=NDIS,0x800,NDISService
 
 [DefaultInstall.NT.Services]
 AddService=BITS,0,BITSService
+AddService=EventLog,0,EventLogService
 AddService=HTTP,0,HTTPService
 AddService=MSIServer,0,MSIService
 AddService=MountMgr,0x800,MountMgrService
@@ -184,9 +183,11 @@ AddService=FontCache,0,FontCacheService
 AddService=Schedule,0,TaskSchedulerService
 AddService=Winmgmt,0,WinmgmtService
 AddService=wuauserv,0,wuauService
+AddService=NDIS,0x800,NDISService
 
 [DefaultInstall.ntamd64.Services]
 AddService=BITS,0,BITSService
+AddService=EventLog,0,EventLogService
 AddService=HTTP,0,HTTPService
 AddService=MSIServer,0,MSIService
 AddService=MountMgr,0x800,MountMgrService
@@ -201,9 +202,11 @@ AddService=FontCache,0,FontCacheService
 AddService=Schedule,0,TaskSchedulerService
 AddService=Winmgmt,0,WinmgmtService
 AddService=wuauserv,0,wuauService
+AddService=NDIS,0x800,NDISService
 
 [DefaultInstall.ntarm64.Services]
 AddService=BITS,0,BITSService
+AddService=EventLog,0,EventLogService
 AddService=HTTP,0,HTTPService
 AddService=MSIServer,0,MSIService
 AddService=MountMgr,0x800,MountMgrService
@@ -218,6 +221,7 @@ AddService=FontCache,0,FontCacheService
 AddService=Schedule,0,TaskSchedulerService
 AddService=Winmgmt,0,WinmgmtService
 AddService=wuauserv,0,wuauService
+AddService=NDIS,0x800,NDISService
 
 [Strings]
 MciExtStr="Software\Microsoft\Windows NT\CurrentVersion\MCI Extensions"
@@ -246,7 +250,6 @@ HKCR,chm.file\shell\open\command,,2,"%10%\hh.exe %1"
 HKCR,cplfile,,2,"Control Panel Item"
 HKCR,cplfile\shell\cplopen,,2,"Open with Control Panel"
 HKCR,cplfile\shell\cplopen\command,,2,"rundll32.exe shell32.dll,Control_RunDLL ""%1"",%*"
-HKCR,Directory\Background\shellex\ContextMenuHandlers\New,,16
 HKCR,DirectShow,,16
 HKCR,exefile,,2,"Application"
 HKCR,exefile\DefaultIcon,,2,"%1"
@@ -506,16 +509,6 @@ HKCR,MIME\Database\Charset\us-ascii,"AliasForCharset",,iso-8859-1
 HKCR,MIME\Database\Charset\visual,"AliasForCharset",,iso-8859-8
 HKCR,MIME\Database\Charset\Windows-1254,"AliasForCharset",,iso-8859-9
 
-HKCU,Software\Wine\FileOpenBlacklist\.htm,"winebrowser",,"""%11%\winebrowser.exe"" -nohome"
-HKCU,Software\Wine\FileOpenBlacklist\.html,"winebrowser",,"""%11%\winebrowser.exe"" -nohome"
-HKCU,Software\Wine\FileOpenBlacklist\.ini,"notepad",,"%11%\notepad.exe %1"
-HKCU,Software\Wine\FileOpenBlacklist\.pdf,"winebrowser",,"""%11%\winebrowser.exe"" -nohome"
-HKCU,Software\Wine\FileOpenBlacklist\.rtf,"wordpad",,"""%16422%\Windows NT\Accessories\wordpad.exe"" %1"
-HKCU,Software\Wine\FileOpenBlacklist\.txt,"notepad",,"%11%\notepad.exe %1"
-HKCU,Software\Wine\FileOpenBlacklist\.url,"ieframe",,"rundll32.exe ieframe.dll,OpenURL %l"
-HKCU,Software\Wine\FileOpenBlacklist\.wri,"wordpad",,"""%16422%\Windows NT\Accessories\wordpad.exe"" %1"
-HKCU,Software\Wine\FileOpenBlacklist\.xml,"winebrowser",,"""%11%\winebrowser.exe"" -nohome"
-
 [ContentIndex]
 HKLM,System\CurrentControlSet\Control\ContentIndex\Language\Neutral,"WBreakerClass",,"{369647e0-17b0-11ce-9950-00aa004bbb1f}"
 HKLM,System\CurrentControlSet\Control\ContentIndex\Language\Neutral,"StemmerClass",,""
@@ -580,15 +573,18 @@ HKLM,%CurrentVersionNT%\FontSubstitutes,,16
 HKLM,%CurrentVersionNT%\Gre_Initialize,,16
 HKLM,%CurrentVersionNT%\Hotfix\Q246009,"Installed",,"1"
 HKLM,%CurrentVersionNT%\Image File Execution Options,,16
+HKLM,%CurrentVersionNT%\IniFileMapping\win.ini,"desktop",,"USR:Control Panel\Desktop"
+HKLM,%CurrentVersionNT%\IniFileMapping\win.ini,"devices",,"USR:Software\Microsoft\Windows NT\CurrentVersion\Devices"
+HKLM,%CurrentVersionNT%\IniFileMapping\win.ini,"extensions",,"USR:Software\Microsoft\Windows NT\CurrentVersion\Extensions"
+HKLM,%CurrentVersionNT%\IniFileMapping\win.ini,"intl",,"USR:Control Panel\International"
+HKLM,%CurrentVersionNT%\IniFileMapping\win.ini,"printerports",,"USR:Software\Microsoft\Windows NT\CurrentVersion\PrinterPorts"
+HKLM,%CurrentVersionNT%\IniFileMapping\win.ini,"sounds",,"USR:Control Panel\Sounds"
+HKLM,%CurrentVersionNT%\IniFileMapping\win.ini\windows,,,"USR:Software\Microsoft\Windows NT\CurrentVersion\Windows"
+HKLM,%CurrentVersionNT%\IniFileMapping\win.ini\windows,"CursorBlinkRate",,"USR:Control Panel\Desktop"
 HKLM,%CurrentVersionNT%\LanguagePack,,16
 HKLM,%CurrentVersionNT%\NetworkCards,,16
 HKLM,%CurrentVersionNT%\OpenGLDrivers,,16
 HKLM,%CurrentVersionNT%\Perflib,,16
-HKLM,%CurrentVersionNT%\Perflib,Last Counter,0x10003,1846
-HKLM,%CurrentVersionNT%\Perflib,Last Help,0x10003,1847
-HKLM,%CurrentVersionNT%\Perflib\009,Counter,0x10002,1,1847,1846,End Marker
-HKLM,%CurrentVersionNT%\Perflib\009,Counters,0x10002,1,1847,1846,End Marker
-HKLM,%CurrentVersionNT%\Perflib\009,Help,0x10002,1847,End Marker
 HKLM,%CurrentVersionNT%\Ports,,16
 HKLM,%CurrentVersionNT%\Print,,16
 HKLM,%CurrentVersionNT%\ProfileList,,16
@@ -747,49 +743,6 @@ HKLM,Software\Microsoft\Rpc\SecurityService,68,2,"netlogon.dll"
 HKLM,Software\Microsoft\Rpc\SecurityService,9,2,"secur32.dll"
 HKLM,Software\Microsoft\Shared Tools\MSInfo,,16
 HKLM,Software\Microsoft\SystemCertificates,,16
-HKLM,Software\Microsoft\SystemCertificates\CA\Certificates\23340A0167398E341C5890709FD30EED44FC1964,"Blob",1,\
-    03,00,00,00,01,00,00,00,14,00,00,00,23,34,0a,01,67,39,8e,34,1c,58,90,70,9f,d3,0e,ed,44,fc,19,64,20,00,00,\
-    00,01,00,00,00,81,05,00,00,30,82,05,7d,30,82,03,65,a0,03,02,01,02,02,09,00,87,0d,26,f3,cb,4a,11,1b,30,0d,\
-    06,09,2a,86,48,86,f7,0d,01,01,0d,05,00,30,55,31,0b,30,09,06,03,55,04,06,13,02,55,53,31,13,30,11,06,03,55,\
-    04,08,0c,0a,53,6f,6d,65,2d,53,74,61,74,65,31,0d,30,0b,06,03,55,04,0a,0c,04,57,69,6e,65,31,22,30,20,06,03,\
-    55,04,03,0c,19,49,6e,76,61,6c,69,64,20,64,75,6d,6d,79,20,63,65,72,74,69,66,69,63,61,74,65,30,1e,17,0d,31,\
-    36,30,33,31,33,30,32,31,33,33,31,5a,17,0d,31,36,30,33,31,32,30,32,31,33,33,31,5a,30,55,31,0b,30,09,06,03,\
-    55,04,06,13,02,55,53,31,13,30,11,06,03,55,04,08,0c,0a,53,6f,6d,65,2d,53,74,61,74,65,31,0d,30,0b,06,03,55,\
-    04,0a,0c,04,57,69,6e,65,31,22,30,20,06,03,55,04,03,0c,19,49,6e,76,61,6c,69,64,20,64,75,6d,6d,79,20,63,65,\
-    72,74,69,66,69,63,61,74,65,30,82,02,22,30,0d,06,09,2a,86,48,86,f7,0d,01,01,01,05,00,03,82,02,0f,00,30,82,\
-    02,0a,02,82,02,01,00,ec,26,db,20,a6,25,fc,6d,d7,7f,35,45,2a,bd,26,9a,6c,a7,f3,4c,e7,d4,1b,c1,44,bf,13,61,\
-    9c,93,9f,ff,f2,89,d7,aa,52,d0,e0,d3,41,99,00,a5,82,0e,71,e2,f7,22,0c,9c,3a,21,e1,b2,ba,a8,e2,0b,6f,7c,7c,\
-    fb,92,c4,98,9f,01,dd,17,b4,f7,ac,ab,75,40,fb,b8,1d,7c,4f,c2,ac,6f,d5,ed,38,b6,b5,dd,73,fe,3d,21,f7,fd,81,\
-    e6,af,fe,85,a4,0b,9c,d2,d2,7f,fd,45,3e,7f,80,ce,69,69,38,e1,5c,9c,bc,fd,4c,8b,64,78,f7,45,56,53,8f,97,aa,\
-    98,3a,49,37,2e,45,a6,dc,04,fc,89,26,71,fd,15,24,3b,66,5c,3d,fe,7f,ef,25,b3,01,94,a1,8f,83,5d,b0,d7,d5,1c,\
-    8e,14,b2,95,f5,52,28,50,ab,81,74,0e,0f,5f,61,fe,4b,03,e0,c4,98,3a,f9,01,c7,f0,c9,66,12,d9,60,17,a9,1e,6b,\
-    2d,91,6b,de,95,96,58,f5,81,21,af,d1,7f,99,01,cb,e6,1d,cf,d3,0f,1e,70,4b,de,2b,2c,fe,1f,1d,d8,76,32,74,8d,\
-    bc,4f,0c,33,6d,3b,9f,ba,15,16,28,70,44,6b,da,c5,85,11,4f,bd,4c,00,b4,f1,03,93,89,18,63,1d,ec,3e,ad,6a,b1,\
-    fc,07,f7,65,7c,bf,6a,c8,e7,2a,19,40,0a,55,59,39,63,b1,b8,a8,95,20,62,ae,97,82,af,d6,b1,97,ce,ba,29,19,9f,\
-    dd,c8,63,a0,80,34,e5,a0,c5,f6,b2,95,b1,8e,34,39,34,08,cb,24,70,a7,fb,8e,34,2c,e4,41,77,ea,05,3b,30,5e,71,\
-    b9,64,9f,bf,a6,db,d8,ef,5e,42,9c,4e,5d,47,68,a5,23,15,4f,07,3c,d3,ea,62,ff,af,4c,08,e7,9b,2b,9c,0a,69,f7,\
-    3e,ab,8a,05,40,d2,17,7e,0f,c8,37,2b,e2,62,25,f7,e9,e0,d7,8f,18,ff,46,f9,35,3f,2d,d6,3e,cf,e2,fd,08,0d,1f,\
-    63,ff,80,75,50,3b,a9,44,11,c8,b4,ae,a4,24,17,e3,0d,8a,a5,d3,56,37,97,99,91,c1,62,f9,75,a6,77,e0,25,f6,a4,\
-    9c,83,36,bb,4a,c5,82,c4,86,03,2f,dd,6f,c4,45,ec,fe,d0,51,d6,e0,d2,6a,da,00,30,24,c0,8e,e8,a1,ce,4c,7f,bb,\
-    54,09,05,9e,2b,93,95,c8,ac,39,12,29,56,4e,b0,20,36,9c,a3,b6,cb,46,59,a3,2b,62,2c,2d,57,02,03,01,00,01,a3,\
-    50,30,4e,30,1d,06,03,55,1d,0e,04,16,04,14,d1,85,39,b7,9b,05,e7,f9,54,12,91,68,ed,93,ec,63,eb,d3,8f,14,30,\
-    1f,06,03,55,1d,23,04,18,30,16,80,14,d1,85,39,b7,9b,05,e7,f9,54,12,91,68,ed,93,ec,63,eb,d3,8f,14,30,0c,06,\
-    03,55,1d,13,04,05,30,03,01,01,ff,30,0d,06,09,2a,86,48,86,f7,0d,01,01,0d,05,00,03,82,02,01,00,be,a7,cf,6e,\
-    e7,3d,5d,f2,38,0c,f9,69,85,fe,79,25,cf,c5,5b,d3,4e,4b,ec,20,16,1b,46,1a,d9,a4,a1,84,24,9a,4d,0d,44,70,83,\
-    be,e3,af,5b,ac,c4,31,e3,d5,f8,cc,af,71,11,2d,ea,a8,44,20,81,8b,e3,f6,da,77,6a,f6,15,f3,11,78,78,76,4f,6d,\
-    b6,8c,a5,27,41,0a,16,b6,c8,56,dc,a6,a2,0a,e2,87,e9,ab,f0,05,8b,61,7c,a7,03,2f,30,cc,dd,21,7e,48,43,10,cd,\
-    aa,9e,37,69,7c,3e,2f,7b,c1,0c,78,80,aa,18,92,95,a0,2a,9e,2f,a6,33,6b,91,8d,fb,f1,47,16,ec,87,86,7a,26,d3,\
-    57,a9,89,37,76,86,76,9b,96,bf,f1,2a,e3,62,2a,bc,66,7b,91,62,fb,a2,7e,16,c6,6e,84,08,49,b0,9d,5d,42,b7,64,\
-    39,1f,49,a6,a2,98,bc,ca,57,e5,f5,91,c0,6b,6c,94,56,68,34,00,96,25,1d,e5,bb,9e,2f,1a,dd,c2,27,e4,49,f2,54,\
-    68,0a,e3,1b,4c,01,14,0d,64,8c,d6,ab,73,af,51,b6,fe,af,0a,b6,c1,99,36,97,f8,44,48,64,d3,c0,ab,d9,a8,da,06,\
-    1a,27,c3,24,cf,7a,30,12,38,20,6c,71,ea,57,fa,b6,24,23,42,3d,be,07,f9,d7,de,b2,91,20,a6,57,79,06,60,42,cb,\
-    73,2b,98,ea,49,78,ee,47,71,a5,1c,f1,f9,8f,78,49,ad,6f,21,72,1a,d2,90,02,59,01,7d,f1,cd,c7,43,4c,f4,6c,90,\
-    59,38,bf,46,92,09,24,3b,51,2b,49,2a,a7,f9,7c,96,44,e6,ed,8e,7d,85,64,6b,ca,7b,e3,af,bd,73,ae,17,31,52,2a,\
-    9f,a3,3b,dd,3d,33,59,26,7c,6d,46,ff,5b,dd,3c,82,dd,d1,3d,9c,31,2a,82,7e,85,ce,ef,a6,34,98,96,87,7a,2b,a0,\
-    a5,5a,9c,2a,5c,f4,79,36,b4,85,87,eb,fd,7e,94,83,40,b0,4f,d7,03,c1,df,75,37,30,4f,46,6b,29,b5,0f,b7,4f,19,\
-    73,79,dd,ee,2d,2c,c8,1f,72,ee,63,4a,32,85,33,57,1d,f5,89,53,4f,b2,1e,20,9b,11,e4,43,99,15,65,c4,a0,ec,cf,\
-    d3,0f,d6,b2,2c,8c,a7,6d,5f,11,2f,0e,e4,f7,e9,d4,13,db,fb,f6,0a,51,ac,6c,08,ef,d6,cb,81,86,53,36,a8,a0,02,\
-    de,31,47,56,db,65,f1,7e,3a,c8,69,5b,69,ab,34,3e,48,a3
 HKLM,Software\Microsoft\TermServLicensing,,16
 HKLM,Software\Microsoft\Transaction Server,,16
 HKLM,Software\Microsoft\WBEM,"Installation Directory",2,"%11%\wbem"
@@ -811,21 +764,26 @@ HKCU,Software\Microsoft\Protected Storage System Provider,,16
 ; Some apps requires at least four subkeys of Active Setup\Installed Components
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{44BBA855-CC51-11CF-AAFA-00AA00B6015F},,2,"DirectDrawEx"
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{44BBA855-CC51-11CF-AAFA-00AA00B6015F},"ComponentID",2,"DirectDrawEx"
-HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{44BBA855-CC51-11CF-AAFA-00AA00B6015F},"IsInstalled",2,1
+HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{44BBA855-CC51-11CF-AAFA-00AA00B6015F},"IsInstalled",0x10003,1
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{44BBA855-CC51-11CF-AAFA-00AA00B6015F},"Locale",2,"*"
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{44BBA855-CC51-11CF-AAFA-00AA00B6015F},"Version",2,"4,71,1113,0"
 
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{de5aed00-a4bf-11d1-9948-00c04f98bbc9},,2,"HTML Help"
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{de5aed00-a4bf-11d1-9948-00c04f98bbc9},"ComponentID",2,"HTMLHelp"
-HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{de5aed00-a4bf-11d1-9948-00c04f98bbc9},"IsInstalled",2,1
+HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{de5aed00-a4bf-11d1-9948-00c04f98bbc9},"IsInstalled",0x10003,1
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{de5aed00-a4bf-11d1-9948-00c04f98bbc9},"Locale",2,"*"
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{de5aed00-a4bf-11d1-9948-00c04f98bbc9},"Version",2,"4,74,9273,0"
 
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{6BF52A52-394A-11d3-B153-00C04F79FAA6},,2,"Windows Media Player"
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{6BF52A52-394A-11d3-B153-00C04F79FAA6},"ComponentID",2,"wmp"
-HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{6BF52A52-394A-11d3-B153-00C04F79FAA6},"IsInstalled",2,1
+HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{6BF52A52-394A-11d3-B153-00C04F79FAA6},"IsInstalled",0x10003,1
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{6BF52A52-394A-11d3-B153-00C04F79FAA6},"Locale",2,"*"
 HKLM,SOFTWARE\Microsoft\Active Setup\Installed Components\{6BF52A52-394A-11d3-B153-00C04F79FAA6},"Version",2,"12,0,7601,18840"
+
+; URL Associations
+HKCU,Software\Microsoft\Windows\Shell\Associations\UrlAssociations\ftp\UserChoice,"ProgId",,"ftp"
+HKCU,Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice,"ProgId",,"http"
+HKCU,Software\Microsoft\Windows\Shell\Associations\UrlAssociations\https\UserChoice,"ProgId",,"https"
 
 [Nls]
 HKLM,System\CurrentControlSet\Control\Nls\Language,"0401",,"l_intl.nls"
@@ -1150,217 +1108,6 @@ HKLM,System\CurrentControlSet\Control\Nls\Locale\Alternate Sorts,"00020804",,"a"
 HKLM,System\CurrentControlSet\Control\Nls\Locale\Alternate Sorts,"00021004",,"a"
 HKLM,System\CurrentControlSet\Control\Nls\Locale\Alternate Sorts,"00021404",,"9"
 HKLM,System\CurrentControlSet\Control\Nls\Locale\Alternate Sorts,"00030404",,"9"
-
-HKLM,System\CurrentControlSet\Control\Nls\Normalization,"1",,"normnfc.nls"
-HKLM,System\CurrentControlSet\Control\Nls\Normalization,"2",,"normnfd.nls"
-HKLM,System\CurrentControlSet\Control\Nls\Normalization,"5",,"normnfkc.nls"
-HKLM,System\CurrentControlSet\Control\Nls\Normalization,"6",,"normnfkd.nls"
-HKLM,System\CurrentControlSet\Control\Nls\Normalization,"d",,"normidna.nls"
-
-[KeyboardLayouts]
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000401,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000402,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000404,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000405,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000406,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000407,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000408,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000409,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000040a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000040b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000040c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000040d,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000040e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000040f,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000410,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000411,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000412,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000413,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000414,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000415,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000416,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000418,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000419,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000041a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000041b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000041c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000041d,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000041e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000041f,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000420,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000422,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000423,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000424,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000425,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000426,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000427,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000428,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000429,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000042a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000042b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000042c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000042e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000042f,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000432,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000437,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000438,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000439,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000043a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000043b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000043f,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000440,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000442,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000444,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000445,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000446,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000447,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000448,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000449,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000044a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000044b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000044c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000044d,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000044e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000450,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000451,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000452,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000453,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000454,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000045a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000045b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000045c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000461,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000463,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000465,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000468,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000046a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000046c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000046d,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000046e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000046f,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000470,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000474,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000475,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000480,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000481,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000485,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000488,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000492,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000804,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000807,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000809,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000080a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000080c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000813,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000816,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000081a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000082c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000083b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000843,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000850,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000085d,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000085f,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000c04,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000c0c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00000c1a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00001004,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00001009,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000100c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000105f,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00001404,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00001809,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0000201a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00004009,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010401,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010402,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010405,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010407,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010408,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010409,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001040a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001040e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010410,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010415,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010416,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010418,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010419,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001041b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001041e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001041f,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010426,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010427,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001042b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001042c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001042e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001042f,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010437,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010439,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001043a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001043b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010444,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010445,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010451,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010453,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001045a,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001045b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001045c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001045d,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010465,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010480,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001080c,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001083b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010850,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00010c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00011009,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0001105f,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00011809,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020401,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020402,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020405,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020408,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020409,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0002040d,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020418,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020419,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0002041e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020422,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020426,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020427,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0002042b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0002042e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020437,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020445,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0002083b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00020c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00030402,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00030408,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00030409,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0003041e,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\0003042b,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00030437,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00030c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00040402,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00040408,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00040409,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00040437,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00040c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00050408,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00050409,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00050429,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00060408,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00070c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00080c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00090c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\000a0c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\000b0c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\000c0c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\000d0c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\000e0c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\000f0c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00100c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00110c00,,16
-HKLM,SYSTEM\CurrentControlSet\Control\Keyboard Layouts\00120c00,,16
 
 [OLE]
 HKLM,"Software\Microsoft\OLE","EnableDCOM",,"Y"
@@ -2877,17 +2624,24 @@ HKLM,%CurrentVersion%\Telephony\Country List\998,"SameAreaRule",,"G"
 11,gecko\plugin,npmshtml.dll
 11,Speech\Common,sapi.dll
 11,wbem,mofcomp.exe
+11,wbem,wbemdisp.dll
+11,wbem,wbemprox.dll
+11,wbem,wmic.exe
+11,wbem,wmiutils.dll
 11,WindowsPowerShell\v1.0,powershell.exe
 10,syswow64,stdole2.tlb
 11,,iexplore.exe
 11,,winetest.exe,-
-12,,dxgkrnl.sys,-
-12,,dxgmms1.sys,-
 12,,fltmgr.sys,-
+12,,hidclass.sys,-
+12,,http.sys,-
 12,,ksecdd.sys,-
 12,,mountmgr.sys,-
 12,,ndis.sys,-
+12,,netio.sys,-
+12,,scsiport.sys,-
 12,,tdi.sys,-
+12,,usbd.sys,-
 12,,winebus.sys,-
 12,,winehid.sys,-
 12,,wineusb.sys,-
@@ -2918,14 +2672,12 @@ HKLM,%CurrentVersion%\Telephony\Country List\998,"SameAreaRule",,"G"
 [FakeDlls]
 ; create some directories first
 10,help,
-10,inf,
 10,logs,
 10,tasks,
 10,temp,
 11,catroot,
 11,mui,
 11,tasks,
-11,spool\drivers\color,
 11,spool\printers,
 10,,explorer.exe
 10,,hh.exe
@@ -2935,13 +2687,16 @@ HKLM,%CurrentVersion%\Telephony\Country List\998,"SameAreaRule",,"G"
 11,,iexplore.exe
 11,,notepad.exe
 11,,winetest.exe,-
-12,,dxgkrnl.sys
-12,,dxgmms1.sys
 12,,fltmgr.sys
+12,,hidclass.sys
+12,,http.sys
 12,,ksecdd.sys
 12,,mountmgr.sys
 12,,ndis.sys
+12,,netio.sys
+12,,scsiport.sys
 12,,tdi.sys
+12,,usbd.sys
 12,,winebus.sys
 12,,winehid.sys
 12,,wineusb.sys
@@ -3002,6 +2757,8 @@ system.ini, drivers32,,"vidc.cvid=iccvid.dll"
 system.ini, drivers32,,"; vidc.IV50=ir50_32.dll"
 system.ini, drivers32,,"; vidc.IV31=ir32_32.dll"
 system.ini, drivers32,,"; vidc.IV32=ir32_32.dll"
+
+win.ini, mail,,"mapi=1"
 
 [Timezones]
 ; The timezone information (TZI field) comes from the Olson timezone database
@@ -3071,18 +2828,42 @@ HKLM,%CurrentVersionNT%\Time Zones\AUS Central Standard Time,"MUI_Dlt",,"@tzres.
 HKLM,%CurrentVersionNT%\Time Zones\AUS Central Standard Time,"MUI_Std",,"@tzres.dll,-47024"
 HKLM,%CurrentVersionNT%\Time Zones\AUS Central Standard Time,"Std",,"AUS Central Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\AUS Central Standard Time,"TZI",1,c6,fd,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time,"Display",,"Australia/Eucla"
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time,"Dlt",,"Aus Central W. Daylight Time"
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time,"MUI_Dlt",,"@tzres.dll,-44673"
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time,"MUI_Std",,"@tzres.dll,-44672"
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time,"Std",,"Aus Central W. Standard Time"
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time,"TZI",1,f3,fd,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time\Dynamic DST,"2005",1,f3,fd,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time\Dynamic DST,"2006",1,f3,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,0c,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time\Dynamic DST,"2007",1,f3,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time\Dynamic DST,"2008",1,f3,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time\Dynamic DST,"2009",1,f3,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,01,00,04,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time\Dynamic DST,"2010",1,f3,fd,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time\Dynamic DST,"FirstEntry",0x10001,"2005"
+HKLM,%CurrentVersionNT%\Time Zones\Aus Central W. Standard Time\Dynamic DST,"LastEntry",0x10001,"2010"
 HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time,"Display",,"Australia/Sydney"
 HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time,"Dlt",,"AUS Eastern Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time,"MUI_Dlt",,"@tzres.dll,-30369"
 HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time,"MUI_Std",,"@tzres.dll,-30368"
 HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time,"Std",,"AUS Eastern Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time,"TZI",1,a8,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time\Dynamic DST,"2005",1,a8,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time\Dynamic DST,"2006",1,a8,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time\Dynamic DST,"2007",1,a8,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time\Dynamic DST,"2008",1,a8,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time\Dynamic DST,"FirstEntry",0x10001,"2005"
+HKLM,%CurrentVersionNT%\Time Zones\AUS Eastern Standard Time\Dynamic DST,"LastEntry",0x10001,"2008"
 HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time,"Display",,"Asia/Baku"
 HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time,"Dlt",,"Azerbaijan Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time,"MUI_Dlt",,"@tzres.dll,-11313"
 HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time,"MUI_Std",,"@tzres.dll,-11312"
 HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time,"Std",,"Azerbaijan Standard Time"
-HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time,"TZI",1,10,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,05,00,00,00,00,00,00,00,00,00,03,00,00,00,05,00,04,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time,"TZI",1,10,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time\Dynamic DST,"2015",1,10,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,05,00,00,00,00,00,00,00,00,00,03,00,00,00,05,00,04,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time\Dynamic DST,"2016",1,10,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time\Dynamic DST,"FirstEntry",0x10001,"2015"
+HKLM,%CurrentVersionNT%\Time Zones\Azerbaijan Standard Time\Dynamic DST,"LastEntry",0x10001,"2016"
 HKLM,%CurrentVersionNT%\Time Zones\Azores Standard Time,"Display",,"Atlantic/Azores"
 HKLM,%CurrentVersionNT%\Time Zones\Azores Standard Time,"Dlt",,"Azores Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Azores Standard Time,"MUI_Dlt",,"@tzres.dll,-18833"
@@ -3135,13 +2916,23 @@ HKLM,%CurrentVersionNT%\Time Zones\Caucasus Standard Time,"Dlt",,"Caucasus Dayli
 HKLM,%CurrentVersionNT%\Time Zones\Caucasus Standard Time,"MUI_Dlt",,"@tzres.dll,-29873"
 HKLM,%CurrentVersionNT%\Time Zones\Caucasus Standard Time,"MUI_Std",,"@tzres.dll,-29872"
 HKLM,%CurrentVersionNT%\Time Zones\Caucasus Standard Time,"Std",,"Caucasus Standard Time"
-HKLM,%CurrentVersionNT%\Time Zones\Caucasus Standard Time,"TZI",1,10,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,03,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Caucasus Standard Time,"TZI",1,10,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Caucasus Standard Time\Dynamic DST,"2011",1,10,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,03,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Caucasus Standard Time\Dynamic DST,"2012",1,10,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Caucasus Standard Time\Dynamic DST,"FirstEntry",0x10001,"2011"
+HKLM,%CurrentVersionNT%\Time Zones\Caucasus Standard Time\Dynamic DST,"LastEntry",0x10001,"2012"
 HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time,"Display",,"Australia/Adelaide"
 HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time,"Dlt",,"Cen. Australia Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time,"MUI_Dlt",,"@tzres.dll,-38929"
 HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time,"MUI_Std",,"@tzres.dll,-38928"
 HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time,"Std",,"Cen. Australia Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time,"TZI",1,c6,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time\Dynamic DST,"2005",1,c6,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time\Dynamic DST,"2006",1,c6,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time\Dynamic DST,"2007",1,c6,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time\Dynamic DST,"2008",1,c6,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time\Dynamic DST,"FirstEntry",0x10001,"2005"
+HKLM,%CurrentVersionNT%\Time Zones\Cen. Australia Standard Time\Dynamic DST,"LastEntry",0x10001,"2008"
 HKLM,%CurrentVersionNT%\Time Zones\Central America Standard Time,"Display",,"America/Guatemala"
 HKLM,%CurrentVersionNT%\Time Zones\Central America Standard Time,"Dlt",,"Central America Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Central America Standard Time,"MUI_Dlt",,"@tzres.dll,-36657"
@@ -3218,6 +3009,24 @@ HKLM,%CurrentVersionNT%\Time Zones\China Standard Time,"MUI_Dlt",,"@tzres.dll,-1
 HKLM,%CurrentVersionNT%\Time Zones\China Standard Time,"MUI_Std",,"@tzres.dll,-160"
 HKLM,%CurrentVersionNT%\Time Zones\China Standard Time,"Std",,"China Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\China Standard Time,"TZI",1,20,fe,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time,"Display",,"America/Havana"
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time,"Dlt",,"Cuba Daylight Time"
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time,"MUI_Dlt",,"@tzres.dll,-17137"
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time,"MUI_Std",,"@tzres.dll,-17136"
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time,"Std",,"Cuba Standard Time"
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time,"TZI",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0b,00,00,00,01,00,01,00,00,00,00,00,00,00,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"2004",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,01,00,04,00,01,00,00,00,00,00,00,00,00,00,00,00,03,00,00,00,05,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"2005",1,f0,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"2006",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,01,00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"2007",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,01,00,00,00,00,00,00,00,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"2008",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,01,00,00,00,00,00,00,00,00,00,03,00,00,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"2009",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,01,00,00,00,00,00,00,00,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"2010",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,01,00,00,00,00,00,00,00,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"2011",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0b,00,00,00,02,00,01,00,00,00,00,00,00,00,00,00,03,00,00,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"2012",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0b,00,00,00,01,00,01,00,00,00,00,00,00,00,00,00,04,00,00,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"2013",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0b,00,00,00,01,00,01,00,00,00,00,00,00,00,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"FirstEntry",0x10001,"2004"
+HKLM,%CurrentVersionNT%\Time Zones\Cuba Standard Time\Dynamic DST,"LastEntry",0x10001,"2013"
 HKLM,%CurrentVersionNT%\Time Zones\Dateline Standard Time,"Display",,"Etc/GMT+12"
 HKLM,%CurrentVersionNT%\Time Zones\Dateline Standard Time,"Dlt",,"Dateline Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Dateline Standard Time,"MUI_Dlt",,"@tzres.dll,-50385"
@@ -3261,6 +3070,17 @@ HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time\Dynamic DST,"2006",1,2c
 HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time\Dynamic DST,"2007",1,2c,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0b,00,00,00,01,00,02,00,00,00,00,00,00,00,00,00,03,00,00,00,02,00,02,00,00,00,00,00,00,00
 HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time\Dynamic DST,"FirstEntry",0x10001,"2006"
 HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time\Dynamic DST,"LastEntry",0x10001,"2007"
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico),"Display",,"America/Cancun"
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico),"Dlt",,"Eastern Daylight Time (Mexico)"
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico),"MUI_Dlt",,"@tzres.dll,-59537"
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico),"MUI_Std",,"@tzres.dll,-59536"
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico),"Std",,"Eastern Standard Time (Mexico)"
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico),"TZI",1,2c,01,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico)\Dynamic DST,"2014",1,68,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00,00,00,04,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico)\Dynamic DST,"2015",1,68,01,00,00,00,00,00,00,c4,ff,ff,ff,00,00,01,00,04,00,01,00,00,00,00,00,00,00,00,00,00,00,02,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico)\Dynamic DST,"2016",1,2c,01,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico)\Dynamic DST,"FirstEntry",0x10001,"2014"
+HKLM,%CurrentVersionNT%\Time Zones\Eastern Standard Time (Mexico)\Dynamic DST,"LastEntry",0x10001,"2016"
 HKLM,%CurrentVersionNT%\Time Zones\Egypt Standard Time,"Display",,"Africa/Cairo"
 HKLM,%CurrentVersionNT%\Time Zones\Egypt Standard Time,"Dlt",,"Egypt Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Egypt Standard Time,"MUI_Dlt",,"@tzres.dll,-59425"
@@ -3420,53 +3240,53 @@ HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time,"MUI_Dlt",,"@tzres.dll,-55
 HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time,"MUI_Std",,"@tzres.dll,-5568"
 HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time,"Std",,"Iran Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time,"TZI",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,00,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,05,00,04,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1991",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,c7,07,09,00,00,00,16,00,00,00,00,00,00,00,00,00,c7,07,05,00,05,00,03,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1992",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,c8,07,09,00,02,00,16,00,00,00,00,00,00,00,00,00,c8,07,03,00,00,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1993",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,c9,07,09,00,03,00,16,00,00,00,00,00,00,00,00,00,c9,07,03,00,01,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1994",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,ca,07,09,00,04,00,16,00,00,00,00,00,00,00,00,00,ca,07,03,00,02,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1995",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,cb,07,09,00,05,00,16,00,00,00,00,00,00,00,00,00,cb,07,03,00,03,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1996",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,cc,07,09,00,06,00,15,00,00,00,00,00,00,00,00,00,cc,07,03,00,04,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1997",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,cd,07,09,00,01,00,16,00,00,00,00,00,00,00,00,00,cd,07,03,00,06,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1998",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,ce,07,09,00,02,00,16,00,00,00,00,00,00,00,00,00,ce,07,03,00,00,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1999",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,cf,07,09,00,03,00,16,00,00,00,00,00,00,00,00,00,cf,07,03,00,01,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2000",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,d0,07,09,00,04,00,15,00,00,00,00,00,00,00,00,00,d0,07,03,00,02,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2001",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,d1,07,09,00,06,00,16,00,00,00,00,00,00,00,00,00,d1,07,03,00,04,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2002",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,d2,07,09,00,00,00,16,00,00,00,00,00,00,00,00,00,d2,07,03,00,05,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2003",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,d3,07,09,00,01,00,16,00,00,00,00,00,00,00,00,00,d3,07,03,00,06,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2004",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,d4,07,09,00,02,00,15,00,00,00,00,00,00,00,00,00,d4,07,03,00,00,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2005",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,d5,07,09,00,04,00,16,00,00,00,00,00,00,00,00,00,d5,07,03,00,02,00,16,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1991",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,00,00,04,00,00,00,00,00,00,00,00,00,00,00,05,00,05,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1992",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,02,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,00,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1993",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,03,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,01,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1994",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,04,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,02,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1995",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,05,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,03,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1996",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,06,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,04,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1997",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,01,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,06,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1998",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,02,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,00,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"1999",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,03,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,01,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2000",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,04,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,02,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2001",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,06,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,04,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2002",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,00,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,05,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2003",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,01,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,06,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2004",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,02,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,00,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2005",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,04,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,02,00,04,00,00,00,00,00,00,00,00,00
 HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2006",1,2e,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
 HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2007",1,2e,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2008",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,d8,07,09,00,00,00,15,00,00,00,00,00,00,00,00,00,d8,07,03,00,05,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2009",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,d9,07,09,00,02,00,16,00,00,00,00,00,00,00,00,00,d9,07,03,00,00,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2010",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,da,07,09,00,03,00,16,00,00,00,00,00,00,00,00,00,da,07,03,00,01,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2011",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,db,07,09,00,04,00,16,00,00,00,00,00,00,00,00,00,db,07,03,00,02,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2012",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,dc,07,09,00,05,00,15,00,00,00,00,00,00,00,00,00,dc,07,03,00,03,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2013",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,dd,07,09,00,00,00,16,00,00,00,00,00,00,00,00,00,dd,07,03,00,05,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2014",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,de,07,09,00,01,00,16,00,00,00,00,00,00,00,00,00,de,07,03,00,06,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2015",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,df,07,09,00,02,00,16,00,00,00,00,00,00,00,00,00,df,07,03,00,00,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2016",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,e0,07,09,00,03,00,15,00,00,00,00,00,00,00,00,00,e0,07,03,00,01,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2017",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,e1,07,09,00,05,00,16,00,00,00,00,00,00,00,00,00,e1,07,03,00,03,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2018",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,e2,07,09,00,06,00,16,00,00,00,00,00,00,00,00,00,e2,07,03,00,04,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2019",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,e3,07,09,00,00,00,16,00,00,00,00,00,00,00,00,00,e3,07,03,00,05,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2020",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,e4,07,09,00,01,00,15,00,00,00,00,00,00,00,00,00,e4,07,03,00,06,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2021",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,e5,07,09,00,03,00,16,00,00,00,00,00,00,00,00,00,e5,07,03,00,01,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2022",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,e6,07,09,00,04,00,16,00,00,00,00,00,00,00,00,00,e6,07,03,00,02,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2023",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,e7,07,09,00,05,00,16,00,00,00,00,00,00,00,00,00,e7,07,03,00,03,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2024",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,e8,07,09,00,06,00,15,00,00,00,00,00,00,00,00,00,e8,07,03,00,04,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2025",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,e9,07,09,00,01,00,16,00,00,00,00,00,00,00,00,00,e9,07,03,00,06,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2026",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,ea,07,09,00,02,00,16,00,00,00,00,00,00,00,00,00,ea,07,03,00,00,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2027",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,eb,07,09,00,03,00,16,00,00,00,00,00,00,00,00,00,eb,07,03,00,01,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2028",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,ec,07,09,00,04,00,15,00,00,00,00,00,00,00,00,00,ec,07,03,00,02,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2029",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,ed,07,09,00,05,00,15,00,00,00,00,00,00,00,00,00,ed,07,03,00,03,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2030",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,ee,07,09,00,00,00,16,00,00,00,00,00,00,00,00,00,ee,07,03,00,05,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2031",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,ef,07,09,00,01,00,16,00,00,00,00,00,00,00,00,00,ef,07,03,00,06,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2032",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,f0,07,09,00,02,00,15,00,00,00,00,00,00,00,00,00,f0,07,03,00,00,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2033",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,f1,07,09,00,03,00,15,00,00,00,00,00,00,00,00,00,f1,07,03,00,01,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2034",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,f2,07,09,00,05,00,16,00,00,00,00,00,00,00,00,00,f2,07,03,00,03,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2035",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,f3,07,09,00,06,00,16,00,00,00,00,00,00,00,00,00,f3,07,03,00,04,00,16,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2036",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,f4,07,09,00,00,00,15,00,00,00,00,00,00,00,00,00,f4,07,03,00,05,00,15,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2037",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,f5,07,09,00,01,00,15,00,00,00,00,00,00,00,00,00,f5,07,03,00,06,00,15,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2008",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,00,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,05,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2009",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,02,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,00,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2010",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,03,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,01,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2011",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,04,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,02,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2012",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,05,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,03,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2013",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,00,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,05,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2014",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,01,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,06,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2015",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,02,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,00,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2016",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,03,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,01,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2017",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,05,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,03,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2018",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,06,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,04,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2019",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,00,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,05,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2020",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,01,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,06,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2021",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,03,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,01,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2022",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,04,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,02,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2023",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,05,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,03,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2024",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,06,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,04,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2025",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,01,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,06,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2026",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,02,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,00,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2027",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,03,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,01,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2028",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,04,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,02,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2029",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,05,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,03,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2030",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,00,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,05,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2031",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,01,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,06,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2032",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,02,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,00,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2033",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,03,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,01,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2034",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,05,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,03,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2035",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,06,00,04,00,00,00,00,00,00,00,00,00,00,00,03,00,04,00,04,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2036",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,00,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,05,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"2037",1,2e,ff,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,09,00,01,00,03,00,00,00,00,00,00,00,00,00,00,00,03,00,06,00,03,00,00,00,00,00,00,00,00,00
 HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"FirstEntry",0x10001,1991
 HKLM,%CurrentVersionNT%\Time Zones\Iran Standard Time\Dynamic DST,"LastEntry",0x10001,2037
 HKLM,%CurrentVersionNT%\Time Zones\Israel Standard Time,"Display",,"Asia/Jerusalem"
@@ -3533,12 +3353,45 @@ HKLM,%CurrentVersionNT%\Time Zones\Line Islands Standard Time,"MUI_Dlt",,"@tzres
 HKLM,%CurrentVersionNT%\Time Zones\Line Islands Standard Time,"MUI_Std",,"@tzres.dll,-16768"
 HKLM,%CurrentVersionNT%\Time Zones\Line Islands Standard Time,"Std",,"Line Islands Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\Line Islands Standard Time,"TZI",1,b8,fc,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time,"Display",,"Australia/Lord_Howe"
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time,"Dlt",,"Lord Howe Daylight Time"
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time,"MUI_Dlt",,"@tzres.dll,-8657"
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time,"MUI_Std",,"@tzres.dll,-8656"
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time,"Std",,"Lord Howe Standard Time"
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time,"TZI",1,8a,fd,ff,ff,00,00,00,00,e2,ff,ff,ff,00,00,04,00,00,00,01,00,02,00,00,00,00,00,00,00,00,00,0a,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time\Dynamic DST,"2005",1,8a,fd,ff,ff,00,00,00,00,e2,ff,ff,ff,00,00,03,00,00,00,05,00,02,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time\Dynamic DST,"2006",1,8a,fd,ff,ff,00,00,00,00,e2,ff,ff,ff,00,00,04,00,00,00,01,00,02,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time\Dynamic DST,"2007",1,8a,fd,ff,ff,00,00,00,00,e2,ff,ff,ff,00,00,03,00,00,00,05,00,02,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time\Dynamic DST,"2008",1,8a,fd,ff,ff,00,00,00,00,e2,ff,ff,ff,00,00,04,00,00,00,01,00,02,00,00,00,00,00,00,00,00,00,0a,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time\Dynamic DST,"FirstEntry",0x10001,"2005"
+HKLM,%CurrentVersionNT%\Time Zones\Lord Howe Standard Time\Dynamic DST,"LastEntry",0x10001,"2008"
 HKLM,%CurrentVersionNT%\Time Zones\Magadan Standard Time,"Display",,"Asia/Magadan"
 HKLM,%CurrentVersionNT%\Time Zones\Magadan Standard Time,"Dlt",,"Magadan Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Magadan Standard Time,"MUI_Dlt",,"@tzres.dll,-8833"
 HKLM,%CurrentVersionNT%\Time Zones\Magadan Standard Time,"MUI_Std",,"@tzres.dll,-8832"
 HKLM,%CurrentVersionNT%\Time Zones\Magadan Standard Time,"Std",,"Magadan Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\Magadan Standard Time,"TZI",1,a8,fd,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time,"Display",,"America/Punta_Arenas"
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time,"Dlt",,"Magallanes Daylight Time"
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time,"MUI_Dlt",,"@tzres.dll,-13121"
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time,"MUI_Std",,"@tzres.dll,-13120"
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time,"Std",,"Magallanes Standard Time"
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time,"TZI",1,b4,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2005",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2006",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2007",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2008",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2009",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,03,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2010",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2011",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,05,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,08,00,00,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2012",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,05,00,00,00,00,00,00,00,00,00,00,00,09,00,00,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2013",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,05,00,00,00,00,00,00,00,00,00,00,00,09,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2014",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,05,00,00,00,00,00,00,00,00,00,00,00,09,00,00,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2015",1,b4,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2016",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,05,00,00,00,03,00,00,00,00,00,00,00,00,00,00,00,08,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"2017",1,b4,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"FirstEntry",0x10001,"2005"
+HKLM,%CurrentVersionNT%\Time Zones\Magallanes Standard Time\Dynamic DST,"LastEntry",0x10001,"2017"
 HKLM,%CurrentVersionNT%\Time Zones\Marquesas Standard Time,"Display",,"Pacific/Marquesas"
 HKLM,%CurrentVersionNT%\Time Zones\Marquesas Standard Time,"Dlt",,"Marquesas Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Marquesas Standard Time,"MUI_Dlt",,"@tzres.dll,-20737"
@@ -3642,15 +3495,44 @@ HKLM,%CurrentVersionNT%\Time Zones\North Asia Standard Time,"MUI_Dlt",,"@tzres.d
 HKLM,%CurrentVersionNT%\Time Zones\North Asia Standard Time,"MUI_Std",,"@tzres.dll,-304"
 HKLM,%CurrentVersionNT%\Time Zones\North Asia Standard Time,"Std",,"North Asia Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\North Asia Standard Time,"TZI",1,5c,fe,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time,"Display",,"Asia/Pyongyang"
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time,"Dlt",,"North Korea Daylight Time"
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time,"MUI_Dlt",,"@tzres.dll,-35889"
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time,"MUI_Std",,"@tzres.dll,-35888"
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time,"Std",,"North Korea Standard Time"
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time,"TZI",1,e4,fd,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time\Dynamic DST,"2014",1,e4,fd,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time\Dynamic DST,"2015",1,e4,fd,ff,ff,00,00,00,00,1e,00,00,00,00,00,01,00,04,00,01,00,00,00,00,00,00,00,00,00,00,00,08,00,06,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time\Dynamic DST,"2016",1,02,fe,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time\Dynamic DST,"2017",1,02,fe,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time\Dynamic DST,"2018",1,02,fe,ff,ff,00,00,00,00,e2,ff,ff,ff,00,00,01,00,01,00,01,00,00,00,00,00,00,00,00,00,00,00,05,00,05,00,01,00,17,00,1e,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time\Dynamic DST,"2019",1,e4,fd,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time\Dynamic DST,"FirstEntry",0x10001,"2014"
+HKLM,%CurrentVersionNT%\Time Zones\North Korea Standard Time\Dynamic DST,"LastEntry",0x10001,"2019"
 HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time,"Display",,"America/Santiago"
 HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time,"Dlt",,"Pacific SA Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time,"MUI_Dlt",,"@tzres.dll,-65009"
 HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time,"MUI_Std",,"@tzres.dll,-65008"
 HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time,"Std",,"Pacific SA Standard Time"
-HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time,"TZI",1,b4,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2015",1,b4,00,00,00,00,00,00,00,c4,ff,ff,ff,df,07,04,00,00,00,1a,00,01,00,00,00,00,00,00,00,e0,07,01,00,05,00,01,00,00,00,00,00,00,00,00,00
-HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"FirstEntry",0x10001,2015
-HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"LastEntry",0x10001,2015
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time,"TZI",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,09,00,00,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2005",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2006",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2007",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2008",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2009",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,03,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2010",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2011",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,05,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,08,00,00,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2012",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,05,00,00,00,00,00,00,00,00,00,00,00,09,00,00,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2013",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,05,00,00,00,00,00,00,00,00,00,00,00,09,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2014",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,05,00,00,00,00,00,00,00,00,00,00,00,09,00,00,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2015",1,b4,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2016",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,05,00,00,00,03,00,00,00,00,00,00,00,00,00,00,00,08,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2017",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,05,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,08,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2018",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,05,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,08,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2019",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,09,00,00,00,02,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"2020",1,f0,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,09,00,00,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"FirstEntry",0x10001,"2005"
+HKLM,%CurrentVersionNT%\Time Zones\Pacific SA Standard Time\Dynamic DST,"LastEntry",0x10001,"2020"
 HKLM,%CurrentVersionNT%\Time Zones\Pacific Standard Time,"Display",,"America/Los_Angeles"
 HKLM,%CurrentVersionNT%\Time Zones\Pacific Standard Time,"Dlt",,"Pacific Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Pacific Standard Time,"MUI_Dlt",,"@tzres.dll,-11233"
@@ -3696,7 +3578,7 @@ HKLM,%CurrentVersionNT%\Time Zones\SA Eastern Standard Time,"Dlt",,"SA Eastern D
 HKLM,%CurrentVersionNT%\Time Zones\SA Eastern Standard Time,"MUI_Dlt",,"@tzres.dll,-40657"
 HKLM,%CurrentVersionNT%\Time Zones\SA Eastern Standard Time,"MUI_Std",,"@tzres.dll,-40656"
 HKLM,%CurrentVersionNT%\Time Zones\SA Eastern Standard Time,"Std",,"SA Eastern Standard Time"
-HKLM,%CurrentVersionNT%\Time Zones\SA Eastern Standard Time,"TZI",1,b4,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,03,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\SA Eastern Standard Time,"TZI",1,b4,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
 HKLM,%CurrentVersionNT%\Time Zones\SA Pacific Standard Time,"Display",,"America/Bogota"
 HKLM,%CurrentVersionNT%\Time Zones\SA Pacific Standard Time,"Dlt",,"SA Pacific Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\SA Pacific Standard Time,"MUI_Dlt",,"@tzres.dll,-49425"
@@ -3709,6 +3591,16 @@ HKLM,%CurrentVersionNT%\Time Zones\SA Western Standard Time,"MUI_Dlt",,"@tzres.d
 HKLM,%CurrentVersionNT%\Time Zones\SA Western Standard Time,"MUI_Std",,"@tzres.dll,-57120"
 HKLM,%CurrentVersionNT%\Time Zones\SA Western Standard Time,"Std",,"SA Western Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\SA Western Standard Time,"TZI",1,f0,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Saint Pierre Standard Time,"Display",,"America/Miquelon"
+HKLM,%CurrentVersionNT%\Time Zones\Saint Pierre Standard Time,"Dlt",,"Saint Pierre Daylight Time"
+HKLM,%CurrentVersionNT%\Time Zones\Saint Pierre Standard Time,"MUI_Dlt",,"@tzres.dll,-5585"
+HKLM,%CurrentVersionNT%\Time Zones\Saint Pierre Standard Time,"MUI_Std",,"@tzres.dll,-5584"
+HKLM,%CurrentVersionNT%\Time Zones\Saint Pierre Standard Time,"Std",,"Saint Pierre Standard Time"
+HKLM,%CurrentVersionNT%\Time Zones\Saint Pierre Standard Time,"TZI",1,b4,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0b,00,00,00,01,00,02,00,00,00,00,00,00,00,00,00,03,00,00,00,02,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Saint Pierre Standard Time\Dynamic DST,"2006",1,b4,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00,00,00,04,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Saint Pierre Standard Time\Dynamic DST,"2007",1,b4,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,0b,00,00,00,01,00,02,00,00,00,00,00,00,00,00,00,03,00,00,00,02,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Saint Pierre Standard Time\Dynamic DST,"FirstEntry",0x10001,"2006"
+HKLM,%CurrentVersionNT%\Time Zones\Saint Pierre Standard Time\Dynamic DST,"LastEntry",0x10001,"2007"
 HKLM,%CurrentVersionNT%\Time Zones\Samoa Standard Time,"Display",,"Pacific/Apia"
 HKLM,%CurrentVersionNT%\Time Zones\Samoa Standard Time,"Dlt",,"Samoa Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Samoa Standard Time,"MUI_Dlt",,"@tzres.dll,-14593"
@@ -3757,6 +3649,18 @@ HKLM,%CurrentVersionNT%\Time Zones\Tasmania Standard Time,"MUI_Dlt",,"@tzres.dll
 HKLM,%CurrentVersionNT%\Time Zones\Tasmania Standard Time,"MUI_Std",,"@tzres.dll,-36016"
 HKLM,%CurrentVersionNT%\Time Zones\Tasmania Standard Time,"Std",,"Tasmania Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\Tasmania Standard Time,"TZI",1,a8,fd,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,04,00,00,00,01,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time,"Display",,"America/Araguaina"
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time,"Dlt",,"Tocantins Daylight Time"
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time,"MUI_Dlt",,"@tzres.dll,-43073"
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time,"MUI_Std",,"@tzres.dll,-43072"
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time,"Std",,"Tocantins Standard Time"
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time,"TZI",1,b4,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time\Dynamic DST,"2011",1,b4,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time\Dynamic DST,"2012",1,b4,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,0a,00,00,00,03,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time\Dynamic DST,"2013",1,b4,00,00,00,00,00,00,00,c4,ff,ff,ff,00,00,02,00,00,00,03,00,00,00,00,00,00,00,00,00,00,00,01,00,02,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time\Dynamic DST,"2014",1,b4,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time\Dynamic DST,"FirstEntry",0x10001,"2011"
+HKLM,%CurrentVersionNT%\Time Zones\Tocantins Standard Time\Dynamic DST,"LastEntry",0x10001,"2014"
 HKLM,%CurrentVersionNT%\Time Zones\Tokyo Standard Time,"Display",,"Asia/Tokyo"
 HKLM,%CurrentVersionNT%\Time Zones\Tokyo Standard Time,"Dlt",,"Tokyo Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\Tokyo Standard Time,"MUI_Dlt",,"@tzres.dll,-16241"
@@ -3820,6 +3724,14 @@ HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time,"MUI_Dlt",,"@tzres
 HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time,"MUI_Std",,"@tzres.dll,-65376"
 HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time,"Std",,"W. Australia Standard Time"
 HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time,"TZI",1,20,fe,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time\Dynamic DST,"2005",1,20,fe,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time\Dynamic DST,"2006",1,20,fe,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,0c,00,00,00,01,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time\Dynamic DST,"2007",1,20,fe,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time\Dynamic DST,"2008",1,20,fe,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,0a,00,00,00,05,00,02,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time\Dynamic DST,"2009",1,20,fe,ff,ff,00,00,00,00,c4,ff,ff,ff,00,00,03,00,00,00,05,00,03,00,00,00,00,00,00,00,00,00,01,00,04,00,01,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time\Dynamic DST,"2010",1,20,fe,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time\Dynamic DST,"FirstEntry",0x10001,"2005"
+HKLM,%CurrentVersionNT%\Time Zones\W. Australia Standard Time\Dynamic DST,"LastEntry",0x10001,"2010"
 HKLM,%CurrentVersionNT%\Time Zones\W. Central Africa Standard Time,"Display",,"Africa/Lagos"
 HKLM,%CurrentVersionNT%\Time Zones\W. Central Africa Standard Time,"Dlt",,"W. Central Africa Daylight Time"
 HKLM,%CurrentVersionNT%\Time Zones\W. Central Africa Standard Time,"MUI_Dlt",,"@tzres.dll,-64977"
@@ -3861,6 +3773,15 @@ ServiceType=16
 StartType=3
 ErrorControl=1
 
+[EventLogService]
+AddReg=EventLogServiceKeys
+Description="Event Log"
+DisplayName="Event Log"
+ServiceBinary="%11%\svchost.exe -k LocalServiceNetworkRestricted"
+ServiceType=32
+StartType=2
+ErrorControl=1
+
 [HTTPService]
 Description="HTTP server"
 DisplayName="HTTP"
@@ -3884,6 +3805,16 @@ ServiceBinary="%12%\mountmgr.sys"
 ServiceType=1
 StartType=2
 ErrorControl=1
+LoadOrderGroup="System Bus Extender"
+
+[NDISService]
+Description="NDIS service"
+DisplayName="NDIS"
+ServiceBinary="%12%\ndis.sys"
+ServiceType=1
+StartType=2
+ErrorControl=1
+LoadOrderGroup="System Bus Extender"
 
 [RpcSsService]
 Description="RPC service"
@@ -3937,6 +3868,10 @@ ErrorControl=1
 [BITSServiceKeys]
 HKR,Parameters,"ServiceDll",,"%11%\qmgr.dll"
 HKLM,%CurrentVersionNT%\SvcHost,"netsvcs",0x00010000,"BITS"
+
+[EventLogServiceKeys]
+HKR,Parameters,"ServiceDll",,"%11%\wevtsvc.dll"
+HKLM,%CurrentVersionNT%\SvcHost,"LocalServiceNetworkRestricted",0x00010000,"EventLog"
 
 [StiServiceKeys]
 HKR,Parameters,"ServiceDll",,"%11%\wiaservc.dll"
@@ -4128,10 +4063,13 @@ HKLM,Software\Wine\LicenseInformation,"Shell-InBoxGames-Solitaire-EnableGame",0x
 HKLM,Software\Wine\LicenseInformation,"Shell-InBoxGames-SpiderSolitaire-EnableGame",0x10001,0x00000001
 HKLM,Software\Wine\LicenseInformation,"Shell-PremiumInBoxGames-Chess-EnableGame",0x10001,0x00000001
 
+[ColorFiles]
+srgb color space profile.icm,"@mscms.dll,-1"
+
 [InfFiles]
-winebus.inf
-winehid.inf
-wineusb.inf
+winebus.inf,"@winebus.sys,-1"
+winehid.inf,"@winehid.sys,-1"
+wineusb.inf,"@wineusb.sys,-1"
 
 [NlsFiles]
 c_037.nls
@@ -4179,6 +4117,7 @@ c_28603.nls
 c_28605.nls
 c_437.nls
 c_500.nls
+c_708.nls
 c_737.nls
 c_775.nls
 c_850.nls
@@ -4214,6 +4153,7 @@ NlsFiles  = nls
 SortFiles = nls
 
 [DestinationDirs]
+ColorFiles = 23
 InfFiles  = 17
 NlsFiles  = 11
 SortFiles = 10,globalization\sorting

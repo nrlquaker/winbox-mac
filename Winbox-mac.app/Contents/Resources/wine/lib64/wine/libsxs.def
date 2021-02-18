@@ -1,8 +1,0 @@
-; File generated automatically from ../wine/dlls/sxs/sxs.spec; do not edit!
-
-LIBRARY sxs.dll
-
-EXPORTS
-  CreateAssemblyCache @1
-  CreateAssemblyNameObject @2
-  SxsLookupClrGuid @3
