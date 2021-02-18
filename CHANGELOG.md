@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.27.1
+
+- update `Wine` to `devel 6.2`;
+- now supports running under Rosetta2.
+
 ## 3.27.0
 
 - update winbox to [3.27](https://download.mikrotik.com/winbox/3.27/winbox64.exe).

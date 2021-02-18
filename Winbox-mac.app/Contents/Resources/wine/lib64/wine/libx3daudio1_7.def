@@ -1,7 +1,0 @@
-; File generated automatically from ../wine/dlls/x3daudio1_7/x3daudio1_7.spec; do not edit!
-
-LIBRARY x3daudio1_7.dll
-
-EXPORTS
-  X3DAudioCalculate @1
-  X3DAudioInitialize=LEGACY_X3DAudioInitialize @2
