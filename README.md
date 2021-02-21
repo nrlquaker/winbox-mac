@@ -5,6 +5,7 @@
 <p align="center">
   <img src="icon.png" width="200">
 </p>
+
 winbox-mac is [MikroTik](https://mikrotik.com) Winbox bundled into macOS app with [Wine](https://www.winehq.org).
 Wine is compiled by [Gcenx](https://github.com/Gcenx) with minimal set of dependencies.
 Icon is provided by [Lucas di Lucca](https://github.com/lucasdelucca).
