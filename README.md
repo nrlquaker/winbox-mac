@@ -5,9 +5,10 @@
 <p align="center">
   <img src="icon.png" width="200">
 </p>
-
-winbox-mac is [MikroTik](https://mikrotik.com) Winbox bundled into macOS app with [Wine](https://www.winehq.org). Wine was cleaned up of 32-bit files.
-Icon is provided by [Lucas di Lucca](https://github.com/lucasdelucca). This is not official [MikroTik](https://mikrotik.com) build and is not related to Mikrotik in any way.
+winbox-mac is [MikroTik](https://mikrotik.com) Winbox bundled into macOS app with [Wine](https://www.winehq.org).
+Wine is compiled by [Gcenx](https://github.com/Gcenx) with minimal set of dependencies.
+Icon is provided by [Lucas di Lucca](https://github.com/lucasdelucca).
+This is not official [MikroTik](https://mikrotik.com) build and is not related to Mikrotik in any way.
 
 <p align="center">
   <img src="screenshot.png" width="650">

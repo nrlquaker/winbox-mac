@@ -3,7 +3,8 @@
 ## 3.27.1
 
 - update `Wine` to `devel 6.2`;
-- now supports running under Rosetta2.
+- use custom `Wine` build to greatly reduce size;
+- add support running under Rosetta2.
 
 ## 3.27.0
 
