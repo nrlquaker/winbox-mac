@@ -1,8 +1,6 @@
 #!/bin/bash
 
 export LC_CTYPE="en_US.UTF-8"
-# not needed in Gcenx build
-export FREETYPE_PROPERTIES="truetype:interpreter-version=35"
 export WINEDLLOVERRIDES="mscoree,mshtml="
 export WINEDEBUG="fixme-esync"
 
