@@ -1,5 +1,21 @@
 # Winbox changelog
 
+## 3.28
+
+- added support for "contains" and "contains not" filtering in IPv4 address ranges;
+- allow to modify DHCPv6 server binding settings;
+- do not show newly created elements as invalid (in red);
+- expand table flag column to show all possible flags;
+- fixed IPv6 prefix column sorting in tables;
+- fixed WinBox crash after saving current session;
+- fixed WinBox crash when accessing v7 routes with VRF set;
+- fixed WinBox crash when some opened element was removed;
+- fixed WinBox disconnect when large text was pasted into terminal window;
+- fixed problem where optional field disappeared if window was maximized;
+- fixed table row selection with keyboard to match Windows behavior;
+- keep inner maximized window maximized when changing WinBox window size;
+- show missing Security Profile field in WiFi simple mode.
+
 ## 3.27
 
 - fixed content drawing of read-only tables (introduced in v3.26).

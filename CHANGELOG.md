@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.28.0
+
+- update winbox to [3.28](https://download.mikrotik.com/winbox/3.28/winbox64.exe).
+
 ## 3.27.1
 
 - update `Wine` to `devel 6.2`;
