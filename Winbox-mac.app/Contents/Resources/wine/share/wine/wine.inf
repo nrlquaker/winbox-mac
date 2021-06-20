@@ -713,6 +713,12 @@ HKLM,%MciExtStr%,"wmx",,"MPEGVideo"
 HKLM,%MciExtStr%,"wvx",,"MPEGVideo"
 
 [Misc]
+; Keyboard mapping
+HKCU,Software\Wine\Mac Driver,"LeftOptionIsAlt",2,"Y"
+HKCU,Software\Wine\Mac Driver,"RightOptionIsAlt",2,"Y"
+HKCU,Software\Wine\Mac Driver,"LeftCommandIsCtrl",2,"Y"
+HKCU,Software\Wine\Mac Driver,"RightCommandIsCtrl",2,"Y"
+
 HKLM,Software\Borland\Database Engine\Settings\SYSTEM\INIT,SHAREDMEMLOCATION,,9000
 HKLM,Software\Clients\Mail,,2,"Native Mail Client"
 HKLM,Software\Clients\Mail\Native Mail Client,,2,"Native Mail Client"
