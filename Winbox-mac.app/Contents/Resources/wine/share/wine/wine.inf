@@ -719,6 +719,10 @@ HKCU,Software\Wine\Mac Driver,"RightOptionIsAlt",2,"Y"
 HKCU,Software\Wine\Mac Driver,"LeftCommandIsCtrl",2,"Y"
 HKCU,Software\Wine\Mac Driver,"RightCommandIsCtrl",2,"Y"
 
+; Retina mode
+HKCU,Control Panel\Desktop,"LogPixels",0x10003,0x000000C0
+HKCU,Software\Wine\Mac Driver,"RetinaMode",2,"Y"
+
 HKLM,Software\Borland\Database Engine\Settings\SYSTEM\INIT,SHAREDMEMLOCATION,,9000
 HKLM,Software\Clients\Mail,,2,"Native Mail Client"
 HKLM,Software\Clients\Mail\Native Mail Client,,2,"Native Mail Client"
