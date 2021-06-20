@@ -39,10 +39,6 @@ You can pass command line arguments as follow:
 open /Applications/Winbox-mac.app --args ip login password
 ```
 
-## Retina mode
-
-After added support for HiDPI displays in `winbox 3.21` now its posible to [enable retina mode](retina_mode/RETINA.md). It has some [issues](https://forum.mikrotik.com/viewtopic.php?f=21&t=157150) now, thats why its not enabled by default.
-
 ## Note
 
 To properly import/export addresses you have to run `Winbox-mac.app/Contents/MacOS/startwine` from CLI or add `/bin/bash` to Security & Privacy → Privacy → Full Disk Access. To be able to see hidden files in file choosing dialog press <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd>.
