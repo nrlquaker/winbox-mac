@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.28.1
+
+- map <kbd>option</kbd> to <kbd>alt</kbd> and <kbd>command</kbd> to <kbd>ctrl</kbd>;
+- enable retina mode by default.
+
 ## 3.28.0
 
 - update winbox to [3.28](https://download.mikrotik.com/winbox/3.28/winbox64.exe).
