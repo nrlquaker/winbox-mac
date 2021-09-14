@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.30.0
+
+- update winbox to [3.30](https://download.mikrotik.com/winbox/3.30/winbox64.exe).
+
 ## 3.28.1
 
 - map <kbd>option</kbd> to <kbd>alt</kbd> and <kbd>command</kbd> to <kbd>ctrl</kbd>;

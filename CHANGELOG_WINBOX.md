@@ -1,5 +1,30 @@
 # Winbox changelog
 
+## 3.30
+
+- added support for mouse wheel scroll in field & table show columns windows;
+- double click on word in "Terminal" now automatically selects and copies it to clipboard;
+- fixed WinBox disconnect when selecting entries in QuickSet's "WiFi Clients" table;
+- fixed crash when all inner windows were closed;
+- fixed crash when opening some of interfaces;
+- fixed glitches while resizing column widths or reordering table entries;
+- fixed visual glitch when showing table filters and categories;
+- fixed visual glitches when scrolling "Terminal" window and Zoom In or Zoom Out is used;
+- made Ctrl++ & Ctrl+- still work if focus is on checkbox;
+- made Ctrl+C and Enter right after text selection in "Terminal" window work as copy to clipboard;
+- made Ctrl+D pass-through to "Terminal", so it is possible to terminate inner telnet or SSH sessions;
+- made Ctrl+V work as paste from clipboard;
+- made double click in "Torch" window work again;
+- properly show "I" flag for invalid entries;
+- use router's time when filling default time in "Scheduler" items.
+
+## 3.29
+
+- added "Windows" menu for list of all currently opened windows;
+- added separate "Show Columns" window for list of visible columns;
+- allow changing column order by using drag and drop;
+- made "Terminal" window titles unique.
+
 ## 3.28
 
 - added support for "contains" and "contains not" filtering in IPv4 address ranges;
