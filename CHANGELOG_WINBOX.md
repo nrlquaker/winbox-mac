@@ -1,5 +1,12 @@
 # Winbox changelog
 
+## 3.31
+
+- ask to close all WinBox instances before WinBox upgrade, otherwise upgrade will fail;
+- fixed table to properly show and hide columns and remember its widths;
+- made MAC-telnet work if SSH or telnet was used before;
+- update file path after changing its location with drag&drop.
+
 ## 3.30
 
 - added support for mouse wheel scroll in field & table show columns windows;
