@@ -1,5 +1,31 @@
 # Winbox changelog
 
+## 3.32
+
+- added "Auto Reconnect" feature;
+- added fast selection of column checkboxes in "Columns" window by simply typing column name without spaces;
+- added support for "Tools->Telnet/SSH" extra parameters;
+- alert if there was error executing "Cancel" action;
+- fixed MAC connection in new window;
+- fixed WinBox when started by Windows "runas" tool with different user;
+- fixed crash on "Netwatch" entry "host" field;
+- fixed crash when table window was closed before its "Columns" window;
+- fixed delayed session window open with "Change Password Now" prompt;
+- fixed filter type "contains" for network fields;
+- fixed focus marker in checkboxes;
+- fixed graphs with values higher than 2^31;
+- fixed large text paste in "Terminal" window;
+- fixed some fields with empty IPv6 value;
+- fixed tables with max entry count feature;
+- fixed time value fields in "Scheduler" menu;
+- keep terminal lines intact when resizing "Terminal" window;
+- properly show all fields which depend on other field;
+- release "Safe Mode" with info message, when other user took it;
+- restore "Managed" table when toggling "Advanced" mode;
+- sort "Columns" window alphabetically;
+- use router's time in graphs;
+- use router's time in last link up/down fields.
+
 ## 3.31
 
 - ask to close all WinBox instances before WinBox upgrade, otherwise upgrade will fail;
