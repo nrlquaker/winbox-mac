@@ -1,5 +1,19 @@
 # Winbox changelog
 
+## 3.34:
+
+- fixed WinBox crash on startup (introduced in v3.33).
+
+## 3.33:
+
+- added support for hex type fields;
+- enabled "Stop" button on auto start actions;
+- fixed error messages for start, stop and cancel actions;
+- fixed skin when opening in new window;
+- fixed time zone offset support for some fields;
+- improved interface name sorting;
+- properly display all packets captured by sniffer.
+
 ## 3.32
 
 - added "Auto Reconnect" feature;
