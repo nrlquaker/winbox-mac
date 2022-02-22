@@ -1,5 +1,12 @@
 # Winbox changelog
 
+## 3.35
+
+- fixed F4 and F7 keys in Terminal;
+- fixed automatic reconnect issues for RoMON;
+- fixed crash when connecting in new window (introduced in v3.33);
+- show correct data rate for file upload/download.
+
 ## 3.34:
 
 - fixed WinBox crash on startup (introduced in v3.33).
