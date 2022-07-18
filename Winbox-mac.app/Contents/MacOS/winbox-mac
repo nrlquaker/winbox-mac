@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env arch -x86_64 bash
 
 export LC_CTYPE="en_US.UTF-8"
 export WINEDLLOVERRIDES="mscoree,mshtml="
@@ -8,7 +8,7 @@ BUNDLERESOURCEPATH="$(dirname "$0")/../Resources"
 
 # workaround for https://bugs.winehq.org/show_bug.cgi?id=49199
 # not needed in Gcenx build
-export DYLD_FALLBACK_LIBRARY_PATH="$BUNDLERESOURCEPATH/wine/lib64"
+# export DYLD_FALLBACK_LIBRARY_PATH="$BUNDLERESOURCEPATH/wine/lib"
 
 PLUTIL_REGEX="s/.*<string>\(.*\)<\/string>.*/\1/p"
 BUNDLE_ID="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/../Info.plist" | sed -n "$PLUTIL_REGEX")"
