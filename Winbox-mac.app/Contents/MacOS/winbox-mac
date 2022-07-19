@@ -1,6 +1,6 @@
 #!/usr/bin/env arch -x86_64 bash
 
-export LC_CTYPE="en_US.UTF-8"
+export LC_CTYPE="$LANG"
 export WINEDLLOVERRIDES="mscoree,mshtml="
 export WINEDEBUG="fixme-esync"
 
