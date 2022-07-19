@@ -1,6 +1,6 @@
 #!/usr/bin/env arch -x86_64 bash
 
-export LC_CTYPE="$LANG"
+export LC_CTYPE="en_US.UTF-8"
 export WINEDLLOVERRIDES="mscoree,mshtml="
 export WINEDEBUG="fixme-esync"
 
@@ -14,6 +14,10 @@ PLUTIL_REGEX="s/.*<string>\(.*\)<\/string>.*/\1/p"
 BUNDLE_ID="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/../Info.plist" | sed -n "$PLUTIL_REGEX")"
 
 export WINEPREFIX="$HOME/Library/Application Support/${BUNDLE_ID}"
+
+if [ -d "$WINEPREFIX" ]; then
+    export LC_CTYPE="$LANG"
+fi
 
 cd "$BUNDLERESOURCEPATH"
 "$BUNDLERESOURCEPATH/wine/bin/wine64" "winbox64.exe" "$@"
