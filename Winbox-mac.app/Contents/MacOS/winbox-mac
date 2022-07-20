@@ -1,6 +1,7 @@
 #!/usr/bin/env arch -x86_64 bash
 
-export LC_CTYPE="en_US.UTF-8"
+APPLE_LANG=$(osascript -e 'return user locale of (get system info)')
+export LC_CTYPE="$APPLE_LANG.UTF-8"
 export WINEDLLOVERRIDES="mscoree,mshtml="
 export WINEDEBUG="fixme-esync"
 
@@ -12,47 +13,8 @@ BUNDLERESOURCEPATH="$(dirname "$0")/../Resources"
 
 PLUTIL_REGEX="s/.*<string>\(.*\)<\/string>.*/\1/p"
 BUNDLE_ID="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/../Info.plist" | sed -n "$PLUTIL_REGEX")"
-APP_FILENAME="winbox64.exe"
-APP_PATH=$(cd "$(dirname "$0")";cd ../../ ; pwd)
 
 export WINEPREFIX="$HOME/Library/Application Support/${BUNDLE_ID}"
+
 cd "$BUNDLERESOURCEPATH"
-
-# make wine run in en_US env
-QUERY_PROCESS="wine64-preloader $APP_FILENAME"
-if [ ! -d "$WINEPREFIX" ] || [ ! -f "$WINEPREFIX/user.reg" ] ; then
-    nohup "$BUNDLERESOURCEPATH/wine/bin/wine64" "$APP_FILENAME" "$@" > /dev/null &
-    while true;do
-        NEW_PID=$(ps aux | grep "$QUERY_PROCESS" | grep -v grep | awk '{print $2}')
-        ps aux | grep "$QUERY_PROCESS"
-        if [ ! -z "$NEW_PID" ];then
-            # no register file, may casue the window resize issue
-            if [ ! -f "$WINEPREFIX/user.reg" ];then
-                if [ "$LANG" != "en_US.UTF-8" ];then
-                    if [ "$LANG" == "zh_CN.UTF-8" ];then
-                        osascript -e 'display alert "注意" message "请手动 Winbox 关闭窗口, 关闭后以便应用字体修正" buttons "确定"' &
-                    else
-                        osascript -e 'display alert "Warning" message "Winbox will restart when you close the winbox"' &
-                    fi;
-                    wait $NEW_PID
-                    while true;do
-                        if [ -f "$WINEPREFIX/user.reg" ];then
-                            break;
-                        fi;
-                        sleep 1
-                    done;
-                fi;
-                open -n $APP_PATH
-            fi;
-            exit 0
-        fi;
-        sleep 1
-    done;
-fi
-
-# No $LANG in macOS app, try to use applescript to get it
-APPLE_LANG=$(osascript -e 'return user locale of (get system info)')
-export LC_CTYPE="$APPLE_LANG.UTF-8"
-
-# make winbox run in $lang env
 "$BUNDLERESOURCEPATH/wine/bin/wine64" "winbox64.exe" "$@"
