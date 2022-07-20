@@ -17,9 +17,7 @@ APP_PATH=$(cd "$(dirname "$0")";cd ../../ ; pwd)
 
 export WINEPREFIX="$HOME/Library/Application Support/${BUNDLE_ID}"
 cd "$BUNDLERESOURCEPATH"
-# /usr/bin/env locale > $HOME/2.txt
-# export > $HOME/1.txt
-# exit 0
+
 # make wine run in en_US env
 QUERY_PROCESS="wine64-preloader $APP_FILENAME"
 if [ ! -d "$WINEPREFIX" ] || [ ! -f "$WINEPREFIX/user.reg" ] ; then
@@ -30,12 +28,11 @@ if [ ! -d "$WINEPREFIX" ] || [ ! -f "$WINEPREFIX/user.reg" ] ; then
         if [ ! -z "$NEW_PID" ];then
             # no register file, may casue the window resize issue
             if [ ! -f "$WINEPREFIX/user.reg" ];then
-                osascript -e "display alert \"Warning\" message \"$LANG\""
                 if [ "$LANG" != "en_US.UTF-8" ];then
                     if [ "$LANG" == "zh_CN.UTF-8" ];then
                         osascript -e 'display alert "注意" message "请手动 Winbox 关闭窗口, 关闭后以便应用字体修正" buttons "确定"' &
                     else
-                        osascript -e 'display alert "Warning" message "Winbox will restart soon"' &
+                        osascript -e 'display alert "Warning" message "Winbox will restart when you close the winbox"' &
                     fi;
                     wait $NEW_PID
                     while true;do
@@ -57,5 +54,6 @@ fi
 APPLE_LANG=$(osascript -e 'return user locale of (get system info)')
 osascript -e "display alert \"Warning\" message \"$APPLE_LANG\""
 export LC_CTYPE="$APPLE_LANG.UTF-8"
+
 # make winbox run in $lang env
 "$BUNDLERESOURCEPATH/wine/bin/wine64" "winbox64.exe" "$@"
