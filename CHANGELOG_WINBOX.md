@@ -1,5 +1,13 @@
 # Winbox changelog
 
+## 3.37
+
+- do not update interface window layout all the time;
+- do not send value for empty multi-option field;
+- fixed VPLS "cisco-id" field with "&" prefix (introduced v3.36);
+- fixed ability to set options that can be hidden;
+- fixed floating point field's negative value in `-0.***` format.
+
 ## 3.36
 
 - fix issue with non existing records still in winbox ros7;
