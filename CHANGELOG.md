@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.37.0
+
+- update winbox to [3.37](https://download.mikrotik.com/winbox/3.37/winbox64.exe).
+
 ## 3.36.1
 
 - update `Wine` to `stable 7.0`.
