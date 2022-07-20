@@ -42,7 +42,7 @@ if [ ! -d "$WINEPREFIX" ] || [ ! -f "$WINEPREFIX/user.reg" ] ; then
                         sleep 1
                     done;
                 fi;
-                open $APP_PATH
+                open -n $APP_PATH
             fi;
             exit 0
         fi;
@@ -52,7 +52,6 @@ fi
 
 # No $LANG in macOS app, try to use applescript to get it
 APPLE_LANG=$(osascript -e 'return user locale of (get system info)')
-osascript -e "display alert \"Warning\" message \"$APPLE_LANG\""
 export LC_CTYPE="$APPLE_LANG.UTF-8"
 
 # make winbox run in $lang env
