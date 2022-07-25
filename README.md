@@ -45,7 +45,7 @@ open /Applications/Winbox-mac.app --args ip login password
 
 ## Note
 
-To properly import/export addresses you have to run `Winbox-mac.app/Contents/MacOS/startwine` from CLI or add `/usr/bin/env` to Security & Privacy → Privacy → Full Disk Access. To be able to see hidden files in file choosing dialog press <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd>.
+To properly import/export addresses or use upload/download you have to run `Winbox-mac.app/Contents/MacOS/startwine` from CLI or add `/usr/bin/env` to Security & Privacy → Privacy → Full Disk Access. To be able to see hidden files in file choosing dialog press <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd>. Or you can use `/tmp` folder.
 
 ## Reporting bugs
 
