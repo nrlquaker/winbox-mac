@@ -1,7 +1,12 @@
 #!/usr/bin/env arch -x86_64 bash
+if [ -z "$LANG" ];then
+    APP_PATH="$(dirname "$0")/../../"
+    APPLE_LANG="$(osascript -e 'return user locale of (get system info)')"
+    LANG="$APPLE_LANG.UTF-8" open -n $APP_PATH
+    exit 0
+fi;
 
-APPLE_LANG=$(osascript -e 'return user locale of (get system info)')
-export LC_CTYPE="$APPLE_LANG.UTF-8"
+export LC_CTYPE="$LANG"
 export WINEDLLOVERRIDES="mscoree,mshtml="
 export WINEDEBUG="fixme-esync"
 
