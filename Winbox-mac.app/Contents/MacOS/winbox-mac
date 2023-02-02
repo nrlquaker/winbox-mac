@@ -1,13 +1,6 @@
 #!/usr/bin/env arch -x86_64 bash
 
-export LC_MESSAGES="$APPLE_LANG.UTF-8"
-export LC_CTYPE="$APPLE_LANG.UTF-8"
-
 BUNDLERESOURCEPATH="$(dirname "$0")/../Resources"
-
-# workaround for https://bugs.winehq.org/show_bug.cgi?id=49199
-# not needed in Gcenx build
-# export DYLD_FALLBACK_LIBRARY_PATH="$BUNDLERESOURCEPATH/wine/lib"
 
 PLUTIL_REGEX="s/.*<string>\(.*\)<\/string>.*/\1/p"
 BUNDLE_ID="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/../Info.plist" | sed -n "$PLUTIL_REGEX")"
@@ -15,4 +8,12 @@ BUNDLE_ID="$(plutil -extract CFBundleIdentifier xml1 -o - "$BUNDLERESOURCEPATH/.
 export WINEPREFIX="$HOME/Library/Application Support/${BUNDLE_ID}"
 
 cd "$BUNDLERESOURCEPATH"
+
+export PATH="$BUNDLERESOURCEPATH/wine/bin:$PATH"
+
+if [ ! -f "$WINEPREFIX/font-smooth.fix" ];then
+    "$BUNDLERESOURCEPATH/wine/bin/wine64" start regedit.exe "Z:\\$BUNDLERESOURCEPATH/patch/fontsmoothing.reg"
+    echo > "$WINEPREFIX/font-smooth.fix"
+fi;
+
 "$BUNDLERESOURCEPATH/wine/bin/wine64" "Z:\\$BUNDLERESOURCEPATH/winbox64.exe" "$@"
