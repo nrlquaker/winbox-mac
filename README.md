@@ -10,6 +10,15 @@ winbox-mac is [MikroTik](https://mikrotik.com) Winbox bundled into macOS app wit
 Wine is compiled by [Gcenx](https://github.com/Gcenx) with minimal set of dependencies.
 Icon is provided by [Lucas di Lucca](https://github.com/lucasdelucca).
 This is not official [MikroTik](https://mikrotik.com) build and is not related to Mikrotik in any way.
+Light Theme configuration by [SebaCarrasco93](https://github.com/sebacarrasco93).
+
+New version (with Theme)
+
+<p align="center">
+  <img src="screenshot-new.png" width="650">
+</p>
+
+Old version (without Theme)
 
 <p align="center">
   <img src="screenshot.png" width="650">

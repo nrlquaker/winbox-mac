@@ -72,6 +72,7 @@ AddReg=\
     SessionMgr,\
     Tapi,\
     Timezones,\
+    LightTheme,\
     LicenseInformation
 
 [DefaultInstall.NT]
@@ -97,6 +98,7 @@ AddReg=\
     Tapi,\
     Timezones,\
     VersionInfo,\
+    LightTheme,\
     LicenseInformation
 
 [DefaultInstall.ntamd64]
@@ -123,6 +125,7 @@ AddReg=\
     Tapi,\
     Timezones,\
     VersionInfo.ntamd64,\
+    LightTheme,\
     LicenseInformation
 
 [DefaultInstall.ntarm64]
@@ -149,6 +152,7 @@ AddReg=\
     Tapi,\
     Timezones,\
     VersionInfo.ntamd64,\
+    LightTheme,\
     LicenseInformation
 
 [Wow64Install]
@@ -5821,3 +5825,10 @@ EtcFiles  = 12,etc
 InfFiles  = 17
 NlsFiles  = 11
 SortFiles = 10,globalization\sorting
+
+[LightTheme]
+; Light Theme applied by SebaCarrasco93 [https://github.com/sebacarrasco93] @ 2023-03-13
+HKCU,"Software\Microsoft\Windows\CurrentVersion\ThemeManager","ThemeActive",2,"1"
+HKCU,"Software\Microsoft\Windows\CurrentVersion\ThemeManager","DllName",2,"%10%\resources\themes\light\light.msstyles"
+HKCU,"Software\Microsoft\Windows\CurrentVersion\ThemeManager","ColorName",2,"Blue"
+HKCU,"Software\Microsoft\Windows\CurrentVersion\ThemeManager","SizeName",2,"NormalSize"
