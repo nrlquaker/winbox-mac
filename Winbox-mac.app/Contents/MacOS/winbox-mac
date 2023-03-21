@@ -2,7 +2,7 @@
 
 export LC_CTYPE="en_US.UTF-8"
 export WINEDLLOVERRIDES="mscoree,mshtml="
-export WINEDEBUG="fixme-esync"
+export WINEDEBUG="-esync,-plugplay"
 
 BUNDLERESOURCEPATH="$(dirname "$0")/../Resources"
 
