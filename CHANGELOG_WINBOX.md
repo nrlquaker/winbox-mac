@@ -1,5 +1,11 @@
 # Winbox changelog
 
+## 3.38
+
+- fixed connecting to wireless network from QuickSet when there was no password specified;
+- fixed date and time value representation in the User Manager;
+- fixed skin file reading.
+
 ## 3.37
 
 - do not update interface window layout all the time;
