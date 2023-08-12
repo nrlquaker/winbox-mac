@@ -1,5 +1,9 @@
 # Winbox changelog
 
+# 3.39
+
+- added support for QR code field.
+
 ## 3.38
 
 - fixed connecting to wireless network from QuickSet when there was no password specified;
