@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.39.0
+
+- update winbox to [3.39](https://download.mikrotik.com/winbox/3.39/winbox64.exe);
+- update `Wine` to `devel 8.10`.
+
 ## 3.38.0
 
 - update winbox to [3.38](https://download.mikrotik.com/winbox/3.38/winbox64.exe).
