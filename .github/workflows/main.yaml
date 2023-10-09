@@ -1,0 +1,18 @@
+name: Winbox-mac maintenance
+run-name: Running daily check to update Winbox-mac
+on:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  check_for_updates:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: write
+      statuses: write
+    steps:
+      - name: Check for a new version of Winbox
+        id: check_for_updates
+        uses: ./.github/workflows/check-for-new-winbox.yml
+        

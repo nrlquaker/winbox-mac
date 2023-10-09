@@ -1,0 +1,27 @@
+name: Check for new Winbox version
+run-name: Checking for new Winbox version...
+on: workflow_dispatch
+jobs:
+  check:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setting up python environment
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Is there a new version?
+        id: check
+        run: ${{ steps.setup-python.outputs.python-path }} ${{ github.workspace }}/scripts/check_for_latest_winbox.py
+
+        
