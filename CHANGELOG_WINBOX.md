@@ -1,5 +1,10 @@
 # Winbox changelog
 
+# 3.40
+
+- fix BTH code into default settings window;
+- fixed WinBox upgrade procedure (introduced in v3.39).
+
 # 3.39
 
 - added support for QR code field.
