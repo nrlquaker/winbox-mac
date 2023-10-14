@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.40.0
+
+- update winbox to [3.40](https://download.mikrotik.com/winbox/3.40/winbox64.exe).
+
 ## 3.39.0
 
 - update winbox to [3.39](https://download.mikrotik.com/winbox/3.39/winbox64.exe);
