@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Extract version number from Info.plist
+plist_path="./Winbox-mac.app/Contents/Info.plist"
+version_key="CFBundleVersion"
+
+# Local file path
+local_file_path="./Winbox-mac.app/Contents/Resources/winbox64.exe"
+
+# Maximum number of retry attempts
+max_attempts=3
+
+# Check if the Info.plist file exists
+if [ ! -f "$plist_path" ]; then
+  echo "Error: Info.plist file not found at $plist_path"
+  exit 1
+fi
+
+# Use grep and sed to extract the version number
+version_number=$(grep -A1 "<key>$version_key</key>" "$plist_path" | grep string | sed -E 's/.*<string>(.*)<\/string>.*/\1/')
+
+# Check if the version number is defined
+if [ -z "$version_number" ]; then
+  echo "Error: Unable to extract version number from $plist_path"
+  exit 1
+fi
+
+# Obfuscate the version number to major.minor format
+version=$(echo "$version_number" | awk -F'.' '{print $1"."$2}')
+
+# Remote file URL
+file_url="https://download.mikrotik.com/winbox/$version/winbox64.exe"
+
+for attempt in $(seq "$max_attempts"); do
+  # Use curl to check if the file is accessible
+  if curl -sSLf "$file_url" >/dev/null; then
+    # Calculate the SHA512 checksum of the local file
+    local_sha512_checksum=$(shasum -a 512 "$local_file_path" | awk '{print $1}')
+
+    # Use curl to download the file and calculate the SHA512 checksum
+    remote_sha512_checksum=$(curl -sSL "$file_url" | shasum -a 512 | awk '{print $1}')
+
+    # Compare the checksums
+    if [ "$remote_sha512_checksum" != "$local_sha512_checksum" ]; then
+      echo "Error: Checksums do not match (attempt $attempt)."
+      echo "Local SHA512:  $local_sha512_checksum"
+      echo "Remote SHA512: $remote_sha512_checksum"
+      if [ "$attempt" -lt "$max_attempts" ]; then
+        # If not the last attempt, wait for a delay before the next attempt
+        delay=$((attempt * 3))
+        echo "Retrying in $delay seconds..."
+        sleep "$delay"
+      else
+        exit 1
+      fi
+    else
+      # Print the version and the calculated SHA512 checksum
+      echo "Version:           $version"
+      echo "SHA512:            $remote_sha512_checksum"
+      exit 0
+    fi
+  else
+    echo "Error: Remote file is not accessible."
+    echo "Remote File URL: $file_url"
+    exit 1
+  fi
+done
