@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.40.1
+
+- update `Wine` to `stable 9.0`.
+
 ## 3.40.0
 
 - update winbox to [3.40](https://download.mikrotik.com/winbox/3.40/winbox64.exe).
