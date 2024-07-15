@@ -15,10 +15,6 @@ This is not official [MikroTik](https://mikrotik.com) build and is not related t
   <img src="screenshot.png" width="650">
 </p>
 
-## Note
-
-Maintainer wanted. If you want to improve and update Winbox-mac to the latest version please contact me.
-
 ## Installation
 
 Can be easily installed with [Homebrew Cask](https://caskroom.github.io):
