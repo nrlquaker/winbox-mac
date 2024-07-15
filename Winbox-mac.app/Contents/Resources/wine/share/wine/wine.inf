@@ -1,5 +1,5 @@
 ;; .INF script for the basic Wine configuration
-;; Version: Wine 8.10
+;; Version: Wine 9.0
 ;;
 ;; This should be run through setupapi:
 ;;   rundll32 setupapi.dll,InstallHinfSection DefaultInstall 128 wine.inf
@@ -2155,6 +2155,7 @@ HKLM,%CurrentVersion%\Telephony\Country List\998,"SameAreaRule",,"G"
 11,mui,
 11,gecko\plugin,npmshtml.dll
 11,Speech\Common,sapi.dll
+11,Speech\Engines\TTS,msttsengine.dll
 11,wbem,mofcomp.exe
 11,wbem,wbemdisp.dll
 11,wbem,wbemprox.dll
@@ -2240,6 +2241,7 @@ HKLM,%CurrentVersion%\Telephony\Country List\998,"SameAreaRule",,"G"
 11,,shdocvw.dll
 11,gecko\plugin,npmshtml.dll
 11,Speech\Common,sapi.dll
+11,Speech\Engines\TTS,msttsengine.dll
 11,wbem,mofcomp.exe
 11,wbem,wbemdisp.dll
 11,wbem,wbemprox.dll
@@ -2458,12 +2460,12 @@ Description="Lanman Server"
 DisplayName="Lanman Server"
 ServiceBinary="%11%\svchost.exe -k netsvcs"
 ServiceType=32
-StartType=4
+StartType=3
 ErrorControl=1
 
 [LanmanServerServiceKeys]
 HKR,Parameters,"ServiceDll",,"%11%\srvsvc.dll"
-;; HKLM,%CurrentVersionNT%\SvcHost,"netsvcs",0x00010008,"lanmanserver"
+HKLM,%CurrentVersionNT%\SvcHost,"netsvcs",0x00010008,"lanmanserver"
 
 [FontCacheService]
 AddReg=FontCacheServiceKeys
@@ -2512,8 +2514,8 @@ HKLM,"System\CurrentControlSet\Services\Winsock2\Parameters\Protocol_Catalog9\Ca
 HKLM,%CurrentVersionNT%,"CurrentVersion",2,"6.3"
 HKLM,%CurrentVersionNT%,"CurrentMajorVersionNumber",0x10003,10
 HKLM,%CurrentVersionNT%,"CurrentMinorVersionNumber",0x10003,0
-HKLM,%CurrentVersionNT%,"CurrentBuild",2,"18362"
-HKLM,%CurrentVersionNT%,"CurrentBuildNumber",2,"18362"
+HKLM,%CurrentVersionNT%,"CurrentBuild",2,"19043"
+HKLM,%CurrentVersionNT%,"CurrentBuildNumber",2,"19043"
 HKLM,%CurrentVersionNT%,"CurrentType",2,"Multiprocessor Free"
 HKLM,%CurrentVersionNT%,"DigitalProductId",1,00,00,00,00,00,00,00,00,00,00,00,\
 00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
