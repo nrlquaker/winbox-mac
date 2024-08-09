@@ -1,5 +1,11 @@
 # Winbox changelog
 
+# 3.41
+- added support for new internal WinBox protocol fields
+More info: https://forum.mikrotik.com/viewtopic.php?t=209520
+Important note: https://forum.mikrotik.com/viewtopic.php?t=209520#p1087391
+
+
 # 3.40
 
 - fix BTH code into default settings window;

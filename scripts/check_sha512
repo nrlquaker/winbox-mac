@@ -29,7 +29,7 @@ fi
 version=$(echo "$version_number" | awk -F'.' '{print $1"."$2}')
 
 # Remote file URL
-file_url="https://download.mikrotik.com/winbox/$version/winbox64.exe"
+file_url="https://mt.lv/winbox64"
 
 for attempt in $(seq "$max_attempts"); do
   # Use curl to check if the file is accessible

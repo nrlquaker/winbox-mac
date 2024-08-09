@@ -53,7 +53,7 @@ If you like this project and you find it useful help me to improve it. First of 
 
 ## Version
 
-Current version is based on [Winbox 3.40](https://download.mikrotik.com/winbox/3.40/winbox64.exe).
+Current version is based on [Winbox 3.41](https://mt.lv/winbox64).
 Wine version is `9.0 stable`.
 
 Please check [versioning](VERSIONING.md) for versioning scheme explanation.

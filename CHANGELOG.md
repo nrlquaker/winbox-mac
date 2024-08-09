@@ -1,5 +1,10 @@
 # Changelog
 
+# 3.41.0
+- update winbox to [3.41](https://mt.lv/winbox64).
+- fix sha512 checksum check 
+  - This was fixed by using Mikrotik's redirected URL to download and check latest Winbox, as Mikrotik has blocked direct linking. Unfortunately, this also means that the ability to repoduce older builds is lost, but this is out of our control.
+- Add Justfile for easier updates. (Depends on [Just](https://github.com/casey/just))
 ## 3.40.1
 
 - update `Wine` to `stable 9.0`.
