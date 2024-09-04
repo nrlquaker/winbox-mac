@@ -15,6 +15,9 @@ This is not official [MikroTik](https://mikrotik.com) build and is not related t
   <img src="screenshot.png" width="650">
 </p>
 
+## Winbox 4 and how it relates to this project
+Mikrotik has released a preview of Winbox that is cross platform native for Windows, Mac, and Linux! We are tracking its development, and the implications of future support of this project in this issue: https://github.com/nrlquaker/winbox-mac/issues/155. Please see this issue for discussion regarding missing features between Winbox 3 and 4. 
+
 ## Installation
 
 Can be easily installed with [Homebrew Cask](https://caskroom.github.io):
