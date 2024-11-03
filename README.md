@@ -15,9 +15,6 @@ This is not official [MikroTik](https://mikrotik.com) build and is not related t
   <img src="screenshot.png" width="650">
 </p>
 
-> [!WARNING]
-> Winbox-mac is **not** currently supported under macOS Sequoia. Please see issues [#156](https://github.com/nrlquaker/winbox-mac/issues/156) and [#157](https://github.com/nrlquaker/winbox-mac/issues/157) to track the ongoing problems and potential workaround. Users are advised **not to upgrade** to macOS Sequoia if they want to continue using Winbox-mac at this time. Mikrotik's official Winbox 4 is supported under macOS Sequoia, and does not experience any of the reported issues. 
-
 ## Winbox 4 and how it relates to this project
 Mikrotik has released a preview of Winbox that is cross platform native for Windows, Mac, and Linux! We are tracking its development, and the implications of future support of this project in this issue: https://github.com/nrlquaker/winbox-mac/issues/155. Please see this issue for discussion regarding missing features between Winbox 3 and 4. 
 
