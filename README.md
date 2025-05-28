@@ -16,7 +16,7 @@ This is not official [MikroTik](https://mikrotik.com) build and is not related t
 </p>
 
 ## Winbox 4 and how it relates to this project
-Mikrotik has released a preview of Winbox that is cross platform native for Windows, Mac, and Linux! We are tracking its development, and the implications of future support of this project in this issue: https://github.com/nrlquaker/winbox-mac/issues/155. Please see this issue for discussion regarding missing features between Winbox 3 and 4. 
+Mikrotik has released Winbox 4 in beta, which is cross platform and includes a native macOS version. You can download it from https://mikrotik.com/download. The native version is the preferred, fully supported way to run Winbox on macOS. Due to the new version being cross platform, and the difficulties in maintaining a Wine-based version, the necessity and feasibility of continuing to support `winbox-mac` is being reviewed as new versions of Winbox 4 and macOS are released. Discussion about this is tracked in [issue #155](https://github.com/nrlquaker/winbox-mac/issues/155).
 
 ## Installation
 
