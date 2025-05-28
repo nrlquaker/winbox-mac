@@ -1,8 +1,19 @@
 # Changelog
 
+# 3.42.0
+
+- updated Winbox to [3.42](https://mt.lv/winbox64).
+
+# 3.41.1
+
+- Uses AppleScript Applet to kickstart the launcher script, re-enabling entitlements.
+> [!WARNING]
+> Please thoroughly read the following notes regarding how the application behaves with this change:
+> As a result of this new chainloading strategy, the application requesting Keystroke Monitoring and Folder Access privileges will now be "applet" instead of "winbox-mac" as that's the new parent process requesting these permissions. I do not believe that this would allow all AppleScript applet bundles to receive these permissions, but that has not been tested. If this does not fit within your security model, I would turn you towards the officially supported Winbox 4 from Mikrotik.
+
 # 3.41.0
 - update winbox to [3.41](https://mt.lv/winbox64).
-- fix sha512 checksum check 
+- fix sha512 checksum check
   - This was fixed by using Mikrotik's redirected URL to download and check latest Winbox, as Mikrotik has blocked direct linking. Unfortunately, this also means that the ability to repoduce older builds is lost, but this is out of our control.
 - Add Justfile for easier updates. (Depends on [Just](https://github.com/casey/just))
 ## 3.40.1

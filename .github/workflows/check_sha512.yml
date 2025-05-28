@@ -2,20 +2,21 @@
 name: Check SHA512 of local and mikrotik.com files
 
 on:
-  pull_request:
-    branches:
-      - master
-
+  # pull_request:
+  #   branches:
+  #     - master
+  workflow_dispatch: {}
 jobs:
   check_sha512:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Check SHA512
-      run: |
-        chmod +x scripts/check_sha512
-        scripts/check_sha512
+      - name: Check SHA512
+        run: |
+          chmod +x scripts/check_sha512
+          scripts/check_sha512
+
 # ---

@@ -1,5 +1,12 @@
 # Winbox changelog
 
+# 3.42
+- added support for the Files menu in future RouterOS versions;
+- added some widget features for future RouterOS versions;
+- fixed crash when dragging the "#" column by disabling its movement;
+- fixed date fields to support year up to 2106;
+- terminal: ignore legacy shift-out (SO) character;
+
 # 3.41
 - added support for new internal WinBox protocol fields
 More info: https://forum.mikrotik.com/viewtopic.php?t=209520
